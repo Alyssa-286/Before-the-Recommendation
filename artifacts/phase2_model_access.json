@@ -1,0 +1,75 @@
+{
+  "artifact_version": "phase2-model-access-v1.0.0",
+  "observed_at_utc": "2026-09-30T15:37:35Z",
+  "repository_commit": "015df787ca22fd3ce2cda9557e74b50b7884dc7d",
+  "overall_status": "checkpoint_a_failed_no_two_research_api_families_accessible",
+  "inspection_scope": {
+    "environment_scopes_checked": ["process", "user", "machine"],
+    "secret_values_read_or_recorded": false,
+    "model_provider_tools_available_in_codex_tool_inventory": false,
+    "python_version": "3.14",
+    "installed_provider_sdks": {
+      "openai": false,
+      "anthropic": false,
+      "google_genai": false,
+      "boto3": false
+    }
+  },
+  "codex_session": {
+    "auth_mode": "chatgpt",
+    "configured_codex_model_id": "gpt-6-luna",
+    "openai_api_key_field_is_null": true,
+    "research_adapter_access": "unavailable",
+    "reason": "Codex session authentication is not a provider API credential or a reproducible model-adapter endpoint; it does not expose the required per-call research request, tool, and response logging contract."
+  },
+  "providers": [
+    {
+      "provider": "OpenAI Platform API",
+      "model_family": "OpenAI",
+      "exact_model_id": null,
+      "access_status": "unavailable",
+      "evidence": ["OPENAI_API_KEY absent from process, user, and machine environment scopes", "Codex auth configuration reports auth_mode=chatgpt and OPENAI_API_KEY=null", "OpenAI Python SDK is not installed"],
+      "live_probe": "not_attempted"
+    },
+    {
+      "provider": "Anthropic API",
+      "model_family": "Anthropic",
+      "exact_model_id": null,
+      "access_status": "unavailable",
+      "evidence": ["ANTHROPIC_API_KEY absent from process, user, and machine environment scopes", "Anthropic Python SDK and CLI are not installed"],
+      "live_probe": "not_attempted"
+    },
+    {
+      "provider": "Google Gemini API",
+      "model_family": "Google Gemini",
+      "exact_model_id": null,
+      "access_status": "unavailable",
+      "evidence": ["GOOGLE_API_KEY and GEMINI_API_KEY absent from process, user, and machine environment scopes", "Google GenAI SDK and gcloud CLI are not installed"],
+      "live_probe": "not_attempted"
+    },
+    {
+      "provider": "AWS Bedrock",
+      "model_family": null,
+      "exact_model_id": null,
+      "access_status": "not_established",
+      "evidence": ["AWS CLI is installed", "aws configure list-profiles returned zero profiles", "AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY absent from process, user, and machine environment scopes", "~/.aws/credentials and ~/.aws/config are absent", "~/.aws/sso/cache could not be inspected because Windows denied access"],
+      "live_probe": "not_attempted"
+    },
+    {
+      "provider": "Local inference server",
+      "model_family": null,
+      "exact_model_id": null,
+      "access_status": "unavailable",
+      "evidence": ["ollama and lmstudio commands are not installed"],
+      "live_probe": "not_attempted"
+    }
+  ],
+  "selection": {
+    "selected_model_families": [],
+    "selected_model_ids": [],
+    "checkpoint_a_pass": false,
+    "main_experiment_started": false,
+    "live_model_calls_made": 0,
+    "note": "No exact provider model ID can be truthfully selected from this environment. Two-family live pilot, model configuration freeze, and main-run cost/runtime estimate remain blocked until at least two distinct research API families are accessible."
+  }
+}

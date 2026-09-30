@@ -2,7 +2,7 @@
 
 **Project:** Before the Recommendation: Do Storefront Marketing Cues Shift How AI Shopping Agents Represent Consumer Goals?
 **Folder / repo name:** `before-the-recommendation`
-**Research status:** Research locked; Phase 1 — BUILD complete and audited; main experiment NOT STARTED
+**Research status:** Research locked; Phase 1 — BUILD complete and audited; Phase 2 offline adapters/controller validated; live model access blocked; main experiment NOT STARTED
 **Hard paper deadline:** 6 October 2026
 **Researcher:** Solo undergraduate researcher
 
@@ -275,7 +275,7 @@ Test the manuscript against:
 - [x] Define JSON schema
 - [x] Define trace schema
 - [x] Define failure taxonomy
-- [ ] Write statistical analysis plan
+- [x] Write and freeze the pre-data statistical analysis plan (`analysis/analysis_plan.md`, v1.0.0)
 - [x] Create package/configuration structure and Git source revision capture (baseline `028cc0118af599fb96472e4450f301cacff383e9`)
 
 **Exit:** Research Lock + experiment specification.
@@ -402,17 +402,45 @@ Test the manuscript against:
 
 # 4. LIVE STATUS
 
-**Current phase:** PHASE 1 — BUILD
+**Current phase:** PHASE 2 — EXPERIMENT + ANALYZE (live preflight)
 
-**Current milestone:** Phase 1 deterministic instrument and mock-only pilot complete, audited, and pushed
+**Current milestone:** Offline Phase 2 provider adapters and ordered live-trial controller implemented and validated with deterministic fakes
 
-**Current task:** Phase 1 is complete. Stop before the main experiment; no live-model calls or experimental data have been generated.
+**Current task:** Checkpoint A remains failed because two distinct research API families and exact model IDs are unavailable. No live-model calls or experimental data have been generated. The live pilot, cost/runtime estimate, and main experiment remain NOT STARTED.
 
 **Main experiment:** NOT STARTED
 
 **Paper writing:** NOT STARTED
 
 **Submission:** NOT STARTED
+
+## Phase 2 preflight — 2026-09-30
+
+**Status: BLOCKED at Checkpoint A; main experiment NOT STARTED.**
+
+- Read `project.md`, `roadmap.md`, and `AGENTS.md` completely before edits. Inspected the clean Phase 1 baseline at `015df787ca22fd3ce2cda9557e74b50b7884dc7d` and its deterministic catalog, objectives, scorer, cue overlays, scenario view, mock protocol, parser, trace, failure, and checkpoint implementation.
+- Model-access inventory: `artifacts/phase2_model_access.json`. No OpenAI, Anthropic, or Google API key was present in process/user/machine environment scopes. Codex session is authenticated through ChatGPT (`gpt-6-luna` in local Codex config), but has no OpenAI Platform API key or research-adapter endpoint. AWS CLI is present with zero configured profiles; the AWS SSO cache path was not inspectable due a Windows access-denied response. No local inference server was found.
+- No provider/model exact ID is selected; no live probe was attempted; zero external model calls were made. Checkpoint A is not passed. The suggested 32-run live pilot, model configuration freeze, full experiment freeze, and main-run budget estimate are blocked until two actual provider families and exact model IDs are accessible.
+- Pre-data analysis plan frozen at `analysis/analysis_plan.md` v1.0.0 (SHA-256 `19313BAB9808430735BAA67B0C8AEF3F26BF4C9A8D2D4A7CFD27C088DBEB65DD`). It specifies the 1,920-run core count, paired commercial-versus-neutral ambiguous-goal primary contrast, five reported primary outcomes/four distinct primary contrasts, fixed model-family effects, 10,000 scenario-cluster bootstrap replicates (seed `20260930`), failure/missingness rules, audit gate, and robustness order. This is the analysis-plan freeze only; it is not the experiment freeze.
+- Environment reconnaissance command issue: the first optional Python package check raised `ModuleNotFoundError` while probing the nested `google.genai` module because its parent package was absent. The probe was corrected to check the parent before the child; the corrected inventory found no OpenAI, Anthropic, Google GenAI, boto3, NumPy, pandas, SciPy, statsmodels, or Matplotlib packages. No repository files or data were changed by the failed check.
+- Initial preflight next action was to build adapters/controller after access review; that offline implementation milestone is now complete. The remaining next action is to make two budget-approved research API families and exact model IDs accessible, then run the separately logged live access pilot and freeze model-specific settings before any core trial.
+
+## Phase 2 offline adapter/controller milestone — 2026-09-30
+
+**Status: OFFLINE IMPLEMENTATION PASS; LIVE MODEL ACCESS AND PILOT BLOCKED.**
+
+- Added `src/before_recommendation/model_adapters.py`: standard-library HTTPS adapters for OpenAI Chat Completions and Anthropic Messages, typed provider-neutral messages/tool calls, one request per turn, no automatic retries or tool execution, explicit model/settings metadata, sanitized provider failures, and no credential values in returned metadata or logs.
+- Added `src/before_recommendation/live_controller.py`: a frozen fixed-template request; first-call-only `inspect_catalog`; catalog facts and cue labels delivered only as a tool result; one tool call per model response; at most one deterministic controller-inserted clarification answer; final `submit_recommendation`; strict causal-order checks; one parser retry maximum; per-turn append/fsync raw I/O records with request payload, response bytes (base64), readable response, hashes, timestamps, request IDs, latency, and usage; headers and API keys are excluded.
+- Added `schemas/agent_output.v2.schema.json` and `src/before_recommendation/live_output.py`. The model-owned output includes only preference weights, ranking, evidence, uncertainty, and explanation. Catalog inspection, clarification decision/question/target, and simulated answer remain controller/protocol records. The Phase 1 v1 schema remains unchanged.
+- The controller rechecks factual-utility balance across all four cue arms before a model call, stores the diagnostics under evaluator-private trace data, and exposes only the selected arm's factual records/cue labels to the model. Trial config hashes pin the Phase 1 config, model settings, analysis-plan bytes/version, frozen prompt/tool/schema contract, and protocol limits; live trials require a committed code revision in their identity/checkpoint records.
+- Updated `src/before_recommendation/analysis.py` to flatten v2 output and controller-recorded clarification metrics while retaining Phase 1 compatibility. Recovered invalid submissions remain both in parser attempts and the failure log as recoverable failures.
+- Added `tests/test_live_model_path.py` for both provider request formats, strict schemas, secret exclusion, missing credentials/no network, preserved 429 bodies, config hash stability, duplicate tool-argument rejection, causal tool order, no parallel calls, compound-question uncertainty, single-clarification limit, cue-only presentation changes, one parser retry, evaluator separation, checkpoint/failure logging, and v2 tidy-row analysis.
+- Test history: the first focused run had 2 assertion failures and 1 missing test import; corrected event expectations/import. The next expanded run had 1 failure because the test compared raw JSON text before decoding JSONL escaping; fixed the test to verify exact base64 response bytes. A later analysis/controller run exposed 4 `UnboundLocalError` errors for terminal-failure results; initialized the returned failure from the terminal event and reran successfully. These initial failures were preserved here; no experiment responses were fabricated or discarded.
+- Final validation: `python -m compileall -q src tests` passed; focused Phase 2 plus analysis tests **19 passed, 0 failed**; final full `python -m unittest discover -s tests -v` **66 passed, 0 failed**. Three access/schema JSON files parse. `git diff --check` reported four intentional two-space Markdown hard-breaks in the frozen analysis-plan metadata; no code whitespace issue was reported. All provider/controller checks used scripted turns and fake HTTP transports. **Zero live provider probes and zero live model calls.**
+- Rechecked process/user/machine environment variable presence after the pause without reading values: OpenAI, Anthropic, Google/Gemini API keys and AWS profile/credential variables remain absent. Initial inventory remains at `artifacts/phase2_model_access.json` (SHA-256 `0BFF6230F207E790E250536C3CB7ECBE316193608775403D22266CACDB6C57E5`); post-pause recheck is `artifacts/phase2_model_access_recheck.json` (SHA-256 `C1023DCB78F8B54044C6DB4D11B7F9AB84F12677E47A4FF4EB4FF4308E3B3CF7`). The frozen plan is `analysis/analysis_plan.md` (SHA-256 `19313BAB9808430735BAA67B0C8AEF3F26BF4C9A8D2D4A7CFD27C088DBEB65DD`); model-owned output schema v2 is `schemas/agent_output.v2.schema.json` (SHA-256 `15001674FC78FFE397CD34EF7CEC3E3CC38E198AE8380B8BBD5D62420B6EF49E`). Neither exact model IDs nor two-family access are established.
+- **Next action:** make two distinct, budget-approved provider families accessible through environment credentials (never commit keys), choose exact model IDs/settings, estimate live pilot cost/runtime, then run the small live access pilot. Do not start the 1,920-run core or freeze the full experiment until the live checkpoint/pilot criteria pass.
+
+| 2026-09-30 | PHASE 2 — OFFLINE BUILD | Implement provider adapters, v2 model-output parser, ordered live controller, versioned trial hashing, and v2 analysis support | Initial tests exposed harness expectation/import errors and one controller terminal-failure return bug; all were recorded and corrected. Final focused suite 19/19 passed; full suite 66/66 passed; compileall passed. Fake transports only; no provider probes or live model calls. | `src/before_recommendation/{model_adapters,live_controller,live_output,analysis}.py`; `schemas/agent_output.v2.schema.json`; `tests/test_live_model_path.py`; `artifacts/phase2_model_access_recheck.json` | Obtain two provider families and exact model IDs, then estimate and run the live pilot; the core experiment remains gated. |
 
 ## Phase 1 exit audit — 2026-09-30
 
@@ -465,6 +493,7 @@ _Add a new row after every meaningful milestone. Never delete historical entries
 | 2026-09-30 20:21 IST | PHASE 1 — BUILD | Complete the deterministic mock-only interface pilot across all core condition cells | Expanded full suite: 47/47 passed. Pilot script ran its 8-cell mock batch twice and matched normalized trace/failure records; two separate script invocations also produced the same report SHA-256 `08F6662C813DE11F7AB2F5B62C1E3C0F48A72DB8553C8EB9370C62F01EC217F7`. All 8 mock trials completed with valid final outputs; one injected malformed first response was retained and recovered once. Failure report records `invalid_json: 1`. The analysis skeleton creates descriptive rows only. Pilot uses 1 synthetic scenario, 1 mock model, 1 repetition per cell; 0 external model calls. Source revision will be refreshed after implementation commit. | `scripts/run_interface_pilot.py`; `artifacts/phase1_interface_pilot.json`; `src/before_recommendation/analysis.py`; `tests/test_analysis.py`; full `tests/` suite | Commit the validated code and roadmap, regenerate both reports at that revision, run the final full suite, perform Phase 1 exit audit, then push. |
 | 2026-09-30 20:30 IST | PHASE 1 — BUILD | Final clean-revision audit and reproducibility comparison | Source revision `d1f0d0719e0beee5af3feb7fd10118fe36f9109f`; final suite 49/49 passed. Smoke and interface report each regenerated twice with identical SHA-256 values. Eight mock condition cells completed; the expected injected invalid-JSON response was preserved and recovered once. All Phase 1 pilot exit criteria pass; no external models or main experiment. | `artifacts/phase1_deterministic_smoke.json`; `artifacts/phase1_interface_pilot.json`; `schemas/agent_output.v1.schema.json`; `schemas/trace.v1.schema.json`; full `tests/` suite; source commit `d1f0d0719e0beee5af3feb7fd10118fe36f9109f` | Push the audited Phase 1 build to the verified empty `main` remote. |
 | 2026-09-30 20:33 IST | PHASE 1 — BUILD | Push audited Phase 1 build after exit audit | Push succeeded to `origin/main`; upstream tracking configured. The pushed tree contains the audit and both revision-stamped reproducibility artifacts. The remote was empty before the authorized push. No main experiment or external model calls. | GitHub `Alyssa-286/Before-the-Recommendation`, branch `main`; commit `725d3c0` | Phase 1 complete. Stop before the main experiment. |
+| 2026-09-30 21:07 IST | PHASE 2 — PREFLIGHT | Inspect provider access and freeze the pre-data analysis plan | Checkpoint A failed: no two research API model families are accessible; no live probe or external model call was made. Added a model-access snapshot and frozen analysis plan. No code or experiment data changed. Full Phase 1 suite rerun: **49 passed, 0 failed**; model-access JSON parsed successfully. | `artifacts/phase2_model_access.json` (SHA-256 `0BFF6230F207E790E250536C3CB7ECBE316193608775403D22266CACDB6C57E5`); `analysis/analysis_plan.md` v1.0.0 (SHA-256 `19313BAB9808430735BAA67B0C8AEF3F26BF4C9A8D2D4A7CFD27C088DBEB65DD`); current Git commit to be recorded after commit | Resolve two-provider access, then implement and test real adapters and the strictly ordered live trial controller. |
 
 ---
 

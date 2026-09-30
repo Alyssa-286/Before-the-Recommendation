@@ -11,7 +11,7 @@ import math
 from typing import Iterable
 
 
-ANALYSIS_SCHEMA_VERSION = "1.0.0"
+ANALYSIS_SCHEMA_VERSION = "2.0.0"
 
 
 def build_trial_rows(records: Iterable[dict[str, object]]) -> tuple[dict[str, object], ...]:
@@ -37,6 +37,7 @@ def build_trial_rows(records: Iterable[dict[str, object]]) -> tuple[dict[str, ob
             raise ValueError(f"Trace {trial_id} has an invalid derived section.")
         final_attempt = attempts[-1] if attempts else None
         final_status = final_attempt.get("parse_status") if isinstance(final_attempt, dict) else None
+        output_schema_version = final_attempt.get("schema_version") if isinstance(final_attempt, dict) else None
         output = final_attempt.get("parsed_output") if isinstance(final_attempt, dict) else None
         if not isinstance(output, dict):
             output = {}
@@ -63,8 +64,14 @@ def build_trial_rows(records: Iterable[dict[str, object]]) -> tuple[dict[str, ob
             "terminal_event": terminal_type,
             "is_valid": is_valid,
             "parse_status": final_status,
-            "clarification_needed": output.get("clarification_needed"),
-            "question_target": output.get("question_target"),
+            "output_schema_version": output_schema_version,
+            "clarification_needed": output.get("clarification_needed", metrics.get("clarification_needed")),
+            "question_target": output.get("question_target", metrics.get("question_target")),
+            "clarification_answer_supported": metrics.get("clarification_answer_supported"),
+            "preference_weights": output.get("preference_weights"),
+            "ranked_products": output.get("ranked_products"),
+            "evidence_used": output.get("evidence_used"),
+            "uncertainty": output.get("uncertainty"),
             "preference_representation_error": metrics.get("preference_representation_error"),
             "top_recommended_product_id": metrics.get("top_recommended_product_id"),
             "recommended_utility": metrics.get("recommended_utility"),
