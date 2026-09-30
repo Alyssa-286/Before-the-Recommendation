@@ -21,7 +21,9 @@ from before_recommendation.live_controller import (
 from before_recommendation.live_output import LIVE_OUTPUT_SCHEMA_VERSION, parse_live_output
 from before_recommendation.model_adapters import (
     AnthropicMessagesAdapter,
+    GeminiOpenAICompatAdapter,
     HttpResponse,
+    GroqChatCompletionsAdapter,
     ModelConfig,
     ModelProviderFailure,
     ModelTurn,
@@ -29,6 +31,7 @@ from before_recommendation.model_adapters import (
     ResearchMessage,
     ResearchToolCall,
     ToolDefinition,
+    make_adapter,
 )
 from before_recommendation.prompts import GoalCondition
 from before_recommendation.scenarios import generate_scenarios
@@ -152,6 +155,115 @@ class ProviderAdapterTests(unittest.TestCase):
         self.assertEqual(turn.tool_calls[0].name, "inspect_catalog")
         self.assertNotIn(secret, repr(turn))
         self.assertNotIn(secret, repr(config.public_dict()))
+
+    def test_gemini_openai_compat_tool_calls_preserve_google_turn_metadata(self) -> None:
+        secret = "unit-test-gemini-secret"
+        captured: list[dict[str, object]] = []
+        responses = [
+            {
+                "id": "gemini-response-1", "model": "gemini-test", "choices": [{
+                    "finish_reason": "tool_calls", "message": {"role": "assistant", "content": None, "tool_calls": [{
+                        "id": "gemini-call-1", "type": "function",
+                        "function": {"name": "inspect_catalog", "arguments": "{}"},
+                        "extra_content": {"google": {"thought_signature": "opaque-test-signature"}},
+                    }]}
+                }], "usage": {"prompt_tokens": 6, "completion_tokens": 3},
+            },
+            {
+                "id": "gemini-response-2", "model": "gemini-test", "choices": [{
+                    "finish_reason": "tool_calls", "message": {"role": "assistant", "content": None, "tool_calls": [{
+                        "id": "gemini-call-2", "type": "function",
+                        "function": {"name": "submit_recommendation", "arguments": "{}"},
+                    }]}
+                }], "usage": {"prompt_tokens": 9, "completion_tokens": 4},
+            },
+        ]
+
+        def transport(endpoint: str, headers: dict[str, str], body: bytes, timeout: float) -> HttpResponse:
+            captured.append({"endpoint": endpoint, "headers": headers, "body": json.loads(body)})
+            return HttpResponse(200, json.dumps(responses.pop(0)).encode(), f"gemini-rid-{len(captured)}")
+
+        config = ModelConfig("gemini_openai_compat", "gemini-test", "google_gemini", "UNIT_TEST_GEMINI_KEY")
+        adapter = make_adapter(config, transport)
+        self.assertIsInstance(adapter, GeminiOpenAICompatAdapter)
+        with patch.dict(os.environ, {"UNIT_TEST_GEMINI_KEY": secret}):
+            first = adapter.complete((ResearchMessage("system", "protocol"), ResearchMessage("user", "request")), LIVE_TOOLS)
+            second = adapter.complete((
+                ResearchMessage("system", "protocol"),
+                ResearchMessage("user", "request"),
+                ResearchMessage("assistant", tool_calls=first.tool_calls, provider_metadata=first.provider_metadata),
+                ResearchMessage("tool", "catalog facts", tool_call_id=first.tool_calls[0].call_id, name="inspect_catalog"),
+            ), LIVE_TOOLS)
+        first_payload = captured[0]["body"]
+        self.assertEqual(captured[0]["endpoint"], "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions")
+        self.assertEqual(captured[0]["headers"]["Authorization"], f"Bearer {secret}")
+        self.assertNotIn("strict", first_payload["tools"][0]["function"])
+        self.assertEqual(first.tool_calls[0].name, "inspect_catalog")
+        self.assertEqual(first.tool_calls[0].provider_metadata["extra_content"]["google"]["thought_signature"], "opaque-test-signature")
+        returned_call = captured[1]["body"]["messages"][2]["tool_calls"][0]
+        self.assertEqual(returned_call["extra_content"]["google"]["thought_signature"], "opaque-test-signature")
+        self.assertEqual(first.raw_response, json.dumps({
+            "id": "gemini-response-1", "model": "gemini-test", "choices": [{
+                "finish_reason": "tool_calls", "message": {"role": "assistant", "content": None, "tool_calls": [{
+                    "id": "gemini-call-1", "type": "function",
+                    "function": {"name": "inspect_catalog", "arguments": "{}"},
+                    "extra_content": {"google": {"thought_signature": "opaque-test-signature"}},
+                }]}
+            }], "usage": {"prompt_tokens": 6, "completion_tokens": 3},
+        }).encode())
+        self.assertEqual((first.input_tokens, first.output_tokens), (6, 3))
+        self.assertEqual(second.observed_model_id, "gemini-test")
+        self.assertNotIn(secret, repr(first))
+
+    def test_groq_uses_documented_completion_limit_and_maps_rate_limit_safely(self) -> None:
+        secret = "unit-test-groq-secret"
+        captured: dict[str, object] = {}
+
+        def transport(endpoint: str, headers: dict[str, str], body: bytes, timeout: float) -> HttpResponse:
+            captured.update(endpoint=endpoint, headers=headers, body=json.loads(body))
+            return HttpResponse(200, json.dumps({
+                "id": "groq-response", "model": "groq-test", "choices": [{
+                    "finish_reason": "tool_calls", "message": {"role": "assistant", "content": None, "tool_calls": [{
+                        "id": "groq-call", "type": "function", "function": {"name": "inspect_catalog", "arguments": "{}"}
+                    }]}
+                }], "usage": {"prompt_tokens": 8, "completion_tokens": 2},
+            }).encode(), "groq-rid")
+
+        config = ModelConfig("groq_chat_completions", "groq-test", "groq-test-family", "UNIT_TEST_GROQ_KEY", seed=7)
+        adapter = make_adapter(config, transport)
+        self.assertIsInstance(adapter, GroqChatCompletionsAdapter)
+        with patch.dict(os.environ, {"UNIT_TEST_GROQ_KEY": secret}):
+            turn = adapter.complete((ResearchMessage("user", "request"),), LIVE_TOOLS)
+        self.assertEqual(captured["endpoint"], "https://api.groq.com/openai/v1/chat/completions")
+        self.assertEqual(captured["headers"]["Authorization"], f"Bearer {secret}")
+        self.assertEqual(captured["body"]["max_completion_tokens"], 1200)
+        self.assertEqual(captured["body"]["seed"], 7)
+        self.assertFalse(captured["body"]["parallel_tool_calls"])
+        self.assertNotIn("strict", captured["body"]["tools"][0]["function"])
+        self.assertEqual(turn.tool_calls[0].name, "inspect_catalog")
+        self.assertEqual(turn.raw_response, json.dumps({
+            "id": "groq-response", "model": "groq-test", "choices": [{
+                "finish_reason": "tool_calls", "message": {"role": "assistant", "content": None, "tool_calls": [{
+                    "id": "groq-call", "type": "function", "function": {"name": "inspect_catalog", "arguments": "{}"}
+                }]}
+            }], "usage": {"prompt_tokens": 8, "completion_tokens": 2},
+        }).encode())
+        self.assertEqual((turn.input_tokens, turn.output_tokens), (8, 2))
+        self.assertEqual(turn.request_id, "groq-rid")
+
+        error_bytes = f'{{"error":{{"message":"{secret}"}}}}'.encode()
+        with patch.dict(os.environ, {"UNIT_TEST_GROQ_KEY": secret}):
+            with self.assertRaises(ModelProviderFailure) as raised:
+                GroqChatCompletionsAdapter(config, lambda *args: HttpResponse(429, error_bytes, "limited", "4")).complete(
+                    (ResearchMessage("user", "request"),), LIVE_TOOLS
+                )
+        self.assertEqual(raised.exception.category, "rate_limit")
+        self.assertEqual(raised.exception.status_code, 429)
+        self.assertEqual(raised.exception.request_id, "limited")
+        self.assertEqual(raised.exception.retry_after, "4")
+        self.assertNotIn(secret.encode(), raised.exception.raw_response)
+        self.assertIn(b"[REDACTED]", raised.exception.raw_response)
+        self.assertNotIn(secret, str(raised.exception))
 
     def test_anthropic_maps_tool_result_and_tool_use(self) -> None:
         secret = "unit-test-secret-anthropic"

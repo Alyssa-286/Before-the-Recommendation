@@ -1,118 +1,959 @@
 {
-  "artifact_version": "model-access-matrix-v1.2.0",
-  "observed_at_utc": "2026-09-30T18:39:36Z",
+  "artifact_version": "model-access-matrix-v2.0.0",
+  "observed_at_utc": "2026-09-30T20:26:55Z",
   "repository": "Alyssa-286/Before-the-Recommendation",
   "candidate_policy": {
-    "candidate_providers": ["OpenAI", "Google Gemini", "Groq"],
-    "excluded_by_current_instruction": ["Anthropic/Claude"],
-    "selection_objective": "minimize expected cost per valid completed scenario-run subject to technical, scientific, quota, and deadline constraints"
-  },
-  "repository_state": {
-    "branch": "main",
-    "working_tree_clean_at_inspection": true,
-    "head": "0e2b11a37b5c0069fd0a8156d403e14954ed62a8",
-    "last_known_origin_main_tracking_ref": "98c8ea4c34e74c211015b1ef0d3dc08060db0a94",
-    "local_ahead_behind_tracking_ref": {"ahead": 2, "behind": 0},
-    "fresh_remote_fetch_verified": false,
-    "fetch_error": "fatal: unable to access 'https://github.com/Alyssa-286/Before-the-Recommendation.git/': schannel: AcquireCredentialsHandle failed: SEC_E_NO_CREDENTIALS (0x8009030E) - No credentials are available in the security package",
-    "github_cli": {
-      "installed": true,
-      "auth_status": "unavailable_to_check",
-      "error": "warning: failed to load config: open C:\\Users\\Bhagya\\AppData\\Roaming\\GitHub CLI\\config.yml: Access is denied.\nfailed to create root command: failed to read configuration: open C:\\Users\\Bhagya\\AppData\\Roaming\\GitHub CLI\\config.yml: Access is denied."
-    }
-  },
-  "inspection_scope": {
-    "required_documents_read_completely": ["project.md", "roadmap.md", "AGENTS.md", "analysis/analysis_plan.md"],
-    "environment_scopes_checked": ["process", "user", "machine"],
-    "credential_values_printed_or_recorded": false,
-    "provider_configuration_found": false,
-    "exact_model_ids_configured": false,
-    "live_provider_requests_made": 0
+    "candidate_providers": [
+      "OpenAI",
+      "Google Gemini",
+      "Groq"
+    ],
+    "excluded_by_current_instruction": [
+      "Anthropic/Claude"
+    ],
+    "selection_objective": "minimize expected total API cost for the frozen 1,920-run experiment subject to two distinct model families and technical validity"
   },
   "credential_variable_presence": {
-    "OPENAI_API_KEY": {"process": false, "user": false, "machine": false},
-    "GEMINI_API_KEY": {"process": false, "user": false, "machine": false},
-    "GROQ_API_KEY": {"process": false, "user": false, "machine": false}
+    "OPENAI_API_KEY": "SET",
+    "GEMINI_API_KEY": "SET",
+    "GROQ_API_KEY": "SET"
   },
+  "credential_values_printed_or_recorded": false,
+  "dotenv_loader_used": true,
+  "live_list_requests_made": 3,
   "providers": [
     {
       "provider": "OpenAI",
-      "exact_model_id": null,
-      "model_family": "OpenAI family; exact model identity unavailable",
-      "configured": false,
-      "credential_available": false,
       "credential_environment_variable": "OPENAI_API_KEY",
+      "credential_available": true,
       "adapter_available": true,
       "adapter": "openai_chat_completions",
-      "structured_output_support": {"implemented_in_adapter": true, "offline_fake_transport_tested": true, "live_validated": false},
-      "tool_calling_support": {"implemented_in_adapter": true, "offline_fake_transport_tested": true, "live_validated": false},
-      "local_catalog_compatibility": {"offline_controller_tested_with_deterministic_fakes": true, "live_verified": false},
-      "official_pricing": {"status": "not_retrieved_no_exact_model_id", "input_price": null, "output_price": null, "source": null, "retrieval_date": null, "pricing_tier": null},
-      "free_tier_and_quota": "not_verified_for_an_accessible_account",
-      "rate_limits": "not_verified_for_an_accessible_account",
-      "status": "blocked_missing_credential_and_exact_model_id",
-      "reason": "OPENAI_API_KEY is absent from process, user, and machine environment scopes. The repository adapter exists, but adapter presence does not establish API access or model availability."
+      "list_endpoint": "https://api.openai.com/v1/models",
+      "list_http_status": 200,
+      "rate_limit_headers_observed": {
+        "x-request-id": "4ff21b2f-851e-492b-b3a7-792b9f58aa00"
+      },
+      "accessible_model_ids": [
+        "babbage-002",
+        "chat-latest",
+        "chatgpt-image-latest",
+        "davinci-002",
+        "gpt-3.5-turbo",
+        "gpt-3.5-turbo-0125",
+        "gpt-3.5-turbo-1106",
+        "gpt-3.5-turbo-16k",
+        "gpt-3.5-turbo-instruct",
+        "gpt-3.5-turbo-instruct-0914",
+        "gpt-4.1",
+        "gpt-4.1-2025-04-14",
+        "gpt-4.1-mini",
+        "gpt-4.1-mini-2025-04-14",
+        "gpt-4.1-nano",
+        "gpt-4.1-nano-2025-04-14",
+        "gpt-4o",
+        "gpt-4o-2024-05-13",
+        "gpt-4o-2024-08-06",
+        "gpt-4o-2024-11-20",
+        "gpt-4o-mini",
+        "gpt-4o-mini-2024-07-18",
+        "gpt-4o-mini-search-preview",
+        "gpt-4o-mini-search-preview-2025-03-11",
+        "gpt-4o-mini-transcribe",
+        "gpt-4o-mini-transcribe-2025-03-20",
+        "gpt-4o-mini-transcribe-2025-12-15",
+        "gpt-4o-mini-tts",
+        "gpt-4o-mini-tts-2025-03-20",
+        "gpt-4o-mini-tts-2025-12-15",
+        "gpt-4o-search-preview",
+        "gpt-4o-search-preview-2025-03-11",
+        "gpt-4o-transcribe",
+        "gpt-4o-transcribe-diarize",
+        "gpt-5",
+        "gpt-5-2025-08-07",
+        "gpt-5-chat-latest",
+        "gpt-5-codex",
+        "gpt-5-mini",
+        "gpt-5-mini-2025-08-07",
+        "gpt-5-nano",
+        "gpt-5-nano-2025-08-07",
+        "gpt-5-pro",
+        "gpt-5-pro-2025-10-06",
+        "gpt-5-search-api",
+        "gpt-5-search-api-2025-10-14",
+        "gpt-5.1",
+        "gpt-5.1-2025-11-13",
+        "gpt-5.1-chat-latest",
+        "gpt-5.1-codex",
+        "gpt-5.1-codex-max",
+        "gpt-5.1-codex-mini",
+        "gpt-5.2",
+        "gpt-5.2-2025-12-11",
+        "gpt-5.2-chat-latest",
+        "gpt-5.2-codex",
+        "gpt-5.2-pro",
+        "gpt-5.2-pro-2025-12-11",
+        "gpt-5.3-chat-latest",
+        "gpt-5.3-codex",
+        "gpt-5.4",
+        "gpt-5.4-2026-03-05",
+        "gpt-5.4-mini",
+        "gpt-5.4-mini-2026-03-17",
+        "gpt-5.4-nano",
+        "gpt-5.4-nano-2026-03-17",
+        "gpt-5.4-pro",
+        "gpt-5.4-pro-2026-03-05",
+        "gpt-5.5",
+        "gpt-5.5-2026-04-23",
+        "gpt-5.5-pro",
+        "gpt-5.5-pro-2026-04-23",
+        "gpt-5.6-luna",
+        "gpt-5.6-sol",
+        "gpt-5.6-terra",
+        "gpt-6-astra",
+        "gpt-6-luna",
+        "gpt-6-sol",
+        "gpt-6.1-sol",
+        "gpt-audio",
+        "gpt-audio-1.5",
+        "gpt-audio-2025-08-28",
+        "gpt-audio-mini",
+        "gpt-audio-mini-2025-10-06",
+        "gpt-audio-mini-2025-12-15",
+        "gpt-image-1",
+        "gpt-image-1-mini",
+        "gpt-image-1.5",
+        "gpt-image-2",
+        "gpt-image-2-2026-04-21",
+        "gpt-image-2.5-flare",
+        "gpt-image-2.5-flare-2026-09-08",
+        "gpt-image-2.5-sunburst",
+        "gpt-image-2.5-sunburst-2026-09-08",
+        "gpt-live-1",
+        "gpt-live-transcribe",
+        "gpt-realtime",
+        "gpt-realtime-1.5",
+        "gpt-realtime-2",
+        "gpt-realtime-2.1",
+        "gpt-realtime-2.1-mini",
+        "gpt-realtime-2025-08-28",
+        "gpt-realtime-mini",
+        "gpt-realtime-mini-2025-12-15",
+        "gpt-realtime-translate",
+        "gpt-realtime-whisper",
+        "gpt-transcribe",
+        "o1",
+        "o1-2024-12-17",
+        "o3",
+        "o3-2025-04-16",
+        "o3-mini",
+        "o3-mini-2025-01-31",
+        "o4-mini",
+        "o4-mini-2025-04-16",
+        "omni-moderation-2024-09-26",
+        "omni-moderation-latest",
+        "sora-2",
+        "sora-2-pro",
+        "text-embedding-3-large",
+        "text-embedding-3-small",
+        "text-embedding-ada-002",
+        "tts-1",
+        "tts-1-1106",
+        "tts-1-hd",
+        "tts-1-hd-1106",
+        "whisper-1"
+      ],
+      "chat_like_model_ids": [
+        "gpt-3.5-turbo",
+        "gpt-3.5-turbo-0125",
+        "gpt-3.5-turbo-1106",
+        "gpt-3.5-turbo-16k",
+        "gpt-3.5-turbo-instruct",
+        "gpt-3.5-turbo-instruct-0914",
+        "gpt-4.1",
+        "gpt-4.1-2025-04-14",
+        "gpt-4.1-mini",
+        "gpt-4.1-mini-2025-04-14",
+        "gpt-4.1-nano",
+        "gpt-4.1-nano-2025-04-14",
+        "gpt-4o",
+        "gpt-4o-2024-05-13",
+        "gpt-4o-2024-08-06",
+        "gpt-4o-2024-11-20",
+        "gpt-4o-mini",
+        "gpt-4o-mini-2024-07-18",
+        "gpt-5",
+        "gpt-5-2025-08-07",
+        "gpt-5-chat-latest",
+        "gpt-5-codex",
+        "gpt-5-mini",
+        "gpt-5-mini-2025-08-07",
+        "gpt-5-nano",
+        "gpt-5-nano-2025-08-07",
+        "gpt-5-pro",
+        "gpt-5-pro-2025-10-06",
+        "gpt-5.1",
+        "gpt-5.1-2025-11-13",
+        "gpt-5.1-chat-latest",
+        "gpt-5.1-codex",
+        "gpt-5.1-codex-max",
+        "gpt-5.1-codex-mini",
+        "gpt-5.2",
+        "gpt-5.2-2025-12-11",
+        "gpt-5.2-chat-latest",
+        "gpt-5.2-codex",
+        "gpt-5.2-pro",
+        "gpt-5.2-pro-2025-12-11",
+        "gpt-5.3-chat-latest",
+        "gpt-5.3-codex",
+        "gpt-5.4",
+        "gpt-5.4-2026-03-05",
+        "gpt-5.4-mini",
+        "gpt-5.4-mini-2026-03-17",
+        "gpt-5.4-nano",
+        "gpt-5.4-nano-2026-03-17",
+        "gpt-5.4-pro",
+        "gpt-5.4-pro-2026-03-05",
+        "gpt-5.5",
+        "gpt-5.5-2026-04-23",
+        "gpt-5.5-pro",
+        "gpt-5.5-pro-2026-04-23",
+        "gpt-5.6-luna",
+        "gpt-5.6-sol",
+        "gpt-5.6-terra",
+        "gpt-6-astra",
+        "gpt-6-luna",
+        "gpt-6-sol",
+        "gpt-6.1-sol",
+        "gpt-live-1",
+        "o1",
+        "o1-2024-12-17",
+        "o3",
+        "o3-2025-04-16",
+        "o3-mini",
+        "o3-mini-2025-01-31",
+        "o4-mini",
+        "o4-mini-2025-04-16"
+      ],
+      "list_error": null
     },
     {
       "provider": "Google Gemini",
-      "exact_model_id": null,
-      "model_family": "Google Gemini family; exact model identity unavailable",
-      "configured": false,
-      "credential_available": false,
       "credential_environment_variable": "GEMINI_API_KEY",
-      "adapter_available": false,
-      "structured_output_support": {"implemented_in_repository": false, "provider_model_support_verified": false},
-      "tool_calling_support": {"implemented_in_repository": false, "provider_model_support_verified": false},
-      "local_catalog_compatibility": {"offline_controller_tested": false, "live_verified": false},
-      "official_pricing": {"status": "not_retrieved_no_exact_model_id", "input_price": null, "output_price": null, "source": null, "retrieval_date": null, "pricing_tier": null},
-      "free_tier_and_quota": "not_verified_for_an_accessible_account",
-      "rate_limits": "not_verified_for_an_accessible_account",
-      "status": "blocked_missing_credential_model_id_and_adapter",
-      "reason": "GEMINI_API_KEY is absent from process, user, and machine environment scopes. No Gemini adapter or exact model configuration exists in this repository."
+      "credential_available": true,
+      "adapter_available": true,
+      "adapter": "gemini_openai_compat",
+      "list_endpoint": "https://generativelanguage.googleapis.com/v1beta/models",
+      "list_http_status": 200,
+      "rate_limit_headers_observed": {},
+      "accessible_models": [
+        {
+          "exact_model_id": "antigravity-preview-05-2026",
+          "display_name": "Antigravity Agent Preview",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "antigravity-preview-09-2026",
+          "display_name": "Antigravity Agent Preview",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "antigravity-preview-latest",
+          "display_name": "Antigravity Agent Preview Latest",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "aqa",
+          "display_name": "Model that performs Attributed Question Answering.",
+          "supported_generation_methods": [
+            "generateAnswer"
+          ],
+          "input_token_limit": 7168,
+          "output_token_limit": 1024
+        },
+        {
+          "exact_model_id": "deep-research-max-preview-04-2026",
+          "display_name": "Deep Research Max Preview (Apr-21-2026)",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 131072,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "deep-research-preview-04-2026",
+          "display_name": "Deep Research Preview (Apr-21-2026)",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 131072,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "deep-research-pro-preview-12-2025",
+          "display_name": "Deep Research Pro Preview (Dec-12-2025)",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 131072,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-2.5-computer-use-preview-10-2025",
+          "display_name": "Gemini 2.5 Computer Use Preview 10-2025",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 131072,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-2.5-flash",
+          "display_name": "Gemini 2.5 Flash",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-2.5-flash-image",
+          "display_name": "Nano Banana",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 32768,
+          "output_token_limit": 32768
+        },
+        {
+          "exact_model_id": "gemini-2.5-flash-lite",
+          "display_name": "Gemini 2.5 Flash-Lite",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-2.5-flash-preview-tts",
+          "display_name": "Gemini 2.5 Flash Preview TTS",
+          "supported_generation_methods": [
+            "countTokens",
+            "generateContent"
+          ],
+          "input_token_limit": 8192,
+          "output_token_limit": 16384
+        },
+        {
+          "exact_model_id": "gemini-2.5-pro",
+          "display_name": "Gemini 2.5 Pro",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-2.5-pro-preview-tts",
+          "display_name": "Gemini 2.5 Pro Preview TTS",
+          "supported_generation_methods": [
+            "countTokens",
+            "generateContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 8192,
+          "output_token_limit": 16384
+        },
+        {
+          "exact_model_id": "gemini-3-flash-preview",
+          "display_name": "Gemini 3 Flash Preview",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3-pro-image",
+          "display_name": "Nano Banana Pro",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 131072,
+          "output_token_limit": 32768
+        },
+        {
+          "exact_model_id": "gemini-3-pro-image-preview",
+          "display_name": "Nano Banana Pro",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 131072,
+          "output_token_limit": 32768
+        },
+        {
+          "exact_model_id": "gemini-3.1-flash-image",
+          "display_name": "Nano Banana 2",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 65536,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.1-flash-image-preview",
+          "display_name": "Nano Banana 2",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 65536,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.1-flash-lite",
+          "display_name": "Gemini 3.1 Flash Lite",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.1-flash-lite-image",
+          "display_name": "Nano Banana 2 Lite",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 65536,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.1-flash-lite-preview",
+          "display_name": "Gemini 3.1 Flash Lite Preview",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.1-flash-tts-preview",
+          "display_name": "Gemini 3.1 Flash TTS Preview",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 8192,
+          "output_token_limit": 16384
+        },
+        {
+          "exact_model_id": "gemini-3.1-pro-preview",
+          "display_name": "Gemini 3.1 Pro Preview",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.1-pro-preview-customtools",
+          "display_name": "Gemini 3.1 Pro Preview Custom Tools",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.5-flash",
+          "display_name": "Gemini 3.5 Flash",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.5-flash-lite",
+          "display_name": "Gemini 3.5 Flash Lite",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.5-transcribe",
+          "display_name": "Gemini 3.5 Transcribe",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 98304,
+          "output_token_limit": 32768
+        },
+        {
+          "exact_model_id": "gemini-3.6-flash",
+          "display_name": "Gemini 3.6 Flash",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.7-flash",
+          "display_name": "Gemini 3.7 Flash",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.8-flash",
+          "display_name": "Gemini 3.8 Flash",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-3.8-flash-lite-tts",
+          "display_name": "Gemini 3.8 Flash Lite TTS",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 8192,
+          "output_token_limit": 16384
+        },
+        {
+          "exact_model_id": "gemini-3.8-flash-tts",
+          "display_name": "Gemini 3.8 Flash TTS",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 8192,
+          "output_token_limit": 16384
+        },
+        {
+          "exact_model_id": "gemini-embedding-001",
+          "display_name": "Gemini Embedding 001",
+          "supported_generation_methods": [
+            "embedContent",
+            "countTextTokens",
+            "countTokens",
+            "asyncBatchEmbedContent"
+          ],
+          "input_token_limit": 2048,
+          "output_token_limit": 1
+        },
+        {
+          "exact_model_id": "gemini-embedding-2",
+          "display_name": "Gemini Embedding 2",
+          "supported_generation_methods": [
+            "embedContent",
+            "countTextTokens",
+            "countTokens",
+            "asyncBatchEmbedContent"
+          ],
+          "input_token_limit": 8192,
+          "output_token_limit": 1
+        },
+        {
+          "exact_model_id": "gemini-embedding-2-preview",
+          "display_name": "Gemini Embedding 2 Preview",
+          "supported_generation_methods": [
+            "embedContent",
+            "countTextTokens",
+            "countTokens",
+            "asyncBatchEmbedContent"
+          ],
+          "input_token_limit": 8192,
+          "output_token_limit": 1
+        },
+        {
+          "exact_model_id": "gemini-flash-latest",
+          "display_name": "Gemini Flash Latest",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-flash-lite-latest",
+          "display_name": "Gemini Flash-Lite Latest",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-omni-1.1-flash",
+          "display_name": "Gemini Omni 1.1 Flash",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 131072,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-omni-flash-preview",
+          "display_name": "Gemini Omni Flash Preview",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 131072,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-pro-latest",
+          "display_name": "Gemini Pro Latest",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemini-robotics-er-2-preview",
+          "display_name": "Gemini Robotics-ER 2 Preview",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "createCachedContent",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 131072,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "gemma-4-26b-a4b-it",
+          "display_name": "Gemma 4 26B A4B IT",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 262144,
+          "output_token_limit": 32768
+        },
+        {
+          "exact_model_id": "gemma-4-31b-it",
+          "display_name": "Gemma 4 31B IT",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 262144,
+          "output_token_limit": 32768
+        },
+        {
+          "exact_model_id": "lyria-3-clip-preview",
+          "display_name": "Lyria 3 Clip Preview",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "lyria-3-pro-preview",
+          "display_name": "Lyria 3 Pro Preview",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "lyria-3.5",
+          "display_name": "Lyria 3.5",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens"
+          ],
+          "input_token_limit": 1048576,
+          "output_token_limit": 65536
+        },
+        {
+          "exact_model_id": "nano-banana-pro-preview",
+          "display_name": "Nano Banana Pro",
+          "supported_generation_methods": [
+            "generateContent",
+            "countTokens",
+            "batchGenerateContent"
+          ],
+          "input_token_limit": 131072,
+          "output_token_limit": 32768
+        },
+        {
+          "exact_model_id": "veo-3.1-fast-generate-preview",
+          "display_name": "Veo 3.1 fast",
+          "supported_generation_methods": [
+            "predictLongRunning"
+          ],
+          "input_token_limit": 480,
+          "output_token_limit": 8192
+        },
+        {
+          "exact_model_id": "veo-3.1-generate-preview",
+          "display_name": "Veo 3.1",
+          "supported_generation_methods": [
+            "predictLongRunning"
+          ],
+          "input_token_limit": 480,
+          "output_token_limit": 8192
+        }
+      ],
+      "list_error": null
     },
     {
       "provider": "Groq",
-      "exact_model_id": null,
-      "model_family": null,
-      "model_family_status": "unknown_until_exact_model_metadata_is_obtained",
-      "configured": false,
-      "credential_available": false,
       "credential_environment_variable": "GROQ_API_KEY",
-      "adapter_available": false,
-      "structured_output_support": {"implemented_in_repository": false, "provider_model_support_verified": false},
-      "tool_calling_support": {"implemented_in_repository": false, "provider_model_support_verified": false},
-      "local_catalog_compatibility": {"offline_controller_tested": false, "live_verified": false},
-      "official_pricing": {"status": "not_retrieved_no_exact_model_id", "input_price": null, "output_price": null, "source": null, "retrieval_date": null, "pricing_tier": null},
-      "free_tier_and_quota": "not_verified_for_an_accessible_account",
-      "rate_limits": "not_verified_for_an_accessible_account",
-      "status": "blocked_missing_credential_model_id_and_adapter",
-      "reason": "GROQ_API_KEY is absent from process, user, and machine environment scopes. Groq is a serving provider; the underlying model family cannot be identified without an exact model ID and provider metadata. No Groq adapter exists in this repository."
+      "credential_available": true,
+      "adapter_available": true,
+      "adapter": "groq_chat_completions",
+      "list_endpoint": "https://api.groq.com/openai/v1/models",
+      "list_http_status": 200,
+      "rate_limit_headers_observed": {
+        "x-request-id": "req_01m3szzdscedga5k3d9v2j193t"
+      },
+      "accessible_models": [
+        {
+          "exact_model_id": "allam-2-7b",
+          "owned_by": "SDAIA",
+          "context_window": 4096,
+          "max_completion_tokens": 4096
+        },
+        {
+          "exact_model_id": "canopylabs/orpheus-arabic-saudi",
+          "owned_by": "Canopy Labs",
+          "context_window": 4000,
+          "max_completion_tokens": 50000
+        },
+        {
+          "exact_model_id": "canopylabs/orpheus-v1-english",
+          "owned_by": "Canopy Labs",
+          "context_window": 4000,
+          "max_completion_tokens": 50000
+        },
+        {
+          "exact_model_id": "meta-llama/llama-prompt-guard-2-22m",
+          "owned_by": "Meta",
+          "context_window": 512,
+          "max_completion_tokens": 512
+        },
+        {
+          "exact_model_id": "meta-llama/llama-prompt-guard-2-86m",
+          "owned_by": "Meta",
+          "context_window": 512,
+          "max_completion_tokens": 512
+        },
+        {
+          "exact_model_id": "openai/gpt-oss-120b",
+          "owned_by": "OpenAI",
+          "context_window": 131072,
+          "max_completion_tokens": 65536
+        },
+        {
+          "exact_model_id": "openai/gpt-oss-20b",
+          "owned_by": "OpenAI",
+          "context_window": 131072,
+          "max_completion_tokens": 65536
+        },
+        {
+          "exact_model_id": "openai/gpt-oss-safeguard-20b",
+          "owned_by": "OpenAI",
+          "context_window": 131072,
+          "max_completion_tokens": 65536
+        },
+        {
+          "exact_model_id": "qwen/qwen3.8-27b",
+          "owned_by": "Alibaba Cloud",
+          "context_window": 131072,
+          "max_completion_tokens": 16384
+        },
+        {
+          "exact_model_id": "whisper-large-v3",
+          "owned_by": "OpenAI",
+          "context_window": 448,
+          "max_completion_tokens": 448
+        },
+        {
+          "exact_model_id": "whisper-large-v3-turbo",
+          "owned_by": "OpenAI",
+          "context_window": 448,
+          "max_completion_tokens": 448
+        }
+      ],
+      "list_error": null
     }
   ],
-  "selection": {
-    "configured_candidate_models": 0,
-    "technically_viable_candidate_families": 0,
-    "selected_models": [],
-    "selected_distinct_model_families": [],
-    "candidate_filter_status": "stop_fewer_than_two_accessible_and_viable_families",
-    "checkpoint_a_pass": false,
-    "live_access_probes": "not_attempted",
-    "live_pilot": {"status": "not_attempted", "planned_runs_if_gate_passes": 32, "completed_runs": 0},
-    "main_experiment": {"status": "not_started", "planned_runs": 1920, "completed_runs": 0},
-    "cost_selection": {
-      "status": "not_estimable_without_exact_models_and_live_pilot",
-      "expected_cost_per_valid_run": null,
-      "expected_total_cost": null,
-      "retry_upper_bound_cost": null,
-      "token_observations": null,
-      "reason": "No configured model IDs, accessible provider accounts, pilot usage, or account quota data are available. No pricing was guessed."
-    },
-    "note": "At 2026-09-30T18:39:36Z all three instructed credentials were NOT SET in process, user, and machine scopes. Stop before live research; do not substitute Anthropic or invent model IDs."
+  "official_pricing_sources": {
+    "openai": "https://developers.openai.com/api/docs/pricing",
+    "openai_gpt_5_nano": "https://developers.openai.com/api/docs/models/gpt-5-nano",
+    "openai_gpt_4.1_nano": "https://developers.openai.com/api/docs/models/gpt-4.1-nano",
+    "openai_gpt_4o_mini": "https://developers.openai.com/api/docs/models/gpt-4o-mini",
+    "gemini": "https://ai.google.dev/gemini-api/docs/pricing",
+    "gemini_rate_limits": "https://ai.google.dev/gemini-api/docs/rate-limits",
+    "groq_models": "https://console.groq.com/docs/models",
+    "groq_gpt_oss_20b": "https://console.groq.com/docs/model/openai/gpt-oss-20b",
+    "groq_rate_limits": "https://console.groq.com/docs/rate-limits"
   },
-  "next_actions": [
-    "Make at least two intended credentials available to this Codex execution environment without placing values in source, messages, or logs; select exact models from official provider metadata and verify at least two genuinely distinct underlying model families.",
-    "After credentials and model IDs are available, implement and test the required Gemini and/or Groq adapter before any live controller probe; then verify official prices, quotas, and rate limits for the exact models.",
-    "Restart or refresh the Codex execution environment after configuring provider variables, then rerun presence-only checks; never send key values in chat.",
-    "Restore GitHub CLI config access or Git credential access, then fetch origin/main and push normally if the branch is still a fast-forward."
+  "documented_prices_per_1m_tokens_usd_standard": {
+    "gpt-5-nano": {
+      "input": 0.05,
+      "output": 0.4,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5-nano",
+      "retrieved_on": "2026-10-01"
+    },
+    "gpt-4.1-nano": {
+      "input": 0.1,
+      "output": 0.4,
+      "source": "https://developers.openai.com/api/docs/models/gpt-4.1-nano",
+      "retrieved_on": "2026-10-01"
+    },
+    "gpt-4o-mini": {
+      "input": 0.15,
+      "output": 0.6,
+      "source": "https://developers.openai.com/api/docs/models/gpt-4o-mini",
+      "retrieved_on": "2026-10-01"
+    },
+    "gemini-2.5-flash-lite": {
+      "input": 0.1,
+      "output": 0.4,
+      "free_tier_tokens": "free of charge while within documented free-tier limits",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "retrieved_on": "2026-10-01"
+    },
+    "gemini-3.1-flash-lite": {
+      "input": 0.25,
+      "output": 1.5,
+      "free_tier_tokens": "free of charge while within documented free-tier limits",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "retrieved_on": "2026-10-01"
+    },
+    "gemini-3.5-flash-lite": {
+      "input": 0.3,
+      "output": 2.5,
+      "free_tier_tokens": "free of charge while within documented free-tier limits",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "retrieved_on": "2026-10-01"
+    },
+    "openai/gpt-oss-20b": {
+      "input": 0.075,
+      "output": 0.3,
+      "source": "https://console.groq.com/docs/model/openai/gpt-oss-20b",
+      "retrieved_on": "2026-10-01"
+    },
+    "openai/gpt-oss-120b": {
+      "input": 0.15,
+      "output": 0.6,
+      "source": "https://console.groq.com/docs/models",
+      "retrieved_on": "2026-10-01"
+    },
+    "qwen/qwen3.8-27b": {
+      "input": 0.8,
+      "output": 4.0,
+      "source": "https://console.groq.com/docs/models",
+      "retrieved_on": "2026-10-01"
+    }
+  },
+  "notes": [
+    "Credential values were not written to this artifact.",
+    "Model IDs below are those returned by the authenticated list endpoints at observation time.",
+    "Pricing is copied from official provider documentation retrieved 2026-10-01 and is not a live billing quote.",
+    "Free-tier access is not treated as unlimited.",
+    "Anthropic/Claude remains excluded."
   ]
 }

@@ -321,7 +321,7 @@ class LiveTrialController:
                         raise _ProtocolViolation(FailureCategory.INTERFACE_CONTRACT_VIOLATION, "inspect_arguments_not_empty", "Catalog inspection must not include arguments.")
                     inspection_done = True
                     catalog_payload = _public_catalog_payload(catalog_arm.listings, marketing, scenario.catalog)
-                    messages.append(ResearchMessage("assistant", turn.text, turn.tool_calls))
+                    messages.append(ResearchMessage("assistant", turn.text, turn.tool_calls, provider_metadata=turn.provider_metadata))
                     messages.append(ResearchMessage("tool", _canonical_json(catalog_payload), tool_call_id=call.call_id, name=call.name))
                     event("tool", "catalog_inspected", catalog_payload)
                     continue
@@ -348,7 +348,7 @@ class LiveTrialController:
                         raise _ProtocolViolation(FailureCategory.INTERFACE_CONTRACT_VIOLATION, "clarification_fields_invalid", "Clarification question and target must be non-empty text.")
                     response = _answer_question(scenario.objective, question, target)
                     clarification_answer_supported = response.supported
-                    messages.append(ResearchMessage("assistant", turn.text, turn.tool_calls))
+                    messages.append(ResearchMessage("assistant", turn.text, turn.tool_calls, provider_metadata=turn.provider_metadata))
                     messages.append(ResearchMessage("tool", response.answer, tool_call_id=call.call_id, name=call.name))
                     event("controller_inserted", "simulated_user_answer", {
                         "question": question,
@@ -398,7 +398,7 @@ class LiveTrialController:
                         self.failure_logger.record(trial_id, recoverable_failure)
                     if api_call_index >= MAX_PROVIDER_TURNS:
                         raise _ProtocolViolation(FailureCategory.RETRY_EXECUTION_FAILURE, "retry_budget_exhausted", "The single parser retry could not be scheduled.")
-                    messages.append(ResearchMessage("assistant", turn.text, turn.tool_calls))
+                    messages.append(ResearchMessage("assistant", turn.text, turn.tool_calls, provider_metadata=turn.provider_metadata))
                     issue_summary = "; ".join(f"{issue.path}: {issue.code}" for issue in parsed.errors)
                     retry_call_result = f"Validation failed: {issue_summary}. Submit one corrected recommendation using submit_recommendation."
                     messages.append(ResearchMessage("tool", retry_call_result, tool_call_id=call.call_id, name=call.name, is_error=True))
@@ -583,6 +583,7 @@ def _tool_call_record(call: ResearchToolCall) -> dict[str, object]:
         "arguments": call.arguments,
         "arguments_raw": call.arguments_raw,
         "argument_error": call.argument_error,
+        "provider_metadata": call.provider_metadata,
     }
 
 
