@@ -406,7 +406,7 @@ Test the manuscript against:
 
 **Current milestone:** Offline Phase 2 provider adapters and ordered live-trial controller implemented and validated with deterministic fakes
 
-**Current task:** Checkpoint A remains failed because two distinct research API families and exact model IDs are unavailable. No live-model calls or experimental data have been generated. The live pilot, cost/runtime estimate, and main experiment remain NOT STARTED.
+**Current task:** Checkpoint A remains failed: no research API credentials or exact model IDs are configured for two distinct model families. Git fetch/push also failed because this environment has no usable GitHub credentials. No live-model calls or experimental data have been generated. The live pilot, cost/runtime estimate, experiment freeze, preflight, and main experiment remain NOT STARTED.
 
 **Main experiment:** NOT STARTED
 
@@ -443,6 +443,22 @@ Test the manuscript against:
 
 | 2026-09-30 | PHASE 2 — OFFLINE BUILD | Implement provider adapters, v2 model-output parser, ordered live controller, versioned trial hashing, and v2 analysis support | Initial tests exposed harness expectation/import errors and one controller terminal-failure return bug; all were recorded and corrected. Final focused suite 19/19 passed; full suite 66/66 passed; compileall passed. Fake transports only; no provider probes or live model calls. | `src/before_recommendation/{model_adapters,live_controller,live_output,analysis}.py`; `schemas/agent_output.v2.schema.json`; `tests/test_live_model_path.py`; `artifacts/phase2_model_access_recheck.json` | Obtain two provider families and exact model IDs, then estimate and run the live pilot; the core experiment remains gated. |
 | 2026-09-30 | PHASE 2 — OFFLINE BUILD | Review, commit, and publish the validated offline build | Credential-token scan clean; local commit `a98f1b0` created. Push attempted as authorized but failed: Windows Git SChannel reported `SEC_E_NO_CREDENTIALS`; no remote change occurred. This roadmap status is committed in the follow-up documentation commit. | Local `main` Phase 2 commits; `roadmap.md` | Restore GitHub authentication and push the local commits; live model access remains a separate checkpoint. |
+
+## Phase 2 access and synchronization recheck — 2026-09-30T17:14Z
+
+**Status: STOPPED BEFORE LIVE RESEARCH at Checkpoint A. Main experiment NOT STARTED.**
+
+- Re-read `project.md`, `roadmap.md`, `AGENTS.md`, and `analysis/analysis_plan.md` completely. Re-inspected the Phase 1 configuration, both output parsers, provider adapters, ordered live controller, and Phase 2 live-path tests. The repository contains no selected production `ModelConfig` or exact research model ID; constructor examples in tests are deterministic fakes only.
+- Created and JSON-validated `artifacts/model_access_matrix.json` (SHA-256 `FCD4812DD3E2BFE621B8479AB2089892F0442AA604C7A16C479A244840EE90BF`). Environment-variable presence was checked in process, user, and machine scopes without printing or recording credential values. `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, `GEMINI_API_KEY`, AWS credential/profile variables, and Azure OpenAI variables were absent. The Codex session exposes `gpt-6-luna` through ChatGPT-managed authentication, which is not an eligible research API adapter endpoint.
+- The OpenAI and Anthropic adapters, strict/tool schema paths, and offline catalog protocol are implemented and fake-transport-tested. Neither provider is actually configured or accessible: both lack credentials and exact model IDs. Google Gemini has no repository adapter and no credential. Thus no two-family selection can be made. Matrix records adapter capability separately from live access and validation.
+- Git state at inspection: clean `main`, HEAD `28ad158f0cf3d53a63fd6d6829b25a2fd3212a6d`, two local commits ahead of the last known `origin/main` tracking ref `015df787ca22fd3ce2cda9557e74b50b7884dc7d`. Fetch and normal push both failed with `schannel: AcquireCredentialsHandle failed: SEC_E_NO_CREDENTIALS (0x8009030E) - No credentials are available in the security package`; no remote HEAD was verified and no push succeeded. `gh` is installed, but `gh auth status` could not read `C:\Users\Bhagya\AppData\Roaming\GitHub CLI\config.yml` (`Access is denied`), so its authentication state could not be determined.
+- **No live access probes or 32-run pilot were attempted.** Live calls remain zero; pilot completed runs zero; main planned runs 1,920, completed zero. The controller protocol implies 2–4 turns per valid run (3,840–7,680 total turns if all core runs complete without technical reruns); this is only a protocol bound, not an expected-call estimate. No model-specific price or observed usage is available, so cost/runtime estimates are unavailable. No experiment freeze or preflight artifact was created. Analysis, data quality, and robustness are not started.
+- No implementation code changed in this recheck. The prior offline validation remains the recorded result: compileall passed and the full suite passed 66/66 using deterministic fakes.
+- **Exact next action:** authenticate GitHub through the normal user-driven `gh auth login` flow (or restore access to the existing CLI config) so the local commits can be fetched/pushed normally; configure `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` locally without adding values to source; select one exact accessible model ID for each family and an approved budget ceiling. Then rerun the access gate.
+
+| Date/time | Phase | Action | Result | Files/artifacts | Next action |
+|---|---|---|---|---|---|
+| 2026-09-30T17:14Z | PHASE 2 — ACCESS GATE | Recheck GitHub synchronization and provider access; create provider matrix | Git fetch/push both failed with Windows SChannel `SEC_E_NO_CREDENTIALS`; GitHub CLI status was unreadable due access denied to its config. No API credentials or exact model IDs for two families are configured. No live probes/calls or experiment runs. Matrix records adapter support separately from configured/live-validated access. | `artifacts/model_access_matrix.json`; local `main` HEAD at inspection `28ad158f0cf3d53a63fd6d6829b25a2fd3212a6d` | Restore GitHub CLI authentication, configure the two provider credentials and exact model IDs locally, and repeat the access gate. |
 
 ## Phase 1 exit audit — 2026-09-30
 
