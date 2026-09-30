@@ -96,14 +96,14 @@
   },
   "runtime": {
     "python": "3.14.7",
-    "source_revision": null
+    "source_revision": "028cc0118af599fb96472e4450f301cacff383e9"
   },
   "seeds": {
     "catalog": 20260930,
     "cues": 20260932,
     "objectives": 20260931
   },
-  "source_revision_note": "No Git commit exists at generation time; capture one before experiment freeze.",
+  "source_revision_note": "Generated from Git commit 028cc0118af599fb96472e4450f301cacff383e9.",
   "versions": {
     "catalog_generator": "1.0.0",
     "config_schema": "1.0.0",
