@@ -404,15 +404,40 @@ Test the manuscript against:
 
 **Current phase:** PHASE 1 — BUILD
 
-**Current milestone:** Phase 1 deterministic instrument and mock-only pilot complete; final clean-revision audit remains
+**Current milestone:** Phase 1 deterministic instrument and mock-only pilot complete; exit audit passed
 
-**Current task:** Commit the validated instrument, regenerate revision-stamped artifacts from that commit, run the final full suite and audit, then push the completed Phase 1 baseline. No live-model calls or main experiment.
+**Current task:** Push the audited Phase 1 build and its reproducibility artifacts. No live-model calls or main experiment.
 
 **Main experiment:** NOT STARTED
 
 **Paper writing:** NOT STARTED
 
 **Submission:** NOT STARTED
+
+## Phase 1 exit audit — 2026-09-30
+
+**Result: PASS for the Phase 1 build and pilot exit criteria.**
+
+- The deterministic smoke report regenerates byte-identically; 40 controlled synthetic objectives and 20 catalog products are reproducible.
+- All 40 objective-level cue balance checks pass; maximum per-product utility difference across cue arms is `0.0`.
+- The four supported simulated-user clarification targets are deterministic; unsupported targets use the standard uncertainty answer.
+- Output schema v1/parser tests cover malformed JSON, duplicate keys, strict field/type checks, catalog membership, normalized weights, and the one-retry limit.
+- Trace/failure persistence retains raw responses and retry attempts, separates raw/derived/evaluator-private data, and rejects corrupt or duplicate JSONL trial history.
+- Checkpoint tests cover restart, completed-trial skipping, interrupted recovery, documented failed-trial retry, and config/code-revision pinning.
+- The deterministic mock completed all 8 goal × marketing cells for one synthetic scenario; final parse status was valid in all 8. One deliberately malformed first response was preserved and recovered once (`invalid_json: 1`).
+- The descriptive analysis skeleton emits tidy trial rows and descriptive summaries only; no inferential statistics were run.
+- Final command `PYTHONPATH=src python -m unittest discover -s tests -v`: **49 tests passed, 0 failed**.
+
+Pilot scope is infrastructure validation only: one synthetic scenario, one deterministic mock, one repetition per condition cell, and zero external model calls. These outputs are not empirical findings or human preference data. The main experiment remains NOT STARTED.
+
+Committed source revision: `d1f0d0719e0beee5af3feb7fd10118fe36f9109f`.
+
+| Reproducibility artifact | SHA-256 |
+|---|---|
+| `artifacts/phase1_deterministic_smoke.json` | `C590E29643FAE0D318CA6801CBEFDE60FBBB043BC5D97C7BEFCE2F5121B460CB` |
+| `artifacts/phase1_interface_pilot.json` | `471B730142A3C132B9B30E99669713AF05194C11B59F9A734213C08995E67E8C` |
+| normalized pilot traces (two runs) | `b7e9f05268a398310a485155d4eb9147fcea0d11e2532302ea3560248b211ffe` |
+| pilot failure records (two runs) | `e630ac3e978f49891e8705cea5faf11569fd8904370c996c46e578ecad163ca0` |
 
 ## Execution log
 
@@ -438,6 +463,7 @@ _Add a new row after every meaningful milestone. Never delete historical entries
 | 2026-09-30 | PHASE 1 — BUILD | Add transactional, config-pinned checkpoint/resume | Checkpoint tests 6/6 passed; full suite 34/34 passed, no failures. Register/claim/complete/fail transitions are transactional; completed IDs are skipped on restart, interrupted `running` rows require explicit recovery, failed rows require documented requeue reason, and a changed config digest is rejected. No trial data or model calls. | `src/before_recommendation/checkpoint.py`; `tests/test_checkpoint.py`; SQLite test artifacts only in temporary directories | Define the interface protocol and deterministic mock, then test one clarification and one no-clarification trial through parse, score, trace, and checkpoint. |
 | 2026-09-30 | PHASE 1 — BUILD | Implement model-agnostic public interface and mock orchestration | First test discovery failed at import because `GoalCondition` is defined in `prompts.py`, not `conditions.py`; imports were corrected. Interface tests then passed 6/6 and full suite 43/43 passed. Clarification and no-clarification paths, unsupported-target uncertainty, catalog-before-question ordering, raw retry preservation, deterministic scoring, JSONL trace, and checkpoint completion all pass. Hidden objective is only available to the research harness and evaluator. No external model or main experiment. | `src/before_recommendation/{agent_protocol,mock_agent,interface_runner}.py`; `src/before_recommendation/evaluator.py`; `tests/{test_interface_runner,test_representation_metric}.py` | Run the small mock-only interface pilot twice, compare normalized traces, and write the parser/failure report artifact. |
 | 2026-09-30 20:21 IST | PHASE 1 — BUILD | Complete the deterministic mock-only interface pilot across all core condition cells | Expanded full suite: 47/47 passed. Pilot script ran its 8-cell mock batch twice and matched normalized trace/failure records; two separate script invocations also produced the same report SHA-256 `08F6662C813DE11F7AB2F5B62C1E3C0F48A72DB8553C8EB9370C62F01EC217F7`. All 8 mock trials completed with valid final outputs; one injected malformed first response was retained and recovered once. Failure report records `invalid_json: 1`. The analysis skeleton creates descriptive rows only. Pilot uses 1 synthetic scenario, 1 mock model, 1 repetition per cell; 0 external model calls. Source revision will be refreshed after implementation commit. | `scripts/run_interface_pilot.py`; `artifacts/phase1_interface_pilot.json`; `src/before_recommendation/analysis.py`; `tests/test_analysis.py`; full `tests/` suite | Commit the validated code and roadmap, regenerate both reports at that revision, run the final full suite, perform Phase 1 exit audit, then push. |
+| 2026-09-30 20:30 IST | PHASE 1 — BUILD | Final clean-revision audit and reproducibility comparison | Source revision `d1f0d0719e0beee5af3feb7fd10118fe36f9109f`; final suite 49/49 passed. Smoke and interface report each regenerated twice with identical SHA-256 values. Eight mock condition cells completed; the expected injected invalid-JSON response was preserved and recovered once. All Phase 1 pilot exit criteria pass; no external models or main experiment. | `artifacts/phase1_deterministic_smoke.json`; `artifacts/phase1_interface_pilot.json`; `schemas/agent_output.v1.schema.json`; `schemas/trace.v1.schema.json`; full `tests/` suite; source commit `d1f0d0719e0beee5af3feb7fd10118fe36f9109f` | Push the audited Phase 1 build to the verified empty `main` remote. |
 
 ---
 

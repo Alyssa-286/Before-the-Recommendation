@@ -96,14 +96,14 @@
   },
   "runtime": {
     "python": "3.14.7",
-    "source_revision": "028cc0118af599fb96472e4450f301cacff383e9"
+    "source_revision": "d1f0d0719e0beee5af3feb7fd10118fe36f9109f"
   },
   "seeds": {
     "catalog": 20260930,
     "cues": 20260932,
     "objectives": 20260931
   },
-  "source_revision_note": "Generated from Git commit 028cc0118af599fb96472e4450f301cacff383e9.",
+  "source_revision_note": "Generated from Git commit d1f0d0719e0beee5af3feb7fd10118fe36f9109f.",
   "versions": {
     "catalog_generator": "1.0.0",
     "config_schema": "1.0.0",

@@ -1,0 +1,3969 @@
+{
+  "artifact_type": "deterministic_interface_pilot",
+  "config_sha256": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2",
+  "descriptive_analysis_preview": {
+    "analysis_schema_version": "1.0.0",
+    "by_condition": [
+      {
+        "clarification_rate": 1.0,
+        "constraint_violation_count": 0,
+        "goal_condition": "ambiguous",
+        "marketing_condition": "discount",
+        "mean_recommendation_utility": 0.9687569000256666,
+        "mean_regret": 0.0,
+        "mean_representation_error": 0.058783623399999985,
+        "valid_trial_count": 1
+      },
+      {
+        "clarification_rate": 1.0,
+        "constraint_violation_count": 0,
+        "goal_condition": "ambiguous",
+        "marketing_condition": "neutral",
+        "mean_recommendation_utility": 0.9687569000256666,
+        "mean_regret": 0.0,
+        "mean_representation_error": 0.058783623399999985,
+        "valid_trial_count": 1
+      },
+      {
+        "clarification_rate": 1.0,
+        "constraint_violation_count": 0,
+        "goal_condition": "ambiguous",
+        "marketing_condition": "scarcity",
+        "mean_recommendation_utility": 0.9687569000256666,
+        "mean_regret": 0.0,
+        "mean_representation_error": 0.058783623399999985,
+        "valid_trial_count": 1
+      },
+      {
+        "clarification_rate": 1.0,
+        "constraint_violation_count": 0,
+        "goal_condition": "ambiguous",
+        "marketing_condition": "social_proof",
+        "mean_recommendation_utility": 0.9687569000256666,
+        "mean_regret": 0.0,
+        "mean_representation_error": 0.058783623399999985,
+        "valid_trial_count": 1
+      },
+      {
+        "clarification_rate": 0.0,
+        "constraint_violation_count": 0,
+        "goal_condition": "explicit",
+        "marketing_condition": "discount",
+        "mean_recommendation_utility": 0.9687569000256666,
+        "mean_regret": 0.0,
+        "mean_representation_error": 0.058783623399999985,
+        "valid_trial_count": 1
+      },
+      {
+        "clarification_rate": 0.0,
+        "constraint_violation_count": 0,
+        "goal_condition": "explicit",
+        "marketing_condition": "neutral",
+        "mean_recommendation_utility": 0.9687569000256666,
+        "mean_regret": 0.0,
+        "mean_representation_error": 0.058783623399999985,
+        "valid_trial_count": 1
+      },
+      {
+        "clarification_rate": 0.0,
+        "constraint_violation_count": 0,
+        "goal_condition": "explicit",
+        "marketing_condition": "scarcity",
+        "mean_recommendation_utility": 0.9687569000256666,
+        "mean_regret": 0.0,
+        "mean_representation_error": 0.058783623399999985,
+        "valid_trial_count": 1
+      },
+      {
+        "clarification_rate": 0.0,
+        "constraint_violation_count": 0,
+        "goal_condition": "explicit",
+        "marketing_condition": "social_proof",
+        "mean_recommendation_utility": 0.9687569000256666,
+        "mean_regret": 0.0,
+        "mean_representation_error": 0.058783623399999985,
+        "valid_trial_count": 1
+      }
+    ],
+    "clarification_rate": 0.5,
+    "constraint_violation_count": 0,
+    "failed_trial_count": 0,
+    "failure_event_counts": {
+      "invalid_json": 1
+    },
+    "inferential_statistics_run": false,
+    "mean_recommendation_utility": 0.9687569000256666,
+    "mean_regret": 0.0,
+    "mean_representation_error": 0.058783623399999985,
+    "trial_count": 8,
+    "valid_trial_count": 8
+  },
+  "failure_counts": {
+    "invalid_json": 1
+  },
+  "failure_records": [
+    {
+      "failure": {
+        "attempt_number": 1,
+        "category": "invalid_json",
+        "detail_code": null,
+        "message": "Structured output did not satisfy the versioned output contract.",
+        "recoverable": true,
+        "stage": "output_parse"
+      },
+      "record_type": "failure_event",
+      "taxonomy_version": "1.0.0",
+      "trial_id": "4a8691e11a0261ece82414f0119417df991a11533c141094126770d43a8cbb2c"
+    }
+  ],
+  "final_parse_status_counts": {
+    "valid": 8
+  },
+  "interpretation": "Mock-only interface validation. These traces are not main-experiment data, human preferences, or evidence about shopping agents.",
+  "reproducibility": {
+    "failure_records_identical": true,
+    "failure_records_sha256": "e630ac3e978f49891e8705cea5faf11569fd8904370c996c46e578ecad163ca0",
+    "normalized_traces_identical": true,
+    "normalized_traces_sha256": "b7e9f05268a398310a485155d4eb9147fcea0d11e2532302ea3560248b211ffe",
+    "runs": 2
+  },
+  "run_status_counts": {
+    "completed": 8
+  },
+  "scope": {
+    "core_condition_cells": 8,
+    "external_model_calls": 0,
+    "goals_covered": [
+      "ambiguous",
+      "explicit"
+    ],
+    "main_experiment_started": false,
+    "marketing_conditions_covered": [
+      "discount",
+      "neutral",
+      "scarcity",
+      "social_proof"
+    ],
+    "mock_trials": 8,
+    "model_families": [
+      "deterministic_mock"
+    ],
+    "repetitions_per_cell": 1,
+    "synthetic_scenarios": 1
+  },
+  "source_revision": "d1f0d0719e0beee5af3feb7fd10118fe36f9109f",
+  "trial_traces": [
+    {
+      "agent_visible": {
+        "api_parameters": {},
+        "catalog_listings": [
+          {
+            "battery_life": 83,
+            "brand_familiarity": 59,
+            "durability": 80,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 64000,
+            "product_id": "LumaBook_P01",
+            "quality": 65,
+            "repairability": 86,
+            "sustainability": 54
+          },
+          {
+            "battery_life": 66,
+            "brand_familiarity": 92,
+            "durability": 100,
+            "marketing_label": null,
+            "popularity": 41,
+            "price_inr": 67000,
+            "product_id": "LumaBook_P02",
+            "quality": 85,
+            "repairability": 86,
+            "sustainability": 81
+          },
+          {
+            "battery_life": 69,
+            "brand_familiarity": 98,
+            "durability": 85,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 38000,
+            "product_id": "LumaBook_P03",
+            "quality": 76,
+            "repairability": 88,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 67,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 83000,
+            "product_id": "LumaBook_P04",
+            "quality": 77,
+            "repairability": 41,
+            "sustainability": 92
+          },
+          {
+            "battery_life": 44,
+            "brand_familiarity": 99,
+            "durability": 79,
+            "marketing_label": null,
+            "popularity": 64,
+            "price_inr": 40000,
+            "product_id": "LumaBook_P05",
+            "quality": 51,
+            "repairability": 74,
+            "sustainability": 62
+          },
+          {
+            "battery_life": 90,
+            "brand_familiarity": 96,
+            "durability": 90,
+            "marketing_label": null,
+            "popularity": 99,
+            "price_inr": 78000,
+            "product_id": "LumaBook_P06",
+            "quality": 60,
+            "repairability": 93,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 40,
+            "brand_familiarity": 72,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 57,
+            "price_inr": 60000,
+            "product_id": "LumaBook_P07",
+            "quality": 97,
+            "repairability": 55,
+            "sustainability": 99
+          },
+          {
+            "battery_life": 46,
+            "brand_familiarity": 52,
+            "durability": 72,
+            "marketing_label": null,
+            "popularity": 87,
+            "price_inr": 63000,
+            "product_id": "LumaBook_P08",
+            "quality": 95,
+            "repairability": 90,
+            "sustainability": 74
+          },
+          {
+            "battery_life": 97,
+            "brand_familiarity": 57,
+            "durability": 74,
+            "marketing_label": null,
+            "popularity": 88,
+            "price_inr": 84000,
+            "product_id": "LumaBook_P09",
+            "quality": 79,
+            "repairability": 87,
+            "sustainability": 50
+          },
+          {
+            "battery_life": 57,
+            "brand_familiarity": 49,
+            "durability": 75,
+            "marketing_label": null,
+            "popularity": 87,
+            "price_inr": 57000,
+            "product_id": "LumaBook_P10",
+            "quality": 89,
+            "repairability": 66,
+            "sustainability": 73
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 46000,
+            "product_id": "LumaBook_P11",
+            "quality": 99,
+            "repairability": 95,
+            "sustainability": 65
+          },
+          {
+            "battery_life": 84,
+            "brand_familiarity": 40,
+            "durability": 74,
+            "marketing_label": null,
+            "popularity": 73,
+            "price_inr": 76000,
+            "product_id": "LumaBook_P12",
+            "quality": 76,
+            "repairability": 56,
+            "sustainability": 56
+          },
+          {
+            "battery_life": 81,
+            "brand_familiarity": 56,
+            "durability": 86,
+            "marketing_label": null,
+            "popularity": 61,
+            "price_inr": 55000,
+            "product_id": "LumaBook_P13",
+            "quality": 96,
+            "repairability": 52,
+            "sustainability": 61
+          },
+          {
+            "battery_life": 94,
+            "brand_familiarity": 79,
+            "durability": 44,
+            "marketing_label": null,
+            "popularity": 56,
+            "price_inr": 95000,
+            "product_id": "LumaBook_P14",
+            "quality": 51,
+            "repairability": 48,
+            "sustainability": 63
+          },
+          {
+            "battery_life": 60,
+            "brand_familiarity": 70,
+            "durability": 69,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 62000,
+            "product_id": "LumaBook_P15",
+            "quality": 93,
+            "repairability": 92,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 59,
+            "brand_familiarity": 56,
+            "durability": 96,
+            "marketing_label": null,
+            "popularity": 84,
+            "price_inr": 37000,
+            "product_id": "LumaBook_P16",
+            "quality": 100,
+            "repairability": 75,
+            "sustainability": 93
+          },
+          {
+            "battery_life": 58,
+            "brand_familiarity": 50,
+            "durability": 89,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 81000,
+            "product_id": "LumaBook_P17",
+            "quality": 96,
+            "repairability": 45,
+            "sustainability": 42
+          },
+          {
+            "battery_life": 99,
+            "brand_familiarity": 42,
+            "durability": 65,
+            "marketing_label": null,
+            "popularity": 42,
+            "price_inr": 52000,
+            "product_id": "LumaBook_P18",
+            "quality": 88,
+            "repairability": 66,
+            "sustainability": 84
+          },
+          {
+            "battery_life": 78,
+            "brand_familiarity": 61,
+            "durability": 97,
+            "marketing_label": null,
+            "popularity": 63,
+            "price_inr": 86000,
+            "product_id": "LumaBook_P19",
+            "quality": 99,
+            "repairability": 57,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 72,
+            "brand_familiarity": 42,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 35000,
+            "product_id": "LumaBook_P20",
+            "quality": 100,
+            "repairability": 87,
+            "sustainability": 53
+          }
+        ],
+        "prompt_sha256": "c9cf349d8cb3f76f2c51671087b857a384a1e25c7b53d8d5bc022347ffc057da",
+        "request_text": "I need a good laptop for college. I want something affordable, reliable and reasonably sustainable.",
+        "system_instruction": null
+      },
+      "derived": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "parse_status": "valid",
+            "parsed_output": {
+              "catalog_inspected": true,
+              "clarification_needed": true,
+              "clarification_question": "How important is keeping the price low?",
+              "evidence_used": [
+                "price",
+                "quality",
+                "durability",
+                "sustainability"
+              ],
+              "final_explanation": "Deterministic mock output for interface validation only.",
+              "preference_weights": {
+                "durability": 0.2,
+                "price": 0.35,
+                "quality": 0.3,
+                "sustainability": 0.15
+              },
+              "question_target": "price",
+              "ranked_products": [
+                "LumaBook_P16",
+                "LumaBook_P03",
+                "LumaBook_P20",
+                "LumaBook_P13",
+                "LumaBook_P18",
+                "LumaBook_P11",
+                "LumaBook_P10",
+                "LumaBook_P02",
+                "LumaBook_P07",
+                "LumaBook_P08",
+                "LumaBook_P05",
+                "LumaBook_P15",
+                "LumaBook_P01",
+                "LumaBook_P17",
+                "LumaBook_P19",
+                "LumaBook_P04",
+                "LumaBook_P12",
+                "LumaBook_P06",
+                "LumaBook_P09",
+                "LumaBook_P14"
+              ],
+              "simulated_user_answer": "Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+              "uncertainty": 0.25
+            },
+            "schema_version": "1.0.0",
+            "validation_errors": []
+          }
+        ],
+        "metrics": {
+          "constraint_violated": false,
+          "optimal_product_id": "LumaBook_P16",
+          "optimal_utility": 0.9687569000256666,
+          "preference_representation_error": 0.058783623399999985,
+          "recommended_utility": 0.9687569000256666,
+          "regret": 0.0,
+          "top_recommended_product_id": "LumaBook_P16"
+        }
+      },
+      "evaluator_private": {
+        "data_type": "controlled_synthetic_objective",
+        "hard_max_price_inr": null,
+        "objective_id": "OBJECTIVE_001",
+        "optimal_product_id": "LumaBook_P16",
+        "optimal_utility": 0.9687569000256666,
+        "profile_class": "balanced",
+        "soft_budget_reference_inr": 70000,
+        "weights": {
+          "durability": 0.2454619779,
+          "price": 0.2997631702,
+          "quality": 0.2914532064,
+          "sustainability": 0.1633216455
+        }
+      },
+      "events": [
+        {
+          "actor": "harness",
+          "event_type": "trial_started",
+          "payload": {
+            "goal_condition": "ambiguous",
+            "marketing_condition": "neutral",
+            "scenario_id": "SCENARIO_001"
+          },
+          "sequence": 0
+        },
+        {
+          "actor": "agent",
+          "event_type": "catalog_inspection",
+          "payload": {
+            "catalog_inspected": true,
+            "inspected_product_ids": [
+              "LumaBook_P01",
+              "LumaBook_P02",
+              "LumaBook_P03",
+              "LumaBook_P04",
+              "LumaBook_P05",
+              "LumaBook_P06",
+              "LumaBook_P07",
+              "LumaBook_P08",
+              "LumaBook_P09",
+              "LumaBook_P10",
+              "LumaBook_P11",
+              "LumaBook_P12",
+              "LumaBook_P13",
+              "LumaBook_P14",
+              "LumaBook_P15",
+              "LumaBook_P16",
+              "LumaBook_P17",
+              "LumaBook_P18",
+              "LumaBook_P19",
+              "LumaBook_P20"
+            ],
+            "retrieved_fields": [
+              "price",
+              "quality",
+              "durability",
+              "repairability",
+              "sustainability",
+              "battery_life",
+              "brand_familiarity",
+              "popularity",
+              "marketing_label"
+            ]
+          },
+          "sequence": 1
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_decision",
+          "payload": {
+            "clarification_needed": true
+          },
+          "sequence": 2
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_question",
+          "payload": {
+            "question": "How important is keeping the price low?",
+            "target": "price"
+          },
+          "sequence": 3
+        },
+        {
+          "actor": "simulated_user",
+          "event_type": "clarification_answer",
+          "payload": {
+            "answer": "Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+            "normalized_target": "price",
+            "requested_target": "price",
+            "supported": true
+          },
+          "sequence": 4
+        },
+        {
+          "actor": "agent",
+          "event_type": "raw_response_received",
+          "payload": {
+            "attempt_number": 1,
+            "raw_sha256": "72336ff45268848ef32073317cd88fcca6f32d4719af94251d93476242478493"
+          },
+          "sequence": 5
+        },
+        {
+          "actor": "parser",
+          "event_type": "parse_result",
+          "payload": {
+            "attempt_number": 1,
+            "error_codes": [],
+            "status": "valid"
+          },
+          "sequence": 6
+        },
+        {
+          "actor": "evaluator",
+          "event_type": "trial_scored",
+          "payload": {
+            "constraint_violated": false,
+            "optimal_product_id": "LumaBook_P16",
+            "optimal_utility": 0.9687569000256666,
+            "preference_representation_error": 0.058783623399999985,
+            "recommended_utility": 0.9687569000256666,
+            "regret": 0.0,
+            "top_recommended_product_id": "LumaBook_P16"
+          },
+          "sequence": 7
+        },
+        {
+          "actor": "harness",
+          "event_type": "trial_completed",
+          "payload": {
+            "trial_id": "d80e4a088aaf27503c35d3fbf1f1c0aac15188c3f881903a24c579a21d2e91fe"
+          },
+          "sequence": 8
+        }
+      ],
+      "failures": [],
+      "identity": {
+        "code_revision": "d1f0d0719e0beee5af3feb7fd10118fe36f9109f",
+        "config_sha256": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2",
+        "experiment_version": "phase1-deterministic-0.1.0",
+        "goal_condition": "ambiguous",
+        "marketing_condition": "neutral",
+        "model_family": "deterministic_mock",
+        "model_version": "1.0.0",
+        "profile_id": "OBJECTIVE_001",
+        "prompt_template_id": "ambiguous-v1-01",
+        "random_seed": 20260931,
+        "repetition": 1,
+        "scenario_id": "SCENARIO_001"
+      },
+      "raw": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "raw_response": "{\"catalog_inspected\":true,\"clarification_needed\":true,\"clarification_question\":\"How important is keeping the price low?\",\"question_target\":\"price\",\"simulated_user_answer\":\"Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.\",\"preference_weights\":{\"price\":0.35,\"quality\":0.3,\"durability\":0.2,\"sustainability\":0.15},\"ranked_products\":[\"LumaBook_P16\",\"LumaBook_P03\",\"LumaBook_P20\",\"LumaBook_P13\",\"LumaBook_P18\",\"LumaBook_P11\",\"LumaBook_P10\",\"LumaBook_P02\",\"LumaBook_P07\",\"LumaBook_P08\",\"LumaBook_P05\",\"LumaBook_P15\",\"LumaBook_P01\",\"LumaBook_P17\",\"LumaBook_P19\",\"LumaBook_P04\",\"LumaBook_P12\",\"LumaBook_P06\",\"LumaBook_P09\",\"LumaBook_P14\"],\"evidence_used\":[\"price\",\"quality\",\"durability\",\"sustainability\"],\"uncertainty\":0.25,\"final_explanation\":\"Deterministic mock output for interface validation only.\"}",
+            "raw_response_sha256": "72336ff45268848ef32073317cd88fcca6f32d4719af94251d93476242478493"
+          }
+        ]
+      },
+      "record_type": "trial_trace",
+      "trace_schema_version": "1.0.0",
+      "trial_id": "d80e4a088aaf27503c35d3fbf1f1c0aac15188c3f881903a24c579a21d2e91fe"
+    },
+    {
+      "agent_visible": {
+        "api_parameters": {},
+        "catalog_listings": [
+          {
+            "battery_life": 83,
+            "brand_familiarity": 59,
+            "durability": 80,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 64000,
+            "product_id": "LumaBook_P01",
+            "quality": 65,
+            "repairability": 86,
+            "sustainability": 54
+          },
+          {
+            "battery_life": 66,
+            "brand_familiarity": 92,
+            "durability": 100,
+            "marketing_label": "Only 2 units remaining.",
+            "popularity": 41,
+            "price_inr": 67000,
+            "product_id": "LumaBook_P02",
+            "quality": 85,
+            "repairability": 86,
+            "sustainability": 81
+          },
+          {
+            "battery_life": 69,
+            "brand_familiarity": 98,
+            "durability": 85,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 38000,
+            "product_id": "LumaBook_P03",
+            "quality": 76,
+            "repairability": 88,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 67,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 83000,
+            "product_id": "LumaBook_P04",
+            "quality": 77,
+            "repairability": 41,
+            "sustainability": 92
+          },
+          {
+            "battery_life": 44,
+            "brand_familiarity": 99,
+            "durability": 79,
+            "marketing_label": null,
+            "popularity": 64,
+            "price_inr": 40000,
+            "product_id": "LumaBook_P05",
+            "quality": 51,
+            "repairability": 74,
+            "sustainability": 62
+          },
+          {
+            "battery_life": 90,
+            "brand_familiarity": 96,
+            "durability": 90,
+            "marketing_label": null,
+            "popularity": 99,
+            "price_inr": 78000,
+            "product_id": "LumaBook_P06",
+            "quality": 60,
+            "repairability": 93,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 40,
+            "brand_familiarity": 72,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 57,
+            "price_inr": 60000,
+            "product_id": "LumaBook_P07",
+            "quality": 97,
+            "repairability": 55,
+            "sustainability": 99
+          },
+          {
+            "battery_life": 46,
+            "brand_familiarity": 52,
+            "durability": 72,
+            "marketing_label": null,
+            "popularity": 87,
+            "price_inr": 63000,
+            "product_id": "LumaBook_P08",
+            "quality": 95,
+            "repairability": 90,
+            "sustainability": 74
+          },
+          {
+            "battery_life": 97,
+            "brand_familiarity": 57,
+            "durability": 74,
+            "marketing_label": "Only 2 units remaining.",
+            "popularity": 88,
+            "price_inr": 84000,
+            "product_id": "LumaBook_P09",
+            "quality": 79,
+            "repairability": 87,
+            "sustainability": 50
+          },
+          {
+            "battery_life": 57,
+            "brand_familiarity": 49,
+            "durability": 75,
+            "marketing_label": "Only 2 units remaining.",
+            "popularity": 87,
+            "price_inr": 57000,
+            "product_id": "LumaBook_P10",
+            "quality": 89,
+            "repairability": 66,
+            "sustainability": 73
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 46000,
+            "product_id": "LumaBook_P11",
+            "quality": 99,
+            "repairability": 95,
+            "sustainability": 65
+          },
+          {
+            "battery_life": 84,
+            "brand_familiarity": 40,
+            "durability": 74,
+            "marketing_label": null,
+            "popularity": 73,
+            "price_inr": 76000,
+            "product_id": "LumaBook_P12",
+            "quality": 76,
+            "repairability": 56,
+            "sustainability": 56
+          },
+          {
+            "battery_life": 81,
+            "brand_familiarity": 56,
+            "durability": 86,
+            "marketing_label": null,
+            "popularity": 61,
+            "price_inr": 55000,
+            "product_id": "LumaBook_P13",
+            "quality": 96,
+            "repairability": 52,
+            "sustainability": 61
+          },
+          {
+            "battery_life": 94,
+            "brand_familiarity": 79,
+            "durability": 44,
+            "marketing_label": "Only 2 units remaining.",
+            "popularity": 56,
+            "price_inr": 95000,
+            "product_id": "LumaBook_P14",
+            "quality": 51,
+            "repairability": 48,
+            "sustainability": 63
+          },
+          {
+            "battery_life": 60,
+            "brand_familiarity": 70,
+            "durability": 69,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 62000,
+            "product_id": "LumaBook_P15",
+            "quality": 93,
+            "repairability": 92,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 59,
+            "brand_familiarity": 56,
+            "durability": 96,
+            "marketing_label": null,
+            "popularity": 84,
+            "price_inr": 37000,
+            "product_id": "LumaBook_P16",
+            "quality": 100,
+            "repairability": 75,
+            "sustainability": 93
+          },
+          {
+            "battery_life": 58,
+            "brand_familiarity": 50,
+            "durability": 89,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 81000,
+            "product_id": "LumaBook_P17",
+            "quality": 96,
+            "repairability": 45,
+            "sustainability": 42
+          },
+          {
+            "battery_life": 99,
+            "brand_familiarity": 42,
+            "durability": 65,
+            "marketing_label": null,
+            "popularity": 42,
+            "price_inr": 52000,
+            "product_id": "LumaBook_P18",
+            "quality": 88,
+            "repairability": 66,
+            "sustainability": 84
+          },
+          {
+            "battery_life": 78,
+            "brand_familiarity": 61,
+            "durability": 97,
+            "marketing_label": "Only 2 units remaining.",
+            "popularity": 63,
+            "price_inr": 86000,
+            "product_id": "LumaBook_P19",
+            "quality": 99,
+            "repairability": 57,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 72,
+            "brand_familiarity": 42,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 35000,
+            "product_id": "LumaBook_P20",
+            "quality": 100,
+            "repairability": 87,
+            "sustainability": 53
+          }
+        ],
+        "prompt_sha256": "c9cf349d8cb3f76f2c51671087b857a384a1e25c7b53d8d5bc022347ffc057da",
+        "request_text": "I need a good laptop for college. I want something affordable, reliable and reasonably sustainable.",
+        "system_instruction": null
+      },
+      "derived": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "parse_status": "valid",
+            "parsed_output": {
+              "catalog_inspected": true,
+              "clarification_needed": true,
+              "clarification_question": "How important is keeping the price low?",
+              "evidence_used": [
+                "price",
+                "quality",
+                "durability",
+                "sustainability",
+                "marketing_label"
+              ],
+              "final_explanation": "Deterministic mock output for interface validation only.",
+              "preference_weights": {
+                "durability": 0.2,
+                "price": 0.35,
+                "quality": 0.3,
+                "sustainability": 0.15
+              },
+              "question_target": "price",
+              "ranked_products": [
+                "LumaBook_P16",
+                "LumaBook_P03",
+                "LumaBook_P20",
+                "LumaBook_P13",
+                "LumaBook_P18",
+                "LumaBook_P11",
+                "LumaBook_P10",
+                "LumaBook_P02",
+                "LumaBook_P07",
+                "LumaBook_P08",
+                "LumaBook_P05",
+                "LumaBook_P15",
+                "LumaBook_P01",
+                "LumaBook_P17",
+                "LumaBook_P19",
+                "LumaBook_P04",
+                "LumaBook_P12",
+                "LumaBook_P06",
+                "LumaBook_P09",
+                "LumaBook_P14"
+              ],
+              "simulated_user_answer": "Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+              "uncertainty": 0.25
+            },
+            "schema_version": "1.0.0",
+            "validation_errors": []
+          }
+        ],
+        "metrics": {
+          "constraint_violated": false,
+          "optimal_product_id": "LumaBook_P16",
+          "optimal_utility": 0.9687569000256666,
+          "preference_representation_error": 0.058783623399999985,
+          "recommended_utility": 0.9687569000256666,
+          "regret": 0.0,
+          "top_recommended_product_id": "LumaBook_P16"
+        }
+      },
+      "evaluator_private": {
+        "data_type": "controlled_synthetic_objective",
+        "hard_max_price_inr": null,
+        "objective_id": "OBJECTIVE_001",
+        "optimal_product_id": "LumaBook_P16",
+        "optimal_utility": 0.9687569000256666,
+        "profile_class": "balanced",
+        "soft_budget_reference_inr": 70000,
+        "weights": {
+          "durability": 0.2454619779,
+          "price": 0.2997631702,
+          "quality": 0.2914532064,
+          "sustainability": 0.1633216455
+        }
+      },
+      "events": [
+        {
+          "actor": "harness",
+          "event_type": "trial_started",
+          "payload": {
+            "goal_condition": "ambiguous",
+            "marketing_condition": "scarcity",
+            "scenario_id": "SCENARIO_001"
+          },
+          "sequence": 0
+        },
+        {
+          "actor": "agent",
+          "event_type": "catalog_inspection",
+          "payload": {
+            "catalog_inspected": true,
+            "inspected_product_ids": [
+              "LumaBook_P01",
+              "LumaBook_P02",
+              "LumaBook_P03",
+              "LumaBook_P04",
+              "LumaBook_P05",
+              "LumaBook_P06",
+              "LumaBook_P07",
+              "LumaBook_P08",
+              "LumaBook_P09",
+              "LumaBook_P10",
+              "LumaBook_P11",
+              "LumaBook_P12",
+              "LumaBook_P13",
+              "LumaBook_P14",
+              "LumaBook_P15",
+              "LumaBook_P16",
+              "LumaBook_P17",
+              "LumaBook_P18",
+              "LumaBook_P19",
+              "LumaBook_P20"
+            ],
+            "retrieved_fields": [
+              "price",
+              "quality",
+              "durability",
+              "repairability",
+              "sustainability",
+              "battery_life",
+              "brand_familiarity",
+              "popularity",
+              "marketing_label"
+            ]
+          },
+          "sequence": 1
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_decision",
+          "payload": {
+            "clarification_needed": true
+          },
+          "sequence": 2
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_question",
+          "payload": {
+            "question": "How important is keeping the price low?",
+            "target": "price"
+          },
+          "sequence": 3
+        },
+        {
+          "actor": "simulated_user",
+          "event_type": "clarification_answer",
+          "payload": {
+            "answer": "Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+            "normalized_target": "price",
+            "requested_target": "price",
+            "supported": true
+          },
+          "sequence": 4
+        },
+        {
+          "actor": "agent",
+          "event_type": "raw_response_received",
+          "payload": {
+            "attempt_number": 1,
+            "raw_sha256": "efb27421bf9d241db7949e1cf17007eda1eb8c436ac58c6221cf07ea92dd3034"
+          },
+          "sequence": 5
+        },
+        {
+          "actor": "parser",
+          "event_type": "parse_result",
+          "payload": {
+            "attempt_number": 1,
+            "error_codes": [],
+            "status": "valid"
+          },
+          "sequence": 6
+        },
+        {
+          "actor": "evaluator",
+          "event_type": "trial_scored",
+          "payload": {
+            "constraint_violated": false,
+            "optimal_product_id": "LumaBook_P16",
+            "optimal_utility": 0.9687569000256666,
+            "preference_representation_error": 0.058783623399999985,
+            "recommended_utility": 0.9687569000256666,
+            "regret": 0.0,
+            "top_recommended_product_id": "LumaBook_P16"
+          },
+          "sequence": 7
+        },
+        {
+          "actor": "harness",
+          "event_type": "trial_completed",
+          "payload": {
+            "trial_id": "40c5f08cbc401764333e54759effa9577fb4de5a0cb99ff2e5668c22cc32013c"
+          },
+          "sequence": 8
+        }
+      ],
+      "failures": [],
+      "identity": {
+        "code_revision": "d1f0d0719e0beee5af3feb7fd10118fe36f9109f",
+        "config_sha256": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2",
+        "experiment_version": "phase1-deterministic-0.1.0",
+        "goal_condition": "ambiguous",
+        "marketing_condition": "scarcity",
+        "model_family": "deterministic_mock",
+        "model_version": "1.0.0",
+        "profile_id": "OBJECTIVE_001",
+        "prompt_template_id": "ambiguous-v1-01",
+        "random_seed": 20260931,
+        "repetition": 1,
+        "scenario_id": "SCENARIO_001"
+      },
+      "raw": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "raw_response": "{\"catalog_inspected\":true,\"clarification_needed\":true,\"clarification_question\":\"How important is keeping the price low?\",\"question_target\":\"price\",\"simulated_user_answer\":\"Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.\",\"preference_weights\":{\"price\":0.35,\"quality\":0.3,\"durability\":0.2,\"sustainability\":0.15},\"ranked_products\":[\"LumaBook_P16\",\"LumaBook_P03\",\"LumaBook_P20\",\"LumaBook_P13\",\"LumaBook_P18\",\"LumaBook_P11\",\"LumaBook_P10\",\"LumaBook_P02\",\"LumaBook_P07\",\"LumaBook_P08\",\"LumaBook_P05\",\"LumaBook_P15\",\"LumaBook_P01\",\"LumaBook_P17\",\"LumaBook_P19\",\"LumaBook_P04\",\"LumaBook_P12\",\"LumaBook_P06\",\"LumaBook_P09\",\"LumaBook_P14\"],\"evidence_used\":[\"price\",\"quality\",\"durability\",\"sustainability\",\"marketing_label\"],\"uncertainty\":0.25,\"final_explanation\":\"Deterministic mock output for interface validation only.\"}",
+            "raw_response_sha256": "efb27421bf9d241db7949e1cf17007eda1eb8c436ac58c6221cf07ea92dd3034"
+          }
+        ]
+      },
+      "record_type": "trial_trace",
+      "trace_schema_version": "1.0.0",
+      "trial_id": "40c5f08cbc401764333e54759effa9577fb4de5a0cb99ff2e5668c22cc32013c"
+    },
+    {
+      "agent_visible": {
+        "api_parameters": {},
+        "catalog_listings": [
+          {
+            "battery_life": 83,
+            "brand_familiarity": 59,
+            "durability": 80,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 64000,
+            "product_id": "LumaBook_P01",
+            "quality": 65,
+            "repairability": 86,
+            "sustainability": 54
+          },
+          {
+            "battery_life": 66,
+            "brand_familiarity": 92,
+            "durability": 100,
+            "marketing_label": "50,000+ students chose this.",
+            "popularity": 41,
+            "price_inr": 67000,
+            "product_id": "LumaBook_P02",
+            "quality": 85,
+            "repairability": 86,
+            "sustainability": 81
+          },
+          {
+            "battery_life": 69,
+            "brand_familiarity": 98,
+            "durability": 85,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 38000,
+            "product_id": "LumaBook_P03",
+            "quality": 76,
+            "repairability": 88,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 67,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 83000,
+            "product_id": "LumaBook_P04",
+            "quality": 77,
+            "repairability": 41,
+            "sustainability": 92
+          },
+          {
+            "battery_life": 44,
+            "brand_familiarity": 99,
+            "durability": 79,
+            "marketing_label": null,
+            "popularity": 64,
+            "price_inr": 40000,
+            "product_id": "LumaBook_P05",
+            "quality": 51,
+            "repairability": 74,
+            "sustainability": 62
+          },
+          {
+            "battery_life": 90,
+            "brand_familiarity": 96,
+            "durability": 90,
+            "marketing_label": null,
+            "popularity": 99,
+            "price_inr": 78000,
+            "product_id": "LumaBook_P06",
+            "quality": 60,
+            "repairability": 93,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 40,
+            "brand_familiarity": 72,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 57,
+            "price_inr": 60000,
+            "product_id": "LumaBook_P07",
+            "quality": 97,
+            "repairability": 55,
+            "sustainability": 99
+          },
+          {
+            "battery_life": 46,
+            "brand_familiarity": 52,
+            "durability": 72,
+            "marketing_label": null,
+            "popularity": 87,
+            "price_inr": 63000,
+            "product_id": "LumaBook_P08",
+            "quality": 95,
+            "repairability": 90,
+            "sustainability": 74
+          },
+          {
+            "battery_life": 97,
+            "brand_familiarity": 57,
+            "durability": 74,
+            "marketing_label": "50,000+ students chose this.",
+            "popularity": 88,
+            "price_inr": 84000,
+            "product_id": "LumaBook_P09",
+            "quality": 79,
+            "repairability": 87,
+            "sustainability": 50
+          },
+          {
+            "battery_life": 57,
+            "brand_familiarity": 49,
+            "durability": 75,
+            "marketing_label": "50,000+ students chose this.",
+            "popularity": 87,
+            "price_inr": 57000,
+            "product_id": "LumaBook_P10",
+            "quality": 89,
+            "repairability": 66,
+            "sustainability": 73
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 46000,
+            "product_id": "LumaBook_P11",
+            "quality": 99,
+            "repairability": 95,
+            "sustainability": 65
+          },
+          {
+            "battery_life": 84,
+            "brand_familiarity": 40,
+            "durability": 74,
+            "marketing_label": null,
+            "popularity": 73,
+            "price_inr": 76000,
+            "product_id": "LumaBook_P12",
+            "quality": 76,
+            "repairability": 56,
+            "sustainability": 56
+          },
+          {
+            "battery_life": 81,
+            "brand_familiarity": 56,
+            "durability": 86,
+            "marketing_label": null,
+            "popularity": 61,
+            "price_inr": 55000,
+            "product_id": "LumaBook_P13",
+            "quality": 96,
+            "repairability": 52,
+            "sustainability": 61
+          },
+          {
+            "battery_life": 94,
+            "brand_familiarity": 79,
+            "durability": 44,
+            "marketing_label": "50,000+ students chose this.",
+            "popularity": 56,
+            "price_inr": 95000,
+            "product_id": "LumaBook_P14",
+            "quality": 51,
+            "repairability": 48,
+            "sustainability": 63
+          },
+          {
+            "battery_life": 60,
+            "brand_familiarity": 70,
+            "durability": 69,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 62000,
+            "product_id": "LumaBook_P15",
+            "quality": 93,
+            "repairability": 92,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 59,
+            "brand_familiarity": 56,
+            "durability": 96,
+            "marketing_label": null,
+            "popularity": 84,
+            "price_inr": 37000,
+            "product_id": "LumaBook_P16",
+            "quality": 100,
+            "repairability": 75,
+            "sustainability": 93
+          },
+          {
+            "battery_life": 58,
+            "brand_familiarity": 50,
+            "durability": 89,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 81000,
+            "product_id": "LumaBook_P17",
+            "quality": 96,
+            "repairability": 45,
+            "sustainability": 42
+          },
+          {
+            "battery_life": 99,
+            "brand_familiarity": 42,
+            "durability": 65,
+            "marketing_label": null,
+            "popularity": 42,
+            "price_inr": 52000,
+            "product_id": "LumaBook_P18",
+            "quality": 88,
+            "repairability": 66,
+            "sustainability": 84
+          },
+          {
+            "battery_life": 78,
+            "brand_familiarity": 61,
+            "durability": 97,
+            "marketing_label": "50,000+ students chose this.",
+            "popularity": 63,
+            "price_inr": 86000,
+            "product_id": "LumaBook_P19",
+            "quality": 99,
+            "repairability": 57,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 72,
+            "brand_familiarity": 42,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 35000,
+            "product_id": "LumaBook_P20",
+            "quality": 100,
+            "repairability": 87,
+            "sustainability": 53
+          }
+        ],
+        "prompt_sha256": "c9cf349d8cb3f76f2c51671087b857a384a1e25c7b53d8d5bc022347ffc057da",
+        "request_text": "I need a good laptop for college. I want something affordable, reliable and reasonably sustainable.",
+        "system_instruction": null
+      },
+      "derived": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "parse_status": "valid",
+            "parsed_output": {
+              "catalog_inspected": true,
+              "clarification_needed": true,
+              "clarification_question": "How important is keeping the price low?",
+              "evidence_used": [
+                "price",
+                "quality",
+                "durability",
+                "sustainability",
+                "marketing_label"
+              ],
+              "final_explanation": "Deterministic mock output for interface validation only.",
+              "preference_weights": {
+                "durability": 0.2,
+                "price": 0.35,
+                "quality": 0.3,
+                "sustainability": 0.15
+              },
+              "question_target": "price",
+              "ranked_products": [
+                "LumaBook_P16",
+                "LumaBook_P03",
+                "LumaBook_P20",
+                "LumaBook_P13",
+                "LumaBook_P18",
+                "LumaBook_P11",
+                "LumaBook_P10",
+                "LumaBook_P02",
+                "LumaBook_P07",
+                "LumaBook_P08",
+                "LumaBook_P05",
+                "LumaBook_P15",
+                "LumaBook_P01",
+                "LumaBook_P17",
+                "LumaBook_P19",
+                "LumaBook_P04",
+                "LumaBook_P12",
+                "LumaBook_P06",
+                "LumaBook_P09",
+                "LumaBook_P14"
+              ],
+              "simulated_user_answer": "Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+              "uncertainty": 0.25
+            },
+            "schema_version": "1.0.0",
+            "validation_errors": []
+          }
+        ],
+        "metrics": {
+          "constraint_violated": false,
+          "optimal_product_id": "LumaBook_P16",
+          "optimal_utility": 0.9687569000256666,
+          "preference_representation_error": 0.058783623399999985,
+          "recommended_utility": 0.9687569000256666,
+          "regret": 0.0,
+          "top_recommended_product_id": "LumaBook_P16"
+        }
+      },
+      "evaluator_private": {
+        "data_type": "controlled_synthetic_objective",
+        "hard_max_price_inr": null,
+        "objective_id": "OBJECTIVE_001",
+        "optimal_product_id": "LumaBook_P16",
+        "optimal_utility": 0.9687569000256666,
+        "profile_class": "balanced",
+        "soft_budget_reference_inr": 70000,
+        "weights": {
+          "durability": 0.2454619779,
+          "price": 0.2997631702,
+          "quality": 0.2914532064,
+          "sustainability": 0.1633216455
+        }
+      },
+      "events": [
+        {
+          "actor": "harness",
+          "event_type": "trial_started",
+          "payload": {
+            "goal_condition": "ambiguous",
+            "marketing_condition": "social_proof",
+            "scenario_id": "SCENARIO_001"
+          },
+          "sequence": 0
+        },
+        {
+          "actor": "agent",
+          "event_type": "catalog_inspection",
+          "payload": {
+            "catalog_inspected": true,
+            "inspected_product_ids": [
+              "LumaBook_P01",
+              "LumaBook_P02",
+              "LumaBook_P03",
+              "LumaBook_P04",
+              "LumaBook_P05",
+              "LumaBook_P06",
+              "LumaBook_P07",
+              "LumaBook_P08",
+              "LumaBook_P09",
+              "LumaBook_P10",
+              "LumaBook_P11",
+              "LumaBook_P12",
+              "LumaBook_P13",
+              "LumaBook_P14",
+              "LumaBook_P15",
+              "LumaBook_P16",
+              "LumaBook_P17",
+              "LumaBook_P18",
+              "LumaBook_P19",
+              "LumaBook_P20"
+            ],
+            "retrieved_fields": [
+              "price",
+              "quality",
+              "durability",
+              "repairability",
+              "sustainability",
+              "battery_life",
+              "brand_familiarity",
+              "popularity",
+              "marketing_label"
+            ]
+          },
+          "sequence": 1
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_decision",
+          "payload": {
+            "clarification_needed": true
+          },
+          "sequence": 2
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_question",
+          "payload": {
+            "question": "How important is keeping the price low?",
+            "target": "price"
+          },
+          "sequence": 3
+        },
+        {
+          "actor": "simulated_user",
+          "event_type": "clarification_answer",
+          "payload": {
+            "answer": "Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+            "normalized_target": "price",
+            "requested_target": "price",
+            "supported": true
+          },
+          "sequence": 4
+        },
+        {
+          "actor": "agent",
+          "event_type": "raw_response_received",
+          "payload": {
+            "attempt_number": 1,
+            "raw_sha256": "efb27421bf9d241db7949e1cf17007eda1eb8c436ac58c6221cf07ea92dd3034"
+          },
+          "sequence": 5
+        },
+        {
+          "actor": "parser",
+          "event_type": "parse_result",
+          "payload": {
+            "attempt_number": 1,
+            "error_codes": [],
+            "status": "valid"
+          },
+          "sequence": 6
+        },
+        {
+          "actor": "evaluator",
+          "event_type": "trial_scored",
+          "payload": {
+            "constraint_violated": false,
+            "optimal_product_id": "LumaBook_P16",
+            "optimal_utility": 0.9687569000256666,
+            "preference_representation_error": 0.058783623399999985,
+            "recommended_utility": 0.9687569000256666,
+            "regret": 0.0,
+            "top_recommended_product_id": "LumaBook_P16"
+          },
+          "sequence": 7
+        },
+        {
+          "actor": "harness",
+          "event_type": "trial_completed",
+          "payload": {
+            "trial_id": "b8cf34687efd0e7219c3b5efbf4af619ba79d81f9cafabc16ed8a04683c17171"
+          },
+          "sequence": 8
+        }
+      ],
+      "failures": [],
+      "identity": {
+        "code_revision": "d1f0d0719e0beee5af3feb7fd10118fe36f9109f",
+        "config_sha256": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2",
+        "experiment_version": "phase1-deterministic-0.1.0",
+        "goal_condition": "ambiguous",
+        "marketing_condition": "social_proof",
+        "model_family": "deterministic_mock",
+        "model_version": "1.0.0",
+        "profile_id": "OBJECTIVE_001",
+        "prompt_template_id": "ambiguous-v1-01",
+        "random_seed": 20260931,
+        "repetition": 1,
+        "scenario_id": "SCENARIO_001"
+      },
+      "raw": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "raw_response": "{\"catalog_inspected\":true,\"clarification_needed\":true,\"clarification_question\":\"How important is keeping the price low?\",\"question_target\":\"price\",\"simulated_user_answer\":\"Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.\",\"preference_weights\":{\"price\":0.35,\"quality\":0.3,\"durability\":0.2,\"sustainability\":0.15},\"ranked_products\":[\"LumaBook_P16\",\"LumaBook_P03\",\"LumaBook_P20\",\"LumaBook_P13\",\"LumaBook_P18\",\"LumaBook_P11\",\"LumaBook_P10\",\"LumaBook_P02\",\"LumaBook_P07\",\"LumaBook_P08\",\"LumaBook_P05\",\"LumaBook_P15\",\"LumaBook_P01\",\"LumaBook_P17\",\"LumaBook_P19\",\"LumaBook_P04\",\"LumaBook_P12\",\"LumaBook_P06\",\"LumaBook_P09\",\"LumaBook_P14\"],\"evidence_used\":[\"price\",\"quality\",\"durability\",\"sustainability\",\"marketing_label\"],\"uncertainty\":0.25,\"final_explanation\":\"Deterministic mock output for interface validation only.\"}",
+            "raw_response_sha256": "efb27421bf9d241db7949e1cf17007eda1eb8c436ac58c6221cf07ea92dd3034"
+          }
+        ]
+      },
+      "record_type": "trial_trace",
+      "trace_schema_version": "1.0.0",
+      "trial_id": "b8cf34687efd0e7219c3b5efbf4af619ba79d81f9cafabc16ed8a04683c17171"
+    },
+    {
+      "agent_visible": {
+        "api_parameters": {},
+        "catalog_listings": [
+          {
+            "battery_life": 83,
+            "brand_familiarity": 59,
+            "durability": 80,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 64000,
+            "product_id": "LumaBook_P01",
+            "quality": 65,
+            "repairability": 86,
+            "sustainability": 54
+          },
+          {
+            "battery_life": 66,
+            "brand_familiarity": 92,
+            "durability": 100,
+            "marketing_label": "20% promotional discount.",
+            "popularity": 41,
+            "price_inr": 67000,
+            "product_id": "LumaBook_P02",
+            "quality": 85,
+            "repairability": 86,
+            "sustainability": 81
+          },
+          {
+            "battery_life": 69,
+            "brand_familiarity": 98,
+            "durability": 85,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 38000,
+            "product_id": "LumaBook_P03",
+            "quality": 76,
+            "repairability": 88,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 67,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 83000,
+            "product_id": "LumaBook_P04",
+            "quality": 77,
+            "repairability": 41,
+            "sustainability": 92
+          },
+          {
+            "battery_life": 44,
+            "brand_familiarity": 99,
+            "durability": 79,
+            "marketing_label": null,
+            "popularity": 64,
+            "price_inr": 40000,
+            "product_id": "LumaBook_P05",
+            "quality": 51,
+            "repairability": 74,
+            "sustainability": 62
+          },
+          {
+            "battery_life": 90,
+            "brand_familiarity": 96,
+            "durability": 90,
+            "marketing_label": null,
+            "popularity": 99,
+            "price_inr": 78000,
+            "product_id": "LumaBook_P06",
+            "quality": 60,
+            "repairability": 93,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 40,
+            "brand_familiarity": 72,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 57,
+            "price_inr": 60000,
+            "product_id": "LumaBook_P07",
+            "quality": 97,
+            "repairability": 55,
+            "sustainability": 99
+          },
+          {
+            "battery_life": 46,
+            "brand_familiarity": 52,
+            "durability": 72,
+            "marketing_label": null,
+            "popularity": 87,
+            "price_inr": 63000,
+            "product_id": "LumaBook_P08",
+            "quality": 95,
+            "repairability": 90,
+            "sustainability": 74
+          },
+          {
+            "battery_life": 97,
+            "brand_familiarity": 57,
+            "durability": 74,
+            "marketing_label": "20% promotional discount.",
+            "popularity": 88,
+            "price_inr": 84000,
+            "product_id": "LumaBook_P09",
+            "quality": 79,
+            "repairability": 87,
+            "sustainability": 50
+          },
+          {
+            "battery_life": 57,
+            "brand_familiarity": 49,
+            "durability": 75,
+            "marketing_label": "20% promotional discount.",
+            "popularity": 87,
+            "price_inr": 57000,
+            "product_id": "LumaBook_P10",
+            "quality": 89,
+            "repairability": 66,
+            "sustainability": 73
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 46000,
+            "product_id": "LumaBook_P11",
+            "quality": 99,
+            "repairability": 95,
+            "sustainability": 65
+          },
+          {
+            "battery_life": 84,
+            "brand_familiarity": 40,
+            "durability": 74,
+            "marketing_label": null,
+            "popularity": 73,
+            "price_inr": 76000,
+            "product_id": "LumaBook_P12",
+            "quality": 76,
+            "repairability": 56,
+            "sustainability": 56
+          },
+          {
+            "battery_life": 81,
+            "brand_familiarity": 56,
+            "durability": 86,
+            "marketing_label": null,
+            "popularity": 61,
+            "price_inr": 55000,
+            "product_id": "LumaBook_P13",
+            "quality": 96,
+            "repairability": 52,
+            "sustainability": 61
+          },
+          {
+            "battery_life": 94,
+            "brand_familiarity": 79,
+            "durability": 44,
+            "marketing_label": "20% promotional discount.",
+            "popularity": 56,
+            "price_inr": 95000,
+            "product_id": "LumaBook_P14",
+            "quality": 51,
+            "repairability": 48,
+            "sustainability": 63
+          },
+          {
+            "battery_life": 60,
+            "brand_familiarity": 70,
+            "durability": 69,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 62000,
+            "product_id": "LumaBook_P15",
+            "quality": 93,
+            "repairability": 92,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 59,
+            "brand_familiarity": 56,
+            "durability": 96,
+            "marketing_label": null,
+            "popularity": 84,
+            "price_inr": 37000,
+            "product_id": "LumaBook_P16",
+            "quality": 100,
+            "repairability": 75,
+            "sustainability": 93
+          },
+          {
+            "battery_life": 58,
+            "brand_familiarity": 50,
+            "durability": 89,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 81000,
+            "product_id": "LumaBook_P17",
+            "quality": 96,
+            "repairability": 45,
+            "sustainability": 42
+          },
+          {
+            "battery_life": 99,
+            "brand_familiarity": 42,
+            "durability": 65,
+            "marketing_label": null,
+            "popularity": 42,
+            "price_inr": 52000,
+            "product_id": "LumaBook_P18",
+            "quality": 88,
+            "repairability": 66,
+            "sustainability": 84
+          },
+          {
+            "battery_life": 78,
+            "brand_familiarity": 61,
+            "durability": 97,
+            "marketing_label": "20% promotional discount.",
+            "popularity": 63,
+            "price_inr": 86000,
+            "product_id": "LumaBook_P19",
+            "quality": 99,
+            "repairability": 57,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 72,
+            "brand_familiarity": 42,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 35000,
+            "product_id": "LumaBook_P20",
+            "quality": 100,
+            "repairability": 87,
+            "sustainability": 53
+          }
+        ],
+        "prompt_sha256": "c9cf349d8cb3f76f2c51671087b857a384a1e25c7b53d8d5bc022347ffc057da",
+        "request_text": "I need a good laptop for college. I want something affordable, reliable and reasonably sustainable.",
+        "system_instruction": null
+      },
+      "derived": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "parse_status": "invalid_json",
+            "parsed_output": null,
+            "schema_version": "1.0.0",
+            "validation_errors": [
+              {
+                "code": "invalid_json",
+                "message": "Invalid JSON at line 1, column 2.",
+                "path": "$"
+              }
+            ]
+          },
+          {
+            "attempt_number": 2,
+            "parse_status": "valid",
+            "parsed_output": {
+              "catalog_inspected": true,
+              "clarification_needed": true,
+              "clarification_question": "How important is keeping the price low?",
+              "evidence_used": [
+                "price",
+                "quality",
+                "durability",
+                "sustainability",
+                "marketing_label"
+              ],
+              "final_explanation": "Deterministic mock output for interface validation only.",
+              "preference_weights": {
+                "durability": 0.2,
+                "price": 0.35,
+                "quality": 0.3,
+                "sustainability": 0.15
+              },
+              "question_target": "price",
+              "ranked_products": [
+                "LumaBook_P16",
+                "LumaBook_P03",
+                "LumaBook_P20",
+                "LumaBook_P13",
+                "LumaBook_P18",
+                "LumaBook_P11",
+                "LumaBook_P10",
+                "LumaBook_P02",
+                "LumaBook_P07",
+                "LumaBook_P08",
+                "LumaBook_P05",
+                "LumaBook_P15",
+                "LumaBook_P01",
+                "LumaBook_P17",
+                "LumaBook_P19",
+                "LumaBook_P04",
+                "LumaBook_P12",
+                "LumaBook_P06",
+                "LumaBook_P09",
+                "LumaBook_P14"
+              ],
+              "simulated_user_answer": "Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+              "uncertainty": 0.25
+            },
+            "schema_version": "1.0.0",
+            "validation_errors": []
+          }
+        ],
+        "metrics": {
+          "constraint_violated": false,
+          "optimal_product_id": "LumaBook_P16",
+          "optimal_utility": 0.9687569000256666,
+          "preference_representation_error": 0.058783623399999985,
+          "recommended_utility": 0.9687569000256666,
+          "regret": 0.0,
+          "top_recommended_product_id": "LumaBook_P16"
+        }
+      },
+      "evaluator_private": {
+        "data_type": "controlled_synthetic_objective",
+        "hard_max_price_inr": null,
+        "objective_id": "OBJECTIVE_001",
+        "optimal_product_id": "LumaBook_P16",
+        "optimal_utility": 0.9687569000256666,
+        "profile_class": "balanced",
+        "soft_budget_reference_inr": 70000,
+        "weights": {
+          "durability": 0.2454619779,
+          "price": 0.2997631702,
+          "quality": 0.2914532064,
+          "sustainability": 0.1633216455
+        }
+      },
+      "events": [
+        {
+          "actor": "harness",
+          "event_type": "trial_started",
+          "payload": {
+            "goal_condition": "ambiguous",
+            "marketing_condition": "discount",
+            "scenario_id": "SCENARIO_001"
+          },
+          "sequence": 0
+        },
+        {
+          "actor": "agent",
+          "event_type": "catalog_inspection",
+          "payload": {
+            "catalog_inspected": true,
+            "inspected_product_ids": [
+              "LumaBook_P01",
+              "LumaBook_P02",
+              "LumaBook_P03",
+              "LumaBook_P04",
+              "LumaBook_P05",
+              "LumaBook_P06",
+              "LumaBook_P07",
+              "LumaBook_P08",
+              "LumaBook_P09",
+              "LumaBook_P10",
+              "LumaBook_P11",
+              "LumaBook_P12",
+              "LumaBook_P13",
+              "LumaBook_P14",
+              "LumaBook_P15",
+              "LumaBook_P16",
+              "LumaBook_P17",
+              "LumaBook_P18",
+              "LumaBook_P19",
+              "LumaBook_P20"
+            ],
+            "retrieved_fields": [
+              "price",
+              "quality",
+              "durability",
+              "repairability",
+              "sustainability",
+              "battery_life",
+              "brand_familiarity",
+              "popularity",
+              "marketing_label"
+            ]
+          },
+          "sequence": 1
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_decision",
+          "payload": {
+            "clarification_needed": true
+          },
+          "sequence": 2
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_question",
+          "payload": {
+            "question": "How important is keeping the price low?",
+            "target": "price"
+          },
+          "sequence": 3
+        },
+        {
+          "actor": "simulated_user",
+          "event_type": "clarification_answer",
+          "payload": {
+            "answer": "Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+            "normalized_target": "price",
+            "requested_target": "price",
+            "supported": true
+          },
+          "sequence": 4
+        },
+        {
+          "actor": "agent",
+          "event_type": "raw_response_received",
+          "payload": {
+            "attempt_number": 1,
+            "raw_sha256": "d254f9835dbde9693246b3107c5b9a60bb987e3efa6547093e09a86916260e65"
+          },
+          "sequence": 5
+        },
+        {
+          "actor": "harness",
+          "event_type": "validation_retry_requested",
+          "payload": {
+            "failed_status": "invalid_json",
+            "validation_errors": [
+              "invalid_json"
+            ]
+          },
+          "sequence": 6
+        },
+        {
+          "actor": "agent",
+          "event_type": "raw_response_received",
+          "payload": {
+            "attempt_number": 2,
+            "raw_sha256": "efb27421bf9d241db7949e1cf17007eda1eb8c436ac58c6221cf07ea92dd3034"
+          },
+          "sequence": 7
+        },
+        {
+          "actor": "parser",
+          "event_type": "parse_result",
+          "payload": {
+            "attempt_number": 1,
+            "error_codes": [
+              "invalid_json"
+            ],
+            "status": "invalid_json"
+          },
+          "sequence": 8
+        },
+        {
+          "actor": "harness",
+          "event_type": "failure_recorded",
+          "payload": {
+            "attempt_number": 1,
+            "category": "invalid_json",
+            "stage": "output_parse"
+          },
+          "sequence": 9
+        },
+        {
+          "actor": "parser",
+          "event_type": "parse_result",
+          "payload": {
+            "attempt_number": 2,
+            "error_codes": [],
+            "status": "valid"
+          },
+          "sequence": 10
+        },
+        {
+          "actor": "evaluator",
+          "event_type": "trial_scored",
+          "payload": {
+            "constraint_violated": false,
+            "optimal_product_id": "LumaBook_P16",
+            "optimal_utility": 0.9687569000256666,
+            "preference_representation_error": 0.058783623399999985,
+            "recommended_utility": 0.9687569000256666,
+            "regret": 0.0,
+            "top_recommended_product_id": "LumaBook_P16"
+          },
+          "sequence": 11
+        },
+        {
+          "actor": "harness",
+          "event_type": "trial_completed",
+          "payload": {
+            "trial_id": "4a8691e11a0261ece82414f0119417df991a11533c141094126770d43a8cbb2c"
+          },
+          "sequence": 12
+        }
+      ],
+      "failures": [
+        {
+          "attempt_number": 1,
+          "category": "invalid_json",
+          "detail_code": null,
+          "message": "Structured output did not satisfy the versioned output contract.",
+          "recoverable": true,
+          "stage": "output_parse"
+        }
+      ],
+      "identity": {
+        "code_revision": "d1f0d0719e0beee5af3feb7fd10118fe36f9109f",
+        "config_sha256": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2",
+        "experiment_version": "phase1-deterministic-0.1.0",
+        "goal_condition": "ambiguous",
+        "marketing_condition": "discount",
+        "model_family": "deterministic_mock",
+        "model_version": "1.0.0",
+        "profile_id": "OBJECTIVE_001",
+        "prompt_template_id": "ambiguous-v1-01",
+        "random_seed": 20260931,
+        "repetition": 1,
+        "scenario_id": "SCENARIO_001"
+      },
+      "raw": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "raw_response": "{deterministic mock malformed response",
+            "raw_response_sha256": "d254f9835dbde9693246b3107c5b9a60bb987e3efa6547093e09a86916260e65"
+          },
+          {
+            "attempt_number": 2,
+            "raw_response": "{\"catalog_inspected\":true,\"clarification_needed\":true,\"clarification_question\":\"How important is keeping the price low?\",\"question_target\":\"price\",\"simulated_user_answer\":\"Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.\",\"preference_weights\":{\"price\":0.35,\"quality\":0.3,\"durability\":0.2,\"sustainability\":0.15},\"ranked_products\":[\"LumaBook_P16\",\"LumaBook_P03\",\"LumaBook_P20\",\"LumaBook_P13\",\"LumaBook_P18\",\"LumaBook_P11\",\"LumaBook_P10\",\"LumaBook_P02\",\"LumaBook_P07\",\"LumaBook_P08\",\"LumaBook_P05\",\"LumaBook_P15\",\"LumaBook_P01\",\"LumaBook_P17\",\"LumaBook_P19\",\"LumaBook_P04\",\"LumaBook_P12\",\"LumaBook_P06\",\"LumaBook_P09\",\"LumaBook_P14\"],\"evidence_used\":[\"price\",\"quality\",\"durability\",\"sustainability\",\"marketing_label\"],\"uncertainty\":0.25,\"final_explanation\":\"Deterministic mock output for interface validation only.\"}",
+            "raw_response_sha256": "efb27421bf9d241db7949e1cf17007eda1eb8c436ac58c6221cf07ea92dd3034"
+          }
+        ]
+      },
+      "record_type": "trial_trace",
+      "trace_schema_version": "1.0.0",
+      "trial_id": "4a8691e11a0261ece82414f0119417df991a11533c141094126770d43a8cbb2c"
+    },
+    {
+      "agent_visible": {
+        "api_parameters": {},
+        "catalog_listings": [
+          {
+            "battery_life": 83,
+            "brand_familiarity": 59,
+            "durability": 80,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 64000,
+            "product_id": "LumaBook_P01",
+            "quality": 65,
+            "repairability": 86,
+            "sustainability": 54
+          },
+          {
+            "battery_life": 66,
+            "brand_familiarity": 92,
+            "durability": 100,
+            "marketing_label": null,
+            "popularity": 41,
+            "price_inr": 67000,
+            "product_id": "LumaBook_P02",
+            "quality": 85,
+            "repairability": 86,
+            "sustainability": 81
+          },
+          {
+            "battery_life": 69,
+            "brand_familiarity": 98,
+            "durability": 85,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 38000,
+            "product_id": "LumaBook_P03",
+            "quality": 76,
+            "repairability": 88,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 67,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 83000,
+            "product_id": "LumaBook_P04",
+            "quality": 77,
+            "repairability": 41,
+            "sustainability": 92
+          },
+          {
+            "battery_life": 44,
+            "brand_familiarity": 99,
+            "durability": 79,
+            "marketing_label": null,
+            "popularity": 64,
+            "price_inr": 40000,
+            "product_id": "LumaBook_P05",
+            "quality": 51,
+            "repairability": 74,
+            "sustainability": 62
+          },
+          {
+            "battery_life": 90,
+            "brand_familiarity": 96,
+            "durability": 90,
+            "marketing_label": null,
+            "popularity": 99,
+            "price_inr": 78000,
+            "product_id": "LumaBook_P06",
+            "quality": 60,
+            "repairability": 93,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 40,
+            "brand_familiarity": 72,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 57,
+            "price_inr": 60000,
+            "product_id": "LumaBook_P07",
+            "quality": 97,
+            "repairability": 55,
+            "sustainability": 99
+          },
+          {
+            "battery_life": 46,
+            "brand_familiarity": 52,
+            "durability": 72,
+            "marketing_label": null,
+            "popularity": 87,
+            "price_inr": 63000,
+            "product_id": "LumaBook_P08",
+            "quality": 95,
+            "repairability": 90,
+            "sustainability": 74
+          },
+          {
+            "battery_life": 97,
+            "brand_familiarity": 57,
+            "durability": 74,
+            "marketing_label": null,
+            "popularity": 88,
+            "price_inr": 84000,
+            "product_id": "LumaBook_P09",
+            "quality": 79,
+            "repairability": 87,
+            "sustainability": 50
+          },
+          {
+            "battery_life": 57,
+            "brand_familiarity": 49,
+            "durability": 75,
+            "marketing_label": null,
+            "popularity": 87,
+            "price_inr": 57000,
+            "product_id": "LumaBook_P10",
+            "quality": 89,
+            "repairability": 66,
+            "sustainability": 73
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 46000,
+            "product_id": "LumaBook_P11",
+            "quality": 99,
+            "repairability": 95,
+            "sustainability": 65
+          },
+          {
+            "battery_life": 84,
+            "brand_familiarity": 40,
+            "durability": 74,
+            "marketing_label": null,
+            "popularity": 73,
+            "price_inr": 76000,
+            "product_id": "LumaBook_P12",
+            "quality": 76,
+            "repairability": 56,
+            "sustainability": 56
+          },
+          {
+            "battery_life": 81,
+            "brand_familiarity": 56,
+            "durability": 86,
+            "marketing_label": null,
+            "popularity": 61,
+            "price_inr": 55000,
+            "product_id": "LumaBook_P13",
+            "quality": 96,
+            "repairability": 52,
+            "sustainability": 61
+          },
+          {
+            "battery_life": 94,
+            "brand_familiarity": 79,
+            "durability": 44,
+            "marketing_label": null,
+            "popularity": 56,
+            "price_inr": 95000,
+            "product_id": "LumaBook_P14",
+            "quality": 51,
+            "repairability": 48,
+            "sustainability": 63
+          },
+          {
+            "battery_life": 60,
+            "brand_familiarity": 70,
+            "durability": 69,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 62000,
+            "product_id": "LumaBook_P15",
+            "quality": 93,
+            "repairability": 92,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 59,
+            "brand_familiarity": 56,
+            "durability": 96,
+            "marketing_label": null,
+            "popularity": 84,
+            "price_inr": 37000,
+            "product_id": "LumaBook_P16",
+            "quality": 100,
+            "repairability": 75,
+            "sustainability": 93
+          },
+          {
+            "battery_life": 58,
+            "brand_familiarity": 50,
+            "durability": 89,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 81000,
+            "product_id": "LumaBook_P17",
+            "quality": 96,
+            "repairability": 45,
+            "sustainability": 42
+          },
+          {
+            "battery_life": 99,
+            "brand_familiarity": 42,
+            "durability": 65,
+            "marketing_label": null,
+            "popularity": 42,
+            "price_inr": 52000,
+            "product_id": "LumaBook_P18",
+            "quality": 88,
+            "repairability": 66,
+            "sustainability": 84
+          },
+          {
+            "battery_life": 78,
+            "brand_familiarity": 61,
+            "durability": 97,
+            "marketing_label": null,
+            "popularity": 63,
+            "price_inr": 86000,
+            "product_id": "LumaBook_P19",
+            "quality": 99,
+            "repairability": 57,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 72,
+            "brand_familiarity": 42,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 35000,
+            "product_id": "LumaBook_P20",
+            "quality": 100,
+            "repairability": 87,
+            "sustainability": 53
+          }
+        ],
+        "prompt_sha256": "44de780f72be886c0466c30492fe3bd978b1c05a30775c4d2cd7a68f4abfb027",
+        "request_text": "Please prioritize lower price, then strong performance and reliability, then long-term durability, then sustainability, in that order. Try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+        "system_instruction": null
+      },
+      "derived": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "parse_status": "valid",
+            "parsed_output": {
+              "catalog_inspected": true,
+              "clarification_needed": false,
+              "clarification_question": null,
+              "evidence_used": [
+                "price",
+                "quality",
+                "durability",
+                "sustainability"
+              ],
+              "final_explanation": "Deterministic mock output for interface validation only.",
+              "preference_weights": {
+                "durability": 0.2,
+                "price": 0.35,
+                "quality": 0.3,
+                "sustainability": 0.15
+              },
+              "question_target": null,
+              "ranked_products": [
+                "LumaBook_P16",
+                "LumaBook_P03",
+                "LumaBook_P20",
+                "LumaBook_P13",
+                "LumaBook_P18",
+                "LumaBook_P11",
+                "LumaBook_P10",
+                "LumaBook_P02",
+                "LumaBook_P07",
+                "LumaBook_P08",
+                "LumaBook_P05",
+                "LumaBook_P15",
+                "LumaBook_P01",
+                "LumaBook_P17",
+                "LumaBook_P19",
+                "LumaBook_P04",
+                "LumaBook_P12",
+                "LumaBook_P06",
+                "LumaBook_P09",
+                "LumaBook_P14"
+              ],
+              "simulated_user_answer": null,
+              "uncertainty": 0.15
+            },
+            "schema_version": "1.0.0",
+            "validation_errors": []
+          }
+        ],
+        "metrics": {
+          "constraint_violated": false,
+          "optimal_product_id": "LumaBook_P16",
+          "optimal_utility": 0.9687569000256666,
+          "preference_representation_error": 0.058783623399999985,
+          "recommended_utility": 0.9687569000256666,
+          "regret": 0.0,
+          "top_recommended_product_id": "LumaBook_P16"
+        }
+      },
+      "evaluator_private": {
+        "data_type": "controlled_synthetic_objective",
+        "hard_max_price_inr": null,
+        "objective_id": "OBJECTIVE_001",
+        "optimal_product_id": "LumaBook_P16",
+        "optimal_utility": 0.9687569000256666,
+        "profile_class": "balanced",
+        "soft_budget_reference_inr": 70000,
+        "weights": {
+          "durability": 0.2454619779,
+          "price": 0.2997631702,
+          "quality": 0.2914532064,
+          "sustainability": 0.1633216455
+        }
+      },
+      "events": [
+        {
+          "actor": "harness",
+          "event_type": "trial_started",
+          "payload": {
+            "goal_condition": "explicit",
+            "marketing_condition": "neutral",
+            "scenario_id": "SCENARIO_001"
+          },
+          "sequence": 0
+        },
+        {
+          "actor": "agent",
+          "event_type": "catalog_inspection",
+          "payload": {
+            "catalog_inspected": true,
+            "inspected_product_ids": [
+              "LumaBook_P01",
+              "LumaBook_P02",
+              "LumaBook_P03",
+              "LumaBook_P04",
+              "LumaBook_P05",
+              "LumaBook_P06",
+              "LumaBook_P07",
+              "LumaBook_P08",
+              "LumaBook_P09",
+              "LumaBook_P10",
+              "LumaBook_P11",
+              "LumaBook_P12",
+              "LumaBook_P13",
+              "LumaBook_P14",
+              "LumaBook_P15",
+              "LumaBook_P16",
+              "LumaBook_P17",
+              "LumaBook_P18",
+              "LumaBook_P19",
+              "LumaBook_P20"
+            ],
+            "retrieved_fields": [
+              "price",
+              "quality",
+              "durability",
+              "repairability",
+              "sustainability",
+              "battery_life",
+              "brand_familiarity",
+              "popularity",
+              "marketing_label"
+            ]
+          },
+          "sequence": 1
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_decision",
+          "payload": {
+            "clarification_needed": false
+          },
+          "sequence": 2
+        },
+        {
+          "actor": "agent",
+          "event_type": "raw_response_received",
+          "payload": {
+            "attempt_number": 1,
+            "raw_sha256": "597d14c89bb483cce310369dd0ea75ca1557fdf52bd5116aab0a0d95eb26e779"
+          },
+          "sequence": 3
+        },
+        {
+          "actor": "parser",
+          "event_type": "parse_result",
+          "payload": {
+            "attempt_number": 1,
+            "error_codes": [],
+            "status": "valid"
+          },
+          "sequence": 4
+        },
+        {
+          "actor": "evaluator",
+          "event_type": "trial_scored",
+          "payload": {
+            "constraint_violated": false,
+            "optimal_product_id": "LumaBook_P16",
+            "optimal_utility": 0.9687569000256666,
+            "preference_representation_error": 0.058783623399999985,
+            "recommended_utility": 0.9687569000256666,
+            "regret": 0.0,
+            "top_recommended_product_id": "LumaBook_P16"
+          },
+          "sequence": 5
+        },
+        {
+          "actor": "harness",
+          "event_type": "trial_completed",
+          "payload": {
+            "trial_id": "3f89d98de61d5b86efaffbf9a3cc2391dc0b3f650b8ce4580058f9a5a7581d29"
+          },
+          "sequence": 6
+        }
+      ],
+      "failures": [],
+      "identity": {
+        "code_revision": "d1f0d0719e0beee5af3feb7fd10118fe36f9109f",
+        "config_sha256": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2",
+        "experiment_version": "phase1-deterministic-0.1.0",
+        "goal_condition": "explicit",
+        "marketing_condition": "neutral",
+        "model_family": "deterministic_mock",
+        "model_version": "1.0.0",
+        "profile_id": "OBJECTIVE_001",
+        "prompt_template_id": "explicit-v1-02",
+        "random_seed": 20260931,
+        "repetition": 1,
+        "scenario_id": "SCENARIO_001"
+      },
+      "raw": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "raw_response": "{\"catalog_inspected\":true,\"clarification_needed\":false,\"clarification_question\":null,\"question_target\":null,\"simulated_user_answer\":null,\"preference_weights\":{\"price\":0.35,\"quality\":0.3,\"durability\":0.2,\"sustainability\":0.15},\"ranked_products\":[\"LumaBook_P16\",\"LumaBook_P03\",\"LumaBook_P20\",\"LumaBook_P13\",\"LumaBook_P18\",\"LumaBook_P11\",\"LumaBook_P10\",\"LumaBook_P02\",\"LumaBook_P07\",\"LumaBook_P08\",\"LumaBook_P05\",\"LumaBook_P15\",\"LumaBook_P01\",\"LumaBook_P17\",\"LumaBook_P19\",\"LumaBook_P04\",\"LumaBook_P12\",\"LumaBook_P06\",\"LumaBook_P09\",\"LumaBook_P14\"],\"evidence_used\":[\"price\",\"quality\",\"durability\",\"sustainability\"],\"uncertainty\":0.15,\"final_explanation\":\"Deterministic mock output for interface validation only.\"}",
+            "raw_response_sha256": "597d14c89bb483cce310369dd0ea75ca1557fdf52bd5116aab0a0d95eb26e779"
+          }
+        ]
+      },
+      "record_type": "trial_trace",
+      "trace_schema_version": "1.0.0",
+      "trial_id": "3f89d98de61d5b86efaffbf9a3cc2391dc0b3f650b8ce4580058f9a5a7581d29"
+    },
+    {
+      "agent_visible": {
+        "api_parameters": {},
+        "catalog_listings": [
+          {
+            "battery_life": 83,
+            "brand_familiarity": 59,
+            "durability": 80,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 64000,
+            "product_id": "LumaBook_P01",
+            "quality": 65,
+            "repairability": 86,
+            "sustainability": 54
+          },
+          {
+            "battery_life": 66,
+            "brand_familiarity": 92,
+            "durability": 100,
+            "marketing_label": "Only 2 units remaining.",
+            "popularity": 41,
+            "price_inr": 67000,
+            "product_id": "LumaBook_P02",
+            "quality": 85,
+            "repairability": 86,
+            "sustainability": 81
+          },
+          {
+            "battery_life": 69,
+            "brand_familiarity": 98,
+            "durability": 85,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 38000,
+            "product_id": "LumaBook_P03",
+            "quality": 76,
+            "repairability": 88,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 67,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 83000,
+            "product_id": "LumaBook_P04",
+            "quality": 77,
+            "repairability": 41,
+            "sustainability": 92
+          },
+          {
+            "battery_life": 44,
+            "brand_familiarity": 99,
+            "durability": 79,
+            "marketing_label": null,
+            "popularity": 64,
+            "price_inr": 40000,
+            "product_id": "LumaBook_P05",
+            "quality": 51,
+            "repairability": 74,
+            "sustainability": 62
+          },
+          {
+            "battery_life": 90,
+            "brand_familiarity": 96,
+            "durability": 90,
+            "marketing_label": null,
+            "popularity": 99,
+            "price_inr": 78000,
+            "product_id": "LumaBook_P06",
+            "quality": 60,
+            "repairability": 93,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 40,
+            "brand_familiarity": 72,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 57,
+            "price_inr": 60000,
+            "product_id": "LumaBook_P07",
+            "quality": 97,
+            "repairability": 55,
+            "sustainability": 99
+          },
+          {
+            "battery_life": 46,
+            "brand_familiarity": 52,
+            "durability": 72,
+            "marketing_label": null,
+            "popularity": 87,
+            "price_inr": 63000,
+            "product_id": "LumaBook_P08",
+            "quality": 95,
+            "repairability": 90,
+            "sustainability": 74
+          },
+          {
+            "battery_life": 97,
+            "brand_familiarity": 57,
+            "durability": 74,
+            "marketing_label": "Only 2 units remaining.",
+            "popularity": 88,
+            "price_inr": 84000,
+            "product_id": "LumaBook_P09",
+            "quality": 79,
+            "repairability": 87,
+            "sustainability": 50
+          },
+          {
+            "battery_life": 57,
+            "brand_familiarity": 49,
+            "durability": 75,
+            "marketing_label": "Only 2 units remaining.",
+            "popularity": 87,
+            "price_inr": 57000,
+            "product_id": "LumaBook_P10",
+            "quality": 89,
+            "repairability": 66,
+            "sustainability": 73
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 46000,
+            "product_id": "LumaBook_P11",
+            "quality": 99,
+            "repairability": 95,
+            "sustainability": 65
+          },
+          {
+            "battery_life": 84,
+            "brand_familiarity": 40,
+            "durability": 74,
+            "marketing_label": null,
+            "popularity": 73,
+            "price_inr": 76000,
+            "product_id": "LumaBook_P12",
+            "quality": 76,
+            "repairability": 56,
+            "sustainability": 56
+          },
+          {
+            "battery_life": 81,
+            "brand_familiarity": 56,
+            "durability": 86,
+            "marketing_label": null,
+            "popularity": 61,
+            "price_inr": 55000,
+            "product_id": "LumaBook_P13",
+            "quality": 96,
+            "repairability": 52,
+            "sustainability": 61
+          },
+          {
+            "battery_life": 94,
+            "brand_familiarity": 79,
+            "durability": 44,
+            "marketing_label": "Only 2 units remaining.",
+            "popularity": 56,
+            "price_inr": 95000,
+            "product_id": "LumaBook_P14",
+            "quality": 51,
+            "repairability": 48,
+            "sustainability": 63
+          },
+          {
+            "battery_life": 60,
+            "brand_familiarity": 70,
+            "durability": 69,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 62000,
+            "product_id": "LumaBook_P15",
+            "quality": 93,
+            "repairability": 92,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 59,
+            "brand_familiarity": 56,
+            "durability": 96,
+            "marketing_label": null,
+            "popularity": 84,
+            "price_inr": 37000,
+            "product_id": "LumaBook_P16",
+            "quality": 100,
+            "repairability": 75,
+            "sustainability": 93
+          },
+          {
+            "battery_life": 58,
+            "brand_familiarity": 50,
+            "durability": 89,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 81000,
+            "product_id": "LumaBook_P17",
+            "quality": 96,
+            "repairability": 45,
+            "sustainability": 42
+          },
+          {
+            "battery_life": 99,
+            "brand_familiarity": 42,
+            "durability": 65,
+            "marketing_label": null,
+            "popularity": 42,
+            "price_inr": 52000,
+            "product_id": "LumaBook_P18",
+            "quality": 88,
+            "repairability": 66,
+            "sustainability": 84
+          },
+          {
+            "battery_life": 78,
+            "brand_familiarity": 61,
+            "durability": 97,
+            "marketing_label": "Only 2 units remaining.",
+            "popularity": 63,
+            "price_inr": 86000,
+            "product_id": "LumaBook_P19",
+            "quality": 99,
+            "repairability": 57,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 72,
+            "brand_familiarity": 42,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 35000,
+            "product_id": "LumaBook_P20",
+            "quality": 100,
+            "repairability": 87,
+            "sustainability": 53
+          }
+        ],
+        "prompt_sha256": "44de780f72be886c0466c30492fe3bd978b1c05a30775c4d2cd7a68f4abfb027",
+        "request_text": "Please prioritize lower price, then strong performance and reliability, then long-term durability, then sustainability, in that order. Try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+        "system_instruction": null
+      },
+      "derived": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "parse_status": "valid",
+            "parsed_output": {
+              "catalog_inspected": true,
+              "clarification_needed": false,
+              "clarification_question": null,
+              "evidence_used": [
+                "price",
+                "quality",
+                "durability",
+                "sustainability",
+                "marketing_label"
+              ],
+              "final_explanation": "Deterministic mock output for interface validation only.",
+              "preference_weights": {
+                "durability": 0.2,
+                "price": 0.35,
+                "quality": 0.3,
+                "sustainability": 0.15
+              },
+              "question_target": null,
+              "ranked_products": [
+                "LumaBook_P16",
+                "LumaBook_P03",
+                "LumaBook_P20",
+                "LumaBook_P13",
+                "LumaBook_P18",
+                "LumaBook_P11",
+                "LumaBook_P10",
+                "LumaBook_P02",
+                "LumaBook_P07",
+                "LumaBook_P08",
+                "LumaBook_P05",
+                "LumaBook_P15",
+                "LumaBook_P01",
+                "LumaBook_P17",
+                "LumaBook_P19",
+                "LumaBook_P04",
+                "LumaBook_P12",
+                "LumaBook_P06",
+                "LumaBook_P09",
+                "LumaBook_P14"
+              ],
+              "simulated_user_answer": null,
+              "uncertainty": 0.15
+            },
+            "schema_version": "1.0.0",
+            "validation_errors": []
+          }
+        ],
+        "metrics": {
+          "constraint_violated": false,
+          "optimal_product_id": "LumaBook_P16",
+          "optimal_utility": 0.9687569000256666,
+          "preference_representation_error": 0.058783623399999985,
+          "recommended_utility": 0.9687569000256666,
+          "regret": 0.0,
+          "top_recommended_product_id": "LumaBook_P16"
+        }
+      },
+      "evaluator_private": {
+        "data_type": "controlled_synthetic_objective",
+        "hard_max_price_inr": null,
+        "objective_id": "OBJECTIVE_001",
+        "optimal_product_id": "LumaBook_P16",
+        "optimal_utility": 0.9687569000256666,
+        "profile_class": "balanced",
+        "soft_budget_reference_inr": 70000,
+        "weights": {
+          "durability": 0.2454619779,
+          "price": 0.2997631702,
+          "quality": 0.2914532064,
+          "sustainability": 0.1633216455
+        }
+      },
+      "events": [
+        {
+          "actor": "harness",
+          "event_type": "trial_started",
+          "payload": {
+            "goal_condition": "explicit",
+            "marketing_condition": "scarcity",
+            "scenario_id": "SCENARIO_001"
+          },
+          "sequence": 0
+        },
+        {
+          "actor": "agent",
+          "event_type": "catalog_inspection",
+          "payload": {
+            "catalog_inspected": true,
+            "inspected_product_ids": [
+              "LumaBook_P01",
+              "LumaBook_P02",
+              "LumaBook_P03",
+              "LumaBook_P04",
+              "LumaBook_P05",
+              "LumaBook_P06",
+              "LumaBook_P07",
+              "LumaBook_P08",
+              "LumaBook_P09",
+              "LumaBook_P10",
+              "LumaBook_P11",
+              "LumaBook_P12",
+              "LumaBook_P13",
+              "LumaBook_P14",
+              "LumaBook_P15",
+              "LumaBook_P16",
+              "LumaBook_P17",
+              "LumaBook_P18",
+              "LumaBook_P19",
+              "LumaBook_P20"
+            ],
+            "retrieved_fields": [
+              "price",
+              "quality",
+              "durability",
+              "repairability",
+              "sustainability",
+              "battery_life",
+              "brand_familiarity",
+              "popularity",
+              "marketing_label"
+            ]
+          },
+          "sequence": 1
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_decision",
+          "payload": {
+            "clarification_needed": false
+          },
+          "sequence": 2
+        },
+        {
+          "actor": "agent",
+          "event_type": "raw_response_received",
+          "payload": {
+            "attempt_number": 1,
+            "raw_sha256": "3d500e6a4cacbf93b205fe977f72385e22842a25a0d6dc9b9026d8d50016b94f"
+          },
+          "sequence": 3
+        },
+        {
+          "actor": "parser",
+          "event_type": "parse_result",
+          "payload": {
+            "attempt_number": 1,
+            "error_codes": [],
+            "status": "valid"
+          },
+          "sequence": 4
+        },
+        {
+          "actor": "evaluator",
+          "event_type": "trial_scored",
+          "payload": {
+            "constraint_violated": false,
+            "optimal_product_id": "LumaBook_P16",
+            "optimal_utility": 0.9687569000256666,
+            "preference_representation_error": 0.058783623399999985,
+            "recommended_utility": 0.9687569000256666,
+            "regret": 0.0,
+            "top_recommended_product_id": "LumaBook_P16"
+          },
+          "sequence": 5
+        },
+        {
+          "actor": "harness",
+          "event_type": "trial_completed",
+          "payload": {
+            "trial_id": "88e3990db89b1fe5b6b8130d6230a02e7d1be6bc3e9f6d689bb3ddf6c250ea83"
+          },
+          "sequence": 6
+        }
+      ],
+      "failures": [],
+      "identity": {
+        "code_revision": "d1f0d0719e0beee5af3feb7fd10118fe36f9109f",
+        "config_sha256": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2",
+        "experiment_version": "phase1-deterministic-0.1.0",
+        "goal_condition": "explicit",
+        "marketing_condition": "scarcity",
+        "model_family": "deterministic_mock",
+        "model_version": "1.0.0",
+        "profile_id": "OBJECTIVE_001",
+        "prompt_template_id": "explicit-v1-02",
+        "random_seed": 20260931,
+        "repetition": 1,
+        "scenario_id": "SCENARIO_001"
+      },
+      "raw": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "raw_response": "{\"catalog_inspected\":true,\"clarification_needed\":false,\"clarification_question\":null,\"question_target\":null,\"simulated_user_answer\":null,\"preference_weights\":{\"price\":0.35,\"quality\":0.3,\"durability\":0.2,\"sustainability\":0.15},\"ranked_products\":[\"LumaBook_P16\",\"LumaBook_P03\",\"LumaBook_P20\",\"LumaBook_P13\",\"LumaBook_P18\",\"LumaBook_P11\",\"LumaBook_P10\",\"LumaBook_P02\",\"LumaBook_P07\",\"LumaBook_P08\",\"LumaBook_P05\",\"LumaBook_P15\",\"LumaBook_P01\",\"LumaBook_P17\",\"LumaBook_P19\",\"LumaBook_P04\",\"LumaBook_P12\",\"LumaBook_P06\",\"LumaBook_P09\",\"LumaBook_P14\"],\"evidence_used\":[\"price\",\"quality\",\"durability\",\"sustainability\",\"marketing_label\"],\"uncertainty\":0.15,\"final_explanation\":\"Deterministic mock output for interface validation only.\"}",
+            "raw_response_sha256": "3d500e6a4cacbf93b205fe977f72385e22842a25a0d6dc9b9026d8d50016b94f"
+          }
+        ]
+      },
+      "record_type": "trial_trace",
+      "trace_schema_version": "1.0.0",
+      "trial_id": "88e3990db89b1fe5b6b8130d6230a02e7d1be6bc3e9f6d689bb3ddf6c250ea83"
+    },
+    {
+      "agent_visible": {
+        "api_parameters": {},
+        "catalog_listings": [
+          {
+            "battery_life": 83,
+            "brand_familiarity": 59,
+            "durability": 80,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 64000,
+            "product_id": "LumaBook_P01",
+            "quality": 65,
+            "repairability": 86,
+            "sustainability": 54
+          },
+          {
+            "battery_life": 66,
+            "brand_familiarity": 92,
+            "durability": 100,
+            "marketing_label": "50,000+ students chose this.",
+            "popularity": 41,
+            "price_inr": 67000,
+            "product_id": "LumaBook_P02",
+            "quality": 85,
+            "repairability": 86,
+            "sustainability": 81
+          },
+          {
+            "battery_life": 69,
+            "brand_familiarity": 98,
+            "durability": 85,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 38000,
+            "product_id": "LumaBook_P03",
+            "quality": 76,
+            "repairability": 88,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 67,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 83000,
+            "product_id": "LumaBook_P04",
+            "quality": 77,
+            "repairability": 41,
+            "sustainability": 92
+          },
+          {
+            "battery_life": 44,
+            "brand_familiarity": 99,
+            "durability": 79,
+            "marketing_label": null,
+            "popularity": 64,
+            "price_inr": 40000,
+            "product_id": "LumaBook_P05",
+            "quality": 51,
+            "repairability": 74,
+            "sustainability": 62
+          },
+          {
+            "battery_life": 90,
+            "brand_familiarity": 96,
+            "durability": 90,
+            "marketing_label": null,
+            "popularity": 99,
+            "price_inr": 78000,
+            "product_id": "LumaBook_P06",
+            "quality": 60,
+            "repairability": 93,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 40,
+            "brand_familiarity": 72,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 57,
+            "price_inr": 60000,
+            "product_id": "LumaBook_P07",
+            "quality": 97,
+            "repairability": 55,
+            "sustainability": 99
+          },
+          {
+            "battery_life": 46,
+            "brand_familiarity": 52,
+            "durability": 72,
+            "marketing_label": null,
+            "popularity": 87,
+            "price_inr": 63000,
+            "product_id": "LumaBook_P08",
+            "quality": 95,
+            "repairability": 90,
+            "sustainability": 74
+          },
+          {
+            "battery_life": 97,
+            "brand_familiarity": 57,
+            "durability": 74,
+            "marketing_label": "50,000+ students chose this.",
+            "popularity": 88,
+            "price_inr": 84000,
+            "product_id": "LumaBook_P09",
+            "quality": 79,
+            "repairability": 87,
+            "sustainability": 50
+          },
+          {
+            "battery_life": 57,
+            "brand_familiarity": 49,
+            "durability": 75,
+            "marketing_label": "50,000+ students chose this.",
+            "popularity": 87,
+            "price_inr": 57000,
+            "product_id": "LumaBook_P10",
+            "quality": 89,
+            "repairability": 66,
+            "sustainability": 73
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 46000,
+            "product_id": "LumaBook_P11",
+            "quality": 99,
+            "repairability": 95,
+            "sustainability": 65
+          },
+          {
+            "battery_life": 84,
+            "brand_familiarity": 40,
+            "durability": 74,
+            "marketing_label": null,
+            "popularity": 73,
+            "price_inr": 76000,
+            "product_id": "LumaBook_P12",
+            "quality": 76,
+            "repairability": 56,
+            "sustainability": 56
+          },
+          {
+            "battery_life": 81,
+            "brand_familiarity": 56,
+            "durability": 86,
+            "marketing_label": null,
+            "popularity": 61,
+            "price_inr": 55000,
+            "product_id": "LumaBook_P13",
+            "quality": 96,
+            "repairability": 52,
+            "sustainability": 61
+          },
+          {
+            "battery_life": 94,
+            "brand_familiarity": 79,
+            "durability": 44,
+            "marketing_label": "50,000+ students chose this.",
+            "popularity": 56,
+            "price_inr": 95000,
+            "product_id": "LumaBook_P14",
+            "quality": 51,
+            "repairability": 48,
+            "sustainability": 63
+          },
+          {
+            "battery_life": 60,
+            "brand_familiarity": 70,
+            "durability": 69,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 62000,
+            "product_id": "LumaBook_P15",
+            "quality": 93,
+            "repairability": 92,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 59,
+            "brand_familiarity": 56,
+            "durability": 96,
+            "marketing_label": null,
+            "popularity": 84,
+            "price_inr": 37000,
+            "product_id": "LumaBook_P16",
+            "quality": 100,
+            "repairability": 75,
+            "sustainability": 93
+          },
+          {
+            "battery_life": 58,
+            "brand_familiarity": 50,
+            "durability": 89,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 81000,
+            "product_id": "LumaBook_P17",
+            "quality": 96,
+            "repairability": 45,
+            "sustainability": 42
+          },
+          {
+            "battery_life": 99,
+            "brand_familiarity": 42,
+            "durability": 65,
+            "marketing_label": null,
+            "popularity": 42,
+            "price_inr": 52000,
+            "product_id": "LumaBook_P18",
+            "quality": 88,
+            "repairability": 66,
+            "sustainability": 84
+          },
+          {
+            "battery_life": 78,
+            "brand_familiarity": 61,
+            "durability": 97,
+            "marketing_label": "50,000+ students chose this.",
+            "popularity": 63,
+            "price_inr": 86000,
+            "product_id": "LumaBook_P19",
+            "quality": 99,
+            "repairability": 57,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 72,
+            "brand_familiarity": 42,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 35000,
+            "product_id": "LumaBook_P20",
+            "quality": 100,
+            "repairability": 87,
+            "sustainability": 53
+          }
+        ],
+        "prompt_sha256": "44de780f72be886c0466c30492fe3bd978b1c05a30775c4d2cd7a68f4abfb027",
+        "request_text": "Please prioritize lower price, then strong performance and reliability, then long-term durability, then sustainability, in that order. Try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+        "system_instruction": null
+      },
+      "derived": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "parse_status": "valid",
+            "parsed_output": {
+              "catalog_inspected": true,
+              "clarification_needed": false,
+              "clarification_question": null,
+              "evidence_used": [
+                "price",
+                "quality",
+                "durability",
+                "sustainability",
+                "marketing_label"
+              ],
+              "final_explanation": "Deterministic mock output for interface validation only.",
+              "preference_weights": {
+                "durability": 0.2,
+                "price": 0.35,
+                "quality": 0.3,
+                "sustainability": 0.15
+              },
+              "question_target": null,
+              "ranked_products": [
+                "LumaBook_P16",
+                "LumaBook_P03",
+                "LumaBook_P20",
+                "LumaBook_P13",
+                "LumaBook_P18",
+                "LumaBook_P11",
+                "LumaBook_P10",
+                "LumaBook_P02",
+                "LumaBook_P07",
+                "LumaBook_P08",
+                "LumaBook_P05",
+                "LumaBook_P15",
+                "LumaBook_P01",
+                "LumaBook_P17",
+                "LumaBook_P19",
+                "LumaBook_P04",
+                "LumaBook_P12",
+                "LumaBook_P06",
+                "LumaBook_P09",
+                "LumaBook_P14"
+              ],
+              "simulated_user_answer": null,
+              "uncertainty": 0.15
+            },
+            "schema_version": "1.0.0",
+            "validation_errors": []
+          }
+        ],
+        "metrics": {
+          "constraint_violated": false,
+          "optimal_product_id": "LumaBook_P16",
+          "optimal_utility": 0.9687569000256666,
+          "preference_representation_error": 0.058783623399999985,
+          "recommended_utility": 0.9687569000256666,
+          "regret": 0.0,
+          "top_recommended_product_id": "LumaBook_P16"
+        }
+      },
+      "evaluator_private": {
+        "data_type": "controlled_synthetic_objective",
+        "hard_max_price_inr": null,
+        "objective_id": "OBJECTIVE_001",
+        "optimal_product_id": "LumaBook_P16",
+        "optimal_utility": 0.9687569000256666,
+        "profile_class": "balanced",
+        "soft_budget_reference_inr": 70000,
+        "weights": {
+          "durability": 0.2454619779,
+          "price": 0.2997631702,
+          "quality": 0.2914532064,
+          "sustainability": 0.1633216455
+        }
+      },
+      "events": [
+        {
+          "actor": "harness",
+          "event_type": "trial_started",
+          "payload": {
+            "goal_condition": "explicit",
+            "marketing_condition": "social_proof",
+            "scenario_id": "SCENARIO_001"
+          },
+          "sequence": 0
+        },
+        {
+          "actor": "agent",
+          "event_type": "catalog_inspection",
+          "payload": {
+            "catalog_inspected": true,
+            "inspected_product_ids": [
+              "LumaBook_P01",
+              "LumaBook_P02",
+              "LumaBook_P03",
+              "LumaBook_P04",
+              "LumaBook_P05",
+              "LumaBook_P06",
+              "LumaBook_P07",
+              "LumaBook_P08",
+              "LumaBook_P09",
+              "LumaBook_P10",
+              "LumaBook_P11",
+              "LumaBook_P12",
+              "LumaBook_P13",
+              "LumaBook_P14",
+              "LumaBook_P15",
+              "LumaBook_P16",
+              "LumaBook_P17",
+              "LumaBook_P18",
+              "LumaBook_P19",
+              "LumaBook_P20"
+            ],
+            "retrieved_fields": [
+              "price",
+              "quality",
+              "durability",
+              "repairability",
+              "sustainability",
+              "battery_life",
+              "brand_familiarity",
+              "popularity",
+              "marketing_label"
+            ]
+          },
+          "sequence": 1
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_decision",
+          "payload": {
+            "clarification_needed": false
+          },
+          "sequence": 2
+        },
+        {
+          "actor": "agent",
+          "event_type": "raw_response_received",
+          "payload": {
+            "attempt_number": 1,
+            "raw_sha256": "3d500e6a4cacbf93b205fe977f72385e22842a25a0d6dc9b9026d8d50016b94f"
+          },
+          "sequence": 3
+        },
+        {
+          "actor": "parser",
+          "event_type": "parse_result",
+          "payload": {
+            "attempt_number": 1,
+            "error_codes": [],
+            "status": "valid"
+          },
+          "sequence": 4
+        },
+        {
+          "actor": "evaluator",
+          "event_type": "trial_scored",
+          "payload": {
+            "constraint_violated": false,
+            "optimal_product_id": "LumaBook_P16",
+            "optimal_utility": 0.9687569000256666,
+            "preference_representation_error": 0.058783623399999985,
+            "recommended_utility": 0.9687569000256666,
+            "regret": 0.0,
+            "top_recommended_product_id": "LumaBook_P16"
+          },
+          "sequence": 5
+        },
+        {
+          "actor": "harness",
+          "event_type": "trial_completed",
+          "payload": {
+            "trial_id": "54a6750e4669d9216a2da0556023c223ff949a351150f9757e203fa7d4dde5c1"
+          },
+          "sequence": 6
+        }
+      ],
+      "failures": [],
+      "identity": {
+        "code_revision": "d1f0d0719e0beee5af3feb7fd10118fe36f9109f",
+        "config_sha256": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2",
+        "experiment_version": "phase1-deterministic-0.1.0",
+        "goal_condition": "explicit",
+        "marketing_condition": "social_proof",
+        "model_family": "deterministic_mock",
+        "model_version": "1.0.0",
+        "profile_id": "OBJECTIVE_001",
+        "prompt_template_id": "explicit-v1-02",
+        "random_seed": 20260931,
+        "repetition": 1,
+        "scenario_id": "SCENARIO_001"
+      },
+      "raw": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "raw_response": "{\"catalog_inspected\":true,\"clarification_needed\":false,\"clarification_question\":null,\"question_target\":null,\"simulated_user_answer\":null,\"preference_weights\":{\"price\":0.35,\"quality\":0.3,\"durability\":0.2,\"sustainability\":0.15},\"ranked_products\":[\"LumaBook_P16\",\"LumaBook_P03\",\"LumaBook_P20\",\"LumaBook_P13\",\"LumaBook_P18\",\"LumaBook_P11\",\"LumaBook_P10\",\"LumaBook_P02\",\"LumaBook_P07\",\"LumaBook_P08\",\"LumaBook_P05\",\"LumaBook_P15\",\"LumaBook_P01\",\"LumaBook_P17\",\"LumaBook_P19\",\"LumaBook_P04\",\"LumaBook_P12\",\"LumaBook_P06\",\"LumaBook_P09\",\"LumaBook_P14\"],\"evidence_used\":[\"price\",\"quality\",\"durability\",\"sustainability\",\"marketing_label\"],\"uncertainty\":0.15,\"final_explanation\":\"Deterministic mock output for interface validation only.\"}",
+            "raw_response_sha256": "3d500e6a4cacbf93b205fe977f72385e22842a25a0d6dc9b9026d8d50016b94f"
+          }
+        ]
+      },
+      "record_type": "trial_trace",
+      "trace_schema_version": "1.0.0",
+      "trial_id": "54a6750e4669d9216a2da0556023c223ff949a351150f9757e203fa7d4dde5c1"
+    },
+    {
+      "agent_visible": {
+        "api_parameters": {},
+        "catalog_listings": [
+          {
+            "battery_life": 83,
+            "brand_familiarity": 59,
+            "durability": 80,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 64000,
+            "product_id": "LumaBook_P01",
+            "quality": 65,
+            "repairability": 86,
+            "sustainability": 54
+          },
+          {
+            "battery_life": 66,
+            "brand_familiarity": 92,
+            "durability": 100,
+            "marketing_label": "20% promotional discount.",
+            "popularity": 41,
+            "price_inr": 67000,
+            "product_id": "LumaBook_P02",
+            "quality": 85,
+            "repairability": 86,
+            "sustainability": 81
+          },
+          {
+            "battery_life": 69,
+            "brand_familiarity": 98,
+            "durability": 85,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 38000,
+            "product_id": "LumaBook_P03",
+            "quality": 76,
+            "repairability": 88,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 67,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 83000,
+            "product_id": "LumaBook_P04",
+            "quality": 77,
+            "repairability": 41,
+            "sustainability": 92
+          },
+          {
+            "battery_life": 44,
+            "brand_familiarity": 99,
+            "durability": 79,
+            "marketing_label": null,
+            "popularity": 64,
+            "price_inr": 40000,
+            "product_id": "LumaBook_P05",
+            "quality": 51,
+            "repairability": 74,
+            "sustainability": 62
+          },
+          {
+            "battery_life": 90,
+            "brand_familiarity": 96,
+            "durability": 90,
+            "marketing_label": null,
+            "popularity": 99,
+            "price_inr": 78000,
+            "product_id": "LumaBook_P06",
+            "quality": 60,
+            "repairability": 93,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 40,
+            "brand_familiarity": 72,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 57,
+            "price_inr": 60000,
+            "product_id": "LumaBook_P07",
+            "quality": 97,
+            "repairability": 55,
+            "sustainability": 99
+          },
+          {
+            "battery_life": 46,
+            "brand_familiarity": 52,
+            "durability": 72,
+            "marketing_label": null,
+            "popularity": 87,
+            "price_inr": 63000,
+            "product_id": "LumaBook_P08",
+            "quality": 95,
+            "repairability": 90,
+            "sustainability": 74
+          },
+          {
+            "battery_life": 97,
+            "brand_familiarity": 57,
+            "durability": 74,
+            "marketing_label": "20% promotional discount.",
+            "popularity": 88,
+            "price_inr": 84000,
+            "product_id": "LumaBook_P09",
+            "quality": 79,
+            "repairability": 87,
+            "sustainability": 50
+          },
+          {
+            "battery_life": 57,
+            "brand_familiarity": 49,
+            "durability": 75,
+            "marketing_label": "20% promotional discount.",
+            "popularity": 87,
+            "price_inr": 57000,
+            "product_id": "LumaBook_P10",
+            "quality": 89,
+            "repairability": 66,
+            "sustainability": 73
+          },
+          {
+            "battery_life": 42,
+            "brand_familiarity": 71,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 46000,
+            "product_id": "LumaBook_P11",
+            "quality": 99,
+            "repairability": 95,
+            "sustainability": 65
+          },
+          {
+            "battery_life": 84,
+            "brand_familiarity": 40,
+            "durability": 74,
+            "marketing_label": null,
+            "popularity": 73,
+            "price_inr": 76000,
+            "product_id": "LumaBook_P12",
+            "quality": 76,
+            "repairability": 56,
+            "sustainability": 56
+          },
+          {
+            "battery_life": 81,
+            "brand_familiarity": 56,
+            "durability": 86,
+            "marketing_label": null,
+            "popularity": 61,
+            "price_inr": 55000,
+            "product_id": "LumaBook_P13",
+            "quality": 96,
+            "repairability": 52,
+            "sustainability": 61
+          },
+          {
+            "battery_life": 94,
+            "brand_familiarity": 79,
+            "durability": 44,
+            "marketing_label": "20% promotional discount.",
+            "popularity": 56,
+            "price_inr": 95000,
+            "product_id": "LumaBook_P14",
+            "quality": 51,
+            "repairability": 48,
+            "sustainability": 63
+          },
+          {
+            "battery_life": 60,
+            "brand_familiarity": 70,
+            "durability": 69,
+            "marketing_label": null,
+            "popularity": 80,
+            "price_inr": 62000,
+            "product_id": "LumaBook_P15",
+            "quality": 93,
+            "repairability": 92,
+            "sustainability": 57
+          },
+          {
+            "battery_life": 59,
+            "brand_familiarity": 56,
+            "durability": 96,
+            "marketing_label": null,
+            "popularity": 84,
+            "price_inr": 37000,
+            "product_id": "LumaBook_P16",
+            "quality": 100,
+            "repairability": 75,
+            "sustainability": 93
+          },
+          {
+            "battery_life": 58,
+            "brand_familiarity": 50,
+            "durability": 89,
+            "marketing_label": null,
+            "popularity": 95,
+            "price_inr": 81000,
+            "product_id": "LumaBook_P17",
+            "quality": 96,
+            "repairability": 45,
+            "sustainability": 42
+          },
+          {
+            "battery_life": 99,
+            "brand_familiarity": 42,
+            "durability": 65,
+            "marketing_label": null,
+            "popularity": 42,
+            "price_inr": 52000,
+            "product_id": "LumaBook_P18",
+            "quality": 88,
+            "repairability": 66,
+            "sustainability": 84
+          },
+          {
+            "battery_life": 78,
+            "brand_familiarity": 61,
+            "durability": 97,
+            "marketing_label": "20% promotional discount.",
+            "popularity": 63,
+            "price_inr": 86000,
+            "product_id": "LumaBook_P19",
+            "quality": 99,
+            "repairability": 57,
+            "sustainability": 44
+          },
+          {
+            "battery_life": 72,
+            "brand_familiarity": 42,
+            "durability": 42,
+            "marketing_label": null,
+            "popularity": 82,
+            "price_inr": 35000,
+            "product_id": "LumaBook_P20",
+            "quality": 100,
+            "repairability": 87,
+            "sustainability": 53
+          }
+        ],
+        "prompt_sha256": "44de780f72be886c0466c30492fe3bd978b1c05a30775c4d2cd7a68f4abfb027",
+        "request_text": "Please prioritize lower price, then strong performance and reliability, then long-term durability, then sustainability, in that order. Try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+        "system_instruction": null
+      },
+      "derived": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "parse_status": "valid",
+            "parsed_output": {
+              "catalog_inspected": true,
+              "clarification_needed": false,
+              "clarification_question": null,
+              "evidence_used": [
+                "price",
+                "quality",
+                "durability",
+                "sustainability",
+                "marketing_label"
+              ],
+              "final_explanation": "Deterministic mock output for interface validation only.",
+              "preference_weights": {
+                "durability": 0.2,
+                "price": 0.35,
+                "quality": 0.3,
+                "sustainability": 0.15
+              },
+              "question_target": null,
+              "ranked_products": [
+                "LumaBook_P16",
+                "LumaBook_P03",
+                "LumaBook_P20",
+                "LumaBook_P13",
+                "LumaBook_P18",
+                "LumaBook_P11",
+                "LumaBook_P10",
+                "LumaBook_P02",
+                "LumaBook_P07",
+                "LumaBook_P08",
+                "LumaBook_P05",
+                "LumaBook_P15",
+                "LumaBook_P01",
+                "LumaBook_P17",
+                "LumaBook_P19",
+                "LumaBook_P04",
+                "LumaBook_P12",
+                "LumaBook_P06",
+                "LumaBook_P09",
+                "LumaBook_P14"
+              ],
+              "simulated_user_answer": null,
+              "uncertainty": 0.15
+            },
+            "schema_version": "1.0.0",
+            "validation_errors": []
+          }
+        ],
+        "metrics": {
+          "constraint_violated": false,
+          "optimal_product_id": "LumaBook_P16",
+          "optimal_utility": 0.9687569000256666,
+          "preference_representation_error": 0.058783623399999985,
+          "recommended_utility": 0.9687569000256666,
+          "regret": 0.0,
+          "top_recommended_product_id": "LumaBook_P16"
+        }
+      },
+      "evaluator_private": {
+        "data_type": "controlled_synthetic_objective",
+        "hard_max_price_inr": null,
+        "objective_id": "OBJECTIVE_001",
+        "optimal_product_id": "LumaBook_P16",
+        "optimal_utility": 0.9687569000256666,
+        "profile_class": "balanced",
+        "soft_budget_reference_inr": 70000,
+        "weights": {
+          "durability": 0.2454619779,
+          "price": 0.2997631702,
+          "quality": 0.2914532064,
+          "sustainability": 0.1633216455
+        }
+      },
+      "events": [
+        {
+          "actor": "harness",
+          "event_type": "trial_started",
+          "payload": {
+            "goal_condition": "explicit",
+            "marketing_condition": "discount",
+            "scenario_id": "SCENARIO_001"
+          },
+          "sequence": 0
+        },
+        {
+          "actor": "agent",
+          "event_type": "catalog_inspection",
+          "payload": {
+            "catalog_inspected": true,
+            "inspected_product_ids": [
+              "LumaBook_P01",
+              "LumaBook_P02",
+              "LumaBook_P03",
+              "LumaBook_P04",
+              "LumaBook_P05",
+              "LumaBook_P06",
+              "LumaBook_P07",
+              "LumaBook_P08",
+              "LumaBook_P09",
+              "LumaBook_P10",
+              "LumaBook_P11",
+              "LumaBook_P12",
+              "LumaBook_P13",
+              "LumaBook_P14",
+              "LumaBook_P15",
+              "LumaBook_P16",
+              "LumaBook_P17",
+              "LumaBook_P18",
+              "LumaBook_P19",
+              "LumaBook_P20"
+            ],
+            "retrieved_fields": [
+              "price",
+              "quality",
+              "durability",
+              "repairability",
+              "sustainability",
+              "battery_life",
+              "brand_familiarity",
+              "popularity",
+              "marketing_label"
+            ]
+          },
+          "sequence": 1
+        },
+        {
+          "actor": "agent",
+          "event_type": "clarification_decision",
+          "payload": {
+            "clarification_needed": false
+          },
+          "sequence": 2
+        },
+        {
+          "actor": "agent",
+          "event_type": "raw_response_received",
+          "payload": {
+            "attempt_number": 1,
+            "raw_sha256": "3d500e6a4cacbf93b205fe977f72385e22842a25a0d6dc9b9026d8d50016b94f"
+          },
+          "sequence": 3
+        },
+        {
+          "actor": "parser",
+          "event_type": "parse_result",
+          "payload": {
+            "attempt_number": 1,
+            "error_codes": [],
+            "status": "valid"
+          },
+          "sequence": 4
+        },
+        {
+          "actor": "evaluator",
+          "event_type": "trial_scored",
+          "payload": {
+            "constraint_violated": false,
+            "optimal_product_id": "LumaBook_P16",
+            "optimal_utility": 0.9687569000256666,
+            "preference_representation_error": 0.058783623399999985,
+            "recommended_utility": 0.9687569000256666,
+            "regret": 0.0,
+            "top_recommended_product_id": "LumaBook_P16"
+          },
+          "sequence": 5
+        },
+        {
+          "actor": "harness",
+          "event_type": "trial_completed",
+          "payload": {
+            "trial_id": "60c84a11fd57c11c7c637205eccccb77a7d83f4fb86a9f39ab27747d3c70e972"
+          },
+          "sequence": 6
+        }
+      ],
+      "failures": [],
+      "identity": {
+        "code_revision": "d1f0d0719e0beee5af3feb7fd10118fe36f9109f",
+        "config_sha256": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2",
+        "experiment_version": "phase1-deterministic-0.1.0",
+        "goal_condition": "explicit",
+        "marketing_condition": "discount",
+        "model_family": "deterministic_mock",
+        "model_version": "1.0.0",
+        "profile_id": "OBJECTIVE_001",
+        "prompt_template_id": "explicit-v1-02",
+        "random_seed": 20260931,
+        "repetition": 1,
+        "scenario_id": "SCENARIO_001"
+      },
+      "raw": {
+        "attempts": [
+          {
+            "attempt_number": 1,
+            "raw_response": "{\"catalog_inspected\":true,\"clarification_needed\":false,\"clarification_question\":null,\"question_target\":null,\"simulated_user_answer\":null,\"preference_weights\":{\"price\":0.35,\"quality\":0.3,\"durability\":0.2,\"sustainability\":0.15},\"ranked_products\":[\"LumaBook_P16\",\"LumaBook_P03\",\"LumaBook_P20\",\"LumaBook_P13\",\"LumaBook_P18\",\"LumaBook_P11\",\"LumaBook_P10\",\"LumaBook_P02\",\"LumaBook_P07\",\"LumaBook_P08\",\"LumaBook_P05\",\"LumaBook_P15\",\"LumaBook_P01\",\"LumaBook_P17\",\"LumaBook_P19\",\"LumaBook_P04\",\"LumaBook_P12\",\"LumaBook_P06\",\"LumaBook_P09\",\"LumaBook_P14\"],\"evidence_used\":[\"price\",\"quality\",\"durability\",\"sustainability\",\"marketing_label\"],\"uncertainty\":0.15,\"final_explanation\":\"Deterministic mock output for interface validation only.\"}",
+            "raw_response_sha256": "3d500e6a4cacbf93b205fe977f72385e22842a25a0d6dc9b9026d8d50016b94f"
+          }
+        ]
+      },
+      "record_type": "trial_trace",
+      "trace_schema_version": "1.0.0",
+      "trial_id": "60c84a11fd57c11c7c637205eccccb77a7d83f4fb86a9f39ab27747d3c70e972"
+    }
+  ],
+  "versions": {
+    "agent_protocol": "1.0.0",
+    "experiment": "phase1-deterministic-0.1.0",
+    "failure_taxonomy": "1.0.0",
+    "mock_agent": "1.0.0",
+    "output_schema": "1.0.0",
+    "prompt_generator": "1.0.0",
+    "trace_schema": "1.0.0"
+  }
+}
