@@ -406,7 +406,7 @@ Test the manuscript against:
 
 **Current milestone:** Offline Phase 2 provider adapters and ordered live-trial controller implemented and validated with deterministic fakes
 
-**Current task:** Stop at candidate access filtering: `OPENAI_API_KEY`, `GEMINI_API_KEY`, and `GROQ_API_KEY` are absent in process/user/machine scopes; no exact model IDs are configured, and only the OpenAI adapter exists for the current candidate set. No live probes or experimental data were generated. The local `main` branch matches its last-known `origin/main` tracking ref, but a fresh fetch is blocked by missing Git credentials. Pilot, cost selection, experiment freeze, preflight, and main experiment remain NOT STARTED.
+**Current task:** Stop at candidate access filtering: `OPENAI_API_KEY`, `GEMINI_API_KEY`, and `GROQ_API_KEY` are absent in process/user/machine scopes; no exact model IDs are configured, and only the OpenAI adapter exists for the current candidate set. No live probes or experimental data were generated. The latest matrix/roadmap commit is local and could not be pushed (`SEC_E_NO_CREDENTIALS`); the remote HEAD is not verified. Pilot, cost selection, experiment freeze, preflight, and main experiment remain NOT STARTED.
 
 **Main experiment:** NOT STARTED
 
@@ -474,6 +474,7 @@ Test the manuscript against:
 - **Exact next action:** configure at least two intended provider credentials locally (without sending or committing values), select exact models from their provider metadata, and then implement/test any missing Gemini/Groq adapter(s) before live probes. Restore GitHub CLI configuration access or authenticate so a fresh fetch can verify the remote.
 
 | 2026-09-30T18:03Z | PHASE 2 — ACCESS GATE | Recheck current candidate provider access and update matrix per current instruction | Presence checks found no OpenAI, Gemini, or Groq keys in any checked scope. No exact model IDs, no Gemini/Groq adapters, zero viable families. No probes, pilot, pricing/quota checks, or empirical calls. JSON validation passed. Fresh Git fetch failed with `SEC_E_NO_CREDENTIALS`; local branch/tracking ref matched at inspection but remote was not freshly verified. | `artifacts/model_access_matrix.json` v1.1.0; `roadmap.md` | Configure at least two provider credentials and choose exact distinct model families; implement selected missing adapter(s), then rerun the access gate. |
+| 2026-09-30T18:07Z | PHASE 2 — GIT CHECKPOINT | Commit refreshed candidate matrix and retry normal push | Local commit `cb57bec085f0de630650a5b3cad7b7d41298e370` created. Normal push failed with `SEC_E_NO_CREDENTIALS`; no remote update or fresh remote HEAD verification. At this check, local `main` was one commit ahead of last-known `origin/main` `98c8ea4c34e74c211015b1ef0d3dc08060db0a94`. | `artifacts/model_access_matrix.json`; `roadmap.md`; commit `cb57bec085f0de630650a5b3cad7b7d41298e370` | Restore GitHub CLI/Git credential access, then push normally and verify remote HEAD. |
 
 ## Phase 1 exit audit — 2026-09-30
 
