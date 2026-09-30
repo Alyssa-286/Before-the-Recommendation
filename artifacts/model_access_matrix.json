@@ -1,172 +1,117 @@
 {
-  "artifact_version": "model-access-matrix-v1.0.0",
-  "observed_at_utc": "2026-09-30T17:14:43Z",
+  "artifact_version": "model-access-matrix-v1.1.0",
+  "observed_at_utc": "2026-09-30T18:01:45Z",
   "repository": "Alyssa-286/Before-the-Recommendation",
+  "candidate_policy": {
+    "candidate_providers": ["OpenAI", "Google Gemini", "Groq"],
+    "excluded_by_current_instruction": ["Anthropic/Claude"],
+    "selection_objective": "minimize expected cost per valid completed scenario-run subject to technical, scientific, quota, and deadline constraints"
+  },
   "repository_state": {
     "branch": "main",
-    "head_at_inspection": "28ad158f0cf3d53a63fd6d6829b25a2fd3212a6d",
     "working_tree_clean_at_inspection": true,
-    "local_commits_ahead_of_last_known_origin_main": 2,
-    "last_known_origin_main_tracking_ref": "015df787ca22fd3ce2cda9557e74b50b7884dc7d",
-    "remote_head_verified": false,
+    "head": "98c8ea4c34e74c211015b1ef0d3dc08060db0a94",
+    "last_known_origin_main_tracking_ref": "98c8ea4c34e74c211015b1ef0d3dc08060db0a94",
+    "local_ahead_behind_tracking_ref": {"ahead": 0, "behind": 0},
+    "fresh_remote_fetch_verified": false,
     "fetch_error": "fatal: unable to access 'https://github.com/Alyssa-286/Before-the-Recommendation.git/': schannel: AcquireCredentialsHandle failed: SEC_E_NO_CREDENTIALS (0x8009030E) - No credentials are available in the security package",
-    "push_error": "fatal: unable to access 'https://github.com/Alyssa-286/Before-the-Recommendation.git/': schannel: AcquireCredentialsHandle failed: SEC_E_NO_CREDENTIALS (0x8009030E) - No credentials are available in the security package",
     "github_cli": {
       "installed": true,
       "auth_status": "unavailable_to_check",
-      "error": "warning: failed to load config: open C:\\Users\\Bhagya\\AppData\\Roaming\\GitHub CLI\\config.yml: Access is denied.\nfailed to create root command: failed to read configuration: open C:\\Users\\Bhagya\\AppData\\Roaming\\GitHub CLI\\config.yml: Access is denied.",
-      "token_values_read_or_recorded": false
+      "error": "warning: failed to load config: open C:\\Users\\Bhagya\\AppData\\Roaming\\GitHub CLI\\config.yml: Access is denied.\nfailed to create root command: failed to read configuration: open C:\\Users\\Bhagya\\AppData\\Roaming\\GitHub CLI\\config.yml: Access is denied."
     }
   },
   "inspection_scope": {
+    "required_documents_read_completely": ["project.md", "roadmap.md", "AGENTS.md", "analysis/analysis_plan.md"],
     "environment_scopes_checked": ["process", "user", "machine"],
     "credential_values_printed_or_recorded": false,
-    "provider_configuration_files": ["configs/phase1.json"],
-    "provider_model_configuration_found": false,
-    "adapter_implementation_inspected": true,
-    "parser_controller_and_live_tests_inspected": true,
+    "provider_configuration_found": false,
+    "exact_model_ids_configured": false,
     "live_provider_requests_made": 0
   },
   "credential_variable_presence": {
     "OPENAI_API_KEY": false,
-    "ANTHROPIC_API_KEY": false,
-    "GOOGLE_API_KEY": false,
     "GEMINI_API_KEY": false,
-    "AWS_ACCESS_KEY_ID": false,
-    "AWS_SECRET_ACCESS_KEY": false,
-    "AWS_SESSION_TOKEN": false,
-    "AWS_PROFILE": false,
-    "AWS_DEFAULT_PROFILE": false,
-    "AZURE_OPENAI_API_KEY": false,
-    "AZURE_OPENAI_ENDPOINT": false
-  },
-  "codex_session": {
-    "auth_mode": "ChatGPT-managed session",
-    "model_id_visible_in_session": "gpt-6-luna",
-    "research_api_credential_available": false,
-    "eligible_as_a_research_adapter": false,
-    "reason": "The hosted Codex session does not expose a reproducible provider API endpoint, per-call research credentials, or the required raw request/response logging contract."
+    "GROQ_API_KEY": false
   },
   "providers": [
     {
-      "provider": "OpenAI Platform API",
+      "provider": "OpenAI",
       "exact_model_id": null,
-      "model_family": "OpenAI",
+      "model_family": "OpenAI family; exact model identity unavailable",
       "configured": false,
       "credential_available": false,
       "credential_environment_variable": "OPENAI_API_KEY",
       "adapter_available": true,
       "adapter": "openai_chat_completions",
-      "endpoint": "https://api.openai.com/v1/chat/completions",
-      "adapter_default_parameters_not_selected_for_a_model": {
-        "temperature": 0.0,
-        "seed": null,
-        "max_output_tokens": 1200,
-        "timeout_seconds": 90.0
-      },
-      "structured_output_support": {
-        "implemented": true,
-        "mode": "strict function-tool JSON schema",
-        "live_validated": false
-      },
-      "tool_calling_support": {
-        "implemented": true,
-        "parallel_tool_calls": false,
-        "live_validated": false
-      },
-      "local_catalog_compatibility": {
-        "offline_controller_protocol_tested_with_deterministic_fakes": true,
-        "live_provider_verified": false
-      },
-      "status": "blocked_no_credential_or_exact_model_id",
-      "reason": "OPENAI_API_KEY is absent from process, user, and machine environment scopes. No exact model ID or production ModelConfig is selected. The adapter alone does not establish account access or model availability."
+      "structured_output_support": {"implemented_in_adapter": true, "offline_fake_transport_tested": true, "live_validated": false},
+      "tool_calling_support": {"implemented_in_adapter": true, "offline_fake_transport_tested": true, "live_validated": false},
+      "local_catalog_compatibility": {"offline_controller_tested_with_deterministic_fakes": true, "live_verified": false},
+      "official_pricing": {"status": "not_retrieved_no_exact_model_id", "input_price": null, "output_price": null, "source": null, "retrieval_date": null, "pricing_tier": null},
+      "free_tier_and_quota": "not_verified_for_an_accessible_account",
+      "rate_limits": "not_verified_for_an_accessible_account",
+      "status": "blocked_missing_credential_and_exact_model_id",
+      "reason": "OPENAI_API_KEY is absent from process, user, and machine environment scopes. The repository adapter exists, but adapter presence does not establish API access or model availability."
     },
     {
-      "provider": "Anthropic API",
+      "provider": "Google Gemini",
       "exact_model_id": null,
-      "model_family": "Anthropic",
+      "model_family": "Google Gemini family; exact model identity unavailable",
       "configured": false,
       "credential_available": false,
-      "credential_environment_variable": "ANTHROPIC_API_KEY",
-      "adapter_available": true,
-      "adapter": "anthropic_messages",
-      "endpoint": "https://api.anthropic.com/v1/messages",
-      "provider_api_version": "2023-06-01",
-      "adapter_default_parameters_not_selected_for_a_model": {
-        "temperature": 0.0,
-        "seed": null,
-        "max_output_tokens": 1200,
-        "timeout_seconds": 90.0
-      },
-      "structured_output_support": {
-        "implemented": true,
-        "mode": "Messages tool input schema",
-        "live_validated": false
-      },
-      "tool_calling_support": {
-        "implemented": true,
-        "mode": "client-side tool calls",
-        "live_validated": false
-      },
-      "local_catalog_compatibility": {
-        "offline_controller_protocol_tested_with_deterministic_fakes": true,
-        "live_provider_verified": false
-      },
-      "status": "blocked_no_credential_or_exact_model_id",
-      "reason": "ANTHROPIC_API_KEY is absent from process, user, and machine environment scopes. No exact model ID or production ModelConfig is selected. The adapter alone does not establish account access or model availability."
-    },
-    {
-      "provider": "Google Gemini API",
-      "exact_model_id": null,
-      "model_family": "Google Gemini",
-      "configured": false,
-      "credential_available": false,
-      "credential_environment_variables": ["GOOGLE_API_KEY", "GEMINI_API_KEY"],
+      "credential_environment_variable": "GEMINI_API_KEY",
       "adapter_available": false,
-      "structured_output_support": {
-        "implemented_in_this_repository": false,
-        "live_validated": false
-      },
-      "tool_calling_support": {
-        "implemented_in_this_repository": false,
-        "live_validated": false
-      },
-      "local_catalog_compatibility": {
-        "offline_controller_protocol_tested": false,
-        "live_provider_verified": false
-      },
-      "status": "unavailable_not_configured_or_supported_by_adapter",
-      "reason": "GOOGLE_API_KEY and GEMINI_API_KEY are absent from process, user, and machine environment scopes, and this repository has no Gemini adapter."
+      "structured_output_support": {"implemented_in_repository": false, "provider_model_support_verified": false},
+      "tool_calling_support": {"implemented_in_repository": false, "provider_model_support_verified": false},
+      "local_catalog_compatibility": {"offline_controller_tested": false, "live_verified": false},
+      "official_pricing": {"status": "not_retrieved_no_exact_model_id", "input_price": null, "output_price": null, "source": null, "retrieval_date": null, "pricing_tier": null},
+      "free_tier_and_quota": "not_verified_for_an_accessible_account",
+      "rate_limits": "not_verified_for_an_accessible_account",
+      "status": "blocked_missing_credential_model_id_and_adapter",
+      "reason": "GEMINI_API_KEY is absent from process, user, and machine environment scopes. No Gemini adapter or exact model configuration exists in this repository."
+    },
+    {
+      "provider": "Groq",
+      "exact_model_id": null,
+      "model_family": null,
+      "model_family_status": "unknown_until_exact_model_metadata_is_obtained",
+      "configured": false,
+      "credential_available": false,
+      "credential_environment_variable": "GROQ_API_KEY",
+      "adapter_available": false,
+      "structured_output_support": {"implemented_in_repository": false, "provider_model_support_verified": false},
+      "tool_calling_support": {"implemented_in_repository": false, "provider_model_support_verified": false},
+      "local_catalog_compatibility": {"offline_controller_tested": false, "live_verified": false},
+      "official_pricing": {"status": "not_retrieved_no_exact_model_id", "input_price": null, "output_price": null, "source": null, "retrieval_date": null, "pricing_tier": null},
+      "free_tier_and_quota": "not_verified_for_an_accessible_account",
+      "rate_limits": "not_verified_for_an_accessible_account",
+      "status": "blocked_missing_credential_model_id_and_adapter",
+      "reason": "GROQ_API_KEY is absent from process, user, and machine environment scopes. Groq is a serving provider; the underlying model family cannot be identified without an exact model ID and provider metadata. No Groq adapter exists in this repository."
     }
   ],
   "selection": {
-    "selected_model_families": [],
-    "selected_exact_model_ids": [],
+    "configured_candidate_models": 0,
+    "technically_viable_candidate_families": 0,
+    "selected_models": [],
+    "selected_distinct_model_families": [],
+    "candidate_filter_status": "stop_fewer_than_two_accessible_and_viable_families",
     "checkpoint_a_pass": false,
     "live_access_probes": "not_attempted",
-    "live_mini_pilot": "not_attempted",
-    "planned_live_mini_pilot_runs": 32,
-    "completed_live_mini_pilot_runs": 0,
-    "planned_core_runs": 1920,
-    "completed_core_runs": 0,
-    "main_experiment_status": "not_started",
-    "call_count_bounds_from_frozen_controller_not_an_observed_estimate": {
-      "model_turns_per_valid_run_minimum": 2,
-      "model_turns_per_run_maximum_protocol": 4,
-      "core_turns_for_1920_completed_runs_without_technical_retries": {
-        "minimum": 3840,
-        "maximum": 7680
-      },
-      "expected_calls_from_live_pilot": null,
-      "cost_estimate": null,
-      "runtime_estimate": null,
-      "reason": "No live pilot, exact model IDs, provider pricing, or observed token usage is available. Bounds are protocol arithmetic only and exclude technical reruns."
+    "live_pilot": {"status": "not_attempted", "planned_runs_if_gate_passes": 32, "completed_runs": 0},
+    "main_experiment": {"status": "not_started", "planned_runs": 1920, "completed_runs": 0},
+    "cost_selection": {
+      "status": "not_estimable_without_exact_models_and_live_pilot",
+      "expected_cost_per_valid_run": null,
+      "expected_total_cost": null,
+      "retry_upper_bound_cost": null,
+      "token_observations": null,
+      "reason": "No configured model IDs, accessible provider accounts, pilot usage, or account quota data are available. No pricing was guessed."
     },
-    "note": "At least two distinct model families with actual credentials and exact model IDs are required before any live research. No model access was fabricated and no live calls were made."
+    "note": "The presence-only credential check failed for all three instructed candidates. Stop before live research; do not substitute Anthropic or invent model IDs."
   },
   "next_actions": [
-    "Restore or authorize GitHub CLI access and complete the normal user-driven login flow; then fetch and push main normally and verify the remote HEAD.",
-    "Configure OPENAI_API_KEY and ANTHROPIC_API_KEY in the local execution environment without placing their values in source or logs.",
-    "Select and document an exact accessible model ID for each family and the approved budget ceiling, then rerun the access gate."
+    "Make the intended OPENAI_API_KEY, GEMINI_API_KEY, and/or GROQ_API_KEY available to the local execution environment without placing values in source or logs; select at least two genuinely distinct underlying model families.",
+    "After credentials and model IDs are available, implement and test the required Gemini and/or Groq adapter before any live controller probe; then verify official prices, quotas, and rate limits for the exact models.",
+    "Restore GitHub CLI config access or complete gh auth login so a fresh fetch can confirm the remote ref."
   ]
 }

@@ -406,7 +406,7 @@ Test the manuscript against:
 
 **Current milestone:** Offline Phase 2 provider adapters and ordered live-trial controller implemented and validated with deterministic fakes
 
-**Current task:** Checkpoint A remains failed: no research API credentials or exact model IDs are configured for two distinct model families. Git fetch/push also failed because this environment has no usable GitHub credentials. No live-model calls or experimental data have been generated. The live pilot, cost/runtime estimate, experiment freeze, preflight, and main experiment remain NOT STARTED.
+**Current task:** Stop at candidate access filtering: `OPENAI_API_KEY`, `GEMINI_API_KEY`, and `GROQ_API_KEY` are absent in process/user/machine scopes; no exact model IDs are configured, and only the OpenAI adapter exists for the current candidate set. No live probes or experimental data were generated. The local `main` branch matches its last-known `origin/main` tracking ref, but a fresh fetch is blocked by missing Git credentials. Pilot, cost selection, experiment freeze, preflight, and main experiment remain NOT STARTED.
 
 **Main experiment:** NOT STARTED
 
@@ -460,6 +460,20 @@ Test the manuscript against:
 |---|---|---|---|---|---|
 | 2026-09-30T17:14Z | PHASE 2 — ACCESS GATE | Recheck GitHub synchronization and provider access; create provider matrix | Git fetch/push both failed with Windows SChannel `SEC_E_NO_CREDENTIALS`; GitHub CLI status was unreadable due access denied to its config. No API credentials or exact model IDs for two families are configured. No live probes/calls or experiment runs. Matrix records adapter support separately from configured/live-validated access. | `artifacts/model_access_matrix.json`; local `main` HEAD at inspection `28ad158f0cf3d53a63fd6d6829b25a2fd3212a6d` | Restore GitHub CLI authentication, configure the two provider credentials and exact model IDs locally, and repeat the access gate. |
 | 2026-09-30T17:18Z | PHASE 2 — GIT CHECKPOINT | Commit the access matrix/roadmap and retry normal push | Local commit `09aa233ef5a071b1a3c28c97b038f93de121049c` created. A normal push after the commit failed again with `SEC_E_NO_CREDENTIALS`; no remote update or remote HEAD verification. Working tree is clean; local `main` is three commits ahead of its last-known `origin/main` tracking ref. | `artifacts/model_access_matrix.json`; `roadmap.md`; commit `09aa233ef5a071b1a3c28c97b038f93de121049c` | User authenticates GitHub CLI (`gh auth login`) or restores its config access; then push normally and verify remote HEAD. |
+
+## Phase 2 current provider-candidate gate — 2026-09-30T18:03Z
+
+**Status: STOP at candidate access filtering. No live research started.**
+
+- Re-read `project.md`, `roadmap.md`, `AGENTS.md`, and `analysis/analysis_plan.md` completely. The current user instruction sets OpenAI, Google Gemini, and Groq as candidates and explicitly excludes Anthropic/Claude from selection. No research assumptions or core design were changed.
+- Checked only presence of `OPENAI_API_KEY`, `GEMINI_API_KEY`, and `GROQ_API_KEY` in process, user, and machine environment scopes. All three are absent. No exact model IDs or provider model configuration were found. Credential values were not printed or recorded.
+- Updated `artifacts/model_access_matrix.json` to version 1.1.0 (SHA-256 `451956DCB63490FE8A03A0AE6C07172D45B3E0C57F8DBECEE4E2875BF21C8D76`). The OpenAI adapter exists but has no credential/model; Gemini and Groq credentials are absent and no adapters exist for either. Groq's underlying model family cannot be inferred without an exact model ID and provider metadata. There are zero configured candidate models and zero viable families; Anthropic is excluded from this candidate set.
+- No model-list request, live access probe, price lookup, free-tier/quota check, rate-limit check, or 32-run pilot was made. Exact models and account access are unavailable, so the lowest-cost eligible pair and per-valid-run cost cannot be calculated without guessing. The 1,920-run core remains NOT STARTED; no freeze or selection artifact was created.
+- Git state at inspection: working tree was clean; local `main` and its last-known `origin/main` tracking ref both pointed to `98c8ea4c34e74c211015b1ef0d3dc08060db0a94` (0 ahead/0 behind). A fresh `git fetch origin main` failed with `SEC_E_NO_CREDENTIALS (0x8009030E)`, so the actual remote HEAD was not independently verified. `gh auth status` remains unable to read the GitHub CLI config (`Access is denied`).
+- Matrix JSON validation passed; no code changed, so the recorded offline test result remains 66/66 passed and compileall passed from the prior implementation milestone. No live model calls were made.
+- **Exact next action:** configure at least two intended provider credentials locally (without sending or committing values), select exact models from their provider metadata, and then implement/test any missing Gemini/Groq adapter(s) before live probes. Restore GitHub CLI configuration access or authenticate so a fresh fetch can verify the remote.
+
+| 2026-09-30T18:03Z | PHASE 2 — ACCESS GATE | Recheck current candidate provider access and update matrix per current instruction | Presence checks found no OpenAI, Gemini, or Groq keys in any checked scope. No exact model IDs, no Gemini/Groq adapters, zero viable families. No probes, pilot, pricing/quota checks, or empirical calls. JSON validation passed. Fresh Git fetch failed with `SEC_E_NO_CREDENTIALS`; local branch/tracking ref matched at inspection but remote was not freshly verified. | `artifacts/model_access_matrix.json` v1.1.0; `roadmap.md` | Configure at least two provider credentials and choose exact distinct model families; implement selected missing adapter(s), then rerun the access gate. |
 
 ## Phase 1 exit audit — 2026-09-30
 
