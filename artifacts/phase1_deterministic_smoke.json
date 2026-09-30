@@ -1,0 +1,117 @@
+{
+  "artifact_type": "deterministic_foundation_smoke",
+  "config_sha256": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2",
+  "cue_conditions": {
+    "discount": {
+      "cued_product_ids": [
+        "LumaBook_P02",
+        "LumaBook_P09",
+        "LumaBook_P10",
+        "LumaBook_P14",
+        "LumaBook_P19"
+      ],
+      "labeled_product_count": 5,
+      "labels": [
+        "20% promotional discount."
+      ]
+    },
+    "neutral": {
+      "cued_product_ids": [],
+      "labeled_product_count": 0,
+      "labels": []
+    },
+    "scarcity": {
+      "cued_product_ids": [
+        "LumaBook_P02",
+        "LumaBook_P09",
+        "LumaBook_P10",
+        "LumaBook_P14",
+        "LumaBook_P19"
+      ],
+      "labeled_product_count": 5,
+      "labels": [
+        "Only 2 units remaining."
+      ]
+    },
+    "social_proof": {
+      "cued_product_ids": [
+        "LumaBook_P02",
+        "LumaBook_P09",
+        "LumaBook_P10",
+        "LumaBook_P14",
+        "LumaBook_P19"
+      ],
+      "labeled_product_count": 5,
+      "labels": [
+        "50,000+ students chose this."
+      ]
+    }
+  },
+  "example_scenario": {
+    "controlled_objective_weights": {
+      "durability": 0.2454619779,
+      "price": 0.2997631702,
+      "quality": 0.2914532064,
+      "sustainability": 0.1633216455
+    },
+    "hard_max_price_inr": null,
+    "optimal_product": {
+      "feasible": true,
+      "price_inr": 37000,
+      "product_id": "LumaBook_P16",
+      "utility": 0.9687569000256666
+    },
+    "profile_class": "balanced",
+    "requests": {
+      "ambiguous": "I need a good laptop for college. I want something affordable, reliable and reasonably sustainable.",
+      "explicit": "Please prioritize lower price, then strong performance and reliability, then long-term durability, then sustainability, in that order. Try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit."
+    },
+    "scenario_id": "SCENARIO_001",
+    "simulated_user_answers": {
+      "durability": "A laptop that lasts for several years matters to me, but I prioritize price and reliable performance for college work more.",
+      "price": "Price matters most to me; please try to stay under ₹70,000 unless a higher-priced laptop offers a substantial benefit.",
+      "quality": "Reliable performance for college work matters to me, but I prioritize price more.",
+      "sustainability": "Sustainability matters to me, but I prioritize price and reliable performance for college work and a laptop that lasts for several years more."
+    },
+    "soft_budget_reference_inr": 70000,
+    "unsupported_target_answer": "I'm not sure; I haven't specified a preference on that point."
+  },
+  "factual_utility_balance": {
+    "all_40_objectives_balanced": true,
+    "condition_mean_utility": {
+      "discount": 0.6904331786101666,
+      "neutral": 0.6904331786101666,
+      "scarcity": 0.6904331786101666,
+      "social_proof": 0.6904331786101666
+    },
+    "maximum_per_product_utility_difference": 0.0,
+    "same_factual_records_in_all_arms": true
+  },
+  "interpretation": "Synthetic implementation validation only; no agent calls or experiment data.",
+  "reproduction": {
+    "catalog_fingerprint": "f15278c46f338ae94448d7354308638220f3531021a2ce64959b2aaedecefa92",
+    "catalog_product_count": 20,
+    "repeat_generation_equal": true,
+    "scenario_count": 40
+  },
+  "runtime": {
+    "python": "3.14.7",
+    "source_revision": null
+  },
+  "seeds": {
+    "catalog": 20260930,
+    "cues": 20260932,
+    "objectives": 20260931
+  },
+  "source_revision_note": "No Git commit exists at generation time; capture one before experiment freeze.",
+  "versions": {
+    "catalog_generator": "1.0.0",
+    "config_schema": "1.0.0",
+    "cue_generator": "1.0.0",
+    "experiment": "phase1-deterministic-0.1.0",
+    "objective_generator": "1.0.0",
+    "prompt_generator": "1.0.0",
+    "scenario_generator": "1.0.0",
+    "simulated_user": "1.0.0"
+  }
+}

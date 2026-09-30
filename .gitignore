@@ -1,0 +1,23 @@
+# Python bytecode and test/build caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Local Python environments
+.venv/
+venv/
+env/
+
+# Local credentials and machine-specific settings
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
