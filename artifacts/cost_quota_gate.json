@@ -1,0 +1,40 @@
+{
+  "artifact_version": "cost-quota-gate-v1",
+  "evaluated_at": "2026-10-01",
+  "status": "FAIL — quota insufficient for the frozen 1,920-run design before the 2026-10-06 deadline",
+  "basis": "actual 32-run pilot measurements (artifacts/live_pilot_summary.json); includes observed parser retries and clarification turns",
+  "core_workload": {
+    "scenario_runs": 1920,
+    "per_model": 960,
+    "expected_api_calls": 5640,
+    "expected_input_tokens": 8625960,
+    "expected_output_tokens": 1075140,
+    "expected_paid_cost_usd": 2.512
+  },
+  "groq_openai_gpt_oss_20b": {
+    "observed_account_plan": "Free (response headers: x-ratelimit-limit-requests=1000 per day, x-ratelimit-limit-tokens=8000 per minute)",
+    "documented_free_limits": {
+      "rpm": 30,
+      "rpd": 1000,
+      "tpm": 8000,
+      "tpd": 200000,
+      "source": "https://console.groq.com/docs/rate-limits"
+    },
+    "tokens_per_trial_observed": 4254,
+    "tokens_needed_960": 4084320,
+    "days_needed_at_free_tpd": 20.4,
+    "shortfall": "~20.4 days of free-tier daily token quota needed vs ~4 days available before writing must begin",
+    "remedy": "upgrade the Groq organization to the Developer (pay-as-you-go) plan; projected spend ≈ $0.42 for the core (plus robustness)"
+  },
+  "gemini_3_1_flash_lite": {
+    "observed": "16/16 pilot trials completed; 4 transient HTTP 503 re-sends; no 429 observed at ~13 requests/min",
+    "account_tier": "UNVERIFIED — Gemini rate limits are only visible in Google AI Studio for the project",
+    "calls_needed_960": 3060,
+    "remedy": "confirm project tier in AI Studio; if Free tier daily request limits are below ~3060 requests over the run window, link billing (Tier 1); projected paid spend ≈ $2.09"
+  },
+  "openai_direct": {
+    "status": "no API credits (insufficient_quota)",
+    "alternative_remedy": "adding OpenAI API credits would make gpt-5-nano / gpt-4.1-nano eligible; they would then need probing and a new cost comparison"
+  },
+  "design_not_reduced": true
+}

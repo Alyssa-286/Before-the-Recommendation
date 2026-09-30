@@ -1,0 +1,35 @@
+{
+  "artifact_version": "catalog-dominance-audit-v1",
+  "finding": "LumaBook_P16 is the optimal feasible product for all 40 controlled objectives",
+  "optimal_product_counts": {
+    "LumaBook_P16": 40
+  },
+  "cued_product_ids_all_commercial_arms": [
+    "LumaBook_P02",
+    "LumaBook_P09",
+    "LumaBook_P10",
+    "LumaBook_P14",
+    "LumaBook_P19"
+  ],
+  "cued_products_mean_utility_rank": {
+    "LumaBook_P02": 5.875,
+    "LumaBook_P09": 18.45,
+    "LumaBook_P10": 6.7,
+    "LumaBook_P14": 20.0,
+    "LumaBook_P19": 12.775
+  },
+  "noncued_mean_utility_rank": 9.746666666666666,
+  "cued_price_inr": {
+    "LumaBook_P02": 67000,
+    "LumaBook_P09": 84000,
+    "LumaBook_P10": 57000,
+    "LumaBook_P14": 95000,
+    "LumaBook_P19": 86000
+  },
+  "implications": [
+    "factual utility is identical across cue arms (manipulation remains clean)",
+    "regret has a ceiling structure: any trial recommending P16 has zero regret",
+    "cued products are a single seeded draw reused in every commercial arm and scenario; 3 of 5 exceed the ₹70,000 reference and none is optimal"
+  ],
+  "phase1_checks_that_passed": "per-product factual utility equality across cue arms (max difference 0.0)"
+}

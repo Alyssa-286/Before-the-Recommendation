@@ -1,0 +1,108 @@
+{
+  "artifact_version": "live-pilot-summary-v1",
+  "purpose": "Infrastructure validation only; NOT main empirical data and excluded from all analyses.",
+  "design": "2 profiles (SCENARIO_003, SCENARIO_004) x 2 goals x 4 marketing x 2 model families x 1 repetition = 32",
+  "experiment_version": "live-pilot-v1",
+  "code_revisions": [
+    "d052ea05fc6f8cadfddd72680a99481e7e74dc9e"
+  ],
+  "per_model": {
+    "google_gemini": {
+      "model_id": "gemini-3.1-flash-lite",
+      "observed_model_ids": [
+        "gemini-3.1-flash-lite"
+      ],
+      "planned": 16,
+      "trials": 16,
+      "valid": 16,
+      "failed": 0,
+      "terminal_failures": [],
+      "technical_retries": 0,
+      "parser_retries": 11,
+      "transport_resend_events": 4,
+      "transport_status_codes": [
+        "503"
+      ],
+      "clarification_rate_valid": 0.5,
+      "clarification_targets": [
+        "LumaBook_P16",
+        "LumaBook_P16",
+        "LumaBook_P16",
+        "LumaBook_P16",
+        "LumaBook_P16",
+        "LumaBook_P16",
+        "LumaBook_P16",
+        "LumaBook_P16"
+      ],
+      "provider_calls_total": 51,
+      "provider_calls_per_trial_mean": 3.1875,
+      "input_tokens_total": 84513,
+      "output_tokens_total": 9100,
+      "input_tokens_per_trial_mean": 5282.0625,
+      "output_tokens_per_trial_mean": 568.75,
+      "latency_ms_median_per_call": 9220.2389999984,
+      "catalog_before_clarification_all": true,
+      "checkpoint_status": {
+        "completed": 16
+      }
+    },
+    "openai_gpt_oss": {
+      "model_id": "openai/gpt-oss-20b",
+      "observed_model_ids": [
+        "openai/gpt-oss-20b"
+      ],
+      "planned": 16,
+      "trials": 16,
+      "valid": 14,
+      "failed": 2,
+      "terminal_failures": [
+        [
+          "interface_contract_violation",
+          "expected_exactly_one_tool_call"
+        ],
+        [
+          "schema_validation_failure",
+          "schema_validation_failure"
+        ]
+      ],
+      "technical_retries": 0,
+      "parser_retries": 7,
+      "transport_resend_events": 0,
+      "transport_status_codes": [],
+      "clarification_rate_valid": 0.21428571428571427,
+      "clarification_targets": [
+        "budget",
+        "performance",
+        "performance",
+        "clarification"
+      ],
+      "provider_calls_total": 43,
+      "provider_calls_per_trial_mean": 2.6875,
+      "input_tokens_total": 59253,
+      "output_tokens_total": 8819,
+      "input_tokens_per_trial_mean": 3703.3125,
+      "output_tokens_per_trial_mean": 551.1875,
+      "latency_ms_median_per_call": 13923.521099997743,
+      "catalog_before_clarification_all": true,
+      "checkpoint_status": {
+        "completed": 14,
+        "failed": 2
+      }
+    }
+  },
+  "checks": {
+    "catalog_exposed_via_tool_result": true,
+    "catalog_inspection_before_clarification": true,
+    "cue_treatment_visible_only_in_commercial_arms": true,
+    "clarification_path_exercised": true,
+    "simulated_user_answered_every_clarification": true,
+    "structured_output_valid_rate": 0.9375,
+    "ranking_and_evaluation_present_for_valid": true,
+    "traces_complete_one_final_per_planned": true,
+    "failures_preserved": true,
+    "evaluator_isolation_leakage_findings": 0,
+    "utility_invariance_across_cue_arms": true
+  },
+  "leakage_findings": [],
+  "raw_data_directory": "data/pilot/"
+}

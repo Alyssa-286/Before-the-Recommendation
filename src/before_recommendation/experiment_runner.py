@@ -28,7 +28,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from .checkpoint import CheckpointStore, TrialStatus
 from .failures import FailureCategory, JsonlFailureLogger
-from .live_controller import LiveTrialController, RawModelIOLogger, live_trial_config_sha256
+from .live_controller import CORE_VARIANT, LiveTrialController, ProtocolVariant, RawModelIOLogger, live_trial_config_sha256
 from .model_adapters import HttpResponse, ModelConfig, _http_post_json, make_adapter
 from .prompts import GoalCondition, generate_request
 from .scenarios import ResearchScenario
@@ -181,12 +181,13 @@ def plan_trials(
     repetitions: tuple[int, ...],
     experiment_version: str,
     code_revision: str,
+    variant: ProtocolVariant = CORE_VARIANT,
 ) -> tuple[PlannedTrial, ...]:
     planned = []
     for scenario in scenarios:
-        config_sha = live_trial_config_sha256(model_config, scenario.config.config_sha256, experiment_version)
+        config_sha = live_trial_config_sha256(model_config, scenario.config.config_sha256, experiment_version, variant)
         for goal in goals:
-            template_id = generate_request(scenario.objective, GoalCondition(goal), template_index=0).template_id
+            template_id = generate_request(scenario.objective, GoalCondition(goal), template_index=variant.template_index).template_id
             for marketing in marketings:
                 for repetition in repetitions:
                     seed_material = f"{experiment_version}|{scenario.scenario_id}|{goal}|{marketing}|{model_config.model_id}|{repetition}"
@@ -224,7 +225,9 @@ class ModelBatchRunner:
         workers: int = 1,
         max_trials: int | None = None,
         progress_every: int = 20,
+        variant: ProtocolVariant = CORE_VARIANT,
     ) -> None:
+        self.variant = variant
         if not planned:
             raise ValueError("No planned trials.")
         self.run_dir = run_dir / _safe_name(model_config.model_id)
@@ -264,7 +267,7 @@ class ModelBatchRunner:
         attempt = record.attempt_count + 1
         traces, raw, failures = self._loggers_for(attempt)
         _context.trial_id, _context.attempt = trial_id, attempt
-        controller = LiveTrialController(self.adapter, self.checkpoint, traces, raw, failures)
+        controller = LiveTrialController(self.adapter, self.checkpoint, traces, raw, failures, self.variant)
         result = controller.run(trial.identity, trial.scenario)
         self.runner_events.append({
             "record_type": "trial_attempt_finished",

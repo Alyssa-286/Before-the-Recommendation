@@ -2,7 +2,7 @@
 
 **Project:** Before the Recommendation: Do Storefront Marketing Cues Shift How AI Shopping Agents Represent Consumer Goals?
 **Folder / repo name:** `before-the-recommendation`
-**Research status:** Research locked; Phase 1 — BUILD complete and audited; Phase 2 offline adapters/controller validated; live model access blocked; main experiment NOT STARTED
+**Research status:** Research locked; Phase 1 complete; Phase 2 access probes and 32-run live pilot complete; core freeze blocked at quota gate; main experiment NOT STARTED
 **Hard paper deadline:** 6 October 2026
 **Researcher:** Solo undergraduate researcher
 
@@ -402,17 +402,35 @@ Test the manuscript against:
 
 # 4. LIVE STATUS
 
-**Current phase:** PHASE 2 — EXPERIMENT + ANALYZE (live preflight)
+**Current phase:** PHASE 2 — EXPERIMENT + ANALYZE (live pilot complete; freeze blocked at cost/quota gate)
 
-**Current milestone:** Offline Phase 2 provider adapters and ordered live-trial controller implemented and validated with deterministic fakes
+**Current milestone:** Provider access validated, lowest-cost eligible pair computed, 32-run live pilot passed infrastructure checks (2026-10-01).
 
-**Current task:** Stop at candidate access filtering: `OPENAI_API_KEY`, `GEMINI_API_KEY`, and `GROQ_API_KEY` are absent in process/user/machine scopes; no exact model IDs are configured, and only the OpenAI adapter exists for the current candidate set. No live probes or experimental data were generated. The latest matrix/roadmap commit is local and could not be pushed (`SEC_E_NO_CREDENTIALS`); the remote HEAD is not verified. Pilot, cost selection, experiment freeze, preflight, and main experiment remain NOT STARTED.
+**Current task:** HUMAN GATE — (1) Groq Free-plan quota cannot carry the core (about 20 days of daily token quota needed); (2) catalog-dominance finding (one product optimal for all 40 objectives) needs a researcher decision before freeze. See "Phase 2 live access, selection and pilot — 2026-10-01".
 
 **Main experiment:** NOT STARTED
 
 **Paper writing:** NOT STARTED
 
 **Submission:** NOT STARTED
+
+## Phase 2 live access, selection and pilot — 2026-10-01
+
+**Status: PILOT PASSED (infrastructure); COST/QUOTA GATE FAILED; experiment freeze NOT created; main experiment NOT STARTED.**
+
+- Credentials: `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY` all SET via the repository `.env` loader (`src/before_recommendation/runtime_config.py`); `.env` is git-ignored; values never printed or committed (staged-diff scans clean before every commit). GitHub push works again (`98c8ea4..e8a6a75`).
+- Discovery fix: Groq's edge returned Cloudflare `error code: 1010` to urllib's default User-Agent; an explicit research User-Agent was added to discovery and the adapter transport. Discovery then listed 127 OpenAI, 50 Gemini and 11 Groq model IDs (`artifacts/model_access_matrix.json`).
+- Pricing verified from official pages on 2026-10-01 (OpenAI `developers.openai.com/api/docs/pricing`, Gemini `ai.google.dev/gemini-api/docs/pricing`, Groq `console.groq.com/docs/models` and `/docs/rate-limits`).
+- Access probes (2 infrastructure trials per candidate; `artifacts/live_access_probe.json`, raw `data/access_probes/`; NOT research data): `gpt-5-nano-2025-08-07` and `gpt-4.1-nano-2025-04-14` returned HTTP 429 `insufficient_quota`/`credit_balance_exhausted` (no OpenAI API credits); `gemini-2.5-flash-lite` returned HTTP 404 "no longer available to new users"; `gemma-4-26b-a4b-it` was 0/2 protocol-compliant with ~88 s latency; `gemini-3.1-flash-lite`, `openai/gpt-oss-20b` (Groq) and `qwen/qwen3.8-27b` (Groq) completed the protocol. Leakage check: 0 findings for all candidates. An interrupted first probe run (quota 429s being re-sent) is preserved in `data/superseded/access_probes_run1_interrupted/`; the transport no longer re-sends quota-exhaustion 429 bodies.
+- Selection (`artifacts/model_selection.json`, provisional): lowest-cost eligible model-family pair under the predefined experimental constraints = Google `gemini-3.1-flash-lite` + OpenAI open-weight `openai/gpt-oss-20b` (served by Groq). Projected paid cost for 2 x 960 core runs from pilot measurements is about $2.51 (Gemini $2.09, gpt-oss $0.43) versus $14.8-16.5 for pairs involving Qwen.
+- New instrumentation (offline-tested; 77 tests pass): `experiment_runner.py` (checkpointed batches, per-model pacing, logged transport re-sends for 429/5xx without model output, exactly one full technical re-run after a provider failure with attempt-numbered preserved files; refusals/protocol/parser failures never re-run), `leakage.py` (automated isolation check over every model-visible request), `dataset.py` (analysis rows and pre-specified taxonomy operational rules, written before any core data), `statistics.py` (plan v1.0.0 matched contrasts, 10,000-draw scenario bootstrap seed 20260930, clustered factorial models, Holm), and `ProtocolVariant` for robustness (alternate template, product-order permutation, cue relocation; core hash unchanged; unit-tested).
+- 32-run live pilot (`artifacts/live_pilot_summary.json`, raw `data/pilot/`, code `d052ea0`; NOT research data): Gemini 16/16 valid; gpt-oss 14/16 valid (1 terminal schema failure after the permitted retry; 1 plain-text response without a tool call). All infrastructure checks pass: catalog exposed only via tool result, inspection before every clarification, cue labels only in commercial arms, clarification and simulated-user path exercised, traces complete (32/32), failures preserved, 0 leakage findings, factual utility invariant across arms. Observed per trial: Gemini 3.19 calls, 5,282 input / 569 output tokens; gpt-oss 2.69 calls, 3,703 / 551 tokens.
+- **Pilot-found instrument defect (fixed before any freeze):** parser retries occurred in 11/16 Gemini and 7/16 gpt-oss pilot trials, all with issue code `sum`: the `submit_recommendation` tool never told the model that weights must sum to 1, although the parser enforces it. The tool description now states the constraint (controller v1.1.0). Outputs are never normalized or repaired. This changes the config hash; a re-pilot is required before freeze.
+- **Cost/quota gate FAILED** (`artifacts/cost_quota_gate.json`): the Groq organization is on the Free plan (response headers: 1,000 requests/day, 8,000 tokens/min; documented 200,000 tokens/day for gpt-oss-20b). The core needs about 4.1 M gpt-oss tokens, i.e. about 20 days of free daily quota. The Gemini tier is only visible in AI Studio (unverified); about 3,060 calls are needed. OpenAI has no API credits. The design was not reduced.
+- **Catalog-dominance finding** (`artifacts/catalog_dominance_audit.json`): `LumaBook_P16` (INR 37,000; quality 100, durability 96, sustainability 93) is the optimal feasible product for all 40 objectives; the five cued products are one seeded draw reused in every commercial arm (none optimal; 3 of 5 above INR 70,000). Factual-utility equality across arms still holds, so the cue manipulation remains clean, but regret has a ceiling structure and cued-product rank lift is tied to one product set. Requires a researcher decision (keep the frozen Phase-1 catalog and report the limitation, or authorize a documented pre-data catalog revision).
+- **Exact next action (researcher):** upgrade Groq to the Developer plan (or add OpenAI API credits), confirm or enable the Gemini billing tier, and decide the catalog question. Then: re-pilot with controller v1.1.0, freeze, run the core.
+
+| 2026-10-01 | PHASE 2 — ACCESS/SELECTION/PILOT | Probes, selection, 32-run pilot, cost gate | Pilot passed infrastructure checks; weight-sum instruction defect found and fixed pre-freeze; quota gate failed (Groq Free plan); catalog dominance finding recorded. No core data. | `artifacts/{model_access_matrix,live_access_probe,model_selection,live_pilot_summary,cost_quota_gate,catalog_dominance_audit}.json`; `data/{access_probes,pilot}/` | Researcher: quota/billing and catalog decision; then re-pilot and freeze. |
 
 ## Phase 2 preflight — 2026-09-30
 

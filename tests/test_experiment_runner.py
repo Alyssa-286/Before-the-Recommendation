@@ -109,3 +109,44 @@ class LeakageTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class VariantTests(unittest.TestCase):
+    def test_core_variant_hash_matches_default_and_variants_differ(self) -> None:
+        from before_recommendation.live_controller import ProtocolVariant, live_trial_config_sha256
+        config = ModelConfig("openai_chat_completions", "fake-model", "fake_family", "UNIT_TEST_RUNNER_KEY", temperature=None)
+        sha = load_phase1_config().config_sha256
+        base = live_trial_config_sha256(config, sha, "v")
+        self.assertEqual(base, live_trial_config_sha256(config, sha, "v", ProtocolVariant()))
+        variants = {live_trial_config_sha256(config, sha, "v", ProtocolVariant(**kw)) for kw in (
+            {"template_index": 1}, {"product_order_seed": 7}, {"cue_seed": 99})}
+        self.assertEqual(len(variants | {base}), 4)
+
+    def test_order_variant_permutes_listings_without_changing_facts(self) -> None:
+        from before_recommendation.live_controller import ProtocolVariant
+        scenarios = generate_scenarios(load_phase1_config())
+        output = {
+            "preference_weights": {"price": 0.4, "quality": 0.3, "durability": 0.2, "sustainability": 0.1},
+            "ranked_products": [p.product_id for p in scenarios[0].catalog.products],
+            "evidence_used": [], "uncertainty": 0.3, "final_explanation": "x",
+        }
+        config = ModelConfig("openai_chat_completions", "fake-model", "fake_family", "UNIT_TEST_RUNNER_KEY", temperature=None)
+        variant = ProtocolVariant(product_order_seed=11, cue_seed=99)
+        planned = plan_trials(config, scenarios[:1], ("ambiguous",), ("discount",), (1,), "unit-test", "abcdef0", variant)
+        responses = [_chat("c1", "inspect_catalog", {}), _chat("c2", "submit_recommendation", output)]
+        with tempfile.TemporaryDirectory() as temp, \
+                mock.patch.dict(os.environ, {"UNIT_TEST_RUNNER_KEY": "unit-secret"}), \
+                mock.patch.object(experiment_runner, "_http_post_json", side_effect=lambda *a: responses.pop(0)):
+            runner = ModelBatchRunner(Path(temp), config, planned, min_interval_seconds=0, variant=variant)
+            self.assertEqual(runner.run()["status_counts"], {"completed": 1})
+            trace = json.loads((runner.run_dir / "traces.attempt1.jsonl").read_text(encoding="utf-8"))
+            started = trace["events"][0]["payload"]
+            catalog = next(e for e in trace["events"] if e["event_type"] == "catalog_inspected")["payload"]
+            ids = [p["product_id"] for p in catalog["products"]]
+            self.assertEqual(ids, started["listing_order"])
+            self.assertNotEqual(ids, sorted(ids))
+            base = {p.product_id: p for p in scenarios[0].catalog.products}
+            for product in catalog["products"]:
+                self.assertEqual(product["price_inr"], base[product["product_id"]].price_inr)
+            labelled = sorted(p["product_id"] for p in catalog["products"] if p["marketing_label"])
+            self.assertEqual(labelled, started["cued_product_ids"])

@@ -14,6 +14,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import random
 import re
 
 from .checkpoint import CheckpointStore
@@ -46,7 +47,7 @@ from .tracing import (
 from .catalog import LaptopCatalog, catalog_fingerprint
 
 
-LIVE_CONTROLLER_VERSION = "1.0.0"
+LIVE_CONTROLLER_VERSION = "1.1.0"
 ANALYSIS_PLAN_VERSION = "analysis-plan-v1.0.0"
 MAX_PROVIDER_TURNS = 4
 MAX_PARSER_RETRIES = 1
@@ -82,7 +83,12 @@ ASK_CLARIFICATION_TOOL = ToolDefinition(
 )
 SUBMIT_RECOMMENDATION_TOOL = ToolDefinition(
     "submit_recommendation",
-    "Submit the final model-owned preference representation, product ranking, evidence, uncertainty, and explanation.",
+    (
+        "Submit the final model-owned preference representation, product ranking, evidence, uncertainty, and explanation. "
+        "preference_weights are nonnegative relative-importance weights for price, quality, durability, and sustainability "
+        "that must sum to 1. ranked_products lists catalog product_id values from most to least recommended. "
+        "uncertainty is a number from 0 (certain) to 1 (maximally uncertain)."
+    ),
     {
         "type": "object",
         "properties": {
@@ -106,10 +112,35 @@ SUBMIT_RECOMMENDATION_TOOL = ToolDefinition(
 LIVE_TOOLS = (INSPECT_CATALOG_TOOL, ASK_CLARIFICATION_TOOL, SUBMIT_RECOMMENDATION_TOOL)
 
 
+@dataclass(frozen=True, slots=True)
+class ProtocolVariant:
+    """Robustness-only presentation variants; the default is the core protocol.
+
+    template_index selects the alternate frozen request template, product_order_seed
+    permutes catalog listing order, and cue_seed relocates cue labels to a different
+    product subset. None of these alters factual product attributes.
+    """
+
+    template_index: int = 0
+    product_order_seed: int | None = None
+    cue_seed: int | None = None
+
+    @property
+    def is_core(self) -> bool:
+        return self.template_index == 0 and self.product_order_seed is None and self.cue_seed is None
+
+    def as_dict(self) -> dict[str, object]:
+        return {"template_index": self.template_index, "product_order_seed": self.product_order_seed, "cue_seed": self.cue_seed}
+
+
+CORE_VARIANT = ProtocolVariant()
+
+
 def live_trial_config_sha256(
     model_config: ModelConfig,
     phase1_config_sha256: str,
     experiment_version: str,
+    variant: ProtocolVariant = CORE_VARIANT,
 ) -> str:
     """Hash the complete per-family protocol contract, excluding key values."""
     if len(phase1_config_sha256) != 64 or any(char not in "0123456789abcdef" for char in phase1_config_sha256):
@@ -142,6 +173,9 @@ def live_trial_config_sha256(
         ],
         "output_schema_sha256": schema_digest,
     }
+    if not variant.is_core:
+        contract["prompt_template_ids"] = [f"ambiguous-v1-{variant.template_index + 1:02d}", f"explicit-v1-{variant.template_index + 1:02d}"]
+        contract["robustness_variant"] = variant.as_dict()
     canonical = json.dumps(contract, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
@@ -186,7 +220,9 @@ class LiveTrialController:
         trace_logger: JsonlTraceLogger,
         raw_io_logger: RawModelIOLogger,
         failure_logger: JsonlFailureLogger | None = None,
+        variant: ProtocolVariant = CORE_VARIANT,
     ) -> None:
+        self.variant = variant
         self.adapter = adapter
         self.checkpoint = checkpoint
         self.trace_logger = trace_logger
@@ -201,17 +237,21 @@ class LiveTrialController:
         if identity.model_family != self.adapter.config.model_family or identity.model_version != self.adapter.config.model_id:
             raise ValueError("Trial identity model family/version must match the configured adapter.")
         expected_config_sha = live_trial_config_sha256(
-            self.adapter.config, scenario.config.config_sha256, identity.experiment_version
+            self.adapter.config, scenario.config.config_sha256, identity.experiment_version, self.variant
         )
         if identity.config_sha256 != expected_config_sha:
             raise ValueError("Trial identity config digest does not match the frozen live protocol configuration.")
         goal = GoalCondition(identity.goal_condition)
         marketing = MarketingCondition(identity.marketing_condition)
-        request = generate_request(scenario.objective, goal, template_index=0)
+        request = generate_request(scenario.objective, goal, template_index=self.variant.template_index)
         if request.template_id != identity.prompt_template_id:
             raise ValueError("Trial identity prompt template must match the selected frozen core template.")
-        cue_arms = generate_cue_arms(scenario.catalog, scenario.config)
+        cue_arms = generate_cue_arms(scenario.catalog, scenario.config, seed=self.variant.cue_seed)
         catalog_arm = next(arm for arm in cue_arms if arm.condition is marketing)
+        visible_listings = catalog_arm.listings
+        if self.variant.product_order_seed is not None:
+            order_rng = random.Random(f"{self.variant.product_order_seed}:{scenario.scenario_id}")
+            visible_listings = tuple(order_rng.sample(list(visible_listings), len(visible_listings)))
         cue_balance = check_factual_utility_balance(scenario.objective, scenario.catalog, cue_arms)
         trial_id = identity.trial_id
         self.checkpoint.claim(trial_id)
@@ -255,6 +295,9 @@ class LiveTrialController:
             "request_template_id": request.template_id,
             "catalog_fingerprint": catalog_fingerprint(scenario.catalog),
             "catalog_condition": marketing.value,
+            "cued_product_ids": sorted(set(next(arm for arm in cue_arms if arm.condition is not MarketingCondition.NEUTRAL).cued_product_ids)),
+            "listing_order": [listing.product.product_id for listing in visible_listings],
+            "protocol_variant": self.variant.as_dict(),
         })
 
         try:
@@ -320,7 +363,7 @@ class LiveTrialController:
                     if call.arguments:
                         raise _ProtocolViolation(FailureCategory.INTERFACE_CONTRACT_VIOLATION, "inspect_arguments_not_empty", "Catalog inspection must not include arguments.")
                     inspection_done = True
-                    catalog_payload = _public_catalog_payload(catalog_arm.listings, marketing, scenario.catalog)
+                    catalog_payload = _public_catalog_payload(visible_listings, marketing, scenario.catalog)
                     messages.append(ResearchMessage("assistant", turn.text, turn.tool_calls, provider_metadata=turn.provider_metadata))
                     messages.append(ResearchMessage("tool", _canonical_json(catalog_payload), tool_call_id=call.call_id, name=call.name))
                     event("tool", "catalog_inspected", catalog_payload)
