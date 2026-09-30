@@ -1,0 +1,3 @@
+{"at_utc":"2026-09-30T20:36:39.564Z","attempt":1,"completed":false,"failure_category":"rate_limit","failure_stage":"model_api","record_type":"trial_attempt_finished","trial_id":"0ffc1b492d3b92cd6433e244311b4633342aeec06dec3d31642ec95928e4f717"}
+{"at_utc":"2026-09-30T20:36:39.573Z","original_failure_category":"rate_limit","reason":"frozen technical-retry rule: one full re-run after a provider/transport failure","record_type":"technical_retry_scheduled","trial_id":"0ffc1b492d3b92cd6433e244311b4633342aeec06dec3d31642ec95928e4f717"}
+{"at_utc":"2026-09-30T20:41:00.400Z","attempt":2,"completed":false,"failure_category":"rate_limit","failure_stage":"model_api","record_type":"trial_attempt_finished","trial_id":"0ffc1b492d3b92cd6433e244311b4633342aeec06dec3d31642ec95928e4f717"}

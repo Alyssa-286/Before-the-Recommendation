@@ -37,6 +37,8 @@ from .tracing import JsonlTraceLogger, TrialIdentity
 
 RUNNER_VERSION = "1.0.0"
 TRANSIENT_STATUS = frozenset({429, 500, 502, 503, 504})
+# 429 bodies that signal exhausted billing/daily quota are not transient.
+NON_TRANSIENT_MARKERS = (b"insufficient_quota", b"credit_balance", b"PerDay")
 MAX_TRANSPORT_RETRIES = 6
 TECHNICAL_RETRY_CATEGORIES = frozenset({
     FailureCategory.API_ERROR.value,
@@ -135,7 +137,11 @@ class ThrottledTransport:
                     raise
                 status, retry_after, kind = None, None, type(exc).__name__
             else:
-                if response.status_code not in TRANSIENT_STATUS or attempt >= MAX_TRANSPORT_RETRIES:
+                if (
+                    response.status_code not in TRANSIENT_STATUS
+                    or attempt >= MAX_TRANSPORT_RETRIES
+                    or any(marker in response.body for marker in NON_TRANSIENT_MARKERS)
+                ):
                     return response
                 status, retry_after, kind = response.status_code, response.retry_after, "http_status"
             attempt += 1
