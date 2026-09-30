@@ -1,6 +1,6 @@
 {
-  "artifact_version": "model-access-matrix-v1.1.0",
-  "observed_at_utc": "2026-09-30T18:01:45Z",
+  "artifact_version": "model-access-matrix-v1.2.0",
+  "observed_at_utc": "2026-09-30T18:39:36Z",
   "repository": "Alyssa-286/Before-the-Recommendation",
   "candidate_policy": {
     "candidate_providers": ["OpenAI", "Google Gemini", "Groq"],
@@ -10,9 +10,9 @@
   "repository_state": {
     "branch": "main",
     "working_tree_clean_at_inspection": true,
-    "head": "98c8ea4c34e74c211015b1ef0d3dc08060db0a94",
+    "head": "0e2b11a37b5c0069fd0a8156d403e14954ed62a8",
     "last_known_origin_main_tracking_ref": "98c8ea4c34e74c211015b1ef0d3dc08060db0a94",
-    "local_ahead_behind_tracking_ref": {"ahead": 0, "behind": 0},
+    "local_ahead_behind_tracking_ref": {"ahead": 2, "behind": 0},
     "fresh_remote_fetch_verified": false,
     "fetch_error": "fatal: unable to access 'https://github.com/Alyssa-286/Before-the-Recommendation.git/': schannel: AcquireCredentialsHandle failed: SEC_E_NO_CREDENTIALS (0x8009030E) - No credentials are available in the security package",
     "github_cli": {
@@ -30,9 +30,9 @@
     "live_provider_requests_made": 0
   },
   "credential_variable_presence": {
-    "OPENAI_API_KEY": false,
-    "GEMINI_API_KEY": false,
-    "GROQ_API_KEY": false
+    "OPENAI_API_KEY": {"process": false, "user": false, "machine": false},
+    "GEMINI_API_KEY": {"process": false, "user": false, "machine": false},
+    "GROQ_API_KEY": {"process": false, "user": false, "machine": false}
   },
   "providers": [
     {
@@ -107,11 +107,12 @@
       "token_observations": null,
       "reason": "No configured model IDs, accessible provider accounts, pilot usage, or account quota data are available. No pricing was guessed."
     },
-    "note": "The presence-only credential check failed for all three instructed candidates. Stop before live research; do not substitute Anthropic or invent model IDs."
+    "note": "At 2026-09-30T18:39:36Z all three instructed credentials were NOT SET in process, user, and machine scopes. Stop before live research; do not substitute Anthropic or invent model IDs."
   },
   "next_actions": [
-    "Make the intended OPENAI_API_KEY, GEMINI_API_KEY, and/or GROQ_API_KEY available to the local execution environment without placing values in source or logs; select at least two genuinely distinct underlying model families.",
+    "Make at least two intended credentials available to this Codex execution environment without placing values in source, messages, or logs; select exact models from official provider metadata and verify at least two genuinely distinct underlying model families.",
     "After credentials and model IDs are available, implement and test the required Gemini and/or Groq adapter before any live controller probe; then verify official prices, quotas, and rate limits for the exact models.",
-    "Restore GitHub CLI config access or complete gh auth login so a fresh fetch can confirm the remote ref."
+    "Restart or refresh the Codex execution environment after configuring provider variables, then rerun presence-only checks; never send key values in chat.",
+    "Restore GitHub CLI config access or Git credential access, then fetch origin/main and push normally if the branch is still a fast-forward."
   ]
 }
