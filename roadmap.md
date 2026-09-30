@@ -459,6 +459,7 @@ Test the manuscript against:
 | Date/time | Phase | Action | Result | Files/artifacts | Next action |
 |---|---|---|---|---|---|
 | 2026-09-30T17:14Z | PHASE 2 — ACCESS GATE | Recheck GitHub synchronization and provider access; create provider matrix | Git fetch/push both failed with Windows SChannel `SEC_E_NO_CREDENTIALS`; GitHub CLI status was unreadable due access denied to its config. No API credentials or exact model IDs for two families are configured. No live probes/calls or experiment runs. Matrix records adapter support separately from configured/live-validated access. | `artifacts/model_access_matrix.json`; local `main` HEAD at inspection `28ad158f0cf3d53a63fd6d6829b25a2fd3212a6d` | Restore GitHub CLI authentication, configure the two provider credentials and exact model IDs locally, and repeat the access gate. |
+| 2026-09-30T17:18Z | PHASE 2 — GIT CHECKPOINT | Commit the access matrix/roadmap and retry normal push | Local commit `09aa233ef5a071b1a3c28c97b038f93de121049c` created. A normal push after the commit failed again with `SEC_E_NO_CREDENTIALS`; no remote update or remote HEAD verification. Working tree is clean; local `main` is three commits ahead of its last-known `origin/main` tracking ref. | `artifacts/model_access_matrix.json`; `roadmap.md`; commit `09aa233ef5a071b1a3c28c97b038f93de121049c` | User authenticates GitHub CLI (`gh auth login`) or restores its config access; then push normally and verify remote HEAD. |
 
 ## Phase 1 exit audit — 2026-09-30
 
