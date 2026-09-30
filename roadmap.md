@@ -2,7 +2,7 @@
 
 **Project:** Before the Recommendation: Do Storefront Marketing Cues Shift How AI Shopping Agents Represent Consumer Goals?
 **Folder / repo name:** `before-the-recommendation`
-**Research status:** Research locked; Phase 1 — BUILD
+**Research status:** Research locked; Phase 1 — BUILD complete and audited; main experiment NOT STARTED
 **Hard paper deadline:** 6 October 2026
 **Researcher:** Solo undergraduate researcher
 
@@ -404,9 +404,9 @@ Test the manuscript against:
 
 **Current phase:** PHASE 1 — BUILD
 
-**Current milestone:** Phase 1 deterministic instrument and mock-only pilot complete; exit audit passed
+**Current milestone:** Phase 1 deterministic instrument and mock-only pilot complete, audited, and pushed
 
-**Current task:** Push the audited Phase 1 build and its reproducibility artifacts. No live-model calls or main experiment.
+**Current task:** Phase 1 is complete. Stop before the main experiment; no live-model calls or experimental data have been generated.
 
 **Main experiment:** NOT STARTED
 
@@ -464,6 +464,7 @@ _Add a new row after every meaningful milestone. Never delete historical entries
 | 2026-09-30 | PHASE 1 — BUILD | Implement model-agnostic public interface and mock orchestration | First test discovery failed at import because `GoalCondition` is defined in `prompts.py`, not `conditions.py`; imports were corrected. Interface tests then passed 6/6 and full suite 43/43 passed. Clarification and no-clarification paths, unsupported-target uncertainty, catalog-before-question ordering, raw retry preservation, deterministic scoring, JSONL trace, and checkpoint completion all pass. Hidden objective is only available to the research harness and evaluator. No external model or main experiment. | `src/before_recommendation/{agent_protocol,mock_agent,interface_runner}.py`; `src/before_recommendation/evaluator.py`; `tests/{test_interface_runner,test_representation_metric}.py` | Run the small mock-only interface pilot twice, compare normalized traces, and write the parser/failure report artifact. |
 | 2026-09-30 20:21 IST | PHASE 1 — BUILD | Complete the deterministic mock-only interface pilot across all core condition cells | Expanded full suite: 47/47 passed. Pilot script ran its 8-cell mock batch twice and matched normalized trace/failure records; two separate script invocations also produced the same report SHA-256 `08F6662C813DE11F7AB2F5B62C1E3C0F48A72DB8553C8EB9370C62F01EC217F7`. All 8 mock trials completed with valid final outputs; one injected malformed first response was retained and recovered once. Failure report records `invalid_json: 1`. The analysis skeleton creates descriptive rows only. Pilot uses 1 synthetic scenario, 1 mock model, 1 repetition per cell; 0 external model calls. Source revision will be refreshed after implementation commit. | `scripts/run_interface_pilot.py`; `artifacts/phase1_interface_pilot.json`; `src/before_recommendation/analysis.py`; `tests/test_analysis.py`; full `tests/` suite | Commit the validated code and roadmap, regenerate both reports at that revision, run the final full suite, perform Phase 1 exit audit, then push. |
 | 2026-09-30 20:30 IST | PHASE 1 — BUILD | Final clean-revision audit and reproducibility comparison | Source revision `d1f0d0719e0beee5af3feb7fd10118fe36f9109f`; final suite 49/49 passed. Smoke and interface report each regenerated twice with identical SHA-256 values. Eight mock condition cells completed; the expected injected invalid-JSON response was preserved and recovered once. All Phase 1 pilot exit criteria pass; no external models or main experiment. | `artifacts/phase1_deterministic_smoke.json`; `artifacts/phase1_interface_pilot.json`; `schemas/agent_output.v1.schema.json`; `schemas/trace.v1.schema.json`; full `tests/` suite; source commit `d1f0d0719e0beee5af3feb7fd10118fe36f9109f` | Push the audited Phase 1 build to the verified empty `main` remote. |
+| 2026-09-30 20:33 IST | PHASE 1 — BUILD | Push audited Phase 1 build after exit audit | Push succeeded to `origin/main`; upstream tracking configured. The pushed tree contains the audit and both revision-stamped reproducibility artifacts. The remote was empty before the authorized push. No main experiment or external model calls. | GitHub `Alyssa-286/Before-the-Recommendation`, branch `main`; commit `725d3c0` | Phase 1 complete. Stop before the main experiment. |
 
 ---
 
