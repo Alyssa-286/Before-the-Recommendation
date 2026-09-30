@@ -106,16 +106,16 @@ Secondary outputs:
 - [x] Deterministic simulated-user response function/table
 - [x] Deterministic utility and regret scorer
 - [x] Cue-condition generation with factual utility held constant
-- [ ] Catalog environment
-- [ ] Agent controller
-- [ ] Structured-output schema + parser/validator
-- [ ] Trace logger
-- [ ] Failure logger
+- [x] Catalog environment (mock harness passes condition-specific public listings only)
+- [x] Agent controller (model-agnostic protocol and deterministic mock-only orchestration)
+- [x] Structured-output schema + parser/validator (v1.0.0; strict JSON, field/weight/ranking checks, one validation retry)
+- [x] Trace logger (versioned JSONL; raw and derived sections, hidden evaluator section, ordered events, immutable append)
+- [x] Failure logger (taxonomy v1 JSONL records)
 - [x] Experiment configuration/versioning (versioned JSON config, config SHA-256, generator versions)
-- [ ] Checkpoint/resume support
-- [ ] Analysis skeleton
-- [ ] Unit tests
-- [ ] End-to-end pilot
+- [x] Checkpoint/resume support (SQLite, config-pinned, transactional, explicit recovery transitions)
+- [x] Analysis skeleton (descriptive trial rows and summaries only; no inferential statistics)
+- [x] Unit tests (49 passing across deterministic layer, parser, trace/failure, checkpoint, metric, analysis skeleton, and interface harness)
+- [x] End-to-end pilot (deterministic mock only; not experimental data)
 
 ### Pilot exit criteria
 
@@ -126,9 +126,9 @@ Do not start the main experiment until:
 - [x] Cue manipulation is isolated
 - [x] Utility distributions are balanced across cue arms
 - [x] Simulated-user answers are deterministic
-- [ ] Structured parsing is reliable
-- [ ] Failures are preserved in raw logs
-- [ ] One complete trial works end-to-end
+- [x] Structured parsing is reliable
+- [x] Failures are preserved in raw logs
+- [x] One complete trial works end-to-end (also exercised clarification and recovery paths)
 
 ### Immediate first implementation target
 
@@ -272,9 +272,9 @@ Test the manuscript against:
 - [x] Define cue treatments
 - [x] Define ambiguous/explicit prompts
 - [x] Define simulated-user response rules
-- [ ] Define JSON schema
-- [ ] Define trace schema
-- [ ] Define failure taxonomy
+- [x] Define JSON schema
+- [x] Define trace schema
+- [x] Define failure taxonomy
 - [ ] Write statistical analysis plan
 - [x] Create package/configuration structure and Git source revision capture (baseline `028cc0118af599fb96472e4450f301cacff383e9`)
 
@@ -284,14 +284,14 @@ Test the manuscript against:
 
 - [x] Implement catalog and scenario generator
 - [x] Implement latent objective + utility scorer
-- [ ] Complete Phase 1 unit-test suite (deterministic layer currently has 10 passing tests)
+- [x] Complete Phase 1 unit-test suite (47 tests passing)
 - [x] Implement simulated user
-- [ ] Implement agent controller
-- [ ] Implement catalog-inspection/clarification flow
-- [ ] Implement parser, logging, retry logic, checkpointing
-- [ ] Run end-to-end pilot
-- [ ] Run small pilot across all core conditions
-- [ ] Produce parser/failure report
+- [x] Implement agent controller (mock-only protocol harness; no live model adapter)
+- [x] Implement catalog-inspection/clarification flow
+- [x] Implement parser, logging, retry logic, checkpointing
+- [x] Run end-to-end pilot (mock-only)
+- [x] Run small pilot across all core conditions (8 goal × marketing cells; 1 scenario, 1 mock model, 1 repetition per cell)
+- [x] Produce parser/failure report
 
 **Exit:** No main experiment until pilot outputs are inspectable and scoring is correct.
 
@@ -404,9 +404,9 @@ Test the manuscript against:
 
 **Current phase:** PHASE 1 — BUILD
 
-**Current milestone:** Deterministic foundation complete and validated; controller/pilot prerequisites remain
+**Current milestone:** Phase 1 deterministic instrument and mock-only pilot complete; final clean-revision audit remains
 
-**Current task:** Implement the versioned output schema/parser, trace and failure logging, and checkpointing; then build the mock-only deterministic interface pilot. Do not start the agent controller until schema, logging, checkpoint, and unit-test gates pass. Do not start the main experiment.
+**Current task:** Commit the validated instrument, regenerate revision-stamped artifacts from that commit, run the final full suite and audit, then push the completed Phase 1 baseline. No live-model calls or main experiment.
 
 **Main experiment:** NOT STARTED
 
@@ -433,6 +433,11 @@ _Add a new row after every meaningful milestone. Never delete historical entries
 | 2026-09-30 | PHASE 1 — BUILD | Implement versioned catalog, objective generator, and scorer | 6/6 tests passed; no failures or fixes required. Cue balance and simulated-user criteria remain untested because those modules are the next milestone. | `pyproject.toml`; `configs/phase1.json`; `src/before_recommendation/{config,catalog,objectives,evaluator}.py`; `tests/test_deterministic_layer.py` | Add prompt templates, response mapping, and cue overlays; test factual-utility invariance/balance before proceeding to controller. |
 | 2026-09-30 | PHASE 1 — BUILD | Complete deterministic foundation and correct the budget interpretation | Final suite: 10/10 passed. First expanded run had 1 failure because the test assumed one explicit-template variant; test now exercises both frozen variants. A manual sample command first omitted `PYTHONPATH`, then hit Windows console encoding on ₹; rerun with `PYTHONPATH=src` and UTF-8 succeeded. During review, ₹70,000 was initially modeled as a hard cap; corrected before any trial to a soft reference with the specified higher-price exception. No generated experiment data were affected. The smoke report regenerated byte-for-byte (SHA-256 `A37BF4A1C60226FECEDA11284639BC77A2C0F80F606D223B06C9DFEA6A046858`). No Git repository was present, so source revision capture remains open. | `configs/phase1.json`; `src/before_recommendation/{config,catalog,objectives,evaluator,prompts,simulated_user,conditions,scenarios}.py`; `tests/test_deterministic_layer.py`; `scripts/build_deterministic_smoke.py`; `artifacts/phase1_deterministic_smoke.json` | Add parser/schema, trace/failure logging, checkpointing, and source revision capture; only then assess remaining pilot gates. |
 | 2026-09-30 19:48 IST | PHASE 1 — BUILD | Create the local Git baseline and refresh revision-stamped smoke artifact | `main` root commit `028cc0118af599fb96472e4450f301cacff383e9`; remote checked read-only and is empty; nothing pushed. 10/10 tests passed before baseline. The refreshed deterministic smoke report records the baseline commit and remains a non-experimental artifact. No unresolved test failures. | `.gitignore`; `.gitattributes`; `artifacts/phase1_deterministic_smoke.json`; Git commit `028cc0118af599fb96472e4450f301cacff383e9` | Implement versioned structured output schema and parser; test parse, type, bounds, cross-field, and catalog-ID validation. |
+| 2026-09-30 | PHASE 1 — BUILD | Define output schema v1 and strict parser with bounded retry | First targeted run: 9 passed, 1 failed because the test expected JSON `NaN` to reach schema validation; strict JSON correctly rejected it earlier. Corrected the expectation and added a huge-integer overflow case; final parser suite 10/10 and combined suite 20/20 passed. Parser preserves raw values, detects duplicate keys, rejects unknown catalog IDs and inconsistent clarification fields, checks finite [0,1] weights summing within 1e-6, and requests at most one retry for invalid JSON/schema responses. Smoke artifact writer now emits explicit UTF-8/LF; two consecutive builds matched at SHA-256 `3E2A88A6CA04C9924F2B4077FF20B86CD1198706EC940EDE27BD019BB300C9A7`. No model calls or experiment trials. | `schemas/agent_output.v1.schema.json`; `src/before_recommendation/output_parser.py`; `tests/test_output_parser.py`; `scripts/build_deterministic_smoke.py`; `artifacts/phase1_deterministic_smoke.json` | Build typed trace events and append-only JSONL trial logs; define stable event and attempt records and test raw-output retention. |
+| 2026-09-30 | PHASE 1 — BUILD | Add versioned JSONL trial trace and failure taxonomy | Trace/failure tests 8/8 passed; full suite 28/28 passed, no failures. Stable trial IDs include conditions, model/prompt versions, repetition, seed, and config digest. JSONL writes are append-only, flushed/fsynced, duplicate trial traces and corrupt history raise errors; raw retry outputs remain verbatim, parsed values/metrics are separate, and evaluator truth occupies a distinct section. Failure taxonomy v1 distinguishes parser, timeout, refusal/rate-limit, interface-order, execution, checkpoint, trace, and scoring failures. No model calls or experiment trials. | `schemas/trace.v1.schema.json`; `src/before_recommendation/{tracing,failures}.py`; `tests/test_tracing.py` | Add durable checkpoint/resume keyed by deterministic trial ID and config digest; exercise interrupted batches, completed-trial skipping, duplicate protection, and changed-config behavior. |
+| 2026-09-30 | PHASE 1 — BUILD | Add transactional, config-pinned checkpoint/resume | Checkpoint tests 6/6 passed; full suite 34/34 passed, no failures. Register/claim/complete/fail transitions are transactional; completed IDs are skipped on restart, interrupted `running` rows require explicit recovery, failed rows require documented requeue reason, and a changed config digest is rejected. No trial data or model calls. | `src/before_recommendation/checkpoint.py`; `tests/test_checkpoint.py`; SQLite test artifacts only in temporary directories | Define the interface protocol and deterministic mock, then test one clarification and one no-clarification trial through parse, score, trace, and checkpoint. |
+| 2026-09-30 | PHASE 1 — BUILD | Implement model-agnostic public interface and mock orchestration | First test discovery failed at import because `GoalCondition` is defined in `prompts.py`, not `conditions.py`; imports were corrected. Interface tests then passed 6/6 and full suite 43/43 passed. Clarification and no-clarification paths, unsupported-target uncertainty, catalog-before-question ordering, raw retry preservation, deterministic scoring, JSONL trace, and checkpoint completion all pass. Hidden objective is only available to the research harness and evaluator. No external model or main experiment. | `src/before_recommendation/{agent_protocol,mock_agent,interface_runner}.py`; `src/before_recommendation/evaluator.py`; `tests/{test_interface_runner,test_representation_metric}.py` | Run the small mock-only interface pilot twice, compare normalized traces, and write the parser/failure report artifact. |
+| 2026-09-30 20:21 IST | PHASE 1 — BUILD | Complete the deterministic mock-only interface pilot across all core condition cells | Expanded full suite: 47/47 passed. Pilot script ran its 8-cell mock batch twice and matched normalized trace/failure records; two separate script invocations also produced the same report SHA-256 `08F6662C813DE11F7AB2F5B62C1E3C0F48A72DB8553C8EB9370C62F01EC217F7`. All 8 mock trials completed with valid final outputs; one injected malformed first response was retained and recovered once. Failure report records `invalid_json: 1`. The analysis skeleton creates descriptive rows only. Pilot uses 1 synthetic scenario, 1 mock model, 1 repetition per cell; 0 external model calls. Source revision will be refreshed after implementation commit. | `scripts/run_interface_pilot.py`; `artifacts/phase1_interface_pilot.json`; `src/before_recommendation/analysis.py`; `tests/test_analysis.py`; full `tests/` suite | Commit the validated code and roadmap, regenerate both reports at that revision, run the final full suite, perform Phase 1 exit audit, then push. |
 
 ---
 

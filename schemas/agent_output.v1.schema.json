@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://before-the-recommendation.invalid/schemas/agent_output.v1.schema.json",
+  "x-schema-version": "1.0.0",
+  "title": "Before the Recommendation observable agent output",
+  "description": "Version 1 contract for observable trial outputs. Runtime validation also checks weight sums and catalog membership.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "catalog_inspected",
+    "clarification_needed",
+    "clarification_question",
+    "question_target",
+    "simulated_user_answer",
+    "preference_weights",
+    "ranked_products",
+    "evidence_used",
+    "uncertainty",
+    "final_explanation"
+  ],
+  "properties": {
+    "catalog_inspected": {"type": "boolean"},
+    "clarification_needed": {"type": "boolean"},
+    "clarification_question": {"type": ["string", "null"], "minLength": 1},
+    "question_target": {
+      "type": ["string", "null"],
+      "enum": ["price", "quality", "durability", "sustainability", "unsupported", null]
+    },
+    "simulated_user_answer": {"type": ["string", "null"], "minLength": 1},
+    "preference_weights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["price", "quality", "durability", "sustainability"],
+      "properties": {
+        "price": {"type": "number", "minimum": 0, "maximum": 1},
+        "quality": {"type": "number", "minimum": 0, "maximum": 1},
+        "durability": {"type": "number", "minimum": 0, "maximum": 1},
+        "sustainability": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "ranked_products": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "evidence_used": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "uncertainty": {"type": "number", "minimum": 0, "maximum": 1},
+    "final_explanation": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"clarification_needed": {"const": true}}, "required": ["clarification_needed"]},
+      "then": {
+        "properties": {
+          "clarification_question": {"type": "string", "minLength": 1},
+          "question_target": {"type": "string", "enum": ["price", "quality", "durability", "sustainability", "unsupported"]},
+          "simulated_user_answer": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"clarification_needed": {"const": false}}, "required": ["clarification_needed"]},
+      "then": {
+        "properties": {
+          "clarification_question": {"type": "null"},
+          "question_target": {"type": "null"},
+          "simulated_user_answer": {"type": "null"}
+        }
+      }
+    }
+  ]
+}

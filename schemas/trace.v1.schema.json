@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://before-the-recommendation.invalid/schemas/trace.v1.schema.json",
+  "x-schema-version": "1.0.0",
+  "title": "Before the Recommendation trial trace",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["record_type", "trace_schema_version", "trial_id", "identity", "timestamps", "agent_visible", "events", "raw", "derived", "evaluator_private", "failures"],
+  "properties": {
+    "record_type": {"const": "trial_trace"},
+    "trace_schema_version": {"const": "1.0.0"},
+    "trial_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scenario_id", "profile_id", "goal_condition", "marketing_condition", "model_family", "model_version", "repetition", "prompt_template_id", "experiment_version", "config_sha256", "random_seed", "code_revision"],
+      "properties": {
+        "scenario_id": {"type": "string", "minLength": 1},
+        "profile_id": {"type": "string", "minLength": 1},
+        "goal_condition": {"enum": ["ambiguous", "explicit"]},
+        "marketing_condition": {"enum": ["neutral", "scarcity", "social_proof", "discount"]},
+        "model_family": {"type": "string", "minLength": 1},
+        "model_version": {"type": "string", "minLength": 1},
+        "repetition": {"type": "integer", "minimum": 1},
+        "prompt_template_id": {"type": "string", "minLength": 1},
+        "experiment_version": {"type": "string", "minLength": 1},
+        "config_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "random_seed": {"type": "integer"},
+        "code_revision": {"type": ["string", "null"], "pattern": "^[0-9a-f]{7,64}$"}
+      }
+    },
+    "timestamps": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["started_at_utc", "completed_at_utc"],
+      "properties": {
+        "started_at_utc": {"type": "string", "pattern": "Z$"},
+        "completed_at_utc": {"type": "string", "pattern": "Z$"}
+      }
+    },
+    "agent_visible": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["request_text", "prompt_sha256", "system_instruction", "api_parameters", "catalog_listings"],
+      "properties": {
+        "request_text": {"type": "string", "minLength": 1},
+        "prompt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "system_instruction": {"type": ["string", "null"]},
+        "api_parameters": {"type": "object"},
+        "catalog_listings": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sequence", "actor", "event_type", "payload"],
+        "properties": {
+          "sequence": {"type": "integer", "minimum": 0},
+          "actor": {"type": "string", "minLength": 1},
+          "event_type": {"type": "string", "minLength": 1},
+          "payload": {"type": "object"}
+        }
+      }
+    },
+    "raw": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attempts"],
+      "properties": {
+        "attempts": {
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["attempt_number", "raw_response", "raw_response_sha256"],
+            "properties": {
+              "attempt_number": {"type": "integer", "minimum": 1},
+              "raw_response": {},
+              "raw_response_sha256": {"type": ["string", "null"]}
+            }
+          }
+        }
+      }
+    },
+    "derived": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attempts", "metrics"],
+      "properties": {
+        "attempts": {
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["attempt_number", "parse_status", "parsed_output", "validation_errors", "schema_version"],
+            "properties": {
+              "attempt_number": {"type": "integer", "minimum": 1},
+              "parse_status": {"enum": ["valid", "invalid_json", "schema_validation_failure", "malformed_response"]},
+              "parsed_output": {"type": ["object", "null"]},
+              "validation_errors": {"type": "array", "items": {"type": "object"}},
+              "schema_version": {"type": "string"}
+            }
+          }
+        },
+        "metrics": {"type": "object"}
+      }
+    },
+    "evaluator_private": {"type": "object"},
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["category", "stage", "message", "recoverable", "attempt_number", "detail_code"],
+        "properties": {
+          "category": {"type": "string"},
+          "stage": {"type": "string", "minLength": 1},
+          "message": {"type": "string", "minLength": 1},
+          "recoverable": {"type": "boolean"},
+          "attempt_number": {"type": ["integer", "null"], "minimum": 1},
+          "detail_code": {"type": ["string", "null"]}
+        }
+      }
+    }
+  }
+}

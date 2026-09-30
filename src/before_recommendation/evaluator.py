@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import math
 
 from .catalog import Laptop, LaptopCatalog
 from .objectives import ControlledObjective
@@ -124,3 +125,31 @@ def score_recommendation(
         regret=evaluation.optimal_utility - utility,
         constraint_violated=not evaluation.is_feasible(product_id),
     )
+
+
+def preference_representation_error(
+    objective: ControlledObjective,
+    represented_weights: dict[str, int | float],
+    *,
+    tolerance: float = 1e-6,
+) -> float:
+    """Compute the locked half-L1 error between the controlled target and output."""
+    target = objective.as_dict()
+    if set(represented_weights) != set(target):
+        raise ValueError("Represented weights must contain exactly the controlled objective dimensions.")
+    observed: dict[str, float] = {}
+    for dimension, value in represented_weights.items():
+        if type(value) not in (int, float):
+            raise ValueError(f"Weight for {dimension!r} must be a finite number.")
+        try:
+            finite_value = float(value)
+        except OverflowError as exc:
+            raise ValueError(f"Weight for {dimension!r} must be a finite number.") from exc
+        if not math.isfinite(finite_value):
+            raise ValueError(f"Weight for {dimension!r} must be a finite number.")
+        if not 0 <= value <= 1:
+            raise ValueError(f"Weight for {dimension!r} must be in [0, 1].")
+        observed[dimension] = finite_value
+    if abs(sum(observed.values()) - 1.0) > tolerance:
+        raise ValueError(f"Represented weights must sum to 1 within {tolerance:g}.")
+    return 0.5 * sum(abs(observed[name] - target[name]) for name in target)

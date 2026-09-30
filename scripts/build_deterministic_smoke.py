@@ -147,8 +147,7 @@ def build_report() -> dict[str, object]:
 
 if __name__ == "__main__":
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_PATH.write_text(
-        json.dumps(build_report(), ensure_ascii=False, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
+    OUTPUT_PATH.write_bytes(
+        (json.dumps(build_report(), ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
     )
     print(OUTPUT_PATH)
