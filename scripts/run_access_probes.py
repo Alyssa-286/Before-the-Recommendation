@@ -56,8 +56,6 @@ def summarize(name: str, config: ModelConfig, run_dir: Path, scenarios_by_id: di
             hits = check_request_payload(row["request_payload"], scenario)
             if hits:
                 leakage.append({"trial_id": row["trial_id"], "call_index": row["call_index"], "findings": hits})
-    completed = [t for t in traces if t.get("derived_metrics", {}).get("recommendation_submitted") and not t.get("failures") or
-                 any(e["event_type"] == "trial_completed" for e in t.get("events", []))]
     ok_io = [r for r in io if r["record_type"] == "model_io"]
     in_tok = [r["input_tokens"] for r in ok_io if isinstance(r.get("input_tokens"), int)]
     out_tok = [r["output_tokens"] for r in ok_io if isinstance(r.get("output_tokens"), int)]
@@ -66,13 +64,14 @@ def summarize(name: str, config: ModelConfig, run_dir: Path, scenarios_by_id: di
         events = t.get("events", [])
         trials.append({
             "trial_id": t["trial_id"],
+            "attempt_file_order": traces.index(t) + 1,
             "goal": t["identity"]["goal_condition"],
             "marketing": t["identity"]["marketing_condition"],
             "completed": any(e["event_type"] == "trial_completed" for e in events),
             "event_sequence": [f"{e['actor']}:{e['event_type']}" for e in events],
             "failures": t.get("failures", []),
-            "clarification_needed": t.get("derived_metrics", {}).get("clarification_needed"),
-            "question_target": t.get("derived_metrics", {}).get("question_target"),
+            "clarification_needed": t["derived"]["metrics"].get("clarification_needed"),
+            "question_target": t["derived"]["metrics"].get("question_target"),
             "provider_calls": sum(1 for r in io if r["trial_id"] == t["trial_id"]),
         })
     failures_io = [
@@ -87,7 +86,8 @@ def summarize(name: str, config: ModelConfig, run_dir: Path, scenarios_by_id: di
         "provider_adapter": config.provider,
         "model_config": config.public_dict(),
         "observed_model_ids": sorted({r.get("observed_model_id") for r in ok_io if r.get("observed_model_id")}),
-        "trials_attempted": len(traces),
+        "trial_attempts_logged": len(traces),
+        "distinct_trials": len({t["trial_id"] for t in trials}),
         "trials_completed": sum(1 for t in trials if t["completed"]),
         "trials": trials,
         "provider_calls_ok": len(ok_io),

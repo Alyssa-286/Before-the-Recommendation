@@ -1,0 +1,983 @@
+{
+  "candidates": {
+    "gpt-5-nano": {
+      "candidate": "gpt-5-nano",
+      "configured_model_id": "gpt-5-nano-2025-08-07",
+      "model_family_label": "openai_gpt",
+      "provider_adapter": "openai_chat_completions",
+      "model_config": {
+        "adapter_version": "1.2.0",
+        "provider": "openai_chat_completions",
+        "endpoint": "https://api.openai.com/v1/chat/completions",
+        "model_id": "gpt-5-nano-2025-08-07",
+        "model_family": "openai_gpt",
+        "api_key_env": "OPENAI_API_KEY",
+        "temperature": null,
+        "seed": null,
+        "max_output_tokens": 4096,
+        "timeout_seconds": 120.0,
+        "reasoning_effort": "minimal",
+        "structured_output_mode": "strict_function_tool_schema",
+        "provider_api_version": null
+      },
+      "observed_model_ids": [],
+      "trial_attempts_logged": 4,
+      "distinct_trials": 2,
+      "trials_completed": 0,
+      "trials": [
+        {
+          "trial_id": "e1d39d297013164d2168d8a1abc0d50e79bfa65838320e355f2ddaacc842393e",
+          "attempt_file_order": 1,
+          "goal": "ambiguous",
+          "marketing": "neutral",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "rate_limit",
+              "detail_code": "rate_limit",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        },
+        {
+          "trial_id": "65b6d3f6086f296cc6e7c9d998365d79301668649fa42a356ed3cc562b5ce935",
+          "attempt_file_order": 2,
+          "goal": "explicit",
+          "marketing": "discount",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "rate_limit",
+              "detail_code": "rate_limit",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        },
+        {
+          "trial_id": "e1d39d297013164d2168d8a1abc0d50e79bfa65838320e355f2ddaacc842393e",
+          "attempt_file_order": 3,
+          "goal": "ambiguous",
+          "marketing": "neutral",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "rate_limit",
+              "detail_code": "rate_limit",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        },
+        {
+          "trial_id": "65b6d3f6086f296cc6e7c9d998365d79301668649fa42a356ed3cc562b5ce935",
+          "attempt_file_order": 4,
+          "goal": "explicit",
+          "marketing": "discount",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "rate_limit",
+              "detail_code": "rate_limit",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        }
+      ],
+      "provider_calls_ok": 0,
+      "provider_call_failures": [
+        {
+          "call_index": 1,
+          "status": 429,
+          "category": "rate_limit",
+          "detail": "rate_limit",
+          "body_preview": "{\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n"
+        },
+        {
+          "call_index": 1,
+          "status": 429,
+          "category": "rate_limit",
+          "detail": "rate_limit",
+          "body_preview": "{\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n"
+        },
+        {
+          "call_index": 1,
+          "status": 429,
+          "category": "rate_limit",
+          "detail": "rate_limit",
+          "body_preview": "{\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n"
+        },
+        {
+          "call_index": 1,
+          "status": 429,
+          "category": "rate_limit",
+          "detail": "rate_limit",
+          "body_preview": "{\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n"
+        }
+      ],
+      "transport_retry_events": 0,
+      "transport_status_codes": [],
+      "input_tokens_total": 0,
+      "output_tokens_total": 0,
+      "input_tokens_per_call_mean": null,
+      "output_tokens_per_call_mean": null,
+      "latency_ms_median": null,
+      "leakage_findings": [],
+      "leakage_check_passed": true,
+      "checkpoint_status": {
+        "model_id": "gpt-5-nano-2025-08-07",
+        "status_counts": {
+          "failed": 2
+        },
+        "planned": 2
+      },
+      "code_revision": "003dfb08fbd28f794d8c97eb88472c5a0685a10d"
+    },
+    "gpt-4.1-nano": {
+      "candidate": "gpt-4.1-nano",
+      "configured_model_id": "gpt-4.1-nano-2025-04-14",
+      "model_family_label": "openai_gpt",
+      "provider_adapter": "openai_chat_completions",
+      "model_config": {
+        "adapter_version": "1.2.0",
+        "provider": "openai_chat_completions",
+        "endpoint": "https://api.openai.com/v1/chat/completions",
+        "model_id": "gpt-4.1-nano-2025-04-14",
+        "model_family": "openai_gpt",
+        "api_key_env": "OPENAI_API_KEY",
+        "temperature": null,
+        "seed": null,
+        "max_output_tokens": 4096,
+        "timeout_seconds": 120.0,
+        "reasoning_effort": null,
+        "structured_output_mode": "strict_function_tool_schema",
+        "provider_api_version": null
+      },
+      "observed_model_ids": [],
+      "trial_attempts_logged": 4,
+      "distinct_trials": 2,
+      "trials_completed": 0,
+      "trials": [
+        {
+          "trial_id": "4c50cba47517b66c1cba2621f41d07de7737c77ba510d099f34b0af659120e20",
+          "attempt_file_order": 1,
+          "goal": "ambiguous",
+          "marketing": "neutral",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "rate_limit",
+              "detail_code": "rate_limit",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        },
+        {
+          "trial_id": "527f55c9a696a6e594dfbed632af3ed330a86bdc4016b056a7ec6d0ba2ee4297",
+          "attempt_file_order": 2,
+          "goal": "explicit",
+          "marketing": "discount",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "rate_limit",
+              "detail_code": "rate_limit",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        },
+        {
+          "trial_id": "4c50cba47517b66c1cba2621f41d07de7737c77ba510d099f34b0af659120e20",
+          "attempt_file_order": 3,
+          "goal": "ambiguous",
+          "marketing": "neutral",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "rate_limit",
+              "detail_code": "rate_limit",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        },
+        {
+          "trial_id": "527f55c9a696a6e594dfbed632af3ed330a86bdc4016b056a7ec6d0ba2ee4297",
+          "attempt_file_order": 4,
+          "goal": "explicit",
+          "marketing": "discount",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "rate_limit",
+              "detail_code": "rate_limit",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        }
+      ],
+      "provider_calls_ok": 0,
+      "provider_call_failures": [
+        {
+          "call_index": 1,
+          "status": 429,
+          "category": "rate_limit",
+          "detail": "rate_limit",
+          "body_preview": "{\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n"
+        },
+        {
+          "call_index": 1,
+          "status": 429,
+          "category": "rate_limit",
+          "detail": "rate_limit",
+          "body_preview": "{\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n"
+        },
+        {
+          "call_index": 1,
+          "status": 429,
+          "category": "rate_limit",
+          "detail": "rate_limit",
+          "body_preview": "{\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n"
+        },
+        {
+          "call_index": 1,
+          "status": 429,
+          "category": "rate_limit",
+          "detail": "rate_limit",
+          "body_preview": "{\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n"
+        }
+      ],
+      "transport_retry_events": 0,
+      "transport_status_codes": [],
+      "input_tokens_total": 0,
+      "output_tokens_total": 0,
+      "input_tokens_per_call_mean": null,
+      "output_tokens_per_call_mean": null,
+      "latency_ms_median": null,
+      "leakage_findings": [],
+      "leakage_check_passed": true,
+      "checkpoint_status": {
+        "model_id": "gpt-4.1-nano-2025-04-14",
+        "status_counts": {
+          "failed": 2
+        },
+        "planned": 2
+      },
+      "code_revision": "003dfb08fbd28f794d8c97eb88472c5a0685a10d"
+    },
+    "gemini-2.5-flash-lite": {
+      "candidate": "gemini-2.5-flash-lite",
+      "configured_model_id": "gemini-2.5-flash-lite",
+      "model_family_label": "google_gemini",
+      "provider_adapter": "gemini_openai_compat",
+      "model_config": {
+        "adapter_version": "1.2.0",
+        "provider": "gemini_openai_compat",
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model_id": "gemini-2.5-flash-lite",
+        "model_family": "google_gemini",
+        "api_key_env": "GEMINI_API_KEY",
+        "temperature": null,
+        "seed": null,
+        "max_output_tokens": 4096,
+        "timeout_seconds": 120.0,
+        "reasoning_effort": null,
+        "structured_output_mode": "function_tool_schema_with_local_strict_parser",
+        "provider_api_version": "v1beta_openai_compat"
+      },
+      "observed_model_ids": [],
+      "trial_attempts_logged": 4,
+      "distinct_trials": 2,
+      "trials_completed": 0,
+      "trials": [
+        {
+          "trial_id": "ca543f29f6943954b4648d1e8689a2552c0b60ad90c89ad4fc7bd8df4d8c4257",
+          "attempt_file_order": 1,
+          "goal": "explicit",
+          "marketing": "discount",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "api_error",
+              "detail_code": "http_error",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        },
+        {
+          "trial_id": "f680de95d3d10c0766aafd8bfb69314f9d561451e76bacfd0768ed54885e3259",
+          "attempt_file_order": 2,
+          "goal": "ambiguous",
+          "marketing": "neutral",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "api_error",
+              "detail_code": "http_error",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        },
+        {
+          "trial_id": "ca543f29f6943954b4648d1e8689a2552c0b60ad90c89ad4fc7bd8df4d8c4257",
+          "attempt_file_order": 3,
+          "goal": "explicit",
+          "marketing": "discount",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "api_error",
+              "detail_code": "http_error",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        },
+        {
+          "trial_id": "f680de95d3d10c0766aafd8bfb69314f9d561451e76bacfd0768ed54885e3259",
+          "attempt_file_order": 4,
+          "goal": "ambiguous",
+          "marketing": "neutral",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "api_error",
+              "detail_code": "http_error",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        }
+      ],
+      "provider_calls_ok": 0,
+      "provider_call_failures": [
+        {
+          "call_index": 1,
+          "status": 404,
+          "category": "api_error",
+          "detail": "http_error",
+          "body_preview": "[{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemi"
+        },
+        {
+          "call_index": 1,
+          "status": 404,
+          "category": "api_error",
+          "detail": "http_error",
+          "body_preview": "[{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemi"
+        },
+        {
+          "call_index": 1,
+          "status": 404,
+          "category": "api_error",
+          "detail": "http_error",
+          "body_preview": "[{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemi"
+        },
+        {
+          "call_index": 1,
+          "status": 404,
+          "category": "api_error",
+          "detail": "http_error",
+          "body_preview": "[{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemi"
+        }
+      ],
+      "transport_retry_events": 0,
+      "transport_status_codes": [],
+      "input_tokens_total": 0,
+      "output_tokens_total": 0,
+      "input_tokens_per_call_mean": null,
+      "output_tokens_per_call_mean": null,
+      "latency_ms_median": null,
+      "leakage_findings": [],
+      "leakage_check_passed": true,
+      "checkpoint_status": {
+        "model_id": "gemini-2.5-flash-lite",
+        "status_counts": {
+          "failed": 2
+        },
+        "planned": 2
+      },
+      "code_revision": "003dfb08fbd28f794d8c97eb88472c5a0685a10d"
+    },
+    "gemini-3.1-flash-lite": {
+      "candidate": "gemini-3.1-flash-lite",
+      "configured_model_id": "gemini-3.1-flash-lite",
+      "model_family_label": "google_gemini",
+      "provider_adapter": "gemini_openai_compat",
+      "model_config": {
+        "adapter_version": "1.2.0",
+        "provider": "gemini_openai_compat",
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model_id": "gemini-3.1-flash-lite",
+        "model_family": "google_gemini",
+        "api_key_env": "GEMINI_API_KEY",
+        "temperature": null,
+        "seed": null,
+        "max_output_tokens": 4096,
+        "timeout_seconds": 120.0,
+        "reasoning_effort": null,
+        "structured_output_mode": "function_tool_schema_with_local_strict_parser",
+        "provider_api_version": "v1beta_openai_compat"
+      },
+      "observed_model_ids": [
+        "gemini-3.1-flash-lite"
+      ],
+      "trial_attempts_logged": 2,
+      "distinct_trials": 2,
+      "trials_completed": 2,
+      "trials": [
+        {
+          "trial_id": "eea9cdea8b057adfacf409111390a4a0107bd1baecb56d8e654b4679e4826340",
+          "attempt_file_order": 1,
+          "goal": "ambiguous",
+          "marketing": "neutral",
+          "completed": true,
+          "event_sequence": [
+            "controller:trial_started",
+            "model:response_received",
+            "model:tool_call",
+            "tool:catalog_inspected",
+            "model:response_received",
+            "model:tool_call",
+            "controller_inserted:simulated_user_answer",
+            "model:response_received",
+            "model:tool_call",
+            "model:recommendation_submitted",
+            "evaluator:recommendation_scored",
+            "controller:trial_completed"
+          ],
+          "failures": [],
+          "clarification_needed": true,
+          "question_target": "LumaBook_P16",
+          "provider_calls": 3
+        },
+        {
+          "trial_id": "92c77c9fbb693169402bc93e74e778f646982b8a3b01edef87695af8d641ba33",
+          "attempt_file_order": 2,
+          "goal": "explicit",
+          "marketing": "discount",
+          "completed": true,
+          "event_sequence": [
+            "controller:trial_started",
+            "model:response_received",
+            "model:tool_call",
+            "tool:catalog_inspected",
+            "model:response_received",
+            "model:tool_call",
+            "model:recommendation_submitted",
+            "evaluator:recommendation_scored",
+            "controller:trial_completed"
+          ],
+          "failures": [],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        }
+      ],
+      "provider_calls_ok": 5,
+      "provider_call_failures": [],
+      "transport_retry_events": 1,
+      "transport_status_codes": [
+        "503"
+      ],
+      "input_tokens_total": 7149,
+      "output_tokens_total": 730,
+      "input_tokens_per_call_mean": 1429.8,
+      "output_tokens_per_call_mean": 146,
+      "latency_ms_median": 4223.7,
+      "leakage_findings": [],
+      "leakage_check_passed": true,
+      "checkpoint_status": {
+        "model_id": "gemini-3.1-flash-lite",
+        "status_counts": {
+          "completed": 2
+        },
+        "planned": 2
+      },
+      "code_revision": "003dfb08fbd28f794d8c97eb88472c5a0685a10d"
+    },
+    "gemma-4-26b-a4b-it": {
+      "candidate": "gemma-4-26b-a4b-it",
+      "configured_model_id": "gemma-4-26b-a4b-it",
+      "model_family_label": "google_gemma",
+      "provider_adapter": "gemini_openai_compat",
+      "model_config": {
+        "adapter_version": "1.2.0",
+        "provider": "gemini_openai_compat",
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model_id": "gemma-4-26b-a4b-it",
+        "model_family": "google_gemma",
+        "api_key_env": "GEMINI_API_KEY",
+        "temperature": null,
+        "seed": null,
+        "max_output_tokens": 4096,
+        "timeout_seconds": 120.0,
+        "reasoning_effort": null,
+        "structured_output_mode": "function_tool_schema_with_local_strict_parser",
+        "provider_api_version": "v1beta_openai_compat"
+      },
+      "observed_model_ids": [
+        "gemma-4-26b-a4b-it"
+      ],
+      "trial_attempts_logged": 2,
+      "distinct_trials": 2,
+      "trials_completed": 0,
+      "trials": [
+        {
+          "trial_id": "8ecf84be1653708becbf52252e1821f99bd47ed95f8b7b1b42423441d8d0c5fb",
+          "attempt_file_order": 1,
+          "goal": "explicit",
+          "marketing": "discount",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "model:response_received",
+            "model:tool_call",
+            "tool:catalog_inspected",
+            "model:response_received",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 2,
+              "category": "interface_contract_violation",
+              "detail_code": "expected_exactly_one_tool_call",
+              "message": "Each model response must contain exactly one tool call.",
+              "recoverable": false,
+              "stage": "tool_protocol"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        },
+        {
+          "trial_id": "ddb655c86ab04170b7542721da11f35b8098d741018fa4c2f50b8e69eef1ffd2",
+          "attempt_file_order": 2,
+          "goal": "ambiguous",
+          "marketing": "neutral",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "model:response_received",
+            "model:tool_call",
+            "tool:catalog_inspected",
+            "model:response_received",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 2,
+              "category": "interface_contract_violation",
+              "detail_code": "expected_exactly_one_tool_call",
+              "message": "Each model response must contain exactly one tool call.",
+              "recoverable": false,
+              "stage": "tool_protocol"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        }
+      ],
+      "provider_calls_ok": 4,
+      "provider_call_failures": [],
+      "transport_retry_events": 6,
+      "transport_status_codes": [
+        "500"
+      ],
+      "input_tokens_total": 5513,
+      "output_tokens_total": 20,
+      "input_tokens_per_call_mean": 1378.2,
+      "output_tokens_per_call_mean": 5,
+      "latency_ms_median": 87974.9,
+      "leakage_findings": [],
+      "leakage_check_passed": true,
+      "checkpoint_status": {
+        "model_id": "gemma-4-26b-a4b-it",
+        "status_counts": {
+          "failed": 2
+        },
+        "planned": 2
+      },
+      "code_revision": "003dfb08fbd28f794d8c97eb88472c5a0685a10d"
+    },
+    "groq-gpt-oss-20b": {
+      "candidate": "groq-gpt-oss-20b",
+      "configured_model_id": "openai/gpt-oss-20b",
+      "model_family_label": "openai_gpt_oss",
+      "provider_adapter": "groq_chat_completions",
+      "model_config": {
+        "adapter_version": "1.2.0",
+        "provider": "groq_chat_completions",
+        "endpoint": "https://api.groq.com/openai/v1/chat/completions",
+        "model_id": "openai/gpt-oss-20b",
+        "model_family": "openai_gpt_oss",
+        "api_key_env": "GROQ_API_KEY",
+        "temperature": null,
+        "seed": null,
+        "max_output_tokens": 4096,
+        "timeout_seconds": 120.0,
+        "reasoning_effort": "low",
+        "structured_output_mode": "function_tool_schema_with_local_strict_parser",
+        "provider_api_version": "v1_openai_compat"
+      },
+      "observed_model_ids": [
+        "openai/gpt-oss-20b"
+      ],
+      "trial_attempts_logged": 3,
+      "distinct_trials": 2,
+      "trials_completed": 2,
+      "trials": [
+        {
+          "trial_id": "38ebd69563125a1f77fa90d8e7e41c2e1bffebfe5713c07efe9e7cfe0f4e26de",
+          "attempt_file_order": 1,
+          "goal": "ambiguous",
+          "marketing": "neutral",
+          "completed": false,
+          "event_sequence": [
+            "controller:trial_started",
+            "controller:trial_failed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "api_error",
+              "detail_code": "http_error",
+              "message": "Provider request failed; inspect the raw model I/O record.",
+              "recoverable": false,
+              "stage": "model_api"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 3
+        },
+        {
+          "trial_id": "c8dac612765759825411620b22f0b2253ed3ab9a5640e289665b06e74ee1ccd6",
+          "attempt_file_order": 2,
+          "goal": "explicit",
+          "marketing": "discount",
+          "completed": true,
+          "event_sequence": [
+            "controller:trial_started",
+            "model:response_received",
+            "model:tool_call",
+            "tool:catalog_inspected",
+            "model:response_received",
+            "model:tool_call",
+            "model:recommendation_submitted",
+            "controller:parser_retry_requested",
+            "model:response_received",
+            "model:tool_call",
+            "model:recommendation_submitted",
+            "evaluator:recommendation_scored",
+            "controller:trial_completed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "schema_validation_failure",
+              "detail_code": "schema_validation_failure",
+              "message": "Initial recommendation failed validation; one parser retry was requested.",
+              "recoverable": true,
+              "stage": "output_validation"
+            }
+          ],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 3
+        },
+        {
+          "trial_id": "38ebd69563125a1f77fa90d8e7e41c2e1bffebfe5713c07efe9e7cfe0f4e26de",
+          "attempt_file_order": 3,
+          "goal": "ambiguous",
+          "marketing": "neutral",
+          "completed": true,
+          "event_sequence": [
+            "controller:trial_started",
+            "model:response_received",
+            "model:tool_call",
+            "tool:catalog_inspected",
+            "model:response_received",
+            "model:tool_call",
+            "model:recommendation_submitted",
+            "evaluator:recommendation_scored",
+            "controller:trial_completed"
+          ],
+          "failures": [],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 3
+        }
+      ],
+      "provider_calls_ok": 5,
+      "provider_call_failures": [
+        {
+          "call_index": 1,
+          "status": 400,
+          "category": "api_error",
+          "detail": "http_error",
+          "body_preview": "{\"error\":{\"message\":\"Failed to parse tool call arguments as JSON\",\"type\":\"invalid_request_error\",\"code\":\"tool_use_failed\",\"failed_generation\":\"{\\\"name\\\": \\\"inspect_catalog\\\", \\\"arguments\\\": {\\\" \\\"}\\n\\\"}\"}}\n"
+        }
+      ],
+      "transport_retry_events": 0,
+      "transport_status_codes": [],
+      "input_tokens_total": 6821,
+      "output_tokens_total": 1146,
+      "input_tokens_per_call_mean": 1364.2,
+      "output_tokens_per_call_mean": 229.2,
+      "latency_ms_median": 3996.6,
+      "leakage_findings": [],
+      "leakage_check_passed": true,
+      "checkpoint_status": {
+        "model_id": "openai/gpt-oss-20b",
+        "status_counts": {
+          "completed": 2
+        },
+        "planned": 2
+      },
+      "code_revision": "003dfb08fbd28f794d8c97eb88472c5a0685a10d"
+    },
+    "groq-qwen3.8-27b": {
+      "candidate": "groq-qwen3.8-27b",
+      "configured_model_id": "qwen/qwen3.8-27b",
+      "model_family_label": "alibaba_qwen",
+      "provider_adapter": "groq_chat_completions",
+      "model_config": {
+        "adapter_version": "1.2.0",
+        "provider": "groq_chat_completions",
+        "endpoint": "https://api.groq.com/openai/v1/chat/completions",
+        "model_id": "qwen/qwen3.8-27b",
+        "model_family": "alibaba_qwen",
+        "api_key_env": "GROQ_API_KEY",
+        "temperature": null,
+        "seed": null,
+        "max_output_tokens": 4096,
+        "timeout_seconds": 120.0,
+        "reasoning_effort": null,
+        "structured_output_mode": "function_tool_schema_with_local_strict_parser",
+        "provider_api_version": "v1_openai_compat"
+      },
+      "observed_model_ids": [
+        "qwen/qwen3.8-27b"
+      ],
+      "trial_attempts_logged": 2,
+      "distinct_trials": 2,
+      "trials_completed": 2,
+      "trials": [
+        {
+          "trial_id": "1f5ad290ae1dae209ed9ec8aa138932887f21af51df28a8703e1a57d490422b6",
+          "attempt_file_order": 1,
+          "goal": "explicit",
+          "marketing": "discount",
+          "completed": true,
+          "event_sequence": [
+            "controller:trial_started",
+            "model:response_received",
+            "model:tool_call",
+            "tool:catalog_inspected",
+            "model:response_received",
+            "model:tool_call",
+            "model:recommendation_submitted",
+            "evaluator:recommendation_scored",
+            "controller:trial_completed"
+          ],
+          "failures": [],
+          "clarification_needed": false,
+          "question_target": null,
+          "provider_calls": 2
+        },
+        {
+          "trial_id": "306e71918fb81e744cda1bea761551315c0266f0a0df43fca8cf6fa2142dfb27",
+          "attempt_file_order": 2,
+          "goal": "ambiguous",
+          "marketing": "neutral",
+          "completed": true,
+          "event_sequence": [
+            "controller:trial_started",
+            "model:response_received",
+            "model:tool_call",
+            "tool:catalog_inspected",
+            "model:response_received",
+            "model:tool_call",
+            "controller_inserted:simulated_user_answer",
+            "model:response_received",
+            "model:tool_call",
+            "model:recommendation_submitted",
+            "controller:parser_retry_requested",
+            "model:response_received",
+            "model:tool_call",
+            "model:recommendation_submitted",
+            "evaluator:recommendation_scored",
+            "controller:trial_completed"
+          ],
+          "failures": [
+            {
+              "attempt_number": 1,
+              "category": "schema_validation_failure",
+              "detail_code": "schema_validation_failure",
+              "message": "Initial recommendation failed validation; one parser retry was requested.",
+              "recoverable": true,
+              "stage": "output_validation"
+            }
+          ],
+          "clarification_needed": true,
+          "question_target": "price",
+          "provider_calls": 4
+        }
+      ],
+      "provider_calls_ok": 6,
+      "provider_call_failures": [],
+      "transport_retry_events": 4,
+      "transport_status_codes": [
+        "429"
+      ],
+      "input_tokens_total": 12624,
+      "output_tokens_total": 4962,
+      "input_tokens_per_call_mean": 2104,
+      "output_tokens_per_call_mean": 827,
+      "latency_ms_median": 8980.7,
+      "leakage_findings": [],
+      "leakage_check_passed": true,
+      "checkpoint_status": {
+        "model_id": "qwen/qwen3.8-27b",
+        "status_counts": {
+          "completed": 2
+        },
+        "planned": 2
+      },
+      "code_revision": "003dfb08fbd28f794d8c97eb88472c5a0685a10d"
+    }
+  },
+  "artifact_version": "live-access-probe-v1",
+  "purpose": "Infrastructure-only access probes; NOT research observations and excluded from all empirical datasets.",
+  "probe_cells": [
+    [
+      "SCENARIO_001",
+      "ambiguous",
+      "neutral"
+    ],
+    [
+      "SCENARIO_002",
+      "explicit",
+      "discount"
+    ]
+  ],
+  "raw_data_directory": "data/access_probes/",
+  "credential_values_recorded": false
+}

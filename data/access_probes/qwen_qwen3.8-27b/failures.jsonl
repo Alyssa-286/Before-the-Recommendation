@@ -1,0 +1,1 @@
+{"failure":{"attempt_number":1,"category":"schema_validation_failure","detail_code":"schema_validation_failure","message":"Initial recommendation failed validation; one parser retry was requested.","recoverable":true,"stage":"output_validation"},"record_type":"failure_event","taxonomy_version":"1.0.0","trial_id":"306e71918fb81e744cda1bea761551315c0266f0a0df43fca8cf6fa2142dfb27"}
