@@ -167,6 +167,129 @@ class ThrottledTransport:
             time.sleep(backoff)
 
 
+DAILY_QUOTA_MARKERS = (b"PerDay", b"per day", b"daily")
+MAX_POOL_TRANSIENT_RETRIES = 12
+
+
+def _next_daily_reset_epoch(now: float | None = None) -> float:
+    """Gemini RPD resets at midnight Pacific; 07:05 UTC (PDT) is used as a safe bound."""
+    current = datetime.fromtimestamp(now or time.time(), timezone.utc)
+    reset = current.replace(hour=7, minute=5, second=0, microsecond=0)
+    if reset <= current:
+        reset = datetime.fromtimestamp(reset.timestamp() + 86400, timezone.utc)
+    return reset.timestamp()
+
+
+class CredentialPoolTransport:
+    """Pace each credential of ONE model separately and never exceed provider limits.
+
+    Credentials are execution resources for the same model (never different
+    families). A request is sent with the bearer credential whose next pacing slot
+    is earliest. HTTP 429 per-minute responses delay that credential; daily-quota
+    429 responses suspend it until the next daily reset; 5xx responses are re-sent
+    after backoff. Such responses carry no model output, so re-sends never alter
+    model content. Every request is logged with the credential VARIABLE NAME only;
+    all pool secrets are redacted from response bytes.
+    """
+
+    def __init__(self, credential_envs, min_interval_seconds, events, credential_log, model_id):
+        if not credential_envs:
+            raise ValueError("At least one credential variable is required.")
+        self.credential_envs = tuple(credential_envs)
+        self.min_interval = min_interval_seconds
+        self.events = events
+        self.credential_log = credential_log
+        self.model_id = model_id
+        self._lock = threading.Lock()
+        self._next_slot = {name: 0.0 for name in self.credential_envs}
+        self._suspended_until = {name: 0.0 for name in self.credential_envs}
+
+    def _acquire(self) -> str:
+        while True:
+            with self._lock:
+                now_wall, now_mono = time.time(), time.monotonic()
+                active = [n for n in self.credential_envs if self._suspended_until[n] <= now_wall]
+                if active:
+                    name = min(active, key=lambda n: self._next_slot[n])
+                    slot = max(now_mono, self._next_slot[name])
+                    self._next_slot[name] = slot + self.min_interval
+                    wait = slot - now_mono
+                else:
+                    name, wait = None, min(self._suspended_until.values()) - now_wall
+            if name is not None:
+                if wait > 0:
+                    time.sleep(wait)
+                return name
+            print(f"[{self.model_id}] all credentials at daily quota; sleeping {wait / 3600:.2f} h", flush=True)
+            time.sleep(max(30.0, min(wait, 1800.0)))
+
+    def _redact(self, body: bytes) -> bytes:
+        for name in self.credential_envs:
+            secret = os.environ.get(name)
+            if secret:
+                body = body.replace(secret.encode("utf-8"), b"[REDACTED]")
+        return body
+
+    def __call__(self, endpoint: str, headers: dict[str, str], body: bytes, timeout: float) -> HttpResponse:
+        transient = 0
+        while True:
+            name = self._acquire()
+            secret = os.environ.get(name)
+            if not secret:
+                raise TimeoutError("credential variable not set")
+            sent_headers = {**headers, "Authorization": f"Bearer {secret}"}
+            started = _utc_now()
+            try:
+                response = _http_post_json(endpoint, sent_headers, body, timeout)
+            except (TimeoutError, OSError) as exc:
+                status, retry_after, kind, response = None, None, type(exc).__name__, None
+            else:
+                response = HttpResponse(response.status_code, self._redact(response.body), response.request_id, response.retry_after)
+                status, retry_after, kind = response.status_code, response.retry_after, "http_status"
+            self.credential_log.append({
+                "record_type": "credential_request", "at_utc": started, "model_id": self.model_id,
+                "credential_variable": name, "trial_id": getattr(_context, "trial_id", None),
+                "trial_attempt": getattr(_context, "attempt", None), "status_code": status,
+                "exception_type": None if kind == "http_status" else kind,
+                "request_body_sha256": hashlib.sha256(body).hexdigest(),
+            })
+            if response is not None and status == 429 and any(m in response.body for m in DAILY_QUOTA_MARKERS):
+                with self._lock:
+                    self._suspended_until[name] = _next_daily_reset_epoch()
+                self.events.append({
+                    "record_type": "credential_suspended_daily_quota", "at_utc": _utc_now(), "model_id": self.model_id,
+                    "credential_variable": name,
+                    "until_utc": datetime.fromtimestamp(self._suspended_until[name], timezone.utc).isoformat(),
+                })
+                continue
+            if response is not None and (status not in TRANSIENT_STATUS or any(m in response.body for m in NON_TRANSIENT_MARKERS)):
+                return response
+            if transient >= MAX_POOL_TRANSIENT_RETRIES:
+                if response is None:
+                    raise TimeoutError("transport retries exhausted")
+                return response
+            transient += 1
+            backoff = min(120.0, 4.0 * (2 ** (transient - 1))) + random.uniform(0, 2)
+            try:
+                if retry_after is not None:
+                    backoff = max(backoff, float(retry_after))
+            except ValueError:
+                pass
+            if status == 429:
+                with self._lock:
+                    self._next_slot[name] = max(self._next_slot[name], time.monotonic() + backoff)
+                backoff = 0.5  # another pooled credential may be available immediately
+            self.events.append({
+                "record_type": "transport_retry_event", "at_utc": _utc_now(), "model_id": self.model_id,
+                "credential_variable": name, "trial_id": getattr(_context, "trial_id", None),
+                "trial_attempt": getattr(_context, "attempt", None), "status_code": status,
+                "exception_type": None if kind == "http_status" else kind, "retry_after": retry_after,
+                "transport_attempt": transient, "backoff_seconds": round(backoff, 3),
+                "request_body_sha256": hashlib.sha256(body).hexdigest(),
+            })
+            time.sleep(backoff)
+
+
 @dataclass(frozen=True, slots=True)
 class PlannedTrial:
     identity: TrialIdentity
@@ -226,6 +349,7 @@ class ModelBatchRunner:
         max_trials: int | None = None,
         progress_every: int = 20,
         variant: ProtocolVariant = CORE_VARIANT,
+        credential_envs: tuple[str, ...] | None = None,
     ) -> None:
         self.variant = variant
         if not planned:
@@ -242,7 +366,13 @@ class ModelBatchRunner:
         self.checkpoint.requeue_interrupted()
         self.events = _LockedJsonl(self.run_dir / "transport_events.jsonl")
         self.runner_events = _LockedJsonl(self.run_dir / "runner_events.jsonl")
-        self.transport = ThrottledTransport(min_interval_seconds, self.events, model_config.model_id)
+        if credential_envs:
+            self.transport = CredentialPoolTransport(
+                credential_envs, min_interval_seconds, self.events,
+                _LockedJsonl(self.run_dir / "credential_requests.jsonl"), model_config.model_id,
+            )
+        else:
+            self.transport = ThrottledTransport(min_interval_seconds, self.events, model_config.model_id)
         self.adapter = make_adapter(model_config, self.transport)
         self.workers = workers
         self.max_trials = max_trials

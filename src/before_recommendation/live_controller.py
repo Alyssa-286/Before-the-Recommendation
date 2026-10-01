@@ -165,7 +165,8 @@ def live_trial_config_sha256(
         },
         "experiment_version": experiment_version,
         "phase1_config_sha256": phase1_config_sha256,
-        "model_config": model_config.public_dict(),
+        # Credential variable names are execution resources, not scientific settings.
+        "model_config": {k: v for k, v in model_config.public_dict().items() if k != "api_key_env"},
         "prompt_template_ids": ["ambiguous-v1-01", "explicit-v1-01"],
         "system_instruction": LIVE_SYSTEM_INSTRUCTION,
         "tool_definitions": [

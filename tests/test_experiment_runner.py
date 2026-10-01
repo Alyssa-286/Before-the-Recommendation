@@ -173,3 +173,58 @@ class MistralAdapterTests(unittest.TestCase):
         self.assertNotIn("mistral-secret", json.dumps(turn.request_payload))
         with self.assertRaises(ValueError):
             ModelConfig("mistral_chat_completions", "m", "mistral", "K", reasoning_effort="low")
+
+
+class CredentialPoolTests(unittest.TestCase):
+    def _pool(self, temp: str):
+        from before_recommendation.experiment_runner import CredentialPoolTransport, _LockedJsonl
+        events = _LockedJsonl(Path(temp) / "events.jsonl")
+        log = _LockedJsonl(Path(temp) / "creds.jsonl")
+        return CredentialPoolTransport(("UNIT_POOL_A", "UNIT_POOL_B"), 0, events, log, "m"), Path(temp)
+
+    def test_daily_quota_suspends_credential_and_switches_without_leaking_secret(self) -> None:
+        seen = []
+
+        def fake(endpoint, headers, body, timeout):
+            seen.append(headers["Authorization"])
+            if headers["Authorization"].endswith("secret-a"):
+                return HttpResponse(429, b'{"quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","echo":"secret-a"}', None)
+            return HttpResponse(200, b'{"ok":"secret-b"}', None)
+
+        with tempfile.TemporaryDirectory() as temp, \
+                mock.patch.dict(os.environ, {"UNIT_POOL_A": "secret-a", "UNIT_POOL_B": "secret-b"}), \
+                mock.patch.object(experiment_runner, "_http_post_json", side_effect=fake):
+            pool, root = self._pool(temp)
+            first = pool("https://x", {"Authorization": "Bearer secret-a"}, b"{}", 5)
+            second = pool("https://x", {"Authorization": "Bearer secret-a"}, b"{}", 5)
+            self.assertEqual(first.status_code, 200)
+            self.assertNotIn(b"secret-b", first.body)
+            self.assertEqual(second.status_code, 200)
+            self.assertEqual(seen, ["Bearer secret-a", "Bearer secret-b", "Bearer secret-b"])
+            logs = (root / "creds.jsonl").read_text(encoding="utf-8") + (root / "events.jsonl").read_text(encoding="utf-8")
+            self.assertIn("UNIT_POOL_A", logs)
+            self.assertIn("credential_suspended_daily_quota", logs)
+            self.assertNotIn("secret-a", logs)
+            self.assertNotIn("secret-b", logs)
+
+    def test_per_minute_429_is_resent_on_other_credential(self) -> None:
+        calls = []
+
+        def fake(endpoint, headers, body, timeout):
+            calls.append(headers["Authorization"])
+            return HttpResponse(429, b'{"error":"rpm"}', None) if len(calls) == 1 else HttpResponse(200, b"{}", None)
+
+        with tempfile.TemporaryDirectory() as temp, \
+                mock.patch.dict(os.environ, {"UNIT_POOL_A": "secret-a", "UNIT_POOL_B": "secret-b"}), \
+                mock.patch.object(experiment_runner, "_http_post_json", side_effect=fake), \
+                mock.patch.object(experiment_runner.time, "sleep"):
+            pool, _ = self._pool(temp)
+            self.assertEqual(pool("https://x", {"Authorization": "Bearer secret-a"}, b"{}", 5).status_code, 200)
+            self.assertEqual(calls, ["Bearer secret-a", "Bearer secret-b"])
+
+    def test_config_hash_ignores_credential_variable_name(self) -> None:
+        from before_recommendation.live_controller import live_trial_config_sha256
+        sha = load_phase1_config().config_sha256
+        a = ModelConfig("openai_chat_completions", "m", "f", "KEY_A", temperature=None)
+        b = ModelConfig("openai_chat_completions", "m", "f", "KEY_B", temperature=None)
+        self.assertEqual(live_trial_config_sha256(a, sha, "v"), live_trial_config_sha256(b, sha, "v"))

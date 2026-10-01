@@ -1,0 +1,107 @@
+{
+  "GEMINI_API_KEY": {
+    "ok_before_429": 28,
+    "status_codes": [
+      503,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      503,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "quota_error": null
+  },
+  "GEMINI_API_KEY_2": {
+    "ok_before_429": 20,
+    "status_codes": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      503,
+      200,
+      200,
+      200,
+      200,
+      200,
+      429
+    ],
+    "quota_error": {
+      "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.",
+      "quota_ids": [
+        "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+      ],
+      "quota_values": [
+        "15"
+      ],
+      "project_refs": []
+    }
+  },
+  "GEMINI_API_KEY_3": {
+    "ok_before_429": 16,
+    "status_codes": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      429
+    ],
+    "quota_error": {
+      "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.",
+      "quota_ids": [
+        "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+      ],
+      "quota_values": [
+        "15"
+      ],
+      "project_refs": []
+    }
+  }
+}
