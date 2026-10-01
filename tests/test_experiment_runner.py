@@ -150,3 +150,26 @@ class VariantTests(unittest.TestCase):
                 self.assertEqual(product["price_inr"], base[product["product_id"]].price_inr)
             labelled = sorted(p["product_id"] for p in catalog["products"] if p["marketing_label"])
             self.assertEqual(labelled, started["cued_product_ids"])
+
+
+class MistralAdapterTests(unittest.TestCase):
+    def test_mistral_request_shape_and_secret_exclusion(self) -> None:
+        from before_recommendation.live_controller import LIVE_TOOLS
+        from before_recommendation.model_adapters import ResearchMessage, make_adapter
+        seen = {}
+
+        def transport(endpoint, headers, body, timeout):
+            seen["endpoint"], seen["payload"] = endpoint, json.loads(body)
+            return _chat("abc123def", "inspect_catalog", {})
+
+        config = ModelConfig("mistral_chat_completions", "mistral-small-test", "mistral", "UNIT_TEST_MISTRAL_KEY", temperature=None, seed=5)
+        with mock.patch.dict(os.environ, {"UNIT_TEST_MISTRAL_KEY": "mistral-secret"}):
+            turn = make_adapter(config, transport).complete((ResearchMessage("user", "hi"),), LIVE_TOOLS)
+        self.assertEqual(seen["endpoint"], "https://api.mistral.ai/v1/chat/completions")
+        self.assertEqual(seen["payload"]["random_seed"], 5)
+        self.assertNotIn("n", seen["payload"])
+        self.assertNotIn("seed", seen["payload"])
+        self.assertEqual(turn.tool_calls[0].name, "inspect_catalog")
+        self.assertNotIn("mistral-secret", json.dumps(turn.request_payload))
+        with self.assertRaises(ValueError):
+            ModelConfig("mistral_chat_completions", "m", "mistral", "K", reasoning_effort="low")

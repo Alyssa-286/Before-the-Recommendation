@@ -445,19 +445,25 @@ class LiveControllerTests(unittest.TestCase):
         ])
         neutral, _, _ = self._execute(neutral_adapter, self._identity(marketing_condition="neutral"))
         scarcity, _, _ = self._execute(scarcity_adapter, self._identity(marketing_condition="scarcity"))
-        neutral_payload = json.loads(neutral_adapter.seen_messages[1][-1].content)
-        scarcity_payload = json.loads(scarcity_adapter.seen_messages[1][-1].content)
+        def parse(text: str) -> list[dict[str, str]]:
+            lines = text.splitlines()
+            header = lines[1].split("|")
+            return [dict(zip(header, line.split("|"))) for line in lines[2:]]
+
+        neutral_text = neutral_adapter.seen_messages[1][-1].content
+        scarcity_text = scarcity_adapter.seen_messages[1][-1].content
+        neutral_rows, scarcity_rows = parse(neutral_text), parse(scarcity_text)
         self.assertTrue(neutral.completed and scarcity.completed)
-        self.assertEqual(neutral_payload["marketing_condition"], "neutral")
-        self.assertEqual(scarcity_payload["marketing_condition"], "scarcity")
+        # The model never sees the experimental arm name, only the listing labels.
+        self.assertNotIn("scarcity", scarcity_text.casefold())
+        self.assertNotIn("neutral", neutral_text.casefold())
+        self.assertEqual(len(neutral_rows), 20)
         self.assertEqual(
-            [{key: value for key, value in product.items() if key != "marketing_label"} for product in neutral_payload["products"]],
-            [{key: value for key, value in product.items() if key != "marketing_label"} for product in scarcity_payload["products"]],
+            [{key: value for key, value in row.items() if key != "marketing_label"} for row in neutral_rows],
+            [{key: value for key, value in row.items() if key != "marketing_label"} for row in scarcity_rows],
         )
-        self.assertEqual(
-            sum(product["marketing_label"] is not None for product in scarcity_payload["products"]),
-            5,
-        )
+        self.assertTrue(all(row["marketing_label"] == "-" for row in neutral_rows))
+        self.assertEqual(sum(row["marketing_label"] != "-" for row in scarcity_rows), 5)
 
     def test_clarification_before_inspection_is_preserved_as_failure(self) -> None:
         adapter = ScriptedAdapter([_turn(self.model_id, _tool_call("c1", "ask_clarification", {"question": "Price?", "target": "price"}))])

@@ -52,5 +52,7 @@ class Stage:
 
 STAGES = {
     "pilot": Stage("pilot", "live-pilot-v1", ("SCENARIO_003", "SCENARIO_004"), (1,), False),
+    # Infrastructure-only token measurement of controller v1.2 on the corrected catalog (not research data).
+    "token_measurement": Stage("token_measurement", "token-measurement-v1", ("SCENARIO_005",), (1,), False),
     "core": Stage("core", "core-v1.0.0", tuple(f"SCENARIO_{i:03d}" for i in range(1, 41)), (1, 2, 3), True),
 }

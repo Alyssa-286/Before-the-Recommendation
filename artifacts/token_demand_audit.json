@@ -1,0 +1,182 @@
+{
+  "artifact_version": "token-demand-audit-v1",
+  "source": "data/pilot (32-run live pilot, controller v1.0.0, Phase-1 catalog)",
+  "models": {
+    "gemini-3.1-flash-lite": {
+      "trials": 16,
+      "valid": 16,
+      "valid_rate": 1.0,
+      "parser_retries": 11,
+      "input_tokens_per_trial_mean": 5282.1,
+      "output_tokens_per_trial_mean": 568.8,
+      "input_share_of_total": 0.903,
+      "calls_per_trial_mean": 3.2,
+      "tokens_by_call_index": {
+        "1": {
+          "input_mean": 488.5,
+          "output_mean": 10,
+          "n": 16
+        },
+        "2": {
+          "input_mean": 2051.5,
+          "output_mean": 201.5,
+          "n": 16
+        },
+        "3": {
+          "input_mean": 2278.5,
+          "output_mean": 307.9,
+          "n": 15
+        },
+        "4": {
+          "input_mean": 2423.8,
+          "output_mean": 274.2,
+          "n": 4
+        }
+      },
+      "input_tokens_in_final_retry_calls_total": 26834,
+      "by_arm": {
+        "ambiguous|discount": {
+          "n": 2,
+          "input_mean": 5866,
+          "output_mean": 478,
+          "calls_mean": 3.5
+        },
+        "ambiguous|neutral": {
+          "n": 2,
+          "input_mean": 5782,
+          "output_mean": 475,
+          "calls_mean": 3.5
+        },
+        "ambiguous|scarcity": {
+          "n": 2,
+          "input_mean": 7068.5,
+          "output_mean": 626.5,
+          "calls_mean": 4
+        },
+        "ambiguous|social_proof": {
+          "n": 2,
+          "input_mean": 4686.5,
+          "output_mean": 385.5,
+          "calls_mean": 3
+        },
+        "explicit|discount": {
+          "n": 2,
+          "input_mean": 5028.5,
+          "output_mean": 732,
+          "calls_mean": 3
+        },
+        "explicit|neutral": {
+          "n": 2,
+          "input_mean": 3749.5,
+          "output_mean": 478,
+          "calls_mean": 2.5
+        },
+        "explicit|scarcity": {
+          "n": 2,
+          "input_mean": 4996.5,
+          "output_mean": 655,
+          "calls_mean": 3
+        },
+        "explicit|social_proof": {
+          "n": 2,
+          "input_mean": 5079,
+          "output_mean": 720,
+          "calls_mean": 3
+        }
+      },
+      "request_component_chars_mean": {
+        "system": 601,
+        "tool_definitions_json": 1650,
+        "catalog_tool_result": 4145.0
+      }
+    },
+    "openai_gpt-oss-20b": {
+      "trials": 16,
+      "valid": 14,
+      "valid_rate": 0.875,
+      "parser_retries": 7,
+      "input_tokens_per_trial_mean": 3703.3,
+      "output_tokens_per_trial_mean": 551.2,
+      "input_share_of_total": 0.87,
+      "calls_per_trial_mean": 2.7,
+      "tokens_by_call_index": {
+        "1": {
+          "input_mean": 493,
+          "output_mean": 25.6,
+          "n": 16
+        },
+        "2": {
+          "input_mean": 1768.3,
+          "output_mean": 329.7,
+          "n": 16
+        },
+        "3": {
+          "input_mean": 2054.7,
+          "output_mean": 295.2,
+          "n": 10
+        },
+        "4": {
+          "input_mean": 2525,
+          "output_mean": 183,
+          "n": 1
+        }
+      },
+      "input_tokens_in_final_retry_calls_total": 15491,
+      "by_arm": {
+        "ambiguous|discount": {
+          "n": 2,
+          "input_mean": 3238,
+          "output_mean": 428,
+          "calls_mean": 2.5
+        },
+        "ambiguous|neutral": {
+          "n": 2,
+          "input_mean": 4292,
+          "output_mean": 567.5,
+          "calls_mean": 3
+        },
+        "ambiguous|scarcity": {
+          "n": 2,
+          "input_mean": 3243,
+          "output_mean": 287,
+          "calls_mean": 2.5
+        },
+        "ambiguous|social_proof": {
+          "n": 2,
+          "input_mean": 3191,
+          "output_mean": 313,
+          "calls_mean": 2.5
+        },
+        "explicit|discount": {
+          "n": 2,
+          "input_mean": 3631,
+          "output_mean": 796,
+          "calls_mean": 2.5
+        },
+        "explicit|neutral": {
+          "n": 2,
+          "input_mean": 4267,
+          "output_mean": 575.5,
+          "calls_mean": 3
+        },
+        "explicit|scarcity": {
+          "n": 2,
+          "input_mean": 2291.5,
+          "output_mean": 764.5,
+          "calls_mean": 2
+        },
+        "explicit|social_proof": {
+          "n": 2,
+          "input_mean": 5473,
+          "output_mean": 678,
+          "calls_mean": 3.5
+        }
+      },
+      "request_component_chars_mean": {
+        "system": 601,
+        "tool_definitions_json": 1650,
+        "catalog_tool_result": 4139.4
+      }
+    }
+  }
+}

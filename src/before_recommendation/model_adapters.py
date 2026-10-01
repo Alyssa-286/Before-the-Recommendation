@@ -29,6 +29,7 @@ ProviderName = Literal[
     "anthropic_messages",
     "gemini_openai_compat",
     "groq_chat_completions",
+    "mistral_chat_completions",
 ]
 
 _ENDPOINTS: dict[ProviderName, str] = {
@@ -36,6 +37,7 @@ _ENDPOINTS: dict[ProviderName, str] = {
     "anthropic_messages": "https://api.anthropic.com/v1/messages",
     "gemini_openai_compat": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
     "groq_chat_completions": "https://api.groq.com/openai/v1/chat/completions",
+    "mistral_chat_completions": "https://api.mistral.ai/v1/chat/completions",
 }
 
 
@@ -72,6 +74,8 @@ class ModelConfig:
             raise ValueError("The Gemini OpenAI-compatible chat endpoint does not document a seed parameter.")
         if self.reasoning_effort is not None and self.reasoning_effort not in {"minimal", "low", "medium", "high"}:
             raise ValueError("reasoning_effort must be null or one of minimal/low/medium/high.")
+        if self.provider == "mistral_chat_completions" and self.reasoning_effort is not None:
+            raise ValueError("The Mistral adapter does not send reasoning_effort.")
         if self.provider == "anthropic_messages" and self.reasoning_effort is not None:
             raise ValueError("The Anthropic Messages adapter does not send reasoning_effort.")
         if (
@@ -114,6 +118,7 @@ class ModelConfig:
                 ANTHROPIC_API_VERSION if self.provider == "anthropic_messages"
                 else "v1beta_openai_compat" if self.provider == "gemini_openai_compat"
                 else "v1_openai_compat" if self.provider == "groq_chat_completions"
+                else "v1" if self.provider == "mistral_chat_completions"
                 else None
             ),
         }
@@ -249,6 +254,8 @@ def make_adapter(config: ModelConfig, transport: HttpTransport | None = None) ->
         return GeminiOpenAICompatAdapter(config, actual_transport)
     if config.provider == "groq_chat_completions":
         return GroqChatCompletionsAdapter(config, actual_transport)
+    if config.provider == "mistral_chat_completions":
+        return MistralChatCompletionsAdapter(config, actual_transport)
     raise ValueError("Unsupported provider adapter.")
 
 
@@ -408,6 +415,19 @@ class GroqChatCompletionsAdapter(_OpenAICompatibleChatAdapter):
 
     max_tokens_parameter = "max_completion_tokens"
     include_seed = True
+
+
+class MistralChatCompletionsAdapter(_OpenAICompatibleChatAdapter):
+    """Adapter for Mistral's chat completions API (OpenAI-style function tools).
+
+    Mistral names its seed parameter ``random_seed``; it is sent when configured.
+    """
+
+    def _request(self, payload, headers):  # type: ignore[override]
+        payload.pop("n", None)
+        if self.config.seed is not None:
+            payload["random_seed"] = self.config.seed
+        return super()._request(payload, headers)
 
 
 class AnthropicMessagesAdapter(_BaseAdapter):

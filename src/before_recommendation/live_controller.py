@@ -47,7 +47,7 @@ from .tracing import (
 from .catalog import LaptopCatalog, catalog_fingerprint
 
 
-LIVE_CONTROLLER_VERSION = "1.1.0"
+LIVE_CONTROLLER_VERSION = "1.2.0"
 ANALYSIS_PLAN_VERSION = "analysis-plan-v1.0.0"
 MAX_PROVIDER_TURNS = 4
 MAX_PARSER_RETRIES = 1
@@ -87,7 +87,8 @@ SUBMIT_RECOMMENDATION_TOOL = ToolDefinition(
         "Submit the final model-owned preference representation, product ranking, evidence, uncertainty, and explanation. "
         "preference_weights are nonnegative relative-importance weights for price, quality, durability, and sustainability "
         "that must sum to 1. ranked_products lists catalog product_id values from most to least recommended. "
-        "uncertainty is a number from 0 (certain) to 1 (maximally uncertain)."
+        "uncertainty is a number from 0 (certain) to 1 (maximally uncertain). Keep evidence_used to at most "
+        "5 short phrases and final_explanation to at most 2 sentences."
     ),
     {
         "type": "object",
@@ -365,8 +366,9 @@ class LiveTrialController:
                     inspection_done = True
                     catalog_payload = _public_catalog_payload(visible_listings, marketing, scenario.catalog)
                     messages.append(ResearchMessage("assistant", turn.text, turn.tool_calls, provider_metadata=turn.provider_metadata))
-                    messages.append(ResearchMessage("tool", _canonical_json(catalog_payload), tool_call_id=call.call_id, name=call.name))
-                    event("tool", "catalog_inspected", catalog_payload)
+                    catalog_text = compact_catalog_text(catalog_payload)
+                    messages.append(ResearchMessage("tool", catalog_text, tool_call_id=call.call_id, name=call.name))
+                    event("tool", "catalog_inspected", {**catalog_payload, "model_visible_text": catalog_text})
                     continue
 
                 if call.name == "inspect_catalog":
@@ -613,10 +615,34 @@ def _public_catalog_payload(listings: tuple[ProductListing, ...], condition: Mar
             "marketing_label": listing.marketing_label,
         })
     return {
-        "catalog_version": catalog_fingerprint(scenario_catalog),
         "marketing_condition": condition.value,
         "products": products,
     }
+
+
+CATALOG_COLUMNS = (
+    "product_id", "price_inr", "quality", "durability", "repairability", "sustainability",
+    "battery_life", "brand_familiarity", "popularity", "marketing_label",
+)
+
+
+def compact_catalog_text(catalog_payload: dict[str, object]) -> str:
+    """Token-efficient, lossless table rendering of the public catalog payload.
+
+    Every product, attribute value and cue label in the payload is retained;
+    only JSON key repetition is removed. Scores are on a 0-100 scale.
+    """
+    lines = [
+        "Synthetic laptop catalog (scores 0-100, higher is better; price in INR).",
+        "|".join(CATALOG_COLUMNS),
+    ]
+    for product in catalog_payload["products"]:
+        cells = []
+        for column in CATALOG_COLUMNS:
+            value = product[column]
+            cells.append("-" if value is None else str(value))
+        lines.append("|".join(cells))
+    return "\n".join(lines)
 
 
 def _tool_call_record(call: ResearchToolCall) -> dict[str, object]:
