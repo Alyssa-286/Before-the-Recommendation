@@ -1,0 +1,119 @@
+{
+  "artifact_version": "live-pilot-summary-v1",
+  "purpose": "Infrastructure validation only; NOT main empirical data and excluded from all analyses.",
+  "design": "2 profiles (SCENARIO_003, SCENARIO_004) x 2 goals x 4 marketing x 2 model families x 1 repetition = 32",
+  "experiment_version": [
+    "live-pilot-v2"
+  ],
+  "code_revisions": [
+    "9ce38947e359a303818263da38ce74328e9b9338"
+  ],
+  "per_model": {
+    "google_gemini": {
+      "model_id": "gemini-3.1-flash-lite",
+      "observed_model_ids": [
+        "gemini-3.1-flash-lite"
+      ],
+      "planned": 16,
+      "trials": 16,
+      "valid": 16,
+      "failed": 0,
+      "terminal_failures": [],
+      "technical_retries": 0,
+      "parser_retries": 0,
+      "transport_resend_events": 4,
+      "transport_status_codes": [
+        "503"
+      ],
+      "clarification_rate_valid": 0.6875,
+      "clarification_targets": [
+        "college student",
+        "LumaBook_P10",
+        "LumaBook_P10",
+        "price",
+        "LumaBook_P10",
+        "LumaBook_P10",
+        "LumaBook_P10",
+        "college student laptop",
+        "LumaBook_P03, LumaBook_P11, LumaBook_P16",
+        "LumaBook_P10 vs LumaBook_P16 vs LumaBook_P19",
+        "LumaBook_P13 and LumaBook_P16"
+      ],
+      "provider_calls_total": 43,
+      "provider_calls_per_trial_mean": 2.6875,
+      "input_tokens_total": 47804,
+      "output_tokens_total": 4224,
+      "input_tokens_per_trial_mean": 2987.75,
+      "output_tokens_per_trial_mean": 264,
+      "latency_ms_median_per_call": 9670.877100001235,
+      "catalog_before_clarification_all": true,
+      "checkpoint_status": {
+        "completed": 16
+      }
+    },
+    "mistral": {
+      "model_id": "ministral-14b-2512",
+      "observed_model_ids": [
+        "ministral-14b-2512"
+      ],
+      "planned": 16,
+      "trials": 16,
+      "valid": 15,
+      "failed": 1,
+      "terminal_failures": [
+        [
+          "interface_contract_violation",
+          "expected_exactly_one_tool_call"
+        ]
+      ],
+      "technical_retries": 0,
+      "parser_retries": 0,
+      "transport_resend_events": 0,
+      "transport_status_codes": [],
+      "clarification_rate_valid": 0.9333333333333333,
+      "clarification_targets": [
+        "LumaBook_P01, LumaBook_P03, LumaBook_P06, LumaBook_P11, LumaBook_P13",
+        "LumaBook_P03",
+        "LumaBook_P03",
+        "LumaBook_P03",
+        "LumaBook_P10",
+        "LumaBook_P10 vs LumaBook_P16",
+        "LumaBook_P10",
+        "LumaBook_P10",
+        "LumaBook_P01, LumaBook_P03, LumaBook_P06, LumaBook_P11, LumaBook_P13",
+        "LumaBook_P03",
+        "LumaBook_P03",
+        "LumaBook_P10",
+        "LumaBook_P10 vs. LumaBook_P15",
+        "LumaBook_P10"
+      ],
+      "provider_calls_total": 46,
+      "provider_calls_per_trial_mean": 2.875,
+      "input_tokens_total": 56455,
+      "output_tokens_total": 5679,
+      "input_tokens_per_trial_mean": 3528.4375,
+      "output_tokens_per_trial_mean": 354.9375,
+      "latency_ms_median_per_call": 6551.199200001065,
+      "catalog_before_clarification_all": true,
+      "checkpoint_status": {
+        "completed": 15,
+        "failed": 1
+      }
+    }
+  },
+  "checks": {
+    "catalog_exposed_via_tool_result": true,
+    "catalog_inspection_before_clarification": true,
+    "cue_treatment_visible_only_in_commercial_arms": true,
+    "clarification_path_exercised": true,
+    "simulated_user_answered_every_clarification": true,
+    "structured_output_valid_rate": 0.96875,
+    "ranking_and_evaluation_present_for_valid": true,
+    "traces_complete_one_final_per_planned": true,
+    "failures_preserved": true,
+    "evaluator_isolation_leakage_findings": 0,
+    "utility_invariance_across_cue_arms": true
+  },
+  "leakage_findings": [],
+  "raw_data_directory": "data/pilot_v2/"
+}

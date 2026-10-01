@@ -1,7 +1,7 @@
 {
-  "artifact_version": "model-selection-v1",
-  "status": "PROVISIONAL \u2014 selection computed; experiment freeze blocked at the quota gate",
-  "selection_criterion": "lowest-cost eligible model-family pair under the predefined experimental constraints",
+  "artifact_version": "model-selection-v2",
+  "status": "FROZEN (2026-10-01) under researcher-imposed INR 0 budget",
+  "selection_criterion": "lowest-cost eligible model-family pair under the predefined experimental constraints (cost = INR 0 required; ties broken by protocol reliability, then by tokens per trial)",
   "constraints": [
     "two genuinely distinct model families",
     "authenticated API access with successful calls",
@@ -153,9 +153,9 @@
   },
   "selected_pair": {
     "google_gemini": "gemini-3.1-flash-lite",
-    "openai_gpt_oss": "openai/gpt-oss-20b"
+    "mistral": "ministral-14b-2512"
   },
-  "rationale": "Among eligible candidates, gemini-3.1-flash-lite (Google) and openai/gpt-oss-20b (OpenAI open-weight, via Groq) give the lowest projected paid cost for 2 x 960 core runs; both completed probe and pilot protocol with zero leakage findings. OpenAI-direct models were excluded only because the account has no API credits.",
+  "rationale": "Only free routes are admissible. Verified free: Gemini FreeTier projects (GEMINI_API_KEY_2, _3; quotaId GenerateRequestsPerMinutePerProjectPerModel-FreeTier, 15 RPM) and Mistral Free mode (ministral-14b: 30 RPM, 937.5K TPM; mistral-small/medium have 0 RPM on this plan). Groq Free (2 separate orgs x 200K TPD) cannot carry 960 trials before the deadline; OpenAI has no credits. Gemini (Google) and Mistral (Mistral AI) are distinct developer families. Among free Mistral models, ministral-14b-2512 and ministral-8b-2512 tied on reliability (4/4 valid each); 14b used fewer tokens per trial (4,006 vs 4,339).",
   "pilot_measurements": {
     "google_gemini": {
       "model_id": "gemini-3.1-flash-lite",
@@ -196,5 +196,30 @@
       }
     }
   },
-  "family_distinctness_note": "gpt-oss-20b is OpenAI-developed open-weight; Gemini is Google-developed. Serving provider (Groq) differs from developer; family is defined by developer/model lineage."
+  "family_distinctness_note": "gpt-oss-20b is OpenAI-developed open-weight; Gemini is Google-developed. Serving provider (Groq) differs from developer; family is defined by developer/model lineage.",
+  "superseded_v1": {
+    "status": "PROVISIONAL \u2014 selection computed; experiment freeze blocked at the quota gate",
+    "selected_pair": {
+      "google_gemini": "gemini-3.1-flash-lite",
+      "openai_gpt_oss": "openai/gpt-oss-20b"
+    },
+    "rationale": "Among eligible candidates, gemini-3.1-flash-lite (Google) and openai/gpt-oss-20b (OpenAI open-weight, via Groq) give the lowest projected paid cost for 2 x 960 core runs; both completed probe and pilot protocol with zero leakage findings. OpenAI-direct models were excluded only because the account has no API credits.",
+    "pair_comparison": {
+      "google_gemini-3.1-flash-lite + openai_gpt-oss-20b": 2.512,
+      "google_gemini-3.1-flash-lite + alibaba_qwen3.8-27b (probe-based estimate)": 16.462,
+      "openai_gpt-oss-20b + alibaba_qwen3.8-27b (probe-based estimate)": 14.8
+    }
+  },
+  "excluded_credentials": {
+    "GEMINI_API_KEY": "free-tier status not confirmed (30 burst calls without a FreeTier quota response); excluded to protect INR 0",
+    "MISTRAL_API_KEY_2": "shares the same workspace quota as MISTRAL_API_KEY (counters decrement across keys); adds no capacity",
+    "GROQ_API_KEY, GROQ_API_KEY_2": "GroqCloud (gsk_ format, not xAI); separate Free orgs; family not selected"
+  },
+  "evidence": [
+    "artifacts/credential_capacity_audit.json",
+    "artifacts/gemini_tier_probe.json",
+    "artifacts/mistral_selection_probe.json",
+    "artifacts/live_pilot_v2_summary.json",
+    "artifacts/free_quota_feasibility.json"
+  ]
 }

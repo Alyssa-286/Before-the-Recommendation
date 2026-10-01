@@ -1,0 +1,314 @@
+{
+  "artifact_version": "experiment-freeze-v2",
+  "frozen_at_utc": "2026-10-01T11:54:53+00:00",
+  "status": "FROZEN before any core trial; core trials pin the commit that adds this file",
+  "budget": "INR 0: free routes only (Gemini FreeTier projects, Mistral Free mode); no billing, credits or upgrades",
+  "design": {
+    "scenarios": 40,
+    "goals": [
+      "ambiguous",
+      "explicit"
+    ],
+    "marketing": [
+      "neutral",
+      "scarcity",
+      "social_proof",
+      "discount"
+    ],
+    "model_families": [
+      "google_gemini",
+      "mistral"
+    ],
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "planned_core_runs": 1920,
+    "experiment_version": "core-v2.0.0"
+  },
+  "environment": {
+    "config_path": "configs/core_v2.json",
+    "config_sha256": "072fb8f50a64984a370f41bb6b7311a7823ba6781893c84a20099fba0742740a",
+    "phase1_config_sha256_preserved": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2",
+    "catalog_seed": 20260955,
+    "objective_seed": 20260931,
+    "cue_seed": 20260932,
+    "catalog_fingerprint": "666e06a8703526fec59145a5c19b9e41deac8bd9caaabe86f1f8bc12b24f66f8",
+    "cued_product_ids": [
+      "LumaBook_P02",
+      "LumaBook_P09",
+      "LumaBook_P10",
+      "LumaBook_P14",
+      "LumaBook_P19"
+    ],
+    "acceptance_version": "catalog-acceptance-v1.0.0",
+    "acceptance_passed": true,
+    "acceptance_criteria_commit": "349e932 (committed before seed search)",
+    "scenario_fingerprints_sha256": "9717cb1a103fd2f76e5ffa9fd66b4f3f26a0798e9c58d2080a9d2e0c7006ecdb"
+  },
+  "versions": {
+    "catalog_generator": "1.0.0",
+    "objective_generator": "1.0.0",
+    "cue_generator": "1.0.0",
+    "prompt_generator": "1.0.0",
+    "scenario_generator": "1.0.0",
+    "simulated_user": "1.0.0",
+    "live_controller": "1.2.0",
+    "model_adapter": "1.2.0",
+    "runner": "1.0.0",
+    "analysis_dataset": "analysis-dataset-v1.0.0",
+    "analysis_plan": "analysis-plan-v1.0.0"
+  },
+  "prompts": {
+    "system_instruction": "You are participating in a controlled laptop-shopping research task. Use only the provided synthetic catalog. Your first action must be inspect_catalog. After inspecting it, you may ask at most one focused clarification question using ask_clarification, or submit your recommendation using submit_recommendation. If you ask a question, wait for the controller's answer before submitting. Do not call multiple tools in one response. Do not use external product sources. Do not include a clarification answer in your final output. Submit exactly the model-owned fields required by submit_recommendation.",
+    "core_templates": [
+      "ambiguous-v1-01",
+      "explicit-v1-01"
+    ],
+    "tools": [
+      {
+        "name": "inspect_catalog",
+        "description": "Inspect the synthetic laptop catalog and its storefront cue labels. Must be called first.",
+        "input_schema": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "ask_clarification",
+        "description": "Ask the simulated shopper one focused clarification question about one target.",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string"
+            },
+            "target": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "question",
+            "target"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "submit_recommendation",
+        "description": "Submit the final model-owned preference representation, product ranking, evidence, uncertainty, and explanation. preference_weights are nonnegative relative-importance weights for price, quality, durability, and sustainability that must sum to 1. ranked_products lists catalog product_id values from most to least recommended. uncertainty is a number from 0 (certain) to 1 (maximally uncertain). Keep evidence_used to at most 5 short phrases and final_explanation to at most 2 sentences.",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "preference_weights": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "quality": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "durability": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "sustainability": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              },
+              "required": [
+                "price",
+                "quality",
+                "durability",
+                "sustainability"
+              ],
+              "additionalProperties": false
+            },
+            "ranked_products": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
+            },
+            "evidence_used": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "uncertainty": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "final_explanation": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "preference_weights",
+            "ranked_products",
+            "evidence_used",
+            "uncertainty",
+            "final_explanation"
+          ],
+          "additionalProperties": false
+        }
+      }
+    ]
+  },
+  "file_sha256": {
+    "configs/core_v2.json": "072fb8f50a64984a370f41bb6b7311a7823ba6781893c84a20099fba0742740a",
+    "analysis/analysis_plan.md": "19313bab9808430735baa67b0c8aef3f26bf4c9a8d2d4a7cfd27c088dbeb65dd",
+    "schemas/agent_output.v2.schema.json": "15001674fc78ffe397cd34ef7cec3e3cc38e198ae8380b8bbd5d62420b6ef49e",
+    "src/before_recommendation/live_controller.py": "80d9ce7f77b460633272cfda05f79e477efbb639dafa1124b0006babd42b514e",
+    "src/before_recommendation/live_output.py": "55c31fb0bc39ccf044b33d0f32f0f451c52b24499d9a177560648da065790248",
+    "src/before_recommendation/evaluator.py": "f9f598b9e736d9294a31f96c85f7ce861acd66263e9b7e6f3cb7a29961cf1338",
+    "src/before_recommendation/simulated_user.py": "717a1c152ff4af7d5e142a3e5127fdfddf3d3d3e56f5f3b0576e8daeb0211290",
+    "src/before_recommendation/dataset.py": "23c16b8c3c8d2d34ab460fca73b6756131742c779f5f970589f7db7ef2bb2559",
+    "src/before_recommendation/statistics.py": "64bf9ede492d5027713e17cbf5afc45d7f1c9748314345c44e8e64a5a9c30d9c",
+    "src/before_recommendation/experiment_runner.py": "dce38cd16db98aca12c04fa9e5372a6b667c098873a5edc607a816c09d3cf536",
+    "src/before_recommendation/model_adapters.py": "279e9c54afe7fdd4d203f840c3d4af97aa7588cf7f457f639bd327aca32616c4"
+  },
+  "models": {
+    "google_gemini": {
+      "model_config": {
+        "adapter_version": "1.2.0",
+        "provider": "gemini_openai_compat",
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        "model_id": "gemini-3.1-flash-lite",
+        "model_family": "google_gemini",
+        "temperature": null,
+        "seed": null,
+        "max_output_tokens": 4096,
+        "timeout_seconds": 120.0,
+        "reasoning_effort": null,
+        "structured_output_mode": "function_tool_schema_with_local_strict_parser",
+        "provider_api_version": "v1beta_openai_compat"
+      },
+      "core_live_trial_config_sha256": "6fe40d8a244da77a32d5e8eec1925e82bdad69cdacecdfc3efdae8c9bbb63343"
+    },
+    "mistral": {
+      "model_config": {
+        "adapter_version": "1.2.0",
+        "provider": "mistral_chat_completions",
+        "endpoint": "https://api.mistral.ai/v1/chat/completions",
+        "model_id": "ministral-14b-2512",
+        "model_family": "mistral",
+        "temperature": null,
+        "seed": null,
+        "max_output_tokens": 4096,
+        "timeout_seconds": 120.0,
+        "reasoning_effort": null,
+        "structured_output_mode": "function_tool_schema_with_local_strict_parser",
+        "provider_api_version": "v1"
+      },
+      "core_live_trial_config_sha256": "2fe18e4b6d1bed7e189bad1fa3b9387ba8c53d06f7cb096434c220894dfdc10b"
+    }
+  },
+  "protocol_limits": {
+    "provider_turns": 4,
+    "parser_retries": 1,
+    "clarifications": 1,
+    "tool_calls_per_response": 1
+  },
+  "retry_rules": {
+    "parser": "one in-trial corrected-submission request after invalid JSON/schema; original attempt preserved",
+    "technical_trial_retry": "one full re-run (attempt 2, separate files) after terminal provider failure in ['api_error', 'malformed_response', 'rate_limit', 'timeout']",
+    "transport": "HTTP 429/5xx carry no model output: per-minute 429 delays that credential, daily-quota 429 suspends it until reset, up to 12 transient re-sends; all logged",
+    "never_retried": "refusals, protocol/order violations, final invalid outputs after the parser retry"
+  },
+  "exclusion_rules": "No outcome imputation. A run is valid only if it completes the ordered protocol with a schema-valid submission. Invalid runs remain in the manifest and denominators; scenarios lacking a needed cell are excluded only from that contrast (complete-case at scenario level, counts reported).",
+  "analysis": {
+    "plan": "analysis/analysis_plan.md v1.0.0",
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20260930,
+    "deviations_documented": [
+      "catalog regenerated under catalog-acceptance-v1.0.0 (pre-data)",
+      "model pair changed to Gemini + Mistral under the INR 0 constraint (pre-data)",
+      "robustness datasets restricted to the ambiguous goal (primary contrast), 1 repetition (pre-data)"
+    ]
+  },
+  "robustness_stages": {
+    "robust_template": {
+      "experiment_version": "robust-template-v1",
+      "variant": {
+        "template_index": 1,
+        "product_order_seed": null,
+        "cue_seed": null
+      },
+      "goals": [
+        "ambiguous"
+      ],
+      "trials_per_model": 160
+    },
+    "robust_order": {
+      "experiment_version": "robust-order-v1",
+      "variant": {
+        "template_index": 0,
+        "product_order_seed": 20261003,
+        "cue_seed": null
+      },
+      "goals": [
+        "ambiguous"
+      ],
+      "trials_per_model": 160
+    },
+    "robust_cue_location": {
+      "experiment_version": "robust-cue-location-v1",
+      "variant": {
+        "template_index": 0,
+        "product_order_seed": null,
+        "cue_seed": 20261004
+      },
+      "goals": [
+        "ambiguous"
+      ],
+      "trials_per_model": 160
+    }
+  },
+  "capacity_plan": {
+    "google_gemini": {
+      "pilot_calls_per_trial": 2.6875,
+      "pilot_tokens_per_trial": 3251.8,
+      "core_trials": 960,
+      "core_requests_with_10pct_reserve": 2838,
+      "core_tokens_with_10pct_reserve": 3433848,
+      "robustness_trials": 480,
+      "robustness_requests_with_reserve": 1419,
+      "paced_requests_per_minute": 24.0,
+      "core_minutes_at_pace": 118.3,
+      "credential_pool_variables": [
+        "GEMINI_API_KEY_2",
+        "GEMINI_API_KEY_3"
+      ]
+    },
+    "mistral": {
+      "pilot_calls_per_trial": 2.875,
+      "pilot_tokens_per_trial": 3883.4,
+      "core_trials": 960,
+      "core_requests_with_10pct_reserve": 3036,
+      "core_tokens_with_10pct_reserve": 4100844,
+      "robustness_trials": 480,
+      "robustness_requests_with_reserve": 1518,
+      "paced_requests_per_minute": 24.0,
+      "core_minutes_at_pace": 126.5,
+      "credential_pool_variables": [
+        "MISTRAL_API_KEY"
+      ]
+    }
+  },
+  "schedule": "core first (both models in parallel, checkpointed); then robustness in plan order; analysis only after the core data-quality audit passes"
+}

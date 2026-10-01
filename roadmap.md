@@ -406,13 +406,27 @@ Test the manuscript against:
 
 **Current milestone:** Provider access validated, lowest-cost eligible pair computed, 32-run live pilot passed infrastructure checks (2026-10-01).
 
-**Current task:** HUMAN GATE (INR 0 budget) — scientific-validity gate passed (corrected catalog seed 20260955); free-quota gate failed with current keys. Need Gemini AI Studio tier check plus a free `MISTRAL_API_KEY`, or an approved deviation. See "Phase 2 validity and free-quota gates — 2026-10-01".
+**Current task:** Core experiment (1,920 runs) executing from the frozen configuration; then data-quality audit, analysis, robustness, manuscript.
 
 **Main experiment:** NOT STARTED
 
 **Paper writing:** NOT STARTED
 
 **Submission:** NOT STARTED
+
+## Phase 2 free-route capacity, selection and experiment freeze — 2026-10-01
+
+**Status: EXPERIMENT FROZEN (`artifacts/experiment_freeze.json`); core run starting. Budget: INR 0.**
+
+- New credentials (names only): `GEMINI_API_KEY_2`, `GEMINI_API_KEY_3`, `MISTRAL_API_KEY`, `MISTRAL_API_KEY_2`, `GROQ_API_KEY_2` (GroqCloud `gsk_` format, not xAI).
+- Capacity audit (`artifacts/credential_capacity_audit.json`, `artifacts/gemini_tier_probe.json`; tiny bounded calls): Gemini keys 2 and 3 returned HTTP 429 with quotaId `GenerateRequestsPerMinutePerProjectPerModel-FreeTier` (quotaValue 15) and behave as separate projects; `GEMINI_API_KEY` accepted 30 burst calls without a FreeTier response, so its free status is unconfirmed and it is EXCLUDED. Mistral Free mode: `ministral-14b` 30 RPM / 937,500 TPM and `ministral-8b` 188 RPM / 625,000 TPM; `mistral-small`/`medium` have 0 RPM; both Mistral keys decrement the same counters (one shared workspace pool). Groq keys are separate Free orgs (independent counters), each 200K TPD. Official Gemini docs: limits are per project; no fetched term prohibits separate projects the researcher controls.
+- Mistral selection probe (`artifacts/mistral_selection_probe.json`, not research data): ministral-14b-2512 and ministral-8b-2512 both 4/4 valid, 0 parser retries, 0 leakage; 14b selected on lower tokens/trial (4,006 vs 4,339).
+- **Frozen pair** (`artifacts/model_selection.json` v2): Google `gemini-3.1-flash-lite` (pool `GEMINI_API_KEY_2`, `GEMINI_API_KEY_3`) + Mistral `ministral-14b-2512` (`MISTRAL_API_KEY`). Uniform settings: provider-default temperature, 4,096 max output tokens, 120 s timeout.
+- Added `CredentialPoolTransport` (per-credential pacing; per-minute 429 delays a credential; daily-quota 429 suspends it until reset; secrets redacted; variable names logged per request). Config hash now excludes credential variable names. 85 tests pass.
+- Final pilot `pilot_v2` (`artifacts/live_pilot_v2_summary.json`, not research data): Gemini 16/16 valid, Mistral 15/16 valid; 0 parser retries; 0 leakage; all ordering/cue/utility-invariance checks pass.
+- Freeze records environment hashes, prompts/tools, file SHA-256s, model configs, per-model live config hashes (Gemini `6fe40d8a...`, Mistral `2fe18e4b...`), retry/exclusion rules, robustness stages (ambiguous goal, 40 scenarios x 4 arms x 1 rep per model per check, frozen pre-data), pre-data deviations, and a capacity plan (~2,840 Gemini and ~3,040 Mistral requests incl. 10% reserve; ~118 min / ~127 min at paced rates if daily quotas allow).
+
+| 2026-10-01 | PHASE 2 — FREEZE | Capacity audit, Mistral selection, pilot v2, experiment freeze | Free routes verified for Gemini (2 projects) and Mistral; pilot v2 passed; freeze written before core data. | `artifacts/{credential_capacity_audit,gemini_tier_probe,mistral_selection_probe,live_pilot_v2_summary,model_selection,experiment_freeze}.json` | Run the 1,920-run core in checkpointed batches. |
 
 ## Phase 2 validity and free-quota gates — 2026-10-01
 

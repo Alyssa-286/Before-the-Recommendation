@@ -1,0 +1,1 @@
+{"failure":{"attempt_number":2,"category":"interface_contract_violation","detail_code":"expected_exactly_one_tool_call","message":"Each model response must contain exactly one tool call.","recoverable":false,"stage":"tool_protocol"},"record_type":"failure_event","taxonomy_version":"1.0.0","trial_id":"7878107492a1d0959c89e019f05c4fd2888dfa074fe86f3ad951e5ab7f26c4e8"}
