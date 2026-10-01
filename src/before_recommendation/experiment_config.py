@@ -10,8 +10,13 @@ lowest level the Groq gpt-oss endpoint documents; Gemini uses its default.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 
 from .model_adapters import ModelConfig
+
+
+# Corrected environment (catalog-acceptance-v1.0.0); configs/phase1.json is preserved.
+CORE_CONFIG_PATH = Path(__file__).resolve().parents[2] / "configs" / "core_v2.json"
 
 
 _COMMON = dict(temperature=None, max_output_tokens=4096, timeout_seconds=120.0)

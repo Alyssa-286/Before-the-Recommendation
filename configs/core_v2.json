@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0.0",
+  "experiment_version": "core-v2.0.0",
+  "seeds": {
+    "catalog": 20260955,
+    "objectives": 20260931,
+    "cues": 20260932
+  },
+  "catalog": {
+    "count": 20,
+    "price_min_inr": 35000,
+    "price_max_inr": 95000,
+    "price_step_inr": 1000,
+    "score_min": 40,
+    "score_max": 100
+  },
+  "objectives": {
+    "count": 40,
+    "jitter": 0.04,
+    "dimensions": [
+      "price",
+      "quality",
+      "durability",
+      "sustainability"
+    ],
+    "profile_classes": {
+      "budget_oriented": {
+        "price": 0.55,
+        "quality": 0.22,
+        "durability": 0.13,
+        "sustainability": 0.1
+      },
+      "quality_oriented": {
+        "price": 0.18,
+        "quality": 0.52,
+        "durability": 0.18,
+        "sustainability": 0.12
+      },
+      "durability_oriented": {
+        "price": 0.18,
+        "quality": 0.22,
+        "durability": 0.45,
+        "sustainability": 0.15
+      },
+      "sustainability_oriented": {
+        "price": 0.18,
+        "quality": 0.18,
+        "durability": 0.14,
+        "sustainability": 0.5
+      },
+      "balanced": {
+        "price": 0.3,
+        "quality": 0.27,
+        "durability": 0.23,
+        "sustainability": 0.2
+      }
+    }
+  },
+  "cues": {
+    "fraction": 0.25
+  },
+  "prompts": {
+    "explicit_budget_reference_inr": 70000
+  },
+  "catalog_acceptance": {
+    "version": "catalog-acceptance-v1.0.0",
+    "base_catalog_seed": 20260930,
+    "seeds_rejected_before_acceptance": 25,
+    "accepted_catalog_seed": 20260955,
+    "supersedes_config": "configs/phase1.json (preserved unchanged)"
+  }
+}

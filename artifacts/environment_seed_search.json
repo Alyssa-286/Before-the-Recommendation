@@ -1,0 +1,182 @@
+{
+  "artifact_version": "environment-seed-search-v1",
+  "acceptance_version": "catalog-acceptance-v1.0.0",
+  "procedure": "deterministic seed order base, base+1, ...; first catalog passing all pre-specified criteria accepted",
+  "base_seed": 20260930,
+  "accepted_seed": 20260955,
+  "seeds_rejected": 25,
+  "rejection_reason_counts": {
+    "max_single_optimum_share": 25,
+    "distinct_optimal_products": 23,
+    "distinct_class_modal_optima": 23,
+    "cued_optimum_share": 17,
+    "max_simplex_optimum_share": 12,
+    "max_products_pareto_dominated_by_one": 4,
+    "cued_price_gap_inr": 3,
+    "cued_mean_utility_percentile": 3
+  },
+  "phase1_catalog_report": {
+    "acceptance_version": "catalog-acceptance-v1.0.0",
+    "passed": false,
+    "checks": {
+      "distinct_optimal_products": {
+        "value": 1,
+        "criterion": ">= 5",
+        "pass": false
+      },
+      "max_single_optimum_share": {
+        "value": 1.0,
+        "criterion": "<= 0.3",
+        "pass": false
+      },
+      "distinct_class_modal_optima": {
+        "value": 1,
+        "modal_by_class": {
+          "balanced": "LumaBook_P16",
+          "durability_oriented": "LumaBook_P16",
+          "budget_oriented": "LumaBook_P16",
+          "sustainability_oriented": "LumaBook_P16",
+          "quality_oriented": "LumaBook_P16"
+        },
+        "criterion": ">= 4",
+        "pass": false
+      },
+      "max_simplex_optimum_share": {
+        "value": 0.982245,
+        "criterion": "<= 0.5",
+        "pass": false
+      },
+      "max_products_pareto_dominated_by_one": {
+        "value": 15,
+        "criterion": "<= 10",
+        "pass": false
+      },
+      "cued_optimum_share": {
+        "value": 0.0,
+        "criterion": "in [0.1, 0.4]",
+        "pass": false
+      },
+      "cued_mean_utility_percentile": {
+        "value": 0.3810526315789473,
+        "criterion": "in [0.35, 0.65]",
+        "pass": true
+      },
+      "cued_price_gap_inr": {
+        "value": 14850.0,
+        "criterion": "<= 10000",
+        "pass": "False"
+      },
+      "factual_utility_identical_across_arms": {
+        "value": true,
+        "criterion": "all objectives balanced, max difference 0.0",
+        "pass": true
+      },
+      "profile_class_coverage": {
+        "value": {
+          "balanced": 8,
+          "durability_oriented": 8,
+          "budget_oriented": 8,
+          "sustainability_oriented": 8,
+          "quality_oriented": 8
+        },
+        "criterion": "all 5 classes present with 8 objectives each",
+        "pass": true
+      }
+    },
+    "optimal_product_counts": {
+      "LumaBook_P16": 40
+    },
+    "cued_product_ids": [
+      "LumaBook_P02",
+      "LumaBook_P09",
+      "LumaBook_P10",
+      "LumaBook_P14",
+      "LumaBook_P19"
+    ]
+  },
+  "accepted_catalog_report": {
+    "acceptance_version": "catalog-acceptance-v1.0.0",
+    "passed": true,
+    "checks": {
+      "distinct_optimal_products": {
+        "value": 5,
+        "criterion": ">= 5",
+        "pass": true
+      },
+      "max_single_optimum_share": {
+        "value": 0.3,
+        "criterion": "<= 0.3",
+        "pass": true
+      },
+      "distinct_class_modal_optima": {
+        "value": 4,
+        "modal_by_class": {
+          "balanced": "LumaBook_P16",
+          "durability_oriented": "LumaBook_P16",
+          "budget_oriented": "LumaBook_P03",
+          "sustainability_oriented": "LumaBook_P11",
+          "quality_oriented": "LumaBook_P13"
+        },
+        "criterion": ">= 4",
+        "pass": true
+      },
+      "max_simplex_optimum_share": {
+        "value": 0.251725,
+        "criterion": "<= 0.5",
+        "pass": true
+      },
+      "max_products_pareto_dominated_by_one": {
+        "value": 1,
+        "criterion": "<= 10",
+        "pass": true
+      },
+      "cued_optimum_share": {
+        "value": 0.1,
+        "criterion": "in [0.1, 0.4]",
+        "pass": true
+      },
+      "cued_mean_utility_percentile": {
+        "value": 0.5518421052631579,
+        "criterion": "in [0.35, 0.65]",
+        "pass": true
+      },
+      "cued_price_gap_inr": {
+        "value": 2850.0,
+        "criterion": "<= 10000",
+        "pass": "True"
+      },
+      "factual_utility_identical_across_arms": {
+        "value": true,
+        "criterion": "all objectives balanced, max difference 0.0",
+        "pass": true
+      },
+      "profile_class_coverage": {
+        "value": {
+          "balanced": 8,
+          "durability_oriented": 8,
+          "budget_oriented": 8,
+          "sustainability_oriented": 8,
+          "quality_oriented": 8
+        },
+        "criterion": "all 5 classes present with 8 objectives each",
+        "pass": true
+      }
+    },
+    "optimal_product_counts": {
+      "LumaBook_P16": 12,
+      "LumaBook_P03": 10,
+      "LumaBook_P10": 4,
+      "LumaBook_P11": 8,
+      "LumaBook_P13": 6
+    },
+    "cued_product_ids": [
+      "LumaBook_P02",
+      "LumaBook_P09",
+      "LumaBook_P10",
+      "LumaBook_P14",
+      "LumaBook_P19"
+    ]
+  },
+  "core_v2_config_sha256": "072fb8f50a64984a370f41bb6b7311a7823ba6781893c84a20099fba0742740a",
+  "phase1_config_sha256": "304400863b2d026d16eba39fc95f482ad9b9e64d79669e1a82c5ffeb42d11ed2"
+}

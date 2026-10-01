@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from before_recommendation.config import load_phase1_config  # noqa: E402
-from before_recommendation.experiment_config import GOALS, MARKETINGS, PACING, SELECTED_MODELS, STAGES  # noqa: E402
+from before_recommendation.experiment_config import CORE_CONFIG_PATH, GOALS, MARKETINGS, PACING, SELECTED_MODELS, STAGES  # noqa: E402
 from before_recommendation.experiment_runner import ModelBatchRunner, current_code_revision, plan_trials  # noqa: E402
 from before_recommendation.runtime_config import load_runtime_environment  # noqa: E402
 from before_recommendation.scenarios import generate_scenarios  # noqa: E402
@@ -33,7 +33,7 @@ def main() -> None:
     stage = STAGES[args.stage]
     load_runtime_environment(names=("GEMINI_API_KEY", "GROQ_API_KEY", "OPENAI_API_KEY"))
     revision = args.code_revision or current_code_revision(ROOT)
-    by_id = {s.scenario_id: s for s in generate_scenarios(load_phase1_config())}
+    by_id = {s.scenario_id: s for s in generate_scenarios(load_phase1_config(CORE_CONFIG_PATH))}
     scenarios = tuple(by_id[scenario_id] for scenario_id in stage.scenario_ids)
     families = args.family or sorted(SELECTED_MODELS)
     results: dict[str, object] = {}
