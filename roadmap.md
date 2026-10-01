@@ -414,6 +414,14 @@ Test the manuscript against:
 
 **Submission:** NOT STARTED
 
+## Phase 2 core execution log — 2026-10-01
+
+**Status: CORE RUNNING (checkpointed, detached). No design change.**
+
+- Core launched 11:55Z at freeze commit `33bfa10`. The first runner process stopped when the agent session ended at 492 completed traces; raw JSONL integrity verified (0 malformed lines). Resumed 18:19Z pinned to `33bfa10` (no `src`/`configs`/`schemas`/`analysis` change since the freeze, verified by `git diff`). In-flight trials were requeued by the checkpoint and re-run as attempt 2 (attempt-1 raw I/O preserved). To survive future session ends, the runner was relaunched 18:26Z as a detached OS process with a single-runner lock file; robustness stages are chained by detached orchestrators (`scripts/orchestrate_robustness.py`, `logs/orchestrator.log`) that start only after each family's core arm completes.
+- **Gemini daily quota confirmed:** HTTP 429 quotaId `GenerateRequestsPerDayPerProjectPerModel-FreeTier`, quotaValue **500** per project; resets at midnight Pacific (07:00 UTC). Two free projects give 1,000 requests/day; observed ~2.96 requests per Gemini trial. The pool suspends an exhausted credential until reset (`credential_suspended_daily_quota` events). Projected Gemini core completion: ~2026-10-03 08:00Z; Gemini robustness (480 trials) thereafter in plan order, expected to complete ~2026-10-05. Mistral (Free mode, 30 RPM, no daily cap observed) completes its core arm within hours, then its robustness stages.
+- Interim validity monitoring only (no outcome inspection): Gemini 0 terminal failures in the first 227; Mistral terminal failures are interface-contract violations (response without exactly one tool call), preserved and counted.
+
 ## Phase 2 free-route capacity, selection and experiment freeze — 2026-10-01
 
 **Status: EXPERIMENT FROZEN (`artifacts/experiment_freeze.json`); core run starting. Budget: INR 0.**

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import sys
 import threading
@@ -33,6 +34,20 @@ def main() -> None:
     parser.add_argument("--code-revision", default=None, help="Pin to an existing checkpoint revision (resume only).")
     args = parser.parse_args()
     stage = STAGES[args.stage]
+    lock = ROOT / "data" / stage.name / f".runner{'.' + '+'.join(sorted(args.family)) if args.family else ''}.lock"
+    lock.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        raise SystemExit(f"Another runner holds {lock}; refusing to share a checkpoint.")
+    os.write(fd, str(os.getpid()).encode()); os.close(fd)
+    try:
+        _run(args, stage)
+    finally:
+        lock.unlink(missing_ok=True)
+
+
+def _run(args, stage) -> None:
     load_runtime_environment(names=tuple(name for pool in CREDENTIAL_POOLS.values() for name in pool))
     revision = args.code_revision or current_code_revision(ROOT)
     by_id = {s.scenario_id: s for s in generate_scenarios(load_phase1_config(CORE_CONFIG_PATH))}
