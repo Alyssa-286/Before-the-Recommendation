@@ -1,0 +1,37 @@
+{
+  "artifact_version": "mistral-selection-probe-v1",
+  "purpose": "infrastructure-only; not research data",
+  "code_revision": "7950e44689920791c6708e28e1e6ad06867890f7",
+  "candidates": {
+    "ministral-14b-2512": {
+      "status": {
+        "completed": 4
+      },
+      "valid": 4,
+      "trials": 4,
+      "failures": [],
+      "parser_retries": 0,
+      "clarifications": 4,
+      "tokens_per_trial": 4005.75,
+      "observed_model_ids": [
+        "ministral-14b-2512"
+      ],
+      "leakage_findings": 0
+    },
+    "ministral-8b-2512": {
+      "status": {
+        "completed": 4
+      },
+      "valid": 4,
+      "trials": 4,
+      "failures": [],
+      "parser_retries": 0,
+      "clarifications": 4,
+      "tokens_per_trial": 4338.5,
+      "observed_model_ids": [
+        "ministral-8b-2512"
+      ],
+      "leakage_findings": 0
+    }
+  }
+}

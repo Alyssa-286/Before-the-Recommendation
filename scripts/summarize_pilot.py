@@ -15,11 +15,14 @@ from before_recommendation.config import load_phase1_config  # noqa: E402
 from before_recommendation.dataset import build_rows, load_stage, read_jsonl  # noqa: E402
 from before_recommendation.leakage import check_request_payload  # noqa: E402
 from before_recommendation.scenarios import generate_scenarios  # noqa: E402
+from before_recommendation.experiment_config import CORE_CONFIG_PATH  # noqa: E402
 
 
 def main() -> None:
-    stage_dir = ROOT / "data" / "pilot"
-    scenarios = {s.scenario_id: s for s in generate_scenarios(load_phase1_config())}
+    stage = sys.argv[1] if len(sys.argv) > 1 else "pilot"
+    stage_dir = ROOT / "data" / stage
+    config = load_phase1_config(CORE_CONFIG_PATH) if stage != "pilot" else load_phase1_config()
+    scenarios = {s.scenario_id: s for s in generate_scenarios(config)}
     rows = build_rows(stage_dir, scenarios)
     finals, all_traces, io = load_stage(stage_dir)
     trace_by_id = {t["trial_id"]: t for t in finals}
@@ -99,7 +102,9 @@ def main() -> None:
         "leakage_findings": leakage,
         "raw_data_directory": "data/pilot/",
     }
-    out = ROOT / "artifacts" / "live_pilot_summary.json"
+    summary["experiment_version"] = sorted({r["experiment_version"] for r in rows})
+    summary["raw_data_directory"] = f"data/{stage}/"
+    out = ROOT / "artifacts" / ("live_pilot_summary.json" if stage == "pilot" else f"live_{stage}_summary.json")
     out.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({"checks": checks, "per_model": {k: {kk: v[kk] for kk in ("valid", "failed", "technical_retries", "parser_retries", "clarification_rate_valid", "provider_calls_per_trial_mean", "input_tokens_per_trial_mean", "output_tokens_per_trial_mean", "transport_resend_events")} for k, v in per_model.items()}}, indent=1))
 
