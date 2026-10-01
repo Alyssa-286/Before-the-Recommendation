@@ -1,0 +1,1 @@
+{"failure":{"attempt_number":3,"category":"interface_contract_violation","detail_code":"unknown_tool","message":"Model called an unsupported research tool.","recoverable":false,"stage":"tool_protocol"},"record_type":"failure_event","taxonomy_version":"1.0.0","trial_id":"2fc899820981d230730de25d273f0c64d2e666b4eac75d1328e330e9541db6ae"}

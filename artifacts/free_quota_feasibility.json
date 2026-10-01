@@ -1,0 +1,64 @@
+{
+  "artifact_version": "free-quota-feasibility-v1",
+  "evaluated_at_utc": "2026-10-01T01:11+00:00",
+  "budget_constraint": "strictly INR 0: no billing, upgrades, credits, or paid usage; no duplicate accounts",
+  "measured_demand_controller_v1_2": {
+    "source": "data/token_measurement (8 Groq gpt-oss-20b trials, corrected catalog; infrastructure only)",
+    "input_tokens_per_trial": 2041.6,
+    "output_tokens_per_trial": 640.9,
+    "total_tokens_per_trial": 2682.5,
+    "calls_per_trial": 2.25,
+    "parser_retries": 0,
+    "valid": "7/8",
+    "note": "output tokens include reasoning tokens and vary 161-1,673 per trial; v1.0 pilot used 4,254 tokens/trial for gpt-oss and 5,851 for Gemini"
+  },
+  "per_model_core_requirement": {
+    "trials": 960,
+    "tokens": 2575200,
+    "requests": 2160
+  },
+  "data_collection_window_days": 3.72,
+  "data_collection_cutoff_utc": "2026-10-04T18:30:00+00:00",
+  "providers": {
+    "groq_free (current key)": {
+      "verified": "account plan Free via response headers (1,000 requests/day, 8,000 tokens/min); docs: gpt-oss-20b 30 RPM, 1K RPD, 8K TPM, 200K TPD",
+      "binding_limit": "200,000 tokens/day",
+      "days_needed": 12.9,
+      "trials_possible_in_window": 277,
+      "feasible": false
+    },
+    "gemini_free (current key)": {
+      "verified": "authentication and protocol compatibility (pilot 16/16 valid); billing status and free-tier RPD/TPD are shown only in Google AI Studio and are UNVERIFIED",
+      "requests_needed": 2160,
+      "feasible": "UNKNOWN \u2014 requires the researcher to read the project's tier and gemini-3.1-flash-lite limits in AI Studio"
+    },
+    "openai (current key)": {
+      "verified": "authenticated; HTTP 429 insufficient_quota (no credits); no free API tier",
+      "feasible": false
+    },
+    "cerebras": {
+      "verified": "official rate-limit page: Free Trial requires adding a verified payment method; $5 credits expiring in 30 days; 'no permanently free tier'; gpt-oss-120b 5 RPM, 1M TPD",
+      "feasible": false,
+      "reason": "requires a payment method on file (conflicts with INR 0 constraint); trial-credit based"
+    },
+    "mistral": {
+      "verified": "official docs: 'Free mode: API access is enabled by default with no credit card required. Usage and rate limits apply.' Numeric limits appear only in the account Admin > Limits page",
+      "key_variable_missing": "MISTRAL_API_KEY",
+      "adapter": "implemented and fake-transport tested (mistral_chat_completions)",
+      "feasible": "UNKNOWN until a key exists and limits are read; distinct model family (Mistral AI)"
+    },
+    "openrouter_free_models": {
+      "verified": "official limits page states free-model daily request caps tied to credits purchased; numeric values are rendered client-side and could not be read",
+      "feasible": "UNKNOWN; treated as insufficient-risk because commonly cited caps are far below ~2,160 requests"
+    },
+    "github_models": {
+      "verified": "official numeric limits not machine-readable from the fetched page",
+      "feasible": "UNKNOWN"
+    },
+    "nvidia_nim": {
+      "verified": "official docs: free NIM API endpoints for prototyping for NVIDIA Developer Program members; production requires a license; numeric limits not documented on the fetched page",
+      "feasible": "UNKNOWN; research use of a prototyping endpoint may be acceptable but limits unverified"
+    }
+  },
+  "conclusion": "With the existing keys, a fully free configuration cannot complete the frozen 960-trial gpt-oss arm before the deadline (Groq Free 200K TPD binding). Gemini free capacity is unverified."
+}

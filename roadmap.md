@@ -406,13 +406,27 @@ Test the manuscript against:
 
 **Current milestone:** Provider access validated, lowest-cost eligible pair computed, 32-run live pilot passed infrastructure checks (2026-10-01).
 
-**Current task:** HUMAN GATE — (1) Groq Free-plan quota cannot carry the core (about 20 days of daily token quota needed); (2) catalog-dominance finding (one product optimal for all 40 objectives) needs a researcher decision before freeze. See "Phase 2 live access, selection and pilot — 2026-10-01".
+**Current task:** HUMAN GATE (INR 0 budget) — scientific-validity gate passed (corrected catalog seed 20260955); free-quota gate failed with current keys. Need Gemini AI Studio tier check plus a free `MISTRAL_API_KEY`, or an approved deviation. See "Phase 2 validity and free-quota gates — 2026-10-01".
 
 **Main experiment:** NOT STARTED
 
 **Paper writing:** NOT STARTED
 
 **Submission:** NOT STARTED
+
+## Phase 2 validity and free-quota gates — 2026-10-01
+
+**Status: SCIENTIFIC-VALIDITY GATE PASSED (offline); FREE-QUOTA GATE FAILED with current keys. Main experiment NOT STARTED. Budget constraint from researcher: strictly INR 0 (no billing, upgrades, credits, paid usage, or extra accounts).**
+
+- **Catalog audit:** no scoring or normalization bug (independent recomputation matches 40/40 optima); objective weights span 0.07-0.60 per dimension. Cause of the single optimum: the Phase-1 catalog generator draws all attributes i.i.d. with no price-attribute trade-off; under seed 20260930 `LumaBook_P16` Pareto-dominates 15/19 products and is optimal on 98.2% of the Dirichlet(1) weight simplex. Across 1,000 generator seeds, a median of only 3 distinct optima occurs (single optimum in 10.9%). Classified as a construct-validity defect of the catalog generator.
+- **Correction (catalog-acceptance-v1.0.0):** 10 acceptance criteria were committed first (`349e932`, `src/before_recommendation/environment_diagnostics.py`), before any search: >=5 distinct optima, max single-optimum share <=0.30, >=4 distinct class-modal optima, simplex max share <=0.50, <=10 products Pareto-dominated by one product, cued-optimum share in [0.10, 0.40], cued mean utility percentile in [0.35, 0.65], cued price gap <= INR 10,000, identical factual utility across arms, full profile-class coverage. Deterministic seed search (base seed upward) rejected 25 seeds and accepted catalog seed 20260955 (`c962e51`; `configs/core_v2.json`; `artifacts/environment_seed_search.json`). Accepted catalog: 5 distinct optima (max 12/40), simplex max 0.252, max dominated-by-one 1, cued-optimum share 0.10, cued percentile 0.552, price gap INR 2,850, factual utility identical. Attribute generator, objectives, cue seed, prompts and hypotheses unchanged; `configs/phase1.json` preserved. Tests: Phase-1 catalog fails, core_v2 passes, objectives/cue seed preserved, exact reproduction, cues never alter facts.
+- **Token audit** (`artifacts/token_demand_audit.json`): in the v1.0 pilot the catalog tool result (~4,145 chars of JSON) was re-sent on every later call and dominated input (input = 87-90% of tokens); `sum` parser retries added ~1 call per affected trial.
+- **Instrument v1.2.0 (pre-freeze, `c967097`):** lossless pipe-table catalog (72% fewer chars; all attributes and cue labels retained); the model no longer sees the arm name (`marketing_condition`) or the internal catalog fingerprint; concise-output guidance (<=5 evidence phrases, <=2-sentence explanation); weight-sum constraint stated. Mistral adapter added as a free-tier contingency. 82 tests pass.
+- **Token measurement** (8 Groq gpt-oss-20b trials, corrected catalog, infrastructure only, `data/token_measurement/`): 7/8 valid (1 interface-contract failure preserved), 0 parser retries, 2.25 calls, 2,042 input + 641 output = 2,683 tokens per trial, 0 leakage findings.
+- **Free-quota feasibility** (`artifacts/free_quota_feasibility.json`): gpt-oss arm needs ~2.58 M tokens; Groq Free allows 200 K/day, so ~12.9 days versus a ~3.7-day collection window (about 277 trials). Gemini free-tier limits and billing status are visible only in AI Studio (unverified). OpenAI: no credits. Cerebras: requires a payment method (trial credits only). Mistral: official docs state Free mode needs no credit card; numeric limits visible only in its Admin panel; `MISTRAL_API_KEY` not configured. OpenRouter/GitHub Models/NVIDIA NIM numeric free limits could not be verified from official pages.
+- **Exact decision needed (researcher):** (1) read the Gemini project tier and `gemini-3.1-flash-lite` free RPD/TPD in AI Studio and confirm no billing is linked; (2) either create a free Mistral API key (no card) and add `MISTRAL_API_KEY` to `.env`, so the pair becomes Google Gemini + Mistral subject to verified limits, or explicitly approve a documented design deviation. No core runs until both gates pass.
+
+| 2026-10-01 | PHASE 2 — VALIDITY/QUOTA GATES | Catalog audit and correction; token audit; v1.2 instrument; Groq token measurement; free-provider audit | Validity gate passed offline (seed 20260955); free-quota gate failed with current keys (Groq TPD binding, Gemini unverified). No core data. | `artifacts/{environment_seed_search,token_demand_audit,free_quota_feasibility}.json`; `configs/core_v2.json`; `data/token_measurement/` | Researcher: Gemini tier check and a free Mistral key, or an approved deviation. |
 
 ## Phase 2 live access, selection and pilot — 2026-10-01
 
