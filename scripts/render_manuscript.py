@@ -165,6 +165,32 @@ def build_tokens() -> dict[str, str]:
         for o in OUT:
             p = rr["primary_commercial_vs_neutral_ambiguous"][o]["pooled"]
             t[f"{name}_{o}"] = est(p); t[f"{name}_{o}_verdict"] = verdict(p)
+    # ---- hypothesis verdicts by pre-set rules (95% CI excludes zero in the stated direction) ----
+    def direction(pd: dict, sign: int) -> bool:
+        return pd.get("estimate") is not None and (pd["ci_low"] > 0 if sign > 0 else pd["ci_high"] < 0)
+
+    def hv(block: dict, sign: int | None) -> str:
+        pooled = block["pooled"]; models = [block["by_model"][m] for m in MODEL]
+        test = (lambda q: excludes_zero(q)) if sign is None else (lambda q: direction(q, sign))
+        n_models = sum(test(q) for q in models)
+        if test(pooled) and n_models == 2:
+            return "supported (pooled and in both model families)"
+        if test(pooled):
+            return f"supported in the pooled estimate but in only {n_models} of 2 model families"
+        if n_models:
+            return "not supported in the pooled estimate; supported in one model family only"
+        return "not supported (95% intervals include zero, pooled and per model)"
+    t["H1_verdict"] = hv(R["h1_ambiguous_minus_explicit_all_arms"]["representation_error"], +1)
+    t["H2_verdict"] = hv(prim["representation_error"], None)
+    mod = R["secondary_moderation_ambiguous_minus_explicit"]["representation_error"]
+    t["H3_verdict"] = ("supported (ambiguous-minus-explicit difference in ΔD excludes zero)" if excludes_zero(mod["pooled"])
+                       else "not supported (the moderation contrast includes zero)")
+    sep = h4["pooled|ambiguous"]
+    util_null = not excludes_zero(prim["recommended_utility"]["pooled"])
+    rep_shift = excludes_zero(prim["representation_error"]["pooled"]) or sep["share_weight_shift_gt_0_05"] > 0
+    t["H4_verdict"] = ("consistent with separation: utility contrast includes zero while represented weights shift relative to the matched neutral run"
+                       if util_null and rep_shift else "not consistent with separation (utility moved with representation)" if not util_null else "indeterminate")
+    t["H5_verdict"] = "exploratory; " + verdict(h5["pooled"])
     return t
 
 
@@ -209,6 +235,8 @@ def main() -> None:
         .replace("[[TABLE4]]", table("table4_robustness_results")).replace("[[TABLE5]]", table("table5_failure_taxonomy")) \
         .replace("[[TABLE1]]", table("table1_experimental_conditions")).replace("[[TABLE2]]", table("table2_scenario_construction")) \
         .replace("[[TABLE_METRICS]]", table("table_metric_definitions"))
+    if "[[VERIFY]]" in disc:
+        raise SystemExit("Interpretive sentences marked [[VERIFY]] must be checked against results before rendering.")
     head, body = fixed.split("## 1. Introduction", 1)
     abstract_kw, rest = disc.split("<!-- BODY -->", 1)
     paper = fill(head + abstract_kw + "\n## 1. Introduction" + body + "\n" + rest, tokens) + "\n" + references_md()
@@ -221,6 +249,33 @@ def main() -> None:
     print("words (excluding references and tables):", words)
     (ROOT / "manuscript" / "word_count.json").write_text(json.dumps({"words_excluding_references_and_tables": words}) + "\n", encoding="utf-8")
     to_docx(paper, ROOT / "manuscript" / "paper.docx")
+    to_pdf(paper, ROOT / "manuscript" / "paper.pdf")
+
+
+def to_pdf(md: str, path: Path) -> None:
+    import markdown
+    import matplotlib
+    from xhtml2pdf import pisa
+    font_dir = Path(matplotlib.get_data_path()) / "fonts" / "ttf"
+    regular, bold = (font_dir / "DejaVuSerif.ttf").as_uri(), (font_dir / "DejaVuSerif-Bold.ttf").as_uri()
+    italic = (font_dir / "DejaVuSerif-Italic.ttf").as_uri()
+    body = markdown.markdown(md, extensions=["tables"])
+    body = body.replace('src="../', f'src="{(ROOT).as_uri()}/')
+    css = f"""
+    @font-face {{ font-family: Body; src: url('{regular}'); }}
+    @font-face {{ font-family: Body; src: url('{bold}'); font-weight: bold; }}
+    @font-face {{ font-family: Body; src: url('{italic}'); font-style: italic; }}
+    @page {{ size: a4; margin: 2.2cm 2.2cm 2.2cm 2.2cm; }}
+    body {{ font-family: Body; font-size: 10.5pt; line-height: 1.4; }}
+    h1 {{ font-size: 16pt; }} h2 {{ font-size: 13pt; margin-top: 14pt; }} h3 {{ font-size: 11pt; }}
+    table {{ border: 0.5pt solid #888; font-size: 7.5pt; }} td, th {{ padding: 2pt; border: 0.5pt solid #bbb; }}
+    img {{ width: 16cm; }} blockquote {{ margin-left: 1cm; font-style: italic; }}
+    """
+    html_doc = f"<html><head><meta charset='utf-8'><style>{css}</style></head><body>{body}</body></html>"
+    with path.open("wb") as fh:
+        result = pisa.CreatePDF(html_doc, dest=fh, encoding="utf-8")
+    if result.err:
+        raise RuntimeError("PDF rendering failed")
 
 
 def to_docx(md: str, path: Path) -> None:

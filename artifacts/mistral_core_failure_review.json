@@ -1,0 +1,31 @@
+{
+  "artifact_version": "mistral-core-failure-review-v1",
+  "model": "ministral-14b-2512",
+  "terminal_failures": 39,
+  "classification": [
+    {
+      "n": 35,
+      "category": "interface_contract_violation",
+      "detail": "expected_exactly_one_tool_call",
+      "taxonomy": "invalid_structured_output",
+      "nature": "model behaviour: plain-text answer without a tool call (finish_reason=stop); 1 of these occurred on attempt 2 of a trial requeued after the runner interruption"
+    },
+    {
+      "n": 1,
+      "category": "clarification_order_violation",
+      "detail": "more_than_one_clarification",
+      "taxonomy": "catalog_inspection_order_violation (protocol order: second clarification)",
+      "nature": "model behaviour: violated the one-question limit"
+    },
+    {
+      "n": 3,
+      "category": "schema_validation_failure",
+      "detail": "final submission invalid after the single permitted parser retry",
+      "taxonomy": "invalid_structured_output",
+      "nature": "model output"
+    }
+  ],
+  "provider_or_transport_failures": 0,
+  "eligible_for_frozen_technical_retry": 0,
+  "decision": "All 39 are terminal under the frozen policy (refusals/protocol violations/final invalid outputs are never re-run). They remain in the manifest and all denominators; no replacement trials were generated."
+}
