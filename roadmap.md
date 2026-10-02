@@ -414,6 +414,12 @@ Test the manuscript against:
 
 **Submission:** NOT STARTED
 
+## Phase 2 core execution log — 2026-10-02
+
+- Mistral core arm complete: 960/960 executed (921 valid, 39 terminal). Review (`artifacts/mistral_core_failure_review.json`): 35 plain-text responses without a tool call, 1 second clarification, 3 schema-invalid after the parser retry; 0 provider failures; none eligible for the frozen technical re-run; all retained. Mistral robustness datasets collected (template 151/160, order 143/160, cue location 155/160 valid).
+- Detached runner processes ended twice without completion records (machine sleep/session end); checkpoints and raw JSONL intact each time; relaunched pinned to `33bfa10` with stale-lock removal after confirming no live process. Gemini core at 645/960 after the 2026-10-02 quota window; resumes at the 07:05Z reset (projected completion ~08:00Z 2026-10-03).
+- `GEMINI_API_KEY_4` (researcher-reported new project): one tiny test request returned HTTP 403 "Your project has been denied access"; not added to the pool; no further requests.
+
 ## Phase 2 core execution log — 2026-10-01
 
 **Status: CORE RUNNING (checkpointed, detached). No design change.**
