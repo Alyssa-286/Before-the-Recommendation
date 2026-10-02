@@ -419,6 +419,7 @@ Test the manuscript against:
 - Mistral core arm complete: 960/960 executed (921 valid, 39 terminal). Review (`artifacts/mistral_core_failure_review.json`): 35 plain-text responses without a tool call, 1 second clarification, 3 schema-invalid after the parser retry; 0 provider failures; none eligible for the frozen technical re-run; all retained. Mistral robustness datasets collected (template 151/160, order 143/160, cue location 155/160 valid).
 - Detached runner processes ended twice without completion records (machine sleep/session end); checkpoints and raw JSONL intact each time; relaunched pinned to `33bfa10` with stale-lock removal after confirming no live process. Gemini core at 645/960 after the 2026-10-02 quota window; resumes at the 07:05Z reset (projected completion ~08:00Z 2026-10-03).
 - `GEMINI_API_KEY_4` (researcher-reported new project): one tiny test request returned HTTP 403 "Your project has been denied access"; not added to the pool; no further requests.
+- `GEMINI_API_KEY_5` (researcher-reported new project): one tiny test request returned HTTP 200 from `gemini-3.1-flash-lite` while keys 2/3 were at their daily limit (hence a different project). Added as an execution credential for the same Gemini model via `run_experiment.py --extra-credential` (scripts only; frozen `src` unchanged); runner resumed from the existing checkpoint at 645/960 pinned to `33bfa10`. Free-tier status is confirmed only when its first FreeTier quota response is logged.
 
 ## Phase 2 core execution log — 2026-10-01
 

@@ -40,8 +40,9 @@ def main() -> None:
     for stage in ORDER:
         log(f"start {stage} family={family}")
         with (ROOT / "logs" / f"{stage}_{family}.log").open("a", encoding="utf-8") as out:
+            extra = [f"--extra-credential={e}" for e in sys.argv[2:]]
             rc = subprocess.call([sys.executable, "scripts/run_experiment.py", "--stage", stage, "--family", family,
-                                  "--code-revision", FREEZE_REVISION], cwd=ROOT, stdout=out, stderr=subprocess.STDOUT)
+                                  "--code-revision", FREEZE_REVISION, *extra], cwd=ROOT, stdout=out, stderr=subprocess.STDOUT)
         log(f"end {stage} family={family} rc={rc}")
     log(f"orchestrator done family={family}")
 

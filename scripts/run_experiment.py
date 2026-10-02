@@ -32,6 +32,8 @@ def main() -> None:
     parser.add_argument("--family", choices=sorted(SELECTED_MODELS), action="append")
     parser.add_argument("--max-trials", type=int, default=None)
     parser.add_argument("--code-revision", default=None, help="Pin to an existing checkpoint revision (resume only).")
+    parser.add_argument("--extra-credential", action="append", default=[],
+                        help="FAMILY=ENV_VAR: add an execution credential (same model) to a family's pool; never a new family.")
     args = parser.parse_args()
     stage = STAGES[args.stage]
     lock = ROOT / "data" / stage.name / f".runner{'.' + '+'.join(sorted(args.family)) if args.family else ''}.lock"
@@ -48,7 +50,14 @@ def main() -> None:
 
 
 def _run(args, stage) -> None:
-    load_runtime_environment(names=tuple(name for pool in CREDENTIAL_POOLS.values() for name in pool))
+    pools = {fam: list(pool) for fam, pool in CREDENTIAL_POOLS.items()}
+    for item in args.extra_credential:
+        fam, _, env = item.partition("=")
+        if fam not in pools or not env.isidentifier():
+            raise SystemExit(f"Invalid --extra-credential {item!r}")
+        if env not in pools[fam]:
+            pools[fam].append(env)
+    load_runtime_environment(names=tuple(name for pool in pools.values() for name in pool))
     revision = args.code_revision or current_code_revision(ROOT)
     by_id = {s.scenario_id: s for s in generate_scenarios(load_phase1_config(CORE_CONFIG_PATH))}
     scenarios = tuple(by_id[scenario_id] for scenario_id in stage.scenario_ids)
@@ -62,7 +71,7 @@ def _run(args, stage) -> None:
         interval, workers = PACING[family]
         runner = ModelBatchRunner(ROOT / "data" / stage.name, config, planned, min_interval_seconds=interval,
                                   workers=workers, max_trials=args.max_trials, variant=stage.variant,
-                                  credential_envs=CREDENTIAL_POOLS[family])
+                                  credential_envs=tuple(pools[family]))
         results[family] = runner.run()
         print(family, json.dumps(results[family]), flush=True)
 
