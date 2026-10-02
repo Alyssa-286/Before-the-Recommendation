@@ -420,6 +420,7 @@ Test the manuscript against:
 - Detached runner processes ended twice without completion records (machine sleep/session end); checkpoints and raw JSONL intact each time; relaunched pinned to `33bfa10` with stale-lock removal after confirming no live process. Gemini core at 645/960 after the 2026-10-02 quota window; resumes at the 07:05Z reset (projected completion ~08:00Z 2026-10-03).
 - `GEMINI_API_KEY_4` (researcher-reported new project): one tiny test request returned HTTP 403 "Your project has been denied access"; not added to the pool; no further requests.
 - `GEMINI_API_KEY_5` (researcher-reported new project): one tiny test request returned HTTP 200 from `gemini-3.1-flash-lite` while keys 2/3 were at their daily limit (hence a different project). Added as an execution credential for the same Gemini model via `run_experiment.py --extra-credential` (scripts only; frozen `src` unchanged); runner resumed from the existing checkpoint at 645/960 pinned to `33bfa10`. Free-tier status is confirmed only when its first FreeTier quota response is logged.
+- 2026-10-02T18:45Z: Gemini core 823/960. `GEMINI_API_KEY_5` reached its daily limit; a tiny rejected request returned quotaId `GenerateRequestsPerDayPerProjectPerModel-FreeTier`, quotaValue 500, confirming free tier (all three Gemini credentials in use are verified free). Remaining 137 Gemini core trials run after the 07:05Z reset.
 
 ## Phase 2 core execution log — 2026-10-01
 
