@@ -332,6 +332,9 @@ def to_pdf(md: str, path: Path) -> None:
     italic = (font_dir / "DejaVuSerif-Italic.ttf").as_uri()
     body = markdown.markdown(md, extensions=["tables"])
     body = body.replace('src="../', f'src="{(ROOT).as_uri()}/')
+    # xhtml2pdf's default list bullet is missing from the embedded font; use explicit bullets.
+    body = re.sub(r"</?[uo]l>", "", body)
+    body = re.sub(r"<li>(.*?)</li>", lambda m: '<p class="li">&#8226;&#160;' + m.group(1) + "</p>", body, flags=re.S)
     css = f"""
     @font-face {{ font-family: Body; src: url('{regular}'); }}
     @font-face {{ font-family: Body; src: url('{bold}'); font-weight: bold; }}
@@ -340,7 +343,7 @@ def to_pdf(md: str, path: Path) -> None:
     body {{ font-family: Body; font-size: 10.5pt; line-height: 1.4; }}
     h1 {{ font-size: 16pt; }} h2 {{ font-size: 13pt; margin-top: 14pt; }} h3 {{ font-size: 11pt; }}
     table {{ border: 0.5pt solid #888; font-size: 7.5pt; }} td, th {{ padding: 2pt; border: 0.5pt solid #bbb; }}
-    img {{ width: 16cm; }} blockquote {{ margin-left: 1cm; font-style: italic; }}
+    img {{ width: 16cm; }} p.li {{ margin-left: 0.6cm; text-indent: -0.4cm; margin-top: 2pt; margin-bottom: 2pt; }} blockquote {{ margin-left: 1cm; font-style: italic; }}
     """
     html_doc = f"<html><head><meta charset='utf-8'><style>{css}</style></head><body>{body}</body></html>"
     with path.open("wb") as fh:

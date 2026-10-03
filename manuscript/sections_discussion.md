@@ -70,13 +70,13 @@ No locked hard constraint applies in this environment (the ₹70,000 amount is a
 
 The checks are reported in the frozen order.
 
-1. **Repeat stability.** Across the three repetitions of a cell, Gemini agreed on the clarification decision in {{stab_google_gemini_clar}} of cells and on the top product in {{stab_google_gemini_top}}, with a mean maximum pairwise weight spread of {{stab_google_gemini_spread}}. For Ministral the corresponding figures were {{stab_mistral_clar}}, {{stab_mistral_top}} and {{stab_mistral_spread}}. Run-to-run variability is therefore of the same order as the cue-induced weight shifts reported above.
-2. **Alternate request template** ({{robust_template_status}}): ΔD = {{robust_template_representation_error}}; clarification difference {{robust_template_clarification}}; utility difference {{robust_template_recommended_utility}}.
-3. **Permuted product order** ({{robust_order_status}}): ΔD = {{robust_order_representation_error}}; clarification difference {{robust_order_clarification}}; utility difference {{robust_order_recommended_utility}}.
-4–5. **Model-specific effects** and **the ambiguous-versus-explicit comparison** are reported in Section 6.
-6. **Relocated cue set**, where labels were placed on a different, independently drawn set of five products ({{robust_cue_location_status}}): ΔD = {{robust_cue_location_representation_error}}; clarification difference {{robust_cue_location_clarification}}; utility difference {{robust_cue_location_recommended_utility}}.
+- **(1) Repeat stability.** Across the three repetitions of a cell, Gemini agreed on the clarification decision in {{stab_google_gemini_clar}} of cells and on the top product in {{stab_google_gemini_top}}, with a mean maximum pairwise weight spread of {{stab_google_gemini_spread}}. For Ministral the corresponding figures were {{stab_mistral_clar}}, {{stab_mistral_top}} and {{stab_mistral_spread}}. Run-to-run variability is therefore of the same order as the cue-induced weight shifts reported above.
+- **(2) Alternate request template** ({{robust_template_status}}): ΔD = {{robust_template_representation_error}}; clarification difference {{robust_template_clarification}}; utility difference {{robust_template_recommended_utility}}.
+- **(3) Permuted product order** ({{robust_order_status}}): ΔD = {{robust_order_representation_error}}; clarification difference {{robust_order_clarification}}; utility difference {{robust_order_recommended_utility}}.
+- **(4–5) Model-specific effects** and **the ambiguous-versus-explicit comparison** are reported in Section 6.
+- **(6) Relocated cue set**, where labels were placed on a different, independently drawn set of five products ({{robust_cue_location_status}}): ΔD = {{robust_cue_location_representation_error}}; clarification difference {{robust_cue_location_clarification}}; utility difference {{robust_cue_location_recommended_utility}}.
 
-Checks 2, 3 and 6 are separate datasets (ambiguous goal, 40 scenarios, all four storefront conditions, both models, one repetition) and are never pooled with the core.
+Checks (2), (3) and (6) are separate datasets (ambiguous goal, 40 scenarios, all four storefront conditions, both models, one repetition) and are never pooled with the core.
 
 The factorial models (outcome ~ goal × marketing + model, scenario-clustered SEs) are archived with full coefficients. Fit details are: clarification, {{fm_clarification_note}}; D, {{fm_representation_error_note}}; utility, {{fm_recommended_utility_note}}; regret, {{fm_regret_note}}.
 

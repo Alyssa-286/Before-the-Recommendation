@@ -208,13 +208,13 @@ No locked hard constraint applies in this environment (the ₹70,000 amount is a
 
 The checks are reported in the frozen order.
 
-1. **Repeat stability.** Across the three repetitions of a cell, Gemini agreed on the clarification decision in 72.8% of cells and on the top product in 68.4%, with a mean maximum pairwise weight spread of 0.060. For Ministral the corresponding figures were 80.5%, 57.8% and 0.051. Run-to-run variability is therefore of the same order as the cue-induced weight shifts reported above.
-2. **Alternate request template** (311 of 320 runs valid; audit passed): ΔD = -0.001 (95% CI -0.007 to +0.004); clarification difference +0.203 (95% CI +0.104 to +0.292); utility difference -0.001 (95% CI -0.007 to +0.005).
-3. **Permuted product order** (303 of 320 runs valid; audit passed): ΔD = -0.004 (95% CI -0.013 to +0.005); clarification difference -0.012 (95% CI -0.065 to +0.054); utility difference +0.010 (95% CI -0.002 to +0.022).
-4–5. **Model-specific effects** and **the ambiguous-versus-explicit comparison** are reported in Section 6.
-6. **Relocated cue set**, where labels were placed on a different, independently drawn set of five products (not run): ΔD = not run; clarification difference not run; utility difference not run.
+- **(1) Repeat stability.** Across the three repetitions of a cell, Gemini agreed on the clarification decision in 72.8% of cells and on the top product in 68.4%, with a mean maximum pairwise weight spread of 0.060. For Ministral the corresponding figures were 80.5%, 57.8% and 0.051. Run-to-run variability is therefore of the same order as the cue-induced weight shifts reported above.
+- **(2) Alternate request template** (311 of 320 runs valid; audit passed): ΔD = -0.001 (95% CI -0.007 to +0.004); clarification difference +0.203 (95% CI +0.104 to +0.292); utility difference -0.001 (95% CI -0.007 to +0.005).
+- **(3) Permuted product order** (303 of 320 runs valid; audit passed): ΔD = -0.004 (95% CI -0.013 to +0.005); clarification difference -0.012 (95% CI -0.065 to +0.054); utility difference +0.010 (95% CI -0.002 to +0.022).
+- **(4–5) Model-specific effects** and **the ambiguous-versus-explicit comparison** are reported in Section 6.
+- **(6) Relocated cue set**, where labels were placed on a different, independently drawn set of five products (not run): ΔD = not run; clarification difference not run; utility difference not run.
 
-Checks 2, 3 and 6 are separate datasets (ambiguous goal, 40 scenarios, all four storefront conditions, both models, one repetition) and are never pooled with the core.
+Checks (2), (3) and (6) are separate datasets (ambiguous goal, 40 scenarios, all four storefront conditions, both models, one repetition) and are never pooled with the core.
 
 The factorial models (outcome ~ goal × marketing + model, scenario-clustered SEs) are archived with full coefficients. Fit details are: clarification, logit, n = 1881, 40 scenario clusters; D, ols, n = 1881, 40 scenario clusters; utility, ols, n = 1881, 40 scenario clusters; regret, ols, n = 1881, 40 scenario clusters.
 
