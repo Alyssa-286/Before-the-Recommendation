@@ -69,6 +69,14 @@ Runs are checkpointed and resume without repeating completed trials. Model outpu
 - Data-quality audit: `artifacts/data_quality_audit.json`; manifest: `artifacts/trial_manifest.json`.
 - Zero-cost execution: only verified free routes were used (`artifacts/credential_capacity_audit.json`, `artifacts/gemini_tier_probe.json`). No secrets are stored in the repository.
 
+## Results at a glance
+
+All numbers are generated from the frozen data; see `artifacts/final_report.md` (summary), `artifacts/analysis/core_results.json` (full estimates), `manuscript/paper.pdf` (paper) and `artifacts/claim_evidence_table.md`. In brief: goal ambiguity increased representation error in both models (H1 supported); ordinary storefront cues did not change the represented goal (H2/H3 not supported; replicated in robustness datasets); in the core design cues lowered clarification and utility mainly for Ministral, but these process effects were sensitive to request wording and product order; clarification questions were rarely answerable by the frozen single-dimension simulated user.
+
+## Execution notes
+
+Execution used only free API routes (Gemini FreeTier projects; Mistral Free mode) and spanned several daily quota windows. Long runs were launched as WMI-created processes so they survive agent-session restarts; every resume continued from the SQLite checkpoint (see `roadmap.md` and `artifacts/core_attempt_provenance.json`). Data schema: `docs/DATA_SCHEMA.md`.
+
 ## Integrity rules
 
 No fabricated data or citations; failed runs are preserved and counted; hypotheses were fixed before data; controlled objectives are not human preferences; repeated LLM calls are not independent human subjects. See `AGENTS.md`.
