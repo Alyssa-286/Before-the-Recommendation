@@ -3,7 +3,7 @@
   "tests": {
     "returncode": 0,
     "summary": [
-      "Ran 85 tests in 3.586s",
+      "Ran 85 tests in 2.940s",
       "",
       "OK"
     ]
@@ -81,7 +81,7 @@
   "security": {
     "env_ignored": true,
     "env_tracked": false,
-    "tracked_files_scanned": 328,
+    "tracked_files_scanned": 349,
     "tracked_files_with_secret": [],
     "log_files_with_secret": [],
     "secrets_checked": 11

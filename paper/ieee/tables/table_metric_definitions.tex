@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Metric definitions}
+\label{tab:metrics}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Metric} & \textbf{Definition} & \textbf{Level} \\
+\midrule
+Clarification rate & Share of valid runs with one ask\_clarification call after inspection & run \\
+Representation error D & $\tfrac{1}{2}$ $\Sigma$\_k |$\hat{w}$\_k $-$ $w^{*}$\_k| over price, quality, durability, sustainability & run \\
+$\Delta D$ & Matched commercial $-$ neutral difference in D (same scenario, model, repetition) & contrast \\
+Utility U & $\Sigma$\_k $w^{*}$\_k x\_pk of the top-ranked product (normalized factual scores) & run \\
+Regret & U(optimal feasible product) $-$ U(top-ranked product) & run \\
+Cued mean rank & Mean rank of the 5 cued products in the agent's ranking (unranked = 21) & run \\
+Evidence mentions cue & evidence\_used or explanation contains a pre-registered cue term & run \\
+Price question & Clarification targeted price (normalized target or price terms) & run \\
+\bottomrule
+\end{tabularx}
+\end{table*}

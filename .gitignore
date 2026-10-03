@@ -25,3 +25,7 @@ env/
 .env
 logs/
 data/**/.runner*.lock
+paper/ieee/*.aux
+paper/ieee/*.log
+paper/ieee/*.blg
+paper/ieee/*.out

@@ -1,6 +1,6 @@
 # Final Audit
 
-Repository HEAD at build: `7870712fe556e588063e30ca5d4435a5d7a08a9b`; manuscript words (excl. references/tables): 4991.
+Repository HEAD at build: `cf6abf561b1ad553e9efece077b95ba0ebd40126`; manuscript words (excl. references/tables): 4990.
 
 | Item | Status |
 |---|---|

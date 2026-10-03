@@ -1,0 +1,26 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Robustness results}
+\label{tab:robustness}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Check} & \textbf{Outcome / model} & \textbf{Result} & \textbf{Runs} \\
+\midrule
+Repeat stability & Gemini 3.1 Flash-Lite & clarification agree 0.73; top product agree 0.68; weight spread mean 0.060 & core \\
+Repeat stability & Ministral 14B & clarification agree 0.81; top product agree 0.58; weight spread mean 0.051 & core \\
+Robust: alternate template & Clarification rate & 0.203 [0.104, 0.292] & 311/320 valid \\
+Robust: alternate template & Representation error D & -0.001 [-0.007, 0.004] & 311/320 valid \\
+Robust: alternate template & Recommendation utility & -0.001 [-0.007, 0.005] & 311/320 valid \\
+Robust: alternate template & Regret & 0.001 [-0.005, 0.007] & 311/320 valid \\
+Robust: product order & Clarification rate & -0.012 [-0.065, 0.054] & 303/320 valid \\
+Robust: product order & Representation error D & -0.004 [-0.013, 0.005] & 303/320 valid \\
+Robust: product order & Recommendation utility & 0.010 [-0.002, 0.022] & 303/320 valid \\
+Robust: product order & Regret & -0.010 [-0.022, 0.002] & 303/320 valid \\
+Robust: cue location & Clarification rate & -0.043 [-0.067, -0.019] & 315/320 valid \\
+Robust: cue location & Representation error D & -0.000 [-0.009, 0.008] & 315/320 valid \\
+Robust: cue location & Recommendation utility & -0.008 [-0.012, -0.004] & 315/320 valid \\
+Robust: cue location & Regret & 0.008 [0.004, 0.012] & 315/320 valid \\
+\bottomrule
+\end{tabularx}
+\end{table*}

@@ -48,7 +48,7 @@ The primary marketing-induced shift under ambiguity was ΔD = {{prim_representat
 
 Figure 5 shows utility and regret. Under ambiguity the primary commercial-minus-neutral contrasts were {{prim_recommended_utility}} for utility ({{prim_recommended_utility_verdict}}; Holm-adjusted p {{prim_recommended_utility_holm}}) and {{prim_regret}} for regret. By model, the utility contrast was {{prim_recommended_utility_google_gemini}} for Gemini and {{prim_recommended_utility_mistral}} for Ministral. By cue it was {{cue_scarcity_recommended_utility}} for scarcity, {{cue_social_proof_recommended_utility}} for social proof and {{cue_discount_recommended_utility}} for discount framing. Under explicit goals the contrast was {{exp_recommended_utility}} pooled: {{exp_recommended_utility_google_gemini}} for Gemini and {{exp_recommended_utility_mistral}} for Ministral. These utility effects are small in absolute terms; the regret scale is shown in Figure 5.
 
-Each ambiguous-goal commercial run was matched to the neutral run of the same scenario, model and repetition, giving {{h4_pooled_ambiguous_pairs}} pairs. The top product changed in {{h4_pooled_ambiguous_topchg}} of pairs: {{h4_google_gemini_ambiguous_topchg}} for Gemini and {{h4_mistral_ambiguous_topchg}} for Ministral. The represented weights moved by more than 0.05 in {{h4_pooled_ambiguous_shifted}} of pairs, and in {{h4_pooled_ambiguous_shift_same_top}} of pairs they moved while the top product stayed the same. These weight movements were not systematically toward or away from the controlled objective, which is why ΔD is close to zero. **H4: {{H4_verdict}}.** Figure 8 plots each matched pair's ΔD against its utility change.
+Each ambiguous-goal commercial run was matched to the neutral run of the same scenario, model and repetition, giving {{h4_pooled_ambiguous_pairs}} pairs. The top product changed in {{h4_pooled_ambiguous_topchg}} of pairs: {{h4_google_gemini_ambiguous_topchg}} for Gemini and {{h4_mistral_ambiguous_topchg}} for Ministral. The represented weights moved by more than 0.05 in {{h4_pooled_ambiguous_shifted}} of pairs, and in {{h4_pooled_ambiguous_shift_same_top}} of pairs they moved while the top product stayed the same. These weight movements were not systematically toward or away from the controlled objective, which is why ΔD is close to zero. **H4: {{H4_verdict}}.** Figure 6 plots each matched pair's ΔD against its utility change.
 
 [[TABLE3]]
 
@@ -56,7 +56,7 @@ Each ambiguous-goal commercial run was matched to the neutral run of the same sc
 
 ![Figure 5. Recommendation utility and regret by condition and model.](../outputs/figures/fig5_utility_regret.png)
 
-![Figure 8. Representation shift versus utility change in matched pairs (ambiguous goal).](../outputs/figures/fig8_representation_vs_utility.png)
+![Figure 6. Representation shift versus utility change in matched pairs (ambiguous goal).](../outputs/figures/fig8_representation_vs_utility.png)
 
 ### 6.5 Secondary and exploratory outcomes
 
@@ -82,14 +82,14 @@ The factorial models (outcome ~ goal × marketing + model, scenario-clustered SE
 
 [[TABLE4]]
 
-![Figure 6. Primary contrasts by model and robustness dataset (95% scenario-bootstrap intervals).](../outputs/figures/fig6_cross_model_robustness.png)
+![Figure 7. Primary contrasts by model and robustness dataset (95% scenario-bootstrap intervals).](../outputs/figures/fig6_cross_model_robustness.png)
 
 ## 8. Failure Analysis
 
 Two kinds of failure are separated in the archived data.
 
 - **Infrastructure events** produced no model output: provider 5xx errors and per-minute or daily quota responses. They are absorbed at the transport level and logged per request, and never alter a trial.
-- **Terminal trial failures** are model-behaviour or protocol outcomes. Gemini had none ({{fail_detail_google_gemini}}). Ministral's were {{fail_detail_mistral}}. Most were plain-text answers without the required tool call. None was a provider failure, so none was eligible for the frozen technical re-run.
+- **Terminal trial failures** are model-behaviour or protocol outcomes. Gemini had {{google_gemini_failed}}. Ministral's were {{fail_detail_mistral}}. Most were plain-text answers without the required tool call. None was a provider failure, so none was eligible for the frozen technical re-run.
 
 Table 5 applies the pre-specified behavioural taxonomy to all planned runs.
 
@@ -97,11 +97,11 @@ Table 5 applies the pre-specified behavioural taxonomy to all planned runs.
 - **Cue use:** unsupported marketing evidence {{tax_unsupported_marketing_evidence}}; leading clarification {{tax_leading_clarification}}; cue-driven attribute substitution {{tax_cue_driven_attribute_substitution}}.
 - **Internal consistency:** ranking inconsistency with the agent's own weights {{tax_ranking_inconsistency}}; uncertainty failure (D ≥ 0.25, uncertainty ≤ 0.20) {{tax_uncertainty_failure}}; preference-weight instability across repetitions {{tax_preference_weight_instability}}.
 
-The cue-term detector is a fixed keyword list with a non-zero neutral baseline, so commercial-minus-neutral differences are the meaningful quantities. Figure 7 traces one case selected by a rule fixed in code: the most frequent behavioural category among ambiguous commercial runs, then the first trial by identifier.
+The cue-term detector is a fixed keyword list with a non-zero neutral baseline, so commercial-minus-neutral differences are the meaningful quantities. Figure 8 traces one case selected by a rule fixed in code: the most frequent behavioural category among ambiguous commercial runs, then the first trial by identifier.
 
 [[TABLE5]]
 
-![Figure 7. Representative failure pathway (selected by a pre-specified rule).](../outputs/figures/fig7_failure_pathway.png)
+![Figure 8. Representative failure pathway (selected by a pre-specified rule).](../outputs/figures/fig7_failure_pathway.png)
 
 ## 9. Discussion
 

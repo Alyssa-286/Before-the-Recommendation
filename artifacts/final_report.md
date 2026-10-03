@@ -3,7 +3,7 @@
 ## Project status
 - Phase 1 (build): complete.
 - Phase 2 (experiment + analysis): core 1,920/1,920 executed; robustness: template 311 of 320 runs valid; audit passed; order 303 of 320 runs valid; audit passed; cue location 315 of 320 runs valid; audit passed.
-- Phase 3 (write): manuscript rendered from computed results (4991 words excluding references and tables).
+- Phase 3 (write): manuscript rendered from computed results (4990 words excluding references and tables).
 - Phase 4 (finalize): final audit in `artifacts/final_audit.md`; open items are researcher actions (author details, official conference format check, portal submission).
 
 ## Model access
@@ -26,7 +26,7 @@ Audit: 24 checks passed; leakage scan of 5,409 model-visible requests clean; met
 Figures: `outputs/figures/fig1…fig8`; tables: `outputs/tables/`; manuscript: `manuscript/paper.md|.docx|.pdf`; submission package: `submission/`.
 
 ## Reproducibility
-Repository commit at build `7870712fe556e588063e30ca5d4435a5d7a08a9b`; execution revision `33bfa10`; core config SHA-256 `072fb8f50a64984a370f41bb6b7311a7823ba6781893c84a20099fba0742740a`; catalog seed 20260955; bootstrap seed 20260930.
+Repository commit at build `cf6abf561b1ad553e9efece077b95ba0ebd40126`; execution revision `33bfa10`; core config SHA-256 `072fb8f50a64984a370f41bb6b7311a7823ba6781893c84a20099fba0742740a`; catalog seed 20260955; bootstrap seed 20260930.
 
 ## Publication development
 `artifacts/publication_development_memo.md`. Strongest limitation: synthetic environment with a single-dimension simulated user. Highest-value next study: answerable-dialogue protocol with multiple cue wordings and real product feeds.
