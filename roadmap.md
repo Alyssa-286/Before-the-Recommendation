@@ -406,13 +406,25 @@ Test the manuscript against:
 
 **Current milestone:** Provider access validated, lowest-cost eligible pair computed, 32-run live pilot passed infrastructure checks (2026-10-01).
 
-**Current task:** Core experiment (1,920 runs) executing from the frozen configuration; then data-quality audit, analysis, robustness, manuscript.
+**Current task:** Gemini cue-location robustness (after next quota reset), then final render, validation, package, push.
 
-**Main experiment:** NOT STARTED
+**Main experiment:** COMPLETE (1,920/1,920 executed; audit passed)
 
 **Paper writing:** NOT STARTED
 
 **Submission:** NOT STARTED
+
+## Phase 2 core completion, audit and analysis — 2026-10-03
+
+**Status: CORE COMPLETE (1,920/1,920 executed); DATA-QUALITY AUDIT PASSED; FROZEN ANALYSIS DONE; robustness: template and order complete, cue location running (Gemini quota).**
+
+- Runner relaunched via WMI `Win32_Process.Create` (parent `WmiPrvSE.exe`, independent of the agent session) after earlier processes ended with the session. Gemini core completed 07:16Z using GEMINI_API_KEY_2/_3/_5 (all FreeTier-confirmed). Valid: Gemini 960/960, Ministral 921/960 (39 terminal failures preserved). Frozen technical re-runs: 0; interruption requeues: Gemini 16, Ministral 6 trials (`artifacts/core_attempt_provenance.json`).
+- Audit (`artifacts/data_quality_audit.json`): 24 checks passed; 5,409 model-visible requests scanned, no leakage; metrics independently recomputed.
+- Primary (ambiguous, commercial − neutral; pooled): clarification -0.054 (95% CI -0.070 to -0.039) (Holm p < 0.001); ΔD -0.001 (95% CI -0.006 to +0.004) (Holm p = 0.729); utility -0.006 (95% CI -0.010 to -0.003) (Holm p < 0.001). H1 ambiguous − explicit D +0.095 (95% CI +0.069 to +0.119). Verdicts: H1 supported (pooled and in both model families); H2 not supported (95% intervals include zero, pooled and per model); H3 not supported (the moderation contrast includes zero); H4 not supported in the stated direction; the observed dissociation runs the other way: utility changed while representation error did not.
+- Observation reported as finding/limitation (no post-hoc change): informative clarification answers were rare (Gemini 0.5%, Ministral 1.9%) because agents asked pairwise/multi-attribute trade-off questions that the frozen single-dimension simulated user answers with uncertainty.
+- H4 verdict wording in the renderer was corrected to describe a reversed dissociation (utility changed, D did not); the decision rule itself was not changed.
+- Robustness (separate datasets, audits passed): template — ΔD -0.001 (95% CI -0.007 to +0.004), clarification +0.203 (95% CI +0.104 to +0.292); order — ΔD -0.004 (95% CI -0.013 to +0.005), clarification -0.012 (95% CI -0.065 to +0.054), utility +0.010 (95% CI -0.002 to +0.022). The null ΔD replicates; core cue effects on clarification/utility do not.
+- Figures/tables regenerated from final data; manuscript rendered from computed tokens; Mistral failure review in `artifacts/mistral_core_failure_review.json`.
 
 ## Phase 2 core execution log — 2026-10-02
 

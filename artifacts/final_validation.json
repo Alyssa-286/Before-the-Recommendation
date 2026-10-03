@@ -1,0 +1,90 @@
+{
+  "artifact_version": "final-validation-v1",
+  "tests": {
+    "returncode": 0,
+    "summary": [
+      "Ran 85 tests in 6.153s",
+      "",
+      "OK"
+    ]
+  },
+  "provenance": {
+    "config_sha256_matches_freeze": true,
+    "catalog_seed": 20260955,
+    "objective_seed": 20260931,
+    "cue_seed": 20260932,
+    "seeds_match_freeze": true,
+    "frozen_file_hashes_unchanged": {
+      "configs/core_v2.json": true,
+      "analysis/analysis_plan.md": true,
+      "schemas/agent_output.v2.schema.json": true,
+      "src/before_recommendation/live_controller.py": true,
+      "src/before_recommendation/live_output.py": true,
+      "src/before_recommendation/evaluator.py": true,
+      "src/before_recommendation/simulated_user.py": true,
+      "src/before_recommendation/dataset.py": true,
+      "src/before_recommendation/statistics.py": true,
+      "src/before_recommendation/experiment_runner.py": true,
+      "src/before_recommendation/model_adapters.py": true
+    }
+  },
+  "independent_recomputation": {
+    "core": {
+      "valid_trials_recomputed": 1881,
+      "metric_mismatches": 0,
+      "delta_D_mismatches": 0
+    },
+    "robust_template": {
+      "valid_trials_recomputed": 311,
+      "metric_mismatches": 0,
+      "delta_D_mismatches": 0
+    },
+    "robust_order": {
+      "valid_trials_recomputed": 303,
+      "metric_mismatches": 0,
+      "delta_D_mismatches": 0
+    },
+    "robust_cue_location": {
+      "valid_trials_recomputed": 187,
+      "metric_mismatches": 187,
+      "delta_D_mismatches": 0
+    }
+  },
+  "leakage": {
+    "core": {
+      "requests_checked": 5409,
+      "leakage_findings": 0,
+      "arm_name_findings": 0
+    },
+    "robust_template": {
+      "requests_checked": 902,
+      "leakage_findings": 0,
+      "arm_name_findings": 0
+    },
+    "robust_order": {
+      "requests_checked": 930,
+      "leakage_findings": 0,
+      "arm_name_findings": 0
+    },
+    "robust_cue_location": {
+      "requests_checked": 563,
+      "leakage_findings": 0,
+      "arm_name_findings": 0
+    }
+  },
+  "manuscript": {
+    "tokens": 452,
+    "token_mismatches": [],
+    "unresolved_placeholders": 0,
+    "verify_markers": 0
+  },
+  "security": {
+    "env_ignored": true,
+    "env_tracked": false,
+    "tracked_files_scanned": 271,
+    "tracked_files_with_secret": [],
+    "log_files_with_secret": [],
+    "secrets_checked": 10
+  },
+  "all_passed": false
+}

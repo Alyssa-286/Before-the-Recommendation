@@ -1,0 +1,264 @@
+{
+  "artifact_version": "verified-references-v1",
+  "verified_on": "2026-10-01",
+  "arxiv": [
+    {
+      "status": "verified",
+      "source": "arXiv API",
+      "title": "Selective Elicitation as a Commercial Influence Channel: A Reproducible Synthetic Shopping-Agent Stress Test",
+      "authors": [
+        "Jiapeng Li"
+      ],
+      "published": "2026-09-29",
+      "arxiv_id": "2609.36614v1",
+      "url": "https://arxiv.org/abs/2609.36614v1"
+    },
+    {
+      "status": "verified",
+      "source": "arXiv API",
+      "title": "Beyond expert users: agents should help users construct preferences, not just elicit them",
+      "authors": [
+        "Irena Saracay",
+        "Ludwig Schmidt",
+        "Carlos Guestrin"
+      ],
+      "published": "2026-06-29",
+      "arxiv_id": "2606.30863v2",
+      "url": "https://arxiv.org/abs/2606.30863v2"
+    },
+    {
+      "status": "verified",
+      "source": "arXiv API",
+      "title": "Entropy Guided Diversification and Preference Elicitation in Agentic Recommendation Systems",
+      "authors": [
+        "Dat Tran",
+        "Yongce Li",
+        "Hannah Clay",
+        "Negin Golrezaei",
+        "Sajjad Beygi",
+        "Amin Saberi"
+      ],
+      "published": "2026-03-12",
+      "arxiv_id": "2603.11399v1",
+      "url": "https://arxiv.org/abs/2603.11399v1"
+    },
+    {
+      "status": "verified",
+      "source": "arXiv API",
+      "title": "$τ$-Rec: A Verifiable Benchmark for Agentic Recommender Systems",
+      "authors": [
+        "Bharath Sivaram Narasimhan",
+        "Karthik R Narasimhan"
+      ],
+      "published": "2026-06-08",
+      "arxiv_id": "2606.10156v3",
+      "url": "https://arxiv.org/abs/2606.10156v3"
+    },
+    {
+      "status": "verified",
+      "source": "arXiv API",
+      "title": "Shopping Companion: Benchmarking and Training LLM Agents for Long-Horizon Preference-Grounded E-Commerce Tasks",
+      "authors": [
+        "Zijian Yu",
+        "Kejun Xiao",
+        "Huaipeng Zhao",
+        "Tao Luo",
+        "Xiaoyi Zeng"
+      ],
+      "published": "2026-03-16",
+      "arxiv_id": "2603.14864v3",
+      "url": "https://arxiv.org/abs/2603.14864v3"
+    },
+    {
+      "status": "verified",
+      "source": "arXiv API (query ti:APeB)",
+      "title": "APeB: Benchmarking Personalization Ability of Large Language Model Agents",
+      "authors": [
+        "Garry Yang",
+        "Zizhe Chen",
+        "Xinru Chen",
+        "Yongqiang Chen",
+        "Jianxiang Wang",
+        "Deyu Zou",
+        "Linyi Ding",
+        "Jialiang Wu",
+        "Yunzhong He",
+        "et al."
+      ],
+      "published": "2026-07-03",
+      "arxiv_id": "2607.03162v2",
+      "url": "https://arxiv.org/abs/2607.03162"
+    },
+    {
+      "status": "verified",
+      "source": "arXiv API",
+      "title": "Shopping by algorithm: How agentic AI deploys human heuristics as a surrogate consumer",
+      "authors": [
+        "Davood Wadi",
+        "Yu Ma"
+      ],
+      "published": "2026-09-23",
+      "arxiv_id": "2609.28372v1",
+      "url": "https://arxiv.org/abs/2609.28372v1"
+    },
+    {
+      "status": "verified",
+      "source": "arXiv API",
+      "title": "Whom Do AI Agents Work For? Role Assignment Induces Sponsorship Bias in LLM Recommenders",
+      "authors": [
+        "Davood Wadi",
+        "Yu Ma"
+      ],
+      "published": "2026-09-16",
+      "arxiv_id": "2609.17989v1",
+      "url": "https://arxiv.org/abs/2609.17989v1"
+    },
+    {
+      "status": "verified",
+      "source": "arXiv API",
+      "title": "When Agents Shop for You: Role Coherence in AI-Mediated Markets",
+      "authors": [
+        "Soogand Alavi",
+        "Salar Nozari"
+      ],
+      "published": "2026-04-29",
+      "arxiv_id": "2604.26220v1",
+      "url": "https://arxiv.org/abs/2604.26220v1"
+    },
+    {
+      "status": "verified",
+      "source": "arXiv API (query ti:steer AND consumer AND detection)",
+      "title": "Experimental Evidence That Conversational Artificial Intelligence Can Steer Consumer Behavior Without Detection",
+      "authors": [
+        "Tobias Werner",
+        "Ivan Soraperra",
+        "Emilio Calvano",
+        "David C. Parkes",
+        "Iyad Rahwan"
+      ],
+      "published": "2024-09-18",
+      "arxiv_id": "2409.12143v1",
+      "url": "https://arxiv.org/abs/2409.12143"
+    },
+    {
+      "status": "verified",
+      "source": "arXiv API",
+      "title": "Commercial Persuasion in AI-Mediated Conversations",
+      "authors": [
+        "Francesco Salvi",
+        "Alejandro Cuevas",
+        "Manoel Horta Ribeiro"
+      ],
+      "published": "2026-04-05",
+      "arxiv_id": "2604.04263v1",
+      "url": "https://arxiv.org/abs/2604.04263v1"
+    },
+    {
+      "status": "verified",
+      "source": "arXiv API",
+      "title": "A Survey on LLM-powered Agents for Recommender Systems",
+      "authors": [
+        "Qiyao Peng",
+        "Hongtao Liu",
+        "Hua Huang",
+        "Qing Yang",
+        "Minglai Shao"
+      ],
+      "published": "2025-02-14",
+      "arxiv_id": "2502.10050v1",
+      "url": "https://arxiv.org/abs/2502.10050v1"
+    }
+  ],
+  "doi": [
+    {
+      "status": "verified",
+      "source": "Crossref API",
+      "doi": "10.1177/00222429251326941",
+      "title": "Too Many or Too Few? Information Cues in Recommender Systems and Consequences for Search and Purchase Behavior",
+      "authors": [
+        "Xing Fang",
+        "SunAh Kim",
+        "Pradeep K. Chintagunta"
+      ],
+      "journal": "Journal of Marketing",
+      "year": 2025,
+      "volume": "90",
+      "issue": "1",
+      "pages": "9-28",
+      "url": "https://doi.org/10.1177/00222429251326941"
+    },
+    {
+      "status": "verified",
+      "source": "Crossref API",
+      "doi": "10.1086/209535",
+      "title": "Constructive Consumer Choice Processes",
+      "authors": [
+        "James R. Bettman",
+        "Mary Frances Luce",
+        "John W. Payne"
+      ],
+      "journal": "Journal of Consumer Research",
+      "year": 1998,
+      "volume": "25",
+      "issue": "3",
+      "pages": "187-217",
+      "url": "https://doi.org/10.1086/209535"
+    },
+    {
+      "status": "verified",
+      "source": "Crossref API",
+      "doi": "10.1287/mksc.19.1.4.15178",
+      "title": "Consumer Decision Making in Online Shopping Environments: The Effects of Interactive Decision Aids",
+      "authors": [
+        "Gerald Häubl",
+        "Valerie Trifts"
+      ],
+      "journal": "Marketing Science",
+      "year": 2000,
+      "volume": "19",
+      "issue": "1",
+      "pages": "4-21",
+      "url": "https://doi.org/10.1287/mksc.19.1.4.15178"
+    },
+    {
+      "status": "verified",
+      "source": "Crossref API",
+      "doi": "10.1002/mar.4220080105",
+      "title": "Scarcity effects on value: A quantitative review of the commodity theory literature",
+      "authors": [
+        "Michael Lynn"
+      ],
+      "journal": "Psychology &amp; Marketing",
+      "year": 1991,
+      "volume": "8",
+      "issue": "1",
+      "pages": "43-57",
+      "url": "https://doi.org/10.1002/mar.4220080105"
+    },
+    {
+      "status": "excluded_not_matching_intended_work",
+      "source": "Crossref API",
+      "doi": "10.1086/209457",
+      "title": "Caring Consumers: Gendered Consumption Meanings and the Juggling Lifestyle",
+      "authors": [
+        "Craig J. Thompson"
+      ],
+      "journal": "Journal of Consumer Research",
+      "year": 1996,
+      "volume": "22",
+      "issue": "4",
+      "pages": "388",
+      "url": "https://doi.org/10.1086/209457"
+    },
+    {
+      "status": "excluded_not_matching_intended_work",
+      "doi": "10.1509/jmkr.43.3.326",
+      "error": "HTTPError"
+    }
+  ],
+  "notes": [
+    "Only entries with status 'verified' may be cited.",
+    "Peng et al. survey is cited by its verified arXiv record; the venue in project.md (Findings of EMNLP 2025) was not independently verified.",
+    "tau-Rec is the verified title of the work listed in project.md as 'A Verifiable Benchmark for Agentic Recommender Systems'."
+  ]
+}

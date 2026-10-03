@@ -1,0 +1,416 @@
+{
+  "artifact_version": "data-quality-audit-v1",
+  "stage": "core",
+  "experiment_version": "core-v2.0.0",
+  "code_revision": "33bfa10f70a6ca0efefc7a7ba685cbb60aea17fa",
+  "all_checks_passed": true,
+  "checks": [
+    {
+      "check": "single_code_revision",
+      "pass": true,
+      "revisions": [
+        "33bfa10f70a6ca0efefc7a7ba685cbb60aea17fa"
+      ]
+    },
+    {
+      "check": "planned_count_matches_design",
+      "pass": true,
+      "planned": 1920,
+      "expected": 1920
+    },
+    {
+      "check": "every_planned_trial_has_a_final_trace",
+      "pass": true,
+      "missing": 0
+    },
+    {
+      "check": "no_unplanned_trials",
+      "pass": true,
+      "unexpected": 0
+    },
+    {
+      "check": "no_duplicate_trace_within_attempt_file",
+      "pass": true,
+      "duplicates": 0
+    },
+    {
+      "check": "factorial_cells_one_trial_each",
+      "pass": true,
+      "cells": 1920
+    },
+    {
+      "check": "profile_coverage_balanced",
+      "pass": true,
+      "by_class": {
+        "balanced": 384,
+        "durability_oriented": 384,
+        "budget_oriented": 384,
+        "sustainability_oriented": 384,
+        "quality_oriented": 384
+      }
+    },
+    {
+      "check": "model_family_allocation_balanced",
+      "pass": true,
+      "by_model": {
+        "google_gemini": 960,
+        "mistral": 960
+      }
+    },
+    {
+      "check": "config_hash_matches_freeze",
+      "pass": true
+    },
+    {
+      "check": "prompt_templates_frozen",
+      "pass": true,
+      "templates": {
+        "explicit-v1-01": 960,
+        "ambiguous-v1-01": 960
+      }
+    },
+    {
+      "check": "observed_model_ids_consistent",
+      "pass": true,
+      "observed": {
+        "google_gemini": [
+          "gemini-3.1-flash-lite"
+        ],
+        "mistral": [
+          "ministral-14b-2512"
+        ]
+      }
+    },
+    {
+      "check": "no_ground_truth_leakage_in_model_visible_requests",
+      "pass": true,
+      "findings": 0,
+      "requests_checked": 5409
+    },
+    {
+      "check": "experimental_arm_names_not_visible",
+      "pass": true,
+      "requests_with_arm_name": 0
+    },
+    {
+      "check": "catalog_facts_identical_to_frozen_catalog_in_every_arm",
+      "pass": true
+    },
+    {
+      "check": "cue_labels_exactly_on_assigned_products",
+      "pass": true
+    },
+    {
+      "check": "factual_utility_balance_recorded_true",
+      "pass": true
+    },
+    {
+      "check": "catalog_fingerprint_frozen",
+      "pass": true
+    },
+    {
+      "check": "catalog_inspection_before_clarification_or_classified",
+      "pass": true,
+      "violations": 0,
+      "note": "violations are preserved and classified, not repaired"
+    },
+    {
+      "check": "simulated_user_answers_reproduce_deterministically",
+      "pass": true,
+      "mismatches": 0
+    },
+    {
+      "check": "metrics_recomputed_independently_match",
+      "pass": true,
+      "mismatches": 0
+    },
+    {
+      "check": "raw_model_io_present_for_every_response",
+      "pass": true,
+      "incomplete": 0
+    },
+    {
+      "check": "raw_agent_visible_and_evaluator_private_separated",
+      "pass": true
+    },
+    {
+      "check": "no_missing_required_fields_without_failure_classification",
+      "pass": true,
+      "missing_required": 0,
+      "unclassified_invalid": 0
+    },
+    {
+      "check": "no_credential_values_in_raw_files",
+      "pass": true
+    }
+  ],
+  "counts_by_model": {
+    "google_gemini": {
+      "planned": 960,
+      "valid": 960,
+      "failed": 0,
+      "technical_retries": 4,
+      "parser_retries": 5
+    },
+    "mistral": {
+      "planned": 960,
+      "valid": 921,
+      "failed": 39,
+      "technical_retries": 0,
+      "parser_retries": 4
+    }
+  },
+  "counts_by_model_goal_marketing": {
+    "google_gemini|ambiguous|neutral": {
+      "planned": 120,
+      "valid": 120,
+      "failed": 0,
+      "technical_retries": 0,
+      "parser_retries": 1
+    },
+    "google_gemini|ambiguous|scarcity": {
+      "planned": 120,
+      "valid": 120,
+      "failed": 0,
+      "technical_retries": 0,
+      "parser_retries": 0
+    },
+    "google_gemini|ambiguous|social_proof": {
+      "planned": 120,
+      "valid": 120,
+      "failed": 0,
+      "technical_retries": 1,
+      "parser_retries": 1
+    },
+    "google_gemini|ambiguous|discount": {
+      "planned": 120,
+      "valid": 120,
+      "failed": 0,
+      "technical_retries": 1,
+      "parser_retries": 0
+    },
+    "google_gemini|explicit|neutral": {
+      "planned": 120,
+      "valid": 120,
+      "failed": 0,
+      "technical_retries": 0,
+      "parser_retries": 1
+    },
+    "google_gemini|explicit|scarcity": {
+      "planned": 120,
+      "valid": 120,
+      "failed": 0,
+      "technical_retries": 0,
+      "parser_retries": 0
+    },
+    "google_gemini|explicit|social_proof": {
+      "planned": 120,
+      "valid": 120,
+      "failed": 0,
+      "technical_retries": 0,
+      "parser_retries": 2
+    },
+    "google_gemini|explicit|discount": {
+      "planned": 120,
+      "valid": 120,
+      "failed": 0,
+      "technical_retries": 2,
+      "parser_retries": 0
+    },
+    "mistral|ambiguous|neutral": {
+      "planned": 120,
+      "valid": 120,
+      "failed": 0,
+      "technical_retries": 0,
+      "parser_retries": 0
+    },
+    "mistral|ambiguous|scarcity": {
+      "planned": 120,
+      "valid": 115,
+      "failed": 5,
+      "technical_retries": 0,
+      "parser_retries": 0
+    },
+    "mistral|ambiguous|social_proof": {
+      "planned": 120,
+      "valid": 93,
+      "failed": 27,
+      "technical_retries": 0,
+      "parser_retries": 0
+    },
+    "mistral|ambiguous|discount": {
+      "planned": 120,
+      "valid": 120,
+      "failed": 0,
+      "technical_retries": 0,
+      "parser_retries": 0
+    },
+    "mistral|explicit|neutral": {
+      "planned": 120,
+      "valid": 120,
+      "failed": 0,
+      "technical_retries": 0,
+      "parser_retries": 0
+    },
+    "mistral|explicit|scarcity": {
+      "planned": 120,
+      "valid": 117,
+      "failed": 3,
+      "technical_retries": 0,
+      "parser_retries": 1
+    },
+    "mistral|explicit|social_proof": {
+      "planned": 120,
+      "valid": 119,
+      "failed": 1,
+      "technical_retries": 0,
+      "parser_retries": 0
+    },
+    "mistral|explicit|discount": {
+      "planned": 120,
+      "valid": 117,
+      "failed": 3,
+      "technical_retries": 0,
+      "parser_retries": 3
+    }
+  },
+  "terminal_failures": [
+    {
+      "model": "mistral",
+      "category": "clarification_order_violation",
+      "detail": "more_than_one_clarification",
+      "n": 1
+    },
+    {
+      "model": "mistral",
+      "category": "interface_contract_violation",
+      "detail": "expected_exactly_one_tool_call",
+      "n": 35
+    },
+    {
+      "model": "mistral",
+      "category": "schema_validation_failure",
+      "detail": "schema_validation_failure",
+      "n": 3
+    }
+  ],
+  "transport_events": [
+    {
+      "model": "gemini-3.1-flash-lite",
+      "type": "credential_suspended_daily_quota",
+      "status": "None",
+      "n": 33
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "type": "transport_retry_event",
+      "status": "503",
+      "n": 80
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "type": "transport_retry_event",
+      "status": "None",
+      "n": 2
+    },
+    {
+      "model": "ministral-14b-2512",
+      "type": "transport_retry_event",
+      "status": "429",
+      "n": 45
+    }
+  ],
+  "credential_requests": [
+    {
+      "model": "gemini-3.1-flash-lite",
+      "credential_variable": "GEMINI_API_KEY_2",
+      "status": "200",
+      "n": 1051
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "credential_variable": "GEMINI_API_KEY_2",
+      "status": "429",
+      "n": 12
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "credential_variable": "GEMINI_API_KEY_2",
+      "status": "503",
+      "n": 36
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "credential_variable": "GEMINI_API_KEY_2",
+      "status": "None",
+      "n": 1
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "credential_variable": "GEMINI_API_KEY_3",
+      "status": "200",
+      "n": 1049
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "credential_variable": "GEMINI_API_KEY_3",
+      "status": "429",
+      "n": 15
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "credential_variable": "GEMINI_API_KEY_3",
+      "status": "503",
+      "n": 43
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "credential_variable": "GEMINI_API_KEY_5",
+      "status": "200",
+      "n": 628
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "credential_variable": "GEMINI_API_KEY_5",
+      "status": "429",
+      "n": 6
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "credential_variable": "GEMINI_API_KEY_5",
+      "status": "503",
+      "n": 1
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "credential_variable": "GEMINI_API_KEY_5",
+      "status": "None",
+      "n": 1
+    },
+    {
+      "model": "ministral-14b-2512",
+      "credential_variable": "MISTRAL_API_KEY",
+      "status": "200",
+      "n": 2681
+    },
+    {
+      "model": "ministral-14b-2512",
+      "credential_variable": "MISTRAL_API_KEY",
+      "status": "429",
+      "n": 45
+    }
+  ],
+  "tokens": {
+    "google_gemini": {
+      "input": 3079700,
+      "output": 272216,
+      "provider_calls": 2728
+    },
+    "mistral": {
+      "input": 3270856,
+      "output": 343939,
+      "provider_calls": 2681
+    }
+  },
+  "leakage_findings": []
+}

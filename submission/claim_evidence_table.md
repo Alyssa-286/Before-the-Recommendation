@@ -1,0 +1,15 @@
+# Claim → Evidence Table
+
+| Claim | Evidence source | Metric/result | Limitation |
+|---|---|---|---|
+| Ambiguous goals produce higher representation error than explicit goals (H1) | `artifacts/analysis/core_results.json → h1_ambiguous_minus_explicit_all_arms.representation_error` | +0.095 (95% CI +0.069 to +0.119); Gemini +0.094 (95% CI +0.070 to +0.117); Ministral +0.096 (95% CI +0.066 to +0.124) | Two model versions; synthetic objectives; explicit prompt states priority order |
+| Commercial cues do not shift representation error under ambiguity (H2 not supported) | `core_results.json → primary_commercial_vs_neutral_ambiguous.representation_error` | ΔD -0.001 (95% CI -0.006 to +0.004); Holm p = 0.729 | Null within the tested cue wordings and one fixed cued set (relocation check separate) |
+| No moderation of ΔD by goal ambiguity (H3 not supported) | `core_results.json → secondary_moderation_ambiguous_minus_explicit.representation_error` | -0.002 (95% CI -0.008 to +0.004) | Secondary contrast |
+| Commercial cues reduce clarification under ambiguity, driven by Ministral | `core_results.json → primary …clarification (pooled, by_model)` | pooled -0.054 (95% CI -0.070 to -0.039); Gemini +0.000 (95% CI +0.000 to +0.000); Ministral -0.108 (95% CI -0.140 to -0.078) | Gemini asked in every ambiguous run (ceiling); model-specific |
+| Commercial cues slightly reduce recommendation utility under ambiguity | `core_results.json → primary …recommended_utility` | -0.006 (95% CI -0.010 to -0.003); Holm p < 0.001 | Small absolute size; catalog-dependent scale |
+| Representation and recommendation dissociate (reverse of H4's stated direction) | `core_results.json → h4_representation_recommendation_separation; Figure 8` | top product changed in 32.4% of 688 matched pairs; ΔD null; utility contrast non-null | Descriptive matched-pair summaries |
+| Clarification questions were rarely answerable under the frozen simulated user | `core_results.json → question_targets` | informative answers: Gemini 0.5%, Ministral 1.9% | Joint property of agent questioning and single-dimension answer function |
+| Cue language entered agents' stated evidence | `core_results.json → secondary_outcomes_commercial_vs_neutral.ambiguous.evidence_mentions_cue` | +0.267 (95% CI +0.233 to +0.303) | Keyword detector with neutral baseline |
+| Ministral shifted toward cued top products; Gemini did not | `core_results.json → secondary …top_is_cued by_model` | Gemini -0.064 (95% CI -0.097 to -0.031); Ministral +0.149 (95% CI +0.113 to +0.186) | Fixed cued set in core |
+| Data quality and isolation | `artifacts/data_quality_audit.json; artifacts/final_validation.json` | 24 checks passed; 5,409 model-visible requests scanned, no leakage | Leakage scan is rule-based |
+| Execution at zero cost on free routes | `artifacts/credential_capacity_audit.json; gemini_tier_probe.json; roadmap` | Gemini FreeTier quotaIds observed for all three credentials; Mistral Free mode | Billing status inferred from provider quota responses |

@@ -1,6 +1,6 @@
 ## Abstract
 
-AI shopping agents now stand between firms' product information and consumers' goals, so customer-centric evaluation must ask whether the agent represented the goal faithfully, not only whether its recommendation was good. In a pre-specified audit in a synthetic laptop storefront, 40 controlled objectives were crossed with ambiguous versus explicit goal statements and four storefront conditions (neutral, scarcity, social proof, discount). Gemini 3.1 Flash-Lite and Ministral 14B acted as tool-using agents under a fixed protocol: inspect the catalog, optionally ask one question to a deterministic simulated user, then submit preference weights and a ranking. Of {{n_planned}} runs, {{n_valid}} were valid. Goal ambiguity raised representation error D (ambiguous minus explicit: {{h1_representation_error}}). Under ambiguity, commercial cues left representation unchanged (ΔD = {{prim_representation_error}}), but lowered clarification ({{prim_clarification}}) and slightly lowered utility ({{prim_recommended_utility}}), mainly for one model. Almost all clarification questions were multi-attribute trade-offs that the simulated user could not answer. The study involves no human participants; it shows that goal representation and recommendation can respond differently to storefront framing and should be audited separately.
+AI shopping agents now stand between firms' product information and consumers' goals, so customer-centric evaluation must ask whether the agent represented the goal faithfully, not only whether its recommendation was good. In a pre-specified audit in a synthetic laptop storefront, 40 controlled objectives were crossed with ambiguous versus explicit goal statements and four storefront conditions (neutral, scarcity, social proof, discount). Gemini 3.1 Flash-Lite and Ministral 14B acted as tool-using agents under a fixed protocol: inspect the catalog, optionally ask one question to a deterministic simulated user, then submit preference weights and a ranking. Of {{n_planned}} runs, {{n_valid}} were valid. Goal ambiguity raised representation error D (ambiguous minus explicit: {{h1_representation_error}}). Under ambiguity, commercial cues left representation unchanged (ΔD = {{prim_representation_error}}), but lowered clarification ({{prim_clarification}}) and slightly lowered utility ({{prim_recommended_utility}}), mainly for one model; these two cue effects did not replicate under an alternate request wording or a permuted product order, whereas the null representation shift did. Almost all clarification questions were multi-attribute trade-offs that the simulated user could not answer. The study involves no human participants; it shows that goal representation and recommendation can respond differently to storefront framing and should be audited separately.
 
 **Keywords:** AI shopping agents; agentic commerce; storefront marketing cues; preference elicitation; customer-centricity; recommendation audit; clarification
 
@@ -70,11 +70,10 @@ No locked hard constraint applies in this environment (the ₹70,000 amount is a
 
 The checks are reported in the frozen order.
 
-1. **Repeat stability.** Across the three repetitions of a cell, Gemini agreed on the clarification decision in {{stab_google_gemini_clar}} of cells and on the top product in {{stab_google_gemini_top}}, with a mean maximum pairwise weight spread of {{stab_google_gemini_spread}}. For Ministral the corresponding figures were {{stab_mistral_clar}}, {{stab_mistral_top}} and {{stab_mistral_spread}}. Run-to-run variability is therefore of the same order as the cue-induced weight shifts reported above. This is why the analysis averages repetitions within each cell and resamples whole scenarios.
+1. **Repeat stability.** Across the three repetitions of a cell, Gemini agreed on the clarification decision in {{stab_google_gemini_clar}} of cells and on the top product in {{stab_google_gemini_top}}, with a mean maximum pairwise weight spread of {{stab_google_gemini_spread}}. For Ministral the corresponding figures were {{stab_mistral_clar}}, {{stab_mistral_top}} and {{stab_mistral_spread}}. Run-to-run variability is therefore of the same order as the cue-induced weight shifts reported above.
 2. **Alternate request template** ({{robust_template_status}}): ΔD = {{robust_template_representation_error}}; clarification difference {{robust_template_clarification}}; utility difference {{robust_template_recommended_utility}}.
 3. **Permuted product order** ({{robust_order_status}}): ΔD = {{robust_order_representation_error}}; clarification difference {{robust_order_clarification}}; utility difference {{robust_order_recommended_utility}}.
-4. **Model-specific effects** are reported throughout.
-5. **The ambiguous-versus-explicit comparison** appears in Sections 6.2 and 6.3.
+4–5. **Model-specific effects** and **the ambiguous-versus-explicit comparison** are reported in Section 6.
 6. **Relocated cue set**, where labels were placed on a different, independently drawn set of five products ({{robust_cue_location_status}}): ΔD = {{robust_cue_location_representation_error}}; clarification difference {{robust_cue_location_clarification}}; utility difference {{robust_cue_location_recommended_utility}}.
 
 Checks 2, 3 and 6 are separate datasets (ambiguous goal, 40 scenarios, all four storefront conditions, both models, one repetition) and are never pooled with the core.
@@ -94,9 +93,9 @@ Two kinds of failure are separated in the archived data.
 
 Table 5 applies the pre-specified behavioural taxonomy to all planned runs.
 
-- **Questioning.** Under-questioning (an ambiguous goal with no question) occurred in {{tax_under_questioning}} runs ({{tax_under_questioning_google_gemini}} Gemini, {{tax_under_questioning_mistral}} Ministral). Over-questioning (a question despite an explicit goal) occurred in {{tax_over_questioning}}. Silent defaulting (no question under ambiguity with reported uncertainty ≤ 0.20) occurred in {{tax_silent_defaulting}}.
-- **Cue use.** Unsupported marketing evidence (cue language cited as evidence) occurred in {{tax_unsupported_marketing_evidence}} runs. Leading clarification (a question mentioning a cue or a cued product) occurred in {{tax_leading_clarification}}. Cue-driven attribute substitution (a cued top product that replaced the matched neutral choice) occurred in {{tax_cue_driven_attribute_substitution}}.
-- **Internal consistency.** Ranking inconsistency relative to the agent's own stated weights occurred in {{tax_ranking_inconsistency}} runs. Uncertainty failure (D ≥ 0.25 with uncertainty ≤ 0.20) occurred in {{tax_uncertainty_failure}}, and preference-weight instability across repetitions in {{tax_preference_weight_instability}}.
+- **Questioning:** under-questioning (no question despite ambiguity) {{tax_under_questioning}} runs ({{tax_under_questioning_google_gemini}} Gemini, {{tax_under_questioning_mistral}} Ministral); over-questioning (a question despite an explicit goal) {{tax_over_questioning}}; silent defaulting (no question, uncertainty ≤ 0.20) {{tax_silent_defaulting}}.
+- **Cue use:** unsupported marketing evidence {{tax_unsupported_marketing_evidence}}; leading clarification {{tax_leading_clarification}}; cue-driven attribute substitution {{tax_cue_driven_attribute_substitution}}.
+- **Internal consistency:** ranking inconsistency with the agent's own weights {{tax_ranking_inconsistency}}; uncertainty failure (D ≥ 0.25, uncertainty ≤ 0.20) {{tax_uncertainty_failure}}; preference-weight instability across repetitions {{tax_preference_weight_instability}}.
 
 The cue-term detector is a fixed keyword list with a non-zero neutral baseline, so commercial-minus-neutral differences are the meaningful quantities. Figure 7 traces one case selected by a rule fixed in code: the most frequent behavioural category among ambiguous commercial runs, then the first trial by identifier.
 
@@ -106,7 +105,7 @@ The cue-term detector is a fixed keyword list with a non-zero neutral baseline, 
 
 ## 9. Discussion
 
-**What the data show.** Under the controlled environment, the explicitness of the goal statement mattered far more for representation fidelity than storefront framing did. Making priorities explicit reduced representation error substantially and consistently in both model families (H1). Ordinary scarcity, social-proof and discount labels left the represented goal essentially unchanged on average (H2 and H3 not supported). The cues nonetheless changed behaviour around the representation. They reduced how often one agent paused to ask for clarification, especially under scarcity framing. They also shifted that agent's final choices toward cued products, with a small but consistent loss of utility. The resulting dissociation is the reverse of H4's expectation: the recommendation moved while the represented goal did not.
+**What the data show.** Under the controlled environment, the explicitness of the goal statement mattered far more for representation fidelity than storefront framing did. Making priorities explicit reduced representation error substantially and consistently in both model families (H1). Ordinary scarcity, social-proof and discount labels left the represented goal essentially unchanged on average (H2 and H3 not supported). The cues nonetheless changed behaviour around the representation. They reduced how often one agent paused to ask for clarification, especially under scarcity framing. They also shifted that agent's final choices toward cued products, with a small but consistent loss of utility. The resulting dissociation is the reverse of H4's expectation: the recommendation moved while the represented goal did not. The robustness datasets qualify this picture. The null representation shift replicated under an alternate request wording and a permuted product order. The cue effects on clarification and utility did not: with the alternate wording the clarification effect reversed sign ({{robust_template_clarification}}), and with permuted order both effects were indistinguishable from zero. These process and choice effects should therefore be read as wording- and context-dependent behaviour of one model (Ministral), not as a stable cue response.
 
 **What the results may mean.** For marketing, this pattern is a caution against evaluating AI intermediaries through any single lens. Auditing representation alone would have judged framing harmless; auditing final picks alone would have missed that framing also suppressed clarification for one agent. Customer-centric evaluation needs both views plus the process view.
 
@@ -114,7 +113,7 @@ The clarification results add a second lesson. Both agents typically asked pairw
 
 Finally, the two model families behaved differently. Gemini asked under every ambiguous request regardless of storefront, while Ministral's asking and choices responded to the cues. "AI shopping agents" do not form a single behavioural type, and conclusions must be model-specific.
 
-**What the study cannot establish.** The study observes two model versions, one synthetic catalog, simulated users with controlled objectives, and one cue wording per condition. It does not show that human shoppers would be affected, that the effects generalize to other agents, prompts or categories, or that any provider's deployed shopping product behaves this way. Because clarification answers were rarely informative under the frozen protocol, the study is weak on the question-to-representation pathway; a protocol that answers multi-attribute questions would be needed to test it.
+**What the study cannot establish.** Effects on human shoppers, generality beyond two model versions and this catalog, and the question-to-representation pathway, which the frozen simulated user rarely exercised (Section 12).
 
 ## 10. Marketing and Customer-Centric Implications
 
@@ -125,7 +124,7 @@ First, customer-centric metrics for AI intermediaries should combine three thing
 
 These moved independently in this study.
 
-Second, storefront framing can act on agent behaviour without distorting the stated goal representation. Firms and platforms should not treat an unchanged preference profile as evidence that their listing cues are neutral for agent-mediated customers.
+Second, storefront framing can act on agent behaviour, in some conditions, without distorting the stated goal representation. Firms and platforms should not treat an unchanged preference profile as evidence that their listing cues are neutral for agent-mediated customers.
 
 Third, because the model families differed, firms deploying agents, and platforms hosting them, should audit the specific model and version they use. Vendor- or category-level assurances are not enough.
 
@@ -133,7 +132,7 @@ Fourth, the study offers a low-cost, reproducible audit template that marketing 
 
 ## 11. Theoretical Implications
 
-The results connect constructed-preference theory (Bettman et al., 1998) with agentic commerce by separating three stages that are often conflated: *elicitation* (whether and what to ask), *representation* (ŵ) and *selection* (the ranking). In this audit, ambiguity acted strongly on representation as well as on clarification frequency. Storefront cues acted on elicitation and selection but not on representation. This is consistent with a view in which marketing context steers agent behaviour through process and choice rather than through a rewritten model of the customer. It also refines the argument that agents should help users construct preferences (Saracay et al., 2026): broad trade-off questions do not help a user who cannot yet state a trade-off.
+The results connect constructed-preference theory (Bettman et al., 1998) with agentic commerce by separating three stages that are often conflated: *elicitation* (whether and what to ask), *representation* (ŵ) and *selection* (the ranking). In this audit, ambiguity acted strongly on representation as well as on clarification frequency. Storefront cues never acted on representation; their effects on elicitation and selection appeared for one model and depended on wording and context. This is consistent with a view in which marketing context steers agent behaviour through process and choice rather than through a rewritten model of the customer. It also refines the argument that agents should help users construct preferences (Saracay et al., 2026): broad trade-off questions do not help a user who cannot yet state a trade-off.
 
 Unlike instruction-driven commercial influence (Li, 2026; Wadi & Ma, 2026b), no instruction here favoured any product, yet one agent drifted toward cued listings, consistent with the storefront-architecture account of Wadi and Ma (2026a).
 
@@ -145,14 +144,9 @@ Unlike instruction-driven commercial influence (Li, 2026; Wadi & Ma, 2026b), no 
 
 **Cue manipulation and measurement.** Each commercial condition uses one wording and, in the core, one fixed set of five cued products; the relocation check varies the set but not the wording. The cue-term detector for evidence use is a keyword rule and has a non-zero neutral baseline. Effects on utility are small in absolute terms, and the regret scale depends on the catalog.
 
-**Execution.** Execution depended on free-tier capacity, so Gemini runs were spread over several daily quota windows; the execution process was interrupted and resumed from its checkpoint.
+**Execution.** Free-tier quotas spread Gemini runs over several days.
 
-**Pre-data deviations.** Three deviations were documented before any core data existed:
-- the catalog was regenerated under pre-specified acceptance criteria
-- the originally planned model pair was replaced by Gemini + Mistral under the zero-budget constraint
-- the robustness datasets were restricted to the ambiguous goal
-
-Ecological validity is therefore limited. Field data, human validation and additional categories are required before generalizing.
+**Pre-data deviations** (all documented before any core data): catalog regeneration under pre-specified acceptance criteria, a Gemini + Mistral pair under the zero-budget constraint, and ambiguous-goal-only robustness datasets. Ecological validity is therefore limited. Field data, human validation and additional categories are required before generalizing.
 
 ## 13. Research Integrity and Reproducibility
 
@@ -164,4 +158,4 @@ The code, configuration, data and audit reports are available in the project rep
 
 ## 14. Conclusion
 
-Before an AI shopping agent recommends anything, it forms a picture of what the customer wants. This audit measured that picture against a known objective. In the tested environment, an explicit goal statement improved the agent's representation far more than any storefront cue changed it. Ordinary marketing labels still changed whether one agent asked for clarification and which product it chose, at a small cost in utility, while leaving the represented goal unchanged. For marketers building or relying on AI intermediaries, customer-centricity therefore means auditing three things: the questions an agent asks, the goal it represents and the recommendation it makes.
+Before an AI shopping agent recommends anything, it forms a picture of what the customer wants. This audit measured that picture against a known objective. In the tested environment, an explicit goal statement improved the agent's representation far more than any storefront cue changed it. Ordinary marketing labels left the represented goal unchanged in every check. In the core design they changed whether one agent asked for clarification and which product it chose, but these process effects were sensitive to request wording and product order. For marketers building or relying on AI intermediaries, customer-centricity therefore means auditing three things: the questions an agent asks, the goal it represents and the recommendation it makes.

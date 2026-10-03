@@ -1,0 +1,225 @@
+{
+  "artifact_version": "model-selection-v2",
+  "status": "FROZEN (2026-10-01) under researcher-imposed INR 0 budget",
+  "selection_criterion": "lowest-cost eligible model-family pair under the predefined experimental constraints (cost = INR 0 required; ties broken by protocol reliability, then by tokens per trial)",
+  "constraints": [
+    "two genuinely distinct model families",
+    "authenticated API access with successful calls",
+    "tool-calling protocol compliance (inspect -> optional one clarification -> submit)",
+    "parser compatibility",
+    "evaluator isolation (automated leakage check)",
+    "sufficient quota for 1,920 core runs before 2026-10-06"
+  ],
+  "candidates": [
+    {
+      "candidate": "gpt-5-nano",
+      "exact_model_id": "gpt-5-nano-2025-08-07",
+      "family_label": "openai_gpt",
+      "provider_adapter": "openai_chat_completions",
+      "price_usd_per_1m": {
+        "input": 0.05,
+        "output": 0.4,
+        "source": "https://developers.openai.com/api/docs/pricing",
+        "retrieved_on": "2026-10-01"
+      },
+      "probe_trials": 2,
+      "probe_trials_completed": 0,
+      "probe_leakage_check_passed": true,
+      "eligible": false,
+      "exclusion_reason": "HTTP 429 insufficient_quota / credit_balance_exhausted on the OpenAI account (no API credits); zero successful calls"
+    },
+    {
+      "candidate": "gpt-4.1-nano",
+      "exact_model_id": "gpt-4.1-nano-2025-04-14",
+      "family_label": "openai_gpt",
+      "provider_adapter": "openai_chat_completions",
+      "price_usd_per_1m": {
+        "input": 0.1,
+        "output": 0.4,
+        "source": "https://developers.openai.com/api/docs/pricing",
+        "retrieved_on": "2026-10-01"
+      },
+      "probe_trials": 2,
+      "probe_trials_completed": 0,
+      "probe_leakage_check_passed": true,
+      "eligible": false,
+      "exclusion_reason": "HTTP 429 insufficient_quota / credit_balance_exhausted on the OpenAI account (no API credits); zero successful calls"
+    },
+    {
+      "candidate": "gemini-2.5-flash-lite",
+      "exact_model_id": "gemini-2.5-flash-lite",
+      "family_label": "google_gemini",
+      "provider_adapter": "gemini_openai_compat",
+      "price_usd_per_1m": {
+        "input": 0.1,
+        "output": 0.4,
+        "source": "https://ai.google.dev/gemini-api/docs/pricing",
+        "retrieved_on": "2026-10-01"
+      },
+      "probe_trials": 2,
+      "probe_trials_completed": 0,
+      "probe_leakage_check_passed": true,
+      "eligible": false,
+      "exclusion_reason": "HTTP 404: model no longer available to new users"
+    },
+    {
+      "candidate": "gemini-3.1-flash-lite",
+      "exact_model_id": "gemini-3.1-flash-lite",
+      "family_label": "google_gemini",
+      "provider_adapter": "gemini_openai_compat",
+      "price_usd_per_1m": {
+        "input": 0.25,
+        "output": 1.5,
+        "source": "https://ai.google.dev/gemini-api/docs/pricing",
+        "retrieved_on": "2026-10-01"
+      },
+      "probe_trials": 2,
+      "probe_trials_completed": 2,
+      "probe_leakage_check_passed": true,
+      "eligible": true,
+      "exclusion_reason": null
+    },
+    {
+      "candidate": "gemma-4-26b-a4b-it",
+      "exact_model_id": "gemma-4-26b-a4b-it",
+      "family_label": "google_gemma",
+      "provider_adapter": "gemini_openai_compat",
+      "price_usd_per_1m": {
+        "input": 0.0,
+        "output": 0.0,
+        "source": "https://ai.google.dev/gemini-api/docs/pricing (free tier only; paid tier not available)",
+        "retrieved_on": "2026-10-01"
+      },
+      "probe_trials": 2,
+      "probe_trials_completed": 0,
+      "probe_leakage_check_passed": true,
+      "eligible": false,
+      "exclusion_reason": "protocol non-compliant: 0/2 probe trials produced exactly one tool call; median latency ~88 s; 6 transport HTTP 500 re-sends"
+    },
+    {
+      "candidate": "groq-gpt-oss-20b",
+      "exact_model_id": "openai/gpt-oss-20b",
+      "family_label": "openai_gpt_oss",
+      "provider_adapter": "groq_chat_completions",
+      "price_usd_per_1m": {
+        "input": 0.075,
+        "output": 0.3,
+        "source": "https://console.groq.com/docs/models",
+        "retrieved_on": "2026-10-01"
+      },
+      "probe_trials": 2,
+      "probe_trials_completed": 2,
+      "probe_leakage_check_passed": true,
+      "eligible": true,
+      "exclusion_reason": null
+    },
+    {
+      "candidate": "groq-qwen3.8-27b",
+      "exact_model_id": "qwen/qwen3.8-27b",
+      "family_label": "alibaba_qwen",
+      "provider_adapter": "groq_chat_completions",
+      "price_usd_per_1m": {
+        "input": 0.8,
+        "output": 4.0,
+        "source": "https://console.groq.com/docs/models",
+        "retrieved_on": "2026-10-01"
+      },
+      "probe_trials": 2,
+      "probe_trials_completed": 2,
+      "probe_leakage_check_passed": true,
+      "eligible": true,
+      "exclusion_reason": null
+    }
+  ],
+  "eligible_by_family": {
+    "google (Gemini)": [
+      "gemini-3.1-flash-lite"
+    ],
+    "openai (open-weight gpt-oss, served by Groq)": [
+      "openai/gpt-oss-20b"
+    ],
+    "alibaba (Qwen, served by Groq)": [
+      "qwen/qwen3.8-27b"
+    ]
+  },
+  "not_probed_dominated": {
+    "gemini-3.5-flash-lite": "same family, higher documented price ($0.30/$2.50) than validated gemini-3.1-flash-lite",
+    "openai/gpt-oss-120b": "same family, higher documented price ($0.15/$0.60) than validated gpt-oss-20b"
+  },
+  "pair_comparison": {
+    "google_gemini-3.1-flash-lite + openai_gpt-oss-20b": 2.512,
+    "google_gemini-3.1-flash-lite + alibaba_qwen3.8-27b (probe-based estimate)": 16.462,
+    "openai_gpt-oss-20b + alibaba_qwen3.8-27b (probe-based estimate)": 14.8
+  },
+  "selected_pair": {
+    "google_gemini": "gemini-3.1-flash-lite",
+    "mistral": "ministral-14b-2512"
+  },
+  "rationale": "Only free routes are admissible. Verified free: Gemini FreeTier projects (GEMINI_API_KEY_2, _3; quotaId GenerateRequestsPerMinutePerProjectPerModel-FreeTier, 15 RPM) and Mistral Free mode (ministral-14b: 30 RPM, 937.5K TPM; mistral-small/medium have 0 RPM on this plan). Groq Free (2 separate orgs x 200K TPD) cannot carry 960 trials before the deadline; OpenAI has no credits. Gemini (Google) and Mistral (Mistral AI) are distinct developer families. Among free Mistral models, ministral-14b-2512 and ministral-8b-2512 tied on reliability (4/4 valid each); 14b used fewer tokens per trial (4,006 vs 4,339).",
+  "pilot_measurements": {
+    "google_gemini": {
+      "model_id": "gemini-3.1-flash-lite",
+      "pilot_trials": 16,
+      "pilot_valid": 16,
+      "valid_rate": 1.0,
+      "calls_per_trial": 3.1875,
+      "input_tokens_per_trial": 5282.0625,
+      "output_tokens_per_trial": 568.75,
+      "parser_retry_rate": 0.6875,
+      "technical_retry_rate": 0.0,
+      "expected_paid_cost_per_attempted_trial_usd": 0.002173640625,
+      "expected_paid_cost_per_valid_trial_usd": 0.002173640625,
+      "projected_960_trials": {
+        "api_calls": 3060,
+        "input_tokens": 5070780,
+        "output_tokens": 546000,
+        "paid_cost_usd": 2.087
+      }
+    },
+    "openai_gpt_oss": {
+      "model_id": "openai/gpt-oss-20b",
+      "pilot_trials": 16,
+      "pilot_valid": 14,
+      "valid_rate": 0.875,
+      "calls_per_trial": 2.6875,
+      "input_tokens_per_trial": 3703.3125,
+      "output_tokens_per_trial": 551.1875,
+      "parser_retry_rate": 0.4375,
+      "technical_retry_rate": 0.0,
+      "expected_paid_cost_per_attempted_trial_usd": 0.00044310468749999995,
+      "expected_paid_cost_per_valid_trial_usd": 0.0005064053571428571,
+      "projected_960_trials": {
+        "api_calls": 2580,
+        "input_tokens": 3555180,
+        "output_tokens": 529140,
+        "paid_cost_usd": 0.425
+      }
+    }
+  },
+  "family_distinctness_note": "gpt-oss-20b is OpenAI-developed open-weight; Gemini is Google-developed. Serving provider (Groq) differs from developer; family is defined by developer/model lineage.",
+  "superseded_v1": {
+    "status": "PROVISIONAL \u2014 selection computed; experiment freeze blocked at the quota gate",
+    "selected_pair": {
+      "google_gemini": "gemini-3.1-flash-lite",
+      "openai_gpt_oss": "openai/gpt-oss-20b"
+    },
+    "rationale": "Among eligible candidates, gemini-3.1-flash-lite (Google) and openai/gpt-oss-20b (OpenAI open-weight, via Groq) give the lowest projected paid cost for 2 x 960 core runs; both completed probe and pilot protocol with zero leakage findings. OpenAI-direct models were excluded only because the account has no API credits.",
+    "pair_comparison": {
+      "google_gemini-3.1-flash-lite + openai_gpt-oss-20b": 2.512,
+      "google_gemini-3.1-flash-lite + alibaba_qwen3.8-27b (probe-based estimate)": 16.462,
+      "openai_gpt-oss-20b + alibaba_qwen3.8-27b (probe-based estimate)": 14.8
+    }
+  },
+  "excluded_credentials": {
+    "GEMINI_API_KEY": "free-tier status not confirmed (30 burst calls without a FreeTier quota response); excluded to protect INR 0",
+    "MISTRAL_API_KEY_2": "shares the same workspace quota as MISTRAL_API_KEY (counters decrement across keys); adds no capacity",
+    "GROQ_API_KEY, GROQ_API_KEY_2": "GroqCloud (gsk_ format, not xAI); separate Free orgs; family not selected"
+  },
+  "evidence": [
+    "artifacts/credential_capacity_audit.json",
+    "artifacts/gemini_tier_probe.json",
+    "artifacts/mistral_selection_probe.json",
+    "artifacts/live_pilot_v2_summary.json",
+    "artifacts/free_quota_feasibility.json"
+  ]
+}

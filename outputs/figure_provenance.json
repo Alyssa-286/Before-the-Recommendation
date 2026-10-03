@@ -2,7 +2,10 @@
   "stage": "core",
   "dataset": "data/analysis/core_dataset.jsonl",
   "results": "artifacts/analysis/core_results.json",
-  "robustness_included": [],
+  "robustness_included": [
+    "Robust: alternate template",
+    "Robust: product order"
+  ],
   "fig7_selection": {
     "category": "unsupported_marketing_evidence",
     "category_counts": {

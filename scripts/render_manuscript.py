@@ -219,24 +219,70 @@ def build_tokens() -> dict[str, str]:
     return t
 
 
+COMPOUND_SURNAMES = ("Horta Ribeiro",)
+
+
+def _apa_name(full: str) -> str:
+    for compound in COMPOUND_SURNAMES:
+        if full.endswith(compound):
+            given = full[: -len(compound)].split()
+            return f"{compound}, " + " ".join(f"{q[0]}." for q in given)
+    parts = full.replace(".", ". ").split()
+    last = parts[-1]
+    initials = " ".join(f"{q[0]}." for q in parts[:-1] if q[0].isalpha())
+    return f"{last}, {initials}".strip().rstrip(",")
+
+
+def _apa_authors(names: list[str]) -> str:
+    names = [_apa_name(n) for n in names]
+    if len(names) == 1:
+        return names[0]
+    if len(names) <= 20:
+        return ", ".join(names[:-1]) + ", & " + names[-1]
+    return ", ".join(names[:19]) + ", ... " + names[-1]
+
+
+def _arxiv_full_authors() -> dict[str, list[str]]:
+    import xml.etree.ElementTree as ET
+    ns = {"a": "http://www.w3.org/2005/Atom"}
+    root = ET.parse(ROOT / "references" / "arxiv_abstracts.xml").getroot()
+    out = {}
+    for e in root.findall("a:entry", ns):
+        arxiv_id = e.find("a:id", ns).text.rsplit("/", 1)[-1].split("v")[0]
+        out[arxiv_id] = [a.find("a:name", ns).text for a in e.findall("a:author", ns)]
+    return out
+
+
 def references_md() -> str:
+    """APA 7 reference list built only from verified records (arXiv API / Crossref)."""
+    from collections import Counter
     V = load("references/verified_references.json")
+    full = _arxiv_full_authors()
     items = []
     for e in V["arxiv"]:
         if e["status"] != "verified":
             continue
-        authors = e["authors"]
-        auth = ", ".join(authors[:-1]) + (", & " if len(authors) > 1 else "") + authors[-1] if "et al." not in authors else ", ".join(a for a in authors if a != "et al.") + ", et al."
+        aid = e["arxiv_id"].split("v")[0]
+        authors = full.get(aid) or [a for a in e["authors"] if a != "et al."]
         title = e["title"].replace("$τ$", "τ")
-        items.append((authors[0].split()[-1], f"{auth} ({e['published'][:4]}). *{title}*. arXiv:{e['arxiv_id'].split('v')[0]}. {e['url']}"))
+        items.append([_apa_authors(authors), e["published"][:4], f"*{title}* [Preprint]. arXiv:{aid}. https://arxiv.org/abs/{aid}", title])
     for e in V["doi"]:
         if e["status"] != "verified":
             continue
-        authors = e["authors"]
-        auth = ", ".join(authors[:-1]) + (", & " if len(authors) > 1 else "") + authors[-1]
-        items.append((authors[0].split()[-1], f"{auth} ({e['year']}). {html.unescape(e['title'])}. *{html.unescape(e['journal'])}*, {e['volume']}({e['issue']}), {e['pages']}. https://doi.org/{e['doi']}"))
-    items.sort(key=lambda kv: kv[0].casefold())
-    return "## References\n\n" + "\n\n".join(text for _, text in items) + "\n"
+        title = html.unescape(e["title"])
+        pages = (e["pages"] or "").replace("-", "–")
+        items.append([_apa_authors(e["authors"]), str(e["year"]), f"{title}. *{html.unescape(e['journal'])}*, *{e['volume']}*({e['issue']}), {pages}. https://doi.org/{e['doi']}", title])
+    items.sort(key=lambda it: (it[0].casefold(), it[1], it[3].casefold()))
+    counts = Counter((it[0], it[1]) for it in items)
+    seen: Counter = Counter()
+    lines = []
+    for auth, year, rest, _ in items:
+        suffix = ""
+        if counts[(auth, year)] > 1:
+            suffix = "abcdefgh"[seen[(auth, year)]]
+            seen[(auth, year)] += 1
+        lines.append(f"{auth} ({year}{suffix}). {rest}")
+    return "## References\n\n" + "\n\n".join(lines) + "\n"
 
 
 def fill(text: str, tokens: dict[str, str]) -> str:

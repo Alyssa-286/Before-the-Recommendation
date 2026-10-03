@@ -1,0 +1,39 @@
+{
+  "artifact_version": "run-summary-v1",
+  "stage": "robust_order",
+  "planned": 320,
+  "final_traces": 320,
+  "valid": 303,
+  "failed": 17,
+  "by_model": {
+    "google_gemini": {
+      "planned": 160,
+      "valid": 160,
+      "failed": 0,
+      "technical_retries": 0,
+      "parser_retries": 0
+    },
+    "mistral": {
+      "planned": 160,
+      "valid": 143,
+      "failed": 17,
+      "technical_retries": 0,
+      "parser_retries": 0
+    }
+  },
+  "tokens": {
+    "google_gemini": {
+      "input": 544879,
+      "output": 44471,
+      "provider_calls": 480
+    },
+    "mistral": {
+      "input": 544490,
+      "output": 56352,
+      "provider_calls": 450
+    }
+  },
+  "dataset_path": "data/analysis/robust_order_dataset.jsonl",
+  "dataset_sha256": "f7fc4dbf2b464cbbea1145d115c8aecbfc4269879f488efda62d93d4d96e2206",
+  "audit_passed": true
+}
