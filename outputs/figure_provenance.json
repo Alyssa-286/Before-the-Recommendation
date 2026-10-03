@@ -4,7 +4,8 @@
   "results": "artifacts/analysis/core_results.json",
   "robustness_included": [
     "Robust: alternate template",
-    "Robust: product order"
+    "Robust: product order",
+    "Robust: cue location"
   ],
   "fig7_selection": {
     "category": "unsupported_marketing_evidence",

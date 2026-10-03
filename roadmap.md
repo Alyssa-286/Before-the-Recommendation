@@ -406,13 +406,22 @@ Test the manuscript against:
 
 **Current milestone:** Provider access validated, lowest-cost eligible pair computed, 32-run live pilot passed infrastructure checks (2026-10-01).
 
-**Current task:** Gemini cue-location robustness (after next quota reset), then final render, validation, package, push.
+**Current task:** COMPLETE except researcher-only actions (author details, official conference format check, portal submission).
 
 **Main experiment:** COMPLETE (1,920/1,920 executed; audit passed)
 
-**Paper writing:** NOT STARTED
+**Paper writing:** COMPLETE (manuscript rendered from computed results)
 
 **Submission:** NOT STARTED
+
+## Phase 2–4 completion — 2026-10-03
+
+**Status: ALL REQUIRED ROBUSTNESS COMPLETE; FINAL VALIDATION PASSED; manuscript final (1,920 core runs).**
+
+- `GEMINI_API_KEY_6` (researcher's new project): one test request HTTP 200 while keys 2/3/5 were at their daily limit; added as an execution credential for the same model; cue-location resumed from 51/160. A machine restart ended the WMI processes at 138/160; the final 22 trials were completed in a foreground run from the same checkpoint (no duplicate traces).
+- Cue-location robustness (audit passed): ΔD -0.000 (95% CI -0.009 to +0.008); clarification -0.043 (95% CI -0.067 to -0.019); utility -0.008 (95% CI -0.012 to -0.004); Ministral cued-top-product shift +0.505 (95% CI +0.419 to +0.571). Interpretation: null ΔD replicates in all three checks; clarification/utility cue effects replicate with a relocated cue set but not under alternate wording or permuted order.
+- Final validation (`artifacts/final_validation.json`): ALL PASSED — 85 tests; 0 metric/ΔD recomputation mismatches across core and robustness; 0 leakage/arm-name findings; 0 manuscript token mismatches; no secrets in tracked files or logs.
+- Final reports: `artifacts/final_report.md`, `final_audit.md`, `claim_evidence_table.md`, `hostile_review.md`, `publication_development_memo.md`; submission package `submission/`.
 
 ## Phase 2 core completion, audit and analysis — 2026-10-03
 

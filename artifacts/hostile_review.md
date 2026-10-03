@@ -3,7 +3,7 @@
 Each objection is answered with what the manuscript now says; no evidence was added that does not exist.
 
 1. **Incremental novelty.** Elicitation, clarifying questions and cue effects are established. *Response:* the paper claims only a controlled audit separating representation (D) from recommendation utility under ordinary storefront cues without sponsor instructions; it cites and differentiates Li (2026), Wadi & Ma (2026a,b), Saracay et al. (2026).
-2. **Cue confounding.** Cued products could differ in quality. *Response:* factual attributes are byte-identical across arms (audit check); the cued set was a seeded draw passing pre-specified balance criteria; a relocated-cue robustness dataset is reported (not run).
+2. **Cue confounding.** Cued products could differ in quality. *Response:* factual attributes are byte-identical across arms (audit check); the cued set was a seeded draw passing pre-specified balance criteria; a relocated-cue robustness dataset is reported (315 of 320 runs valid; audit passed).
 3. **Latent-objective validity.** Synthetic weights are not human preferences. *Response:* stated in method and limitations; claims restricted to the controlled environment.
 4. **Prompt sensitivity.** *Response:* alternate-template robustness (311 of 320 runs valid; audit passed); single wording per cue acknowledged.
 5. **Model dependence.** *Response:* all estimates reported per model; effects on clarification/utility concentrated in Ministral; no generalization to "AI agents".

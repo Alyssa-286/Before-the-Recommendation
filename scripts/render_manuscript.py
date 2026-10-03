@@ -171,6 +171,10 @@ def build_tokens() -> dict[str, str]:
         for o in OUT:
             p = rr["primary_commercial_vs_neutral_ambiguous"][o]["pooled"]
             t[f"{name}_{o}"] = est(p); t[f"{name}_{o}_verdict"] = verdict(p)
+            for m in MODEL:
+                t[f"{name}_{o}_{m}"] = est(rr["primary_commercial_vs_neutral_ambiguous"][o]["by_model"][m])
+        for m in MODEL:
+            t[f"{name}_top_is_cued_{m}"] = est(rr["secondary_outcomes_commercial_vs_neutral"]["ambiguous"]["top_is_cued"]["by_model"][m])
     # ---- hypothesis verdicts by pre-set rules (95% CI excludes zero in the stated direction) ----
     def direction(pd: dict, sign: int) -> bool:
         return pd.get("estimate") is not None and (pd["ci_low"] > 0 if sign > 0 else pd["ci_high"] < 0)

@@ -3,7 +3,7 @@
   "tests": {
     "returncode": 0,
     "summary": [
-      "Ran 85 tests in 6.153s",
+      "Ran 85 tests in 3.586s",
       "",
       "OK"
     ]
@@ -45,8 +45,8 @@
       "delta_D_mismatches": 0
     },
     "robust_cue_location": {
-      "valid_trials_recomputed": 187,
-      "metric_mismatches": 187,
+      "valid_trials_recomputed": 315,
+      "metric_mismatches": 0,
       "delta_D_mismatches": 0
     }
   },
@@ -67,13 +67,13 @@
       "arm_name_findings": 0
     },
     "robust_cue_location": {
-      "requests_checked": 563,
+      "requests_checked": 958,
       "leakage_findings": 0,
       "arm_name_findings": 0
     }
   },
   "manuscript": {
-    "tokens": 452,
+    "tokens": 482,
     "token_mismatches": [],
     "unresolved_placeholders": 0,
     "verify_markers": 0
@@ -81,10 +81,10 @@
   "security": {
     "env_ignored": true,
     "env_tracked": false,
-    "tracked_files_scanned": 271,
+    "tracked_files_scanned": 328,
     "tracked_files_with_secret": [],
     "log_files_with_secret": [],
-    "secrets_checked": 10
+    "secrets_checked": 11
   },
-  "all_passed": false
+  "all_passed": true
 }

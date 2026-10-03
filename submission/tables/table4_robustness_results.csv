@@ -9,3 +9,7 @@ Robust: product order,Clarification rate,"-0.012 [-0.065, 0.054]",303/320 valid
 Robust: product order,Representation error D,"-0.004 [-0.013, 0.005]",303/320 valid
 Robust: product order,Recommendation utility,"0.010 [-0.002, 0.022]",303/320 valid
 Robust: product order,Regret,"-0.010 [-0.022, 0.002]",303/320 valid
+Robust: cue location,Clarification rate,"-0.043 [-0.067, -0.019]",315/320 valid
+Robust: cue location,Representation error D,"-0.000 [-0.009, 0.008]",315/320 valid
+Robust: cue location,Recommendation utility,"-0.008 [-0.012, -0.004]",315/320 valid
+Robust: cue location,Regret,"0.008 [0.004, 0.012]",315/320 valid

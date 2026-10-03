@@ -71,7 +71,7 @@ Runs are checkpointed and resume without repeating completed trials. Model outpu
 
 ## Results at a glance
 
-All numbers are generated from the frozen data; see `artifacts/final_report.md` (summary), `artifacts/analysis/core_results.json` (full estimates), `manuscript/paper.pdf` (paper) and `artifacts/claim_evidence_table.md`. In brief: goal ambiguity increased representation error in both models (H1 supported); ordinary storefront cues did not change the represented goal (H2/H3 not supported; replicated in robustness datasets); in the core design cues lowered clarification and utility mainly for Ministral, but these process effects were sensitive to request wording and product order; clarification questions were rarely answerable by the frozen single-dimension simulated user.
+All numbers are generated from the frozen data; see `artifacts/final_report.md` (summary), `artifacts/analysis/core_results.json` (full estimates), `manuscript/paper.pdf` (paper) and `artifacts/claim_evidence_table.md`. In brief: goal ambiguity increased representation error in both models (H1 supported); ordinary storefront cues did not change the represented goal (H2/H3 not supported; replicated in robustness datasets); in the core design cues lowered clarification and utility mainly for Ministral; these effects replicated with a relocated cue set but not under an alternate request wording or permuted product order; clarification questions were rarely answerable by the frozen single-dimension simulated user.
 
 ## Execution notes
 

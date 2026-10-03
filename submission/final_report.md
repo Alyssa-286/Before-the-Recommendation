@@ -2,8 +2,8 @@
 
 ## Project status
 - Phase 1 (build): complete.
-- Phase 2 (experiment + analysis): core 1,920/1,920 executed; robustness: template 311 of 320 runs valid; audit passed; order 303 of 320 runs valid; audit passed; cue location not run.
-- Phase 3 (write): manuscript rendered from computed results (4953 words excluding references and tables).
+- Phase 2 (experiment + analysis): core 1,920/1,920 executed; robustness: template 311 of 320 runs valid; audit passed; order 303 of 320 runs valid; audit passed; cue location 315 of 320 runs valid; audit passed.
+- Phase 3 (write): manuscript rendered from computed results (4991 words excluding references and tables).
 - Phase 4 (finalize): final audit in `artifacts/final_audit.md`; open items are researcher actions (author details, official conference format check, portal submission).
 
 ## Model access
@@ -13,7 +13,7 @@ Candidates: OpenAI (no credits), Google Gemini, Groq (Free plan, insufficient da
 Planned 1,920; valid 1,881 (98.0%); terminal failures 39 (Gemini 0, Ministral 39); parser retries Gemini 5, Ministral 4; technical re-runs 0/0; interruption requeues 16/6; provider calls 5,409; tokens 6,966,711.
 
 ## Data quality
-Audit: 24 checks passed; leakage scan of 5,409 model-visible requests clean; metrics independently recomputed; final validation: see artifacts/final_validation.json.
+Audit: 24 checks passed; leakage scan of 5,409 model-visible requests clean; metrics independently recomputed; final validation: PASS.
 
 ## Statistics (ambiguous goal, commercial − neutral; pooled, equal model weights)
 - Clarification -0.054 (95% CI -0.070 to -0.039) (Holm p < 0.001)
@@ -26,7 +26,7 @@ Audit: 24 checks passed; leakage scan of 5,409 model-visible requests clean; met
 Figures: `outputs/figures/fig1…fig8`; tables: `outputs/tables/`; manuscript: `manuscript/paper.md|.docx|.pdf`; submission package: `submission/`.
 
 ## Reproducibility
-Repository commit at build `4ccc396ada90f7294cac2fc07a8b843b34096485`; execution revision `33bfa10`; core config SHA-256 `072fb8f50a64984a370f41bb6b7311a7823ba6781893c84a20099fba0742740a`; catalog seed 20260955; bootstrap seed 20260930.
+Repository commit at build `7870712fe556e588063e30ca5d4435a5d7a08a9b`; execution revision `33bfa10`; core config SHA-256 `072fb8f50a64984a370f41bb6b7311a7823ba6781893c84a20099fba0742740a`; catalog seed 20260955; bootstrap seed 20260930.
 
 ## Publication development
 `artifacts/publication_development_memo.md`. Strongest limitation: synthetic environment with a single-dimension simulated user. Highest-value next study: answerable-dialogue protocol with multiple cue wordings and real product feeds.

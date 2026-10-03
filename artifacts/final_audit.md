@@ -1,6 +1,6 @@
 # Final Audit
 
-Repository HEAD at build: `4ccc396ada90f7294cac2fc07a8b843b34096485`; manuscript words (excl. references/tables): 4953.
+Repository HEAD at build: `7870712fe556e588063e30ca5d4435a5d7a08a9b`; manuscript words (excl. references/tables): 4991.
 
 | Item | Status |
 |---|---|
@@ -11,7 +11,7 @@ Repository HEAD at build: `4ccc396ada90f7294cac2fc07a8b843b34096485`; manuscript
 | Figures/tables regenerated from final data | PASS |
 | Word count within 4,000–5,000 (excl. references/tables) | PASS |
 | Data-quality audit passed | PASS |
-| Final validation passed | OPEN — researcher action |
+| Final validation passed | PASS |
 | Author information | OPEN — researcher action |
 | Conference format/anonymity verified against official call | OPEN — researcher action |
 
