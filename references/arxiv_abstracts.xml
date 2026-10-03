@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/1kK3bKv2oMoM+8+L3UJMVwWFbTY</id>
+  <title>arXiv Query: search_query=&amp;id_list=2609.36614,2606.30863,2603.11399,2606.10156,2603.14864,2607.03162,2609.28372,2609.17989,2604.26220,2409.12143,2604.04263,2502.10050&amp;start=0&amp;max_results=20</title>
+  <updated>2026-10-01T12:13:51Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=20&amp;id_list=2609.36614,2606.30863,2603.11399,2606.10156,2603.14864,2607.03162,2609.28372,2609.17989,2604.26220,2409.12143,2604.04263,2502.10050" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>20</opensearch:itemsPerPage>
+  <opensearch:totalResults>12</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2603.11399v1</id>
+    <title>Entropy Guided Diversification and Preference Elicitation in Agentic Recommendation Systems</title>
+    <updated>2026-03-12T00:24:33Z</updated>
+    <link href="https://arxiv.org/abs/2603.11399v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.11399v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Users on e-commerce platforms can be uncertain about their preferences early in their search. Queries to recommendation systems are frequently ambiguous, incomplete, or weakly specified. Agentic systems are expected to proactively reason, ask clarifying questions, and act on the user's behalf, which makes handling such ambiguity increasingly important. In existing platforms, ambiguity led to excessive interactions and question fatigue or overconfident recommendations prematurely collapsing the search space. We present an Interactive Decision Support System (IDSS) that addresses ambiguous user queries using entropy as a unifying signal. IDSS maintains a dynamically filtered candidate product set and quantifies uncertainty over item attributes using entropy. This uncertainty guides adaptive preference elicitation by selecting follow-up questions that maximize expected information gain. When preferences remain incomplete, IDSS explicitly incorporates residual uncertainty into downstream recommendations through uncertainty-aware ranking and entropy-based diversification, rather than forcing premature resolution. We evaluate IDSS using review-driven simulated users grounded in real user reviews, enabling a controlled study of diverse shopping behaviors. Our evaluation measures both interaction efficiency and recommendation quality. Results show that entropy-guided elicitation reduces unnecessary follow-up questions, while uncertainty-aware ranking and presentation yield more informative, diverse, and transparent recommendation sets under ambiguous intent. These findings demonstrate that entropy-guided reasoning provides an effective foundation for agentic recommendation systems operating under uncertainty.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-12T00:24:33Z</published>
+    <arxiv:comment>In proceeding to 2026 Association for the Advancement of Artificial Intelligence Spring Symposia</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Dat Tran</name>
+    </author>
+    <author>
+      <name>Yongce Li</name>
+    </author>
+    <author>
+      <name>Hannah Clay</name>
+    </author>
+    <author>
+      <name>Negin Golrezaei</name>
+    </author>
+    <author>
+      <name>Sajjad Beygi</name>
+    </author>
+    <author>
+      <name>Amin Saberi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.03162v2</id>
+    <title>APeB: Benchmarking Personalization Ability of Large Language Model Agents</title>
+    <updated>2026-08-27T14:22:53Z</updated>
+    <link href="https://arxiv.org/abs/2607.03162v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.03162v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LLM-powered agents struggle with personalization when users issue raw, underspecified queries. In this setting, agents must infer latent intent, extract preferences from noisy interaction histories, and select among competing alternatives. Existing benchmarks rarely test this capability, as they often rely on user-refined queries or simplified histories. We introduce personalized product search (PPS), a testbed for agentic personalization under raw queries and diverse histories. We construct Agent Personalized Benchmark (APeB) from action logs, pairing underspecified intents with rich histories and user-viewed candidate items. Evaluating state-of-the-art LLMs with multi-step agent workflows, we find that models handle explicit queries well but struggle with early-stage queries requiring intent and preference discovery. Rubric analysis attributes this gap mainly to ineffective history use. A simple history-aware query-refinement pipeline, VQRA, yields consistent gains, highlighting the need for dedicated history-utilization modules in personalized agents.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.HC" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-03T10:03:35Z</published>
+    <arxiv:comment>NA</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Garry Yang</name>
+    </author>
+    <author>
+      <name>Zizhe Chen</name>
+    </author>
+    <author>
+      <name>Xinru Chen</name>
+    </author>
+    <author>
+      <name>Yongqiang Chen</name>
+    </author>
+    <author>
+      <name>Jianxiang Wang</name>
+    </author>
+    <author>
+      <name>Deyu Zou</name>
+    </author>
+    <author>
+      <name>Linyi Ding</name>
+    </author>
+    <author>
+      <name>Jialiang Wu</name>
+    </author>
+    <author>
+      <name>Yunzhong He</name>
+    </author>
+    <author>
+      <name>Yu Gong</name>
+    </author>
+    <author>
+      <name>James Cheng</name>
+    </author>
+    <author>
+      <name>Huaixiao Tou</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2603.14864v3</id>
+    <title>Shopping Companion: Benchmarking and Training LLM Agents for Long-Horizon Preference-Grounded E-Commerce Tasks</title>
+    <updated>2026-05-27T02:20:13Z</updated>
+    <link href="https://arxiv.org/abs/2603.14864v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2603.14864v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In e-commerce, LLM agents show promise for shopping tasks such as recommendations, budget management, and bundle deals, where accurately capturing user preferences from long-horizon conversations is critical. However, progress is limited by two key challenges: (1) the absence of benchmarks for evaluating long-term preference-aware shopping tasks, and (2) the lack of fine-grained supervision for shopping agent training. To fill the benchmark gap, we introduce Shopping Companion Bench, a novel benchmark comprising two shopping tasks that require cross-session preference memory, grounded in a product pool of over 1.2 million real-world items. Our analysis further identifies two major sources of failure on this benchmark: cascading errors caused by preference hallucination, and insufficient verification of product attributes against user requirements. To address these failure modes, we design annotation-free, tool-wise rewards that provide process supervision for each tool call, alleviating reward sparsity in long-horizon tasks. Experimental results demonstrate that even state-of-the-art models such as GPT-5 achieve success rates below 70%, highlighting the difficulty of our benchmark. Notably, our fine-tuned lightweight 4B model consistently outperforms strong baselines in both preference capture and task performance, suggesting the effectiveness of our reward design.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-03-16T06:07:52Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Zijian Yu</name>
+    </author>
+    <author>
+      <name>Kejun Xiao</name>
+    </author>
+    <author>
+      <name>Huaipeng Zhao</name>
+    </author>
+    <author>
+      <name>Tao Luo</name>
+    </author>
+    <author>
+      <name>Xiaoyi Zeng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.30863v2</id>
+    <title>Beyond expert users: agents should help users construct preferences, not just elicit them</title>
+    <updated>2026-07-01T01:04:18Z</updated>
+    <link href="https://arxiv.org/abs/2606.30863v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.30863v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Agents typically assume an expert user -- one with well-formed preferences about what they want -- and default to clarifying questions whenever the task is underspecified. We argue this assumption is unrealistic. Users often lack the domain knowledge to have completely specified preferences; if asked about their preference on some feature, the user may be unable to answer without the agent helping the user to learn some domain knowledge needed to form a preference for that feature, e.g., via examples or explanations. To formalize these principles, we draw on the Search-Experience-Credence framework from Information Economics to introduce CoPref, a model of how users construct preferences based on agent dialog actions. We then study these ideas concretely in agentic recommender systems, proposing CoShop, an interactive benchmark. In CoShop, an agent converses with and makes recommendations for a CoPref user. The agent's performance depends on whether it can help the user gain the knowledge needed to specify the task well. Evaluating five frontier models, we find that no agent exceeds 56% accuracy on CoShop despite five turns of interaction. Failures stem not from agents' ability to find items, but from how little the interaction expands what users know about what they want.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-29T19:50:16Z</published>
+    <arxiv:comment>Update URLs</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Irena Saracay</name>
+    </author>
+    <author>
+      <name>Ludwig Schmidt</name>
+    </author>
+    <author>
+      <name>Carlos Guestrin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.10156v3</id>
+    <title>$τ$-Rec: A Verifiable Benchmark for Agentic Recommender Systems</title>
+    <updated>2026-07-24T21:13:14Z</updated>
+    <link href="https://arxiv.org/abs/2606.10156v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.10156v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As recommender systems transition toward agentic, multi-turn conversational interfaces, evaluation paradigms have struggled to keep pace. Current benchmarks often rely on "LLM-as-a-judge" evaluations, which introduce subjectivity, high costs and inconsistency. We present $τ$-Rec, a benchmark for agentic recommender systems that replaces subjective evaluation with verifiable rewards and a reveal-tagged elicitation (RTE) mechanism that controls how task constraints surface during dialogue. By testing agents against structured catalog predicates and employing a pass^k reliability metric, $τ$-Rec provides a systematic test for consistent reasoning. Our evaluation of nine configurations across five model families -- GPT-5.4, Claude Sonnet 4.6, Gemini 2.5 Flash, DeepSeek V4 Flash, Qwen3-32B and GPT-5 mini -- reveals a steep reliability cliff, where even the best model achieves only ~57% at pass^1 and ~35% at pass^4, highlighting a critical gap in current conversational agent deployment. All code and data are publicly available at https://github.com/nbharaths/tau-rec.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-08T20:35:45Z</published>
+    <arxiv:comment>Accepted at ACM RecSys 2026 (Reproducibility and Resource Track)</arxiv:comment>
+    <arxiv:primary_category term="cs.IR"/>
+    <arxiv:journal_ref>Proceedings of the 20th ACM Conference on Recommender Systems (RecSys '26), pp. 915-919, 2026</arxiv:journal_ref>
+    <author>
+      <name>Bharath Sivaram Narasimhan</name>
+    </author>
+    <author>
+      <name>Karthik R Narasimhan</name>
+    </author>
+    <arxiv:doi>10.1145/3773078.3831847</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1145/3773078.3831847" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.26220v1</id>
+    <title>When Agents Shop for You: Role Coherence in AI-Mediated Markets</title>
+    <updated>2026-04-29T01:54:07Z</updated>
+    <link href="https://arxiv.org/abs/2604.26220v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.26220v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Consumers are increasingly delegating purchase decisions to AI agents, providing natural-language descriptions of their preferences and identity. We argue that these representations constitute an information channel, role coherence, through which sellers can infer willingness to pay without explicit disclosure by the buyer agent, leading to preference leakage. In an experiment where a language-model buyer agent shops on behalf of a verbal consumer profile, we show that seller-side inference from dialogue alone recovers willingness to pay nearly one-for-one. Comparing this setting to a numeric-budget condition with confidentiality instructions cleanly isolates role coherence as distinct from instruction-following failure. Because this leakage arises from delegation itself, it cannot be mitigated at the prompt level. Instead, we propose architectural interventions that trade off personalization against preference privacy.</summary>
+    <category term="cs.MA" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="econ.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-29T01:54:07Z</published>
+    <arxiv:primary_category term="cs.MA"/>
+    <author>
+      <name>Soogand Alavi</name>
+    </author>
+    <author>
+      <name>Salar Nozari</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2502.10050v1</id>
+    <title>A Survey on LLM-powered Agents for Recommender Systems</title>
+    <updated>2025-02-14T09:57:07Z</updated>
+    <link href="https://arxiv.org/abs/2502.10050v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2502.10050v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recommender systems are essential components of many online platforms, yet traditional approaches still struggle with understanding complex user preferences and providing explainable recommendations. The emergence of Large Language Model (LLM)-powered agents offers a promising approach by enabling natural language interactions and interpretable reasoning, potentially transforming research in recommender systems. This survey provides a systematic review of the emerging applications of LLM-powered agents in recommender systems. We identify and analyze three key paradigms in current research: (1) Recommender-oriented approaches, which leverage intelligent agents to enhance the fundamental recommendation mechanisms; (2) Interaction-oriented approaches, which facilitate dynamic user engagement through natural dialogue and interpretable suggestions; and (3) Simulation-oriented approaches, which employ multi-agent frameworks to model complex user-item interactions and system dynamics. Beyond paradigm categorization, we analyze the architectural foundations of LLM-powered recommendation agents, examining their essential components: profile construction, memory management, strategic planning, and action execution. Our investigation extends to a comprehensive analysis of benchmark datasets and evaluation frameworks in this domain. This systematic examination not only illuminates the current state of LLM-powered agent recommender systems but also charts critical challenges and promising research directions in this transformative field.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-02-14T09:57:07Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Qiyao Peng</name>
+    </author>
+    <author>
+      <name>Hongtao Liu</name>
+    </author>
+    <author>
+      <name>Hua Huang</name>
+    </author>
+    <author>
+      <name>Qing Yang</name>
+    </author>
+    <author>
+      <name>Minglai Shao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.17989v1</id>
+    <title>Whom Do AI Agents Work For? Role Assignment Induces Sponsorship Bias in LLM Recommenders</title>
+    <updated>2026-09-16T01:21:56Z</updated>
+    <link href="https://arxiv.org/abs/2609.17989v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.17989v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) now serve as conversational shopping assistants on platforms that also sell advertising. These AI agents face a conflict of duty. They advise consumers who rely on their judgment, yet are deployed by platforms that benefit when sponsored listings are chosen. Sponsorship disclosures, designed to allow consumers to penalize paid placements, now reach the AI agent rather than the consumer, and the agent's evaluation of them is hidden from the consumer. Drawing on the fiduciary concept of conflict of duty, we argue that an agent's evaluation of a sponsored listing should not depend on which party deployed it. In controlled choice experiments, we manipulate assigned roles in the system prompt to name either a traveler or a booking platform as the agent's principal. Platform delegation significantly attenuates the penalty that agents apply to sponsored listings and weakens the skepticism that disclosure triggers in their reasoning traces. We replicate out findings across LLMs and reasoning depths. A second study decomposes the disclosure label and shows that the divergence between the two delegates widens significantly when the paid placement is attributed to the platform. Stricter terminology ("Sponsored" instead of "Promoted") lowers choice of paid listings but does not close this gap when the platform is named. The findings show that disclosure mandates designed for human consumers cannot by themselves protect consumers in AI-mediated commerce.</summary>
+    <category term="econ.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-16T01:21:56Z</published>
+    <arxiv:primary_category term="econ.GN"/>
+    <author>
+      <name>Davood Wadi</name>
+    </author>
+    <author>
+      <name>Yu Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.36614v1</id>
+    <title>Selective Elicitation as a Commercial Influence Channel: A Reproducible Synthetic Shopping-Agent Stress Test</title>
+    <updated>2026-09-29T03:28:13Z</updated>
+    <link href="https://arxiv.org/abs/2609.36614v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.36614v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A commercial incentive need not enter the final ranking algorithm to affect a shopping assistant's recommendation: it may instead influence which preference question the assistant asks. We make this distinction experimentally observable in a deliberately small, synthetic setting. Each task has two products, three verified numerical attributes, a price limit, and a private fixed preference vector. An honest simulated user answers one pairwise question. A separate recommender receives the products and this answer but not the sponsorship assignment. We contrast a neutral question, a soft commercial instruction, and an explicitly adversarial instruction to ask about the sponsor's advantage while omitting the rival's advantage. Across 40 held-out sponsorship-assignment cases (20 distinct catalog-preference contexts), the soft instruction changes no selections. The targeted instruction raises sponsored selection by 0.30 and reduces mean synthetic utility by 0.0547 relative to neutral questioning (95% context-bootstrap interval [-0.0828, -0.0291]) for one language-model recommender. A fixed Bayesian recommender shows a similar effect; a second model makes the same choices on all 120 frozen question-answer inputs. A terminal-answer consistency judge rates all 20 sampled targeted answers consistent, although five have synthetic regret above 0.05; a separate question-coverage dimension flags their one-sided elicitation. A robust partial-preference certificate remains valid under the stipulated synthetic utility but certifies only 16 of 40 targeted cases and is not better than asking a neutral question directly. These results establish neither typical behavior under advertising incentives nor effects on actual consumers.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-29T03:28:13Z</published>
+    <arxiv:comment>7 pages, 1 table; synthetic data and reproduction code in ancillary files; substantial AI-tool use disclosed in the manuscript</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Jiapeng Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.04263v1</id>
+    <title>Commercial Persuasion in AI-Mediated Conversations</title>
+    <updated>2026-04-05T20:51:55Z</updated>
+    <link href="https://arxiv.org/abs/2604.04263v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.04263v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>As Large Language Models (LLMs) become a primary interface between users and the web, companies face growing economic incentives to embed commercial influence into AI-mediated conversations. We present two preregistered experiments (N = 2,012) in which participants selected a book to receive from a large eBook catalog using either a traditional search engine or a conversational LLM agent powered by one of five frontier models. Unbeknownst to participants, a fifth of all products were randomly designated as sponsored and promoted in different ways. We find that LLM-driven persuasion nearly triples the rate at which users select sponsored products compared to traditional search placement (61.2% vs. 22.4%), while the vast majority of participants fail to detect any promotional steering. Explicit "Sponsored" labels do not significantly reduce persuasion, and instructing the model to conceal its intent makes its influence nearly invisible (detection accuracy &lt; 10%). Altogether, our results indicate that conversational AI can covertly redirect consumer choices at scale, and that existing transparency mechanisms may be insufficient to protect users.</summary>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-05T20:51:55Z</published>
+    <arxiv:primary_category term="cs.CY"/>
+    <author>
+      <name>Francesco Salvi</name>
+    </author>
+    <author>
+      <name>Alejandro Cuevas</name>
+    </author>
+    <author>
+      <name>Manoel Horta Ribeiro</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2409.12143v1</id>
+    <title>Experimental Evidence That Conversational Artificial Intelligence Can Steer Consumer Behavior Without Detection</title>
+    <updated>2024-09-18T17:05:09Z</updated>
+    <link href="https://arxiv.org/abs/2409.12143v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2409.12143v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Conversational AI models are becoming increasingly popular and are about to replace traditional search engines for information retrieval and product discovery. This raises concerns about monetization strategies and the potential for subtle consumer manipulation. Companies may have financial incentives to steer users toward search results or products in a conversation in ways that are unnoticeable to consumers. Using a behavioral experiment, we show that conversational AI models can indeed significantly shift consumer preferences. We discuss implications and ask whether regulators are sufficiently prepared to combat potential consumer deception.</summary>
+    <category term="econ.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-09-18T17:05:09Z</published>
+    <arxiv:primary_category term="econ.GN"/>
+    <author>
+      <name>Tobias Werner</name>
+    </author>
+    <author>
+      <name>Ivan Soraperra</name>
+    </author>
+    <author>
+      <name>Emilio Calvano</name>
+    </author>
+    <author>
+      <name>David C. Parkes</name>
+    </author>
+    <author>
+      <name>Iyad Rahwan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.28372v1</id>
+    <title>Shopping by algorithm: How agentic AI deploys human heuristics as a surrogate consumer</title>
+    <updated>2026-09-23T16:47:52Z</updated>
+    <link href="https://arxiv.org/abs/2609.28372v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.28372v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Consumers increasingly delegate purchasing decisions to Large Language Models (LLMs) acting as surrogate consumers. Using "Tool-Lab," an adaptation of information-board process tracing that places product attributes behind costly tool calls, we examine how marketing pricing cues (i.e., just-below pricing and promotional framing) influence AI shopping agents. Across eight commercially deployed LLMs from three providers, we trace pre-choice information acquisition. Under zero cost, pricing cues rarely mislead. Imposing acquisition costs under a vague goal prompt leads LLMs to omit diagnostic attributes required to compute unit price and choose suboptimal choices resembling human heuristics. Relative to a specific goal prompt that mainly preserves diagnostic search and choice optimality, a vague goal prompt under constraints creates a search-mediated vulnerability. This research demonstrates that marketing heuristics in delegated AI shopping are governed by storefront information architecture, not necessarily immutable LLM flaws.</summary>
+    <category term="econ.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-23T16:47:52Z</published>
+    <arxiv:primary_category term="econ.GN"/>
+    <author>
+      <name>Davood Wadi</name>
+    </author>
+    <author>
+      <name>Yu Ma</name>
+    </author>
+  </entry>
+</feed>

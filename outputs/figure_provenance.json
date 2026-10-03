@@ -1,0 +1,17 @@
+{
+  "stage": "core",
+  "dataset": "data/analysis/core_dataset.jsonl",
+  "results": "artifacts/analysis/core_results.json",
+  "robustness_included": [],
+  "fig7_selection": {
+    "category": "unsupported_marketing_evidence",
+    "category_counts": {
+      "cue_driven_attribute_substitution": 48,
+      "unsupported_marketing_evidence": 193,
+      "leading_clarification": 129,
+      "silent_defaulting": 36,
+      "under_questioning": 36
+    },
+    "trial_id": "019c0d3bfcdeeb85e80ee5fc2c4db95620839e21c85f56b2ea2d3108ba8eceb8"
+  }
+}

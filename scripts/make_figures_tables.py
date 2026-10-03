@@ -209,18 +209,19 @@ def fig7_failure_pathway(rows):
         return None
     r = pick[0]
     fig, ax = plt.subplots(figsize=(7.2, 2.7)); ax.set_xlim(0, 10); ax.set_ylim(0, 3.4); ax.axis("off")
-    q = (r["clarification_question"] or "(no clarification asked)")[:110]
+    import textwrap
+    q = textwrap.fill("Question text: " + (r["clarification_question"] or "(no clarification asked)"), 125)
     steps = [f"Arm: {ARM_LABEL[r['marketing_condition']]}\nModel: {MODEL_LABEL[r['model_family']]}\nScenario {r['scenario_id'][-3:]} ({r['profile_class'].replace('_', ' ')})",
              f"Clarification: {'yes' if r['clarification'] else 'no'}\nTarget: {r['question_target_raw'] or '—'}",
-             "ŵ = " + ", ".join(f"{k[:4]} {v:.2f}" for k, v in r["w_hat"].items()) + "\nw* = " + ", ".join(f"{k[:4]} {v:.2f}" for k, v in r["w_star"].items()),
+             "Weights: agent / objective\n" + "\n".join(f"{k}: {r['w_hat'][k]:.2f} / {r['w_star'][k]:.2f}" for k in ("price", "quality", "durability", "sustainability")),
              f"Top: {r['top_product']} ({'cued' if r['top_is_cued'] else 'not cued'})\nD = {r['representation_error']:.3f}; regret = {r['regret']:.3f}"]
     for i, s in enumerate(steps):
         box(ax, 0.05 + i * 2.5, 1.6, 2.35, 1.5, s, fs=6.8, fc="#ffffff" if i != 3 else "#fdf6e6")
         if i:
             arrow(ax, i * 2.5 - 0.1, 2.35, i * 2.5 + 0.05, 2.35)
-    ax.text(0.05, 1.15, f"Category (pre-specified rule): {cat.replace('_', ' ')} — {counts[cat]} of the eligible runs", fontsize=7.5, color=INK)
-    ax.text(0.05, 0.75, f"Question text: {q}", fontsize=6.8, color=INK2)
-    ax.text(0.05, 0.35, f"Trial ID: {r['trial_id'][:16]}…  (full trace in data/core/)", fontsize=6.8, color=INK2)
+    ax.text(0.05, 1.3, f"Category (pre-specified rule): {cat.replace('_', ' ')} ({counts[cat]} ambiguous-goal commercial runs in this category)", fontsize=7.5, color=INK)
+    ax.text(0.05, 1.0, q, fontsize=6.6, color=INK2, va="top")
+    ax.text(0.05, 0.15, f"Trial ID: {r['trial_id'][:16]}…  (full trace in data/core/)", fontsize=6.6, color=INK2)
     save(fig, "fig7_failure_pathway")
     return {"category": cat, "category_counts": counts, "trial_id": r["trial_id"]}
 

@@ -1,0 +1,39 @@
+{
+  "artifact_version": "run-summary-v1",
+  "stage": "pilot_v2",
+  "planned": 32,
+  "final_traces": 32,
+  "valid": 31,
+  "failed": 1,
+  "by_model": {
+    "google_gemini": {
+      "planned": 16,
+      "valid": 16,
+      "failed": 0,
+      "technical_retries": 0,
+      "parser_retries": 0
+    },
+    "mistral": {
+      "planned": 16,
+      "valid": 15,
+      "failed": 1,
+      "technical_retries": 0,
+      "parser_retries": 0
+    }
+  },
+  "tokens": {
+    "google_gemini": {
+      "input": 47804,
+      "output": 4224,
+      "provider_calls": 43
+    },
+    "mistral": {
+      "input": 56455,
+      "output": 5679,
+      "provider_calls": 46
+    }
+  },
+  "dataset_path": "data/analysis/pilot_v2_dataset.jsonl",
+  "dataset_sha256": "2897c1032cbf08fea06f3b54ac6c825098267165945f4ee181c03a164687713e",
+  "audit_passed": true
+}

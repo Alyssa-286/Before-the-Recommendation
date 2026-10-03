@@ -1,0 +1,17 @@
+Contrast / outcome,Estimate [95% CI],Scenarios,Bootstrap p,Holm p
+Clarification rate,"-0.054 [-0.070, -0.039]",40,0.0001,0.0004
+Representation error D,"-0.001 [-0.006, 0.004]",40,0.7287,0.7287
+Recommendation utility,"-0.006 [-0.010, -0.003]",40,0.0003,0.0009
+Regret,"0.006 [0.003, 0.010]",40,0.0003,0.0009
+Clarification rate — explicit goal,"-0.110 [-0.207, -0.010]",40,0.0264,secondary
+Representation error D — explicit goal,"0.001 [-0.002, 0.005]",40,0.4735,secondary
+Recommendation utility — explicit goal,"0.005 [-0.000, 0.010]",40,0.0728,secondary
+Regret — explicit goal,"-0.005 [-0.010, 0.000]",40,0.0728,secondary
+Clarification rate — moderation (amb − exp),"0.056 [-0.045, 0.153]",40,0.2627,secondary
+Representation error D — moderation (amb − exp),"-0.002 [-0.008, 0.004]",40,0.4862,secondary
+Recommendation utility — moderation (amb − exp),"-0.011 [-0.015, -0.006]",40,0.0001,secondary
+Regret — moderation (amb − exp),"0.011 [0.006, 0.015]",40,0.0001,secondary
+Clarification rate — H1 ambiguous − explicit,"0.300 [0.261, 0.339]",40,0.0001,secondary
+Representation error D — H1 ambiguous − explicit,"0.095 [0.069, 0.119]",40,0.0001,secondary
+Recommendation utility — H1 ambiguous − explicit,"-0.014 [-0.023, -0.005]",40,0.0033,secondary
+Regret — H1 ambiguous − explicit,"0.014 [0.005, 0.023]",40,0.0033,secondary

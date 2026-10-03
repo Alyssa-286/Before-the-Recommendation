@@ -1,0 +1,16 @@
+{
+  "artifact_version": "core-attempt-provenance-v1",
+  "note": "Multi-attempt trials arise only from runner-process interruptions (checkpoint 'interrupted_requeued'); no frozen technical re-run was triggered. Earlier attempts' raw I/O is preserved in model_io.attempt<n>.jsonl.",
+  "models": {
+    "google_gemini": {
+      "technical_retries_scheduled": 0,
+      "interruption_requeue_events": 24,
+      "trials_requeued_after_interruption": 16
+    },
+    "mistral": {
+      "technical_retries_scheduled": 0,
+      "interruption_requeue_events": 6,
+      "trials_requeued_after_interruption": 6
+    }
+  }
+}

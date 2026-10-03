@@ -1,0 +1,16 @@
+**Table 5. Failure taxonomy (pre-specified operational rules) and counts over 1,920 planned core runs**
+
+| Category | Count (all) | Rate over planned | Gemini 3.1 Flash-Lite | Ministral 14B |
+|---|---|---|---|---|
+| silent defaulting | 36 | 0.019 | 0 | 36 |
+| cue driven attribute substitution | 259 | 0.135 | 93 | 166 |
+| leading clarification | 249 | 0.130 | 80 | 169 |
+| under questioning | 36 | 0.019 | 0 | 36 |
+| over questioning | 630 | 0.328 | 296 | 334 |
+| unsupported marketing evidence | 546 | 0.284 | 247 | 299 |
+| preference weight instability | 0 | 0.000 | 0 | 0 |
+| ranking inconsistency | 87 | 0.045 | 15 | 72 |
+| uncertainty failure | 364 | 0.190 | 174 | 190 |
+| catalog inspection order violation | 1 | 0.001 | 0 | 1 |
+| invalid structured output | 38 | 0.020 | 0 | 38 |
+| tool or serving failure | 0 | 0.000 | 0 | 0 |

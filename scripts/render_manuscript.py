@@ -33,6 +33,10 @@ def f(x, d=3):
     return "n/a" if x is None else f"{x:.{d}f}"
 
 
+def fp(x) -> str:
+    return "n/a" if x is None else ("< 0.001" if x < 0.001 else f"= {x:.3f}")
+
+
 def est(p: dict, d=3) -> str:
     if p is None or p.get("estimate") is None:
         return "not estimable"
@@ -67,7 +71,9 @@ def build_tokens() -> dict[str, str]:
         bm = A["counts_by_model"][m]
         t[f"{m}_valid"] = f"{bm['valid']:,}"
         t[f"{m}_failed"] = f"{bm['failed']:,}"
-        t[f"{m}_tech_retries"] = str(bm["technical_retries"])
+        prov = load("artifacts/core_attempt_provenance.json")["models"][m]
+        t[f"{m}_tech_retries"] = str(prov["technical_retries_scheduled"])
+        t[f"{m}_requeued"] = str(prov["trials_requeued_after_interruption"])
         t[f"{m}_parser_retries"] = str(bm["parser_retries"])
     t["audit_checks"] = str(len(A["checks"]))
     t["audit_passed"] = "passed" if A["all_checks_passed"] else "FAILED"
@@ -80,7 +86,7 @@ def build_tokens() -> dict[str, str]:
     for o in OUT:
         t[f"prim_{o}"] = est(prim[o]["pooled"])
         t[f"prim_{o}_verdict"] = verdict(prim[o]["pooled"])
-        t[f"prim_{o}_holm"] = f(prim[o]["pooled"].get("holm_adjusted_p"), 3)
+        t[f"prim_{o}_holm"] = fp(prim[o]["pooled"].get("holm_adjusted_p"))
         for m in MODEL:
             t[f"prim_{o}_{m}"] = est(prim[o]["by_model"][m])
             t[f"prim_{o}_{m}_verdict"] = verdict(prim[o]["by_model"][m])
@@ -188,9 +194,28 @@ def build_tokens() -> dict[str, str]:
     sep = h4["pooled|ambiguous"]
     util_null = not excludes_zero(prim["recommended_utility"]["pooled"])
     rep_shift = excludes_zero(prim["representation_error"]["pooled"]) or sep["share_weight_shift_gt_0_05"] > 0
-    t["H4_verdict"] = ("consistent with separation: utility contrast includes zero while represented weights shift relative to the matched neutral run"
-                       if util_null and rep_shift else "not consistent with separation (utility moved with representation)" if not util_null else "indeterminate")
-    t["H5_verdict"] = "exploratory; " + verdict(h5["pooled"])
+    d_null = not excludes_zero(prim["representation_error"]["pooled"])
+    if util_null and rep_shift:
+        t["H4_verdict"] = "consistent with separation: the utility contrast includes zero while represented weights shift relative to the matched neutral run"
+    elif not util_null and d_null:
+        t["H4_verdict"] = ("not supported in the stated direction; the observed dissociation runs the other way: utility changed "
+                           "while representation error did not")
+    elif not util_null:
+        t["H4_verdict"] = "not supported: utility and representation error both changed"
+    else:
+        t["H4_verdict"] = "indeterminate"
+    pd_ = prim["representation_error"]["pooled"]; h1d = R["h1_ambiguous_minus_explicit_all_arms"]["representation_error"]["pooled"]["estimate"]
+    t["dD_bound_share"] = pct(max(abs(pd_["ci_low"]), abs(pd_["ci_high"])) / abs(h1d)) if h1d else "n/a"
+    t["H5_verdict"] = "exploratory; under ambiguous goals " + verdict(h5["pooled"])
+    h5e = R["h5_exploratory_discount_vs_neutral_price_question"].get("explicit")
+    t["h5_explicit"] = est(h5e["pooled"]) if h5e else "n/a"
+    t["h5_explicit_verdict"] = verdict(h5e["pooled"]) if h5e else "n/a"
+    for m in MODEL:
+        rows = [v for k, v in qt.get(m, {}).items()]
+        n = sum(v["n_clarifications"] for v in rows)
+        sup = sum(v["answer_supported_rate"] * v["n_clarifications"] for v in rows)
+        t[f"supported_{m}"] = pct(sup / n if n else None)
+        t[f"nclar_{m}"] = f"{n:,}"
     return t
 
 
